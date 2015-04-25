@@ -8,7 +8,7 @@ PySD Cookbook
 0. Hello World: Introducing PySD with a teacup model
  1. Python data science tools
 1. Model Fitting to data
- 1. *Run at a time* optimization
+ 1. [*Run at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/Fitting%20with%20Optimization.ipynb)
  2. [*Step at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/Step%20at%20a%20time%20optimization.ipynb)
  3. optimizing in the phase space
  4. Frequency Domain
