@@ -41,6 +41,9 @@ PySD Cookbook
  13. Screening for sensitivity analysis 
 13. Hidden markov models and dynamic models
 14. Machine Learning predictors and dynamic models
+15. Testing policy robustness
+16. Extreme conditions testing - unit testing on models.
+17. Pysd and Exploratory Modeling Analysis Workbench
 
 This cookbook is intended as a resource for system dynamics practitioners working to use big data to 
 improve their modeling practice. We strive to make each recipe short, simple to understand, and transferable, 
