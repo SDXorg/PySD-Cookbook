@@ -1,4 +1,4 @@
-PySD Cookbook
+[PySD Cookbook](http://jamesphoughton.github.io/PySD-Cookbook)
 =============
 ## Simple recipes for powerful analysis of system dynamics models
 *by James Houghton*
