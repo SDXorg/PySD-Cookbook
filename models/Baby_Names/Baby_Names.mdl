@@ -1,0 +1,155 @@
+{UTF-8}
+Adjusting Perceptions  = A FUNCTION OF( Expected Prevalence,Name Prevalence)
+	~	
+	~		|
+
+Adjustment Rate  = A FUNCTION OF( )
+	~	
+	~		|
+
+All Births  = A FUNCTION OF( )
+	~	
+	~		|
+
+All Deaths  = A FUNCTION OF( )
+	~	
+	~		|
+
+Becoming Aware  = A FUNCTION OF( Name Prevalence,People Unaware of Name)
+	~	
+	~		|
+
+Christenings  = A FUNCTION OF( People Aware of Name,Perception of Name Freshness)
+	~	
+	~		|
+
+Deaths  = A FUNCTION OF( Life Expectancy,Name Prevalence)
+	~	
+	~		|
+
+Expected Prevalence  = A FUNCTION OF( )
+	~	
+	~		|
+
+Life Expectancy  = A FUNCTION OF( )
+	~	
+	~		|
+
+Name Prevalence  = A FUNCTION OF( Christenings,-Deaths)
+	~	
+	~		|
+
+People Aware of Name  = A FUNCTION OF( -All Deaths,Becoming Aware)
+	~	
+	~		|
+
+People Unaware of Name  = A FUNCTION OF( All Births,-Becoming Aware)
+	~	
+	~		|
+
+Perception of Name Freshness  = A FUNCTION OF( Adjusting Perceptions)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 1013
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 1880
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0625
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Perception of Name Freshness,398,402,40,20,3,3,0,0,0,0,0,0
+12,2,48,536,399,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(463,400)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(513,400)|
+11,5,0,494,400,6,8,34,3,0,0,1,0,0,0
+10,6,Adjusting Perceptions,494,422,35,14,40,131,0,0,-1,0,0,0
+10,7,Name Prevalence,473,255,40,20,3,3,0,0,0,0,0,0
+12,8,48,310,245,10,8,0,3,0,0,-1,0,0,0
+1,9,11,7,4,0,0,22,0,0,0,-1--1--1,,1|(407,245)|
+1,10,11,8,100,0,0,22,0,0,0,-1--1--1,,1|(345,245)|
+11,11,0,376,245,6,8,34,3,0,0,1,0,0,0
+10,12,Christenings,376,261,33,8,40,3,0,0,-1,0,0,0
+12,13,48,656,252,10,8,0,3,0,0,-1,0,0,0
+1,14,16,13,4,0,0,22,0,0,0,-1--1--1,,1|(615,252)|
+1,15,16,7,100,0,0,22,0,0,0,-1--1--1,,1|(543,252)|
+11,16,0,579,252,6,8,34,3,0,0,1,0,0,0
+10,17,Deaths,579,268,19,8,40,3,0,0,-1,0,0,0
+10,18,Life Expectancy,606,159,42,8,8,3,0,0,0,0,0,0
+1,19,7,16,1,0,0,0,0,64,0,-1--1--1,,1|(523,199)|
+1,20,18,16,1,0,0,0,0,64,0,-1--1--1,,1|(600,201)|
+10,21,Expected Prevalence,576,484,52,8,8,3,0,0,0,0,0,0
+1,22,1,12,1,0,0,0,0,64,0,-1--1--1,,1|(338,350)|
+1,23,7,5,1,0,0,0,0,64,0,-1--1--1,,1|(528,316)|
+1,24,21,6,0,0,0,0,0,64,0,-1--1--1,,1|(544,460)|
+10,25,Adjustment Rate,403,493,43,8,8,3,0,0,0,0,0,0
+10,26,People Aware of Name,346,69,40,20,3,3,0,0,0,0,0,0
+1,27,28,26,4,0,0,22,0,0,0,-1--1--1,,1|(280,65)|
+11,28,0,249,65,6,8,34,3,0,0,1,0,0,0
+10,29,Becoming Aware,249,81,44,8,40,3,0,0,-1,0,0,0
+1,30,7,29,1,0,0,0,0,64,0,-1--1--1,,1|(323,168)|
+10,31,People Unaware of Name,145,66,40,20,3,3,0,0,0,0,0,0
+1,32,28,31,100,0,0,22,0,0,0,-1--1--1,,1|(214,65)|
+12,33,48,42,59,10,8,0,3,0,0,-1,0,0,0
+1,34,36,31,4,0,0,22,0,0,0,-1--1--1,,1|(94,59)|
+1,35,36,33,100,0,0,22,0,0,0,-1--1--1,,1|(62,59)|
+11,36,0,78,59,6,8,34,3,0,0,1,0,0,0
+10,37,All Births,78,75,26,8,40,3,0,0,-1,0,0,0
+12,38,48,498,69,10,8,0,3,0,0,-1,0,0,0
+1,39,41,38,4,0,0,22,0,0,0,-1--1--1,,1|(465,69)|
+1,40,41,26,100,0,0,22,0,0,0,-1--1--1,,1|(408,69)|
+11,41,0,437,69,6,8,34,3,0,0,1,0,0,0
+10,42,All Deaths,437,85,28,8,40,3,0,0,-1,0,0,0
+1,43,31,28,1,0,0,0,0,64,0,-1--1--1,,1|(189,20)|
+1,44,26,11,0,0,0,0,0,64,0,-1--1--1,,1|(360,157)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:Adjusting Perceptions
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:0
+24:0
+25:0
+26:0
