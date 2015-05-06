@@ -6,10 +6,10 @@
 ###Chapters:
 
 0. Hello World: Introducing PySD with a teacup model
- 1. Python data science tools
+ 1. [Python data science tools](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/1_1_Hello_World_Teacup.ipynb)
 1. Model Fitting to data
- 1. [*Run at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/Fitting%20with%20Optimization.ipynb)
- 2. [*Step at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/Step%20at%20a%20time%20optimization.ipynb)
+ 1. [*Run at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/2_1_Fitting_with_Optimization.ipynb)
+ 2. [*Step at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/2_2_Step_at_a_time_optimization.ipynb)
  3. optimizing in the phase space
  4. Frequency Domain
  4. Fitting to multiple datasets
@@ -23,7 +23,7 @@
 3. Patch Models
  1. Linking models together
 4. Surrogating model functions with data
- 1. Machine learning Regression models
+ 1. (Machine learning Regression models)[http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/6_1_Surrogating_with_regression.ipynb]
  2. Nearest neighbors methods
 5. Driving a model with external data
 6. Loading and processing data in real time
