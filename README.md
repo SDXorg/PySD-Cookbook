@@ -23,7 +23,7 @@
 3. Patch Models
  1. Linking models together
 4. Surrogating model functions with data
- 1. (Machine learning Regression models)[http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/6_1_Surrogating_with_regression.ipynb]
+ 1. [Machine learning Regression models](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/6_1_Surrogating_with_regression.ipynb)
  2. Nearest neighbors methods
 5. Driving a model with external data
 6. Loading and processing data in real time
