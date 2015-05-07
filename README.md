@@ -7,7 +7,7 @@
 
 0. Hello World: Introducing PySD with a teacup model
  1. [Installing Python and PySD](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/1_2_Installation_and_Setup.ipynb)
- 1. [Python data science tools](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/1_3_Hello_World_Teacup.ipynb)
+ 1. [Introduction to PySD Usage](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/1_3_Hello_World_Teacup.ipynb)
 1. Model Fitting to data
  1. [*Run at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/2_1_Fitting_with_Optimization.ipynb)
  2. [*Step at a time* optimization](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/2_2_Step_at_a_time_optimization.ipynb)
