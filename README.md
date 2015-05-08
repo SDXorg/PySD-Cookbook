@@ -5,7 +5,7 @@
 
 ###Chapters:
 
-0. Hello World: Introducing PySD with a teacup model
+0. Getting Started with Computation in Python and Analysis with PySD
  1. [Installing Python and PySD](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/1_2_Installation_and_Setup.ipynb)
  1. [Introduction to PySD Usage](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/1_3_Hello_World_Teacup.ipynb)
 1. Model Fitting to data
