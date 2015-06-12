@@ -21,6 +21,8 @@
 2. Markov Chain Monte Carlo
  1. Estimating parameter distributions for a single model
  2. Reversible jump MCMC for model selection
+3. Working with geographic data
+ 4. [Exploring Models across Geographic Scales](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/Exploring%20models%20across%20geographic%20scales.ipynb)
 3. Patch Models
  1. Linking models together
 4. Surrogating model functions with data
