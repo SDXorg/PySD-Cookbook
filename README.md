@@ -28,6 +28,9 @@
 4. Surrogating model functions with data
  1. [Machine learning Regression models](http://nbviewer.ipython.org/github/JamesPHoughton/PySD-Cookbook/blob/master/6_1_Surrogating_with_regression.ipynb)
  2. Nearest neighbors methods
+3. Plotting and displaying simulation output
+ 4. Static Visualization
+ 5. Interactive Plots
 5. Driving a model with external data
 6. Loading and processing data in real time
 7. Kalman filtering on realtime data
