@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The PySD Cookbook &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="#"/>
+        <link rel="next" title="Getting Started" href="analyses/getting_started/getting_started.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="#" class="icon icon-home"> PySD-Cookbook
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="analyses/getting_started/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html">Hello World: The Teacup Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#load-the-model">Load the model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#run-with-default-parameters">Run with default parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#return-additional-model-components">Return additional model components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#return-values-at-a-specific-time">Return values at a specific time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#specifying-model-initial-conditions">Specifying model initial conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html#collecting-results">Collecting Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html">Installation and Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html#installing-python">Installing Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html#installing-pip">Installing pip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html#installing-pysd">Installing PySD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html#manually-installing-pysd-s-dependencies">Manually installing PySD&#8217;s dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html#launch-ipython-notebook-and-get-started">Launch iPython Notebook, and get started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html#upgrading-pysd">Upgrading PySD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyses/visualization/visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/visualization/Visualizations for Print Media.ipynb.html">Visualizations for Print Media</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/visualization/Visualizations for Print Media.ipynb.html#contents">Contents:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/visualization/Visualizations for Print Media.ipynb.html#other-resources">Other resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="analyses/visualization/Visualizations for Print Media.ipynb.html#uncertainty">Uncertainty:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyses/fitting/fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/fitting/Fitting a suite of datasets.ipynb.html">Fitting a suite of datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/fitting/Fitting a suite of datasets.ipynb.html#ingredients">Ingredients</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/fitting/Fitting_with_Optimization.ipynb.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/fitting/Fitting_with_Optimization.ipynb.html#when-to-use-this-technique">When to use this technique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="analyses/fitting/Fitting_with_Optimization.ipynb.html#ingredients">Ingredients:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="analyses/fitting/Fitting_with_Optimization.ipynb.html#recipe">Recipe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="analyses/fitting/Fitting_with_Optimization.ipynb.html#result">Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html">Step-at-a-time optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html#when-to-use-this-technique">When to use this technique</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html#ingredients">Ingredients</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html#model">Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html#data">Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html#the-recipe">The Recipe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html#result">Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyses/geo/geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#population-data-by-age-cohort">Population data by age cohort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#a-model-of-an-aging-population">A model of an aging population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#geography-information">Geography Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#part-a-predict-state-level-values-from-national-model-fit">Part A: Predict state-level values from national model fit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-1-initialize-the-model-using-census-data">Step 1: Initialize the model using census data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-2-fit-the-national-level-model-to-the-remaining-data">Step 2: Fit the national level model to the remaining data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-3-make-state-level-predictions">Step 3: Make state-level predictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-4-compare-model-predictions-with-measured-data">Step 4: Compare model predictions with measured data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-5-merge-with-geo-data-to-plot">Step 5: Merge with geo data to plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#part-b-fit-state-by-state-models">Part B: fit state-by-state models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-1-write-the-optimization-functions-to-account-for-the-state">Step 1: Write the optimization functions to account for the state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-2-apply-optimization-to-each-state">Step 2: Apply optimization to each state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#step-3-merge-with-geographic-data">Step 3: Merge with geographic data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data/data.html">Data Gathering</a><ul class="simple">
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>The PySD Cookbook</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="the-pysd-cookbook">
+<h1>The PySD Cookbook<a class="headerlink" href="#the-pysd-cookbook" title="Permalink to this headline">¶</a></h1>
+<p>Simple recipes for powerful analysis of system dynamics models</p>
+<div class="section" id="how-to-use-this-cookbook">
+<h2>How to use this cookbook<a class="headerlink" href="#how-to-use-this-cookbook" title="Permalink to this headline">¶</a></h2>
+<p>Every recipe in this cookbook is an executable ipython notebook. Because of this, I recommend
+that you download a copy of the cookbook, and follow along by executing the steps in each
+notebook as you read, playing with the parameters, etc.</p>
+<p>If you want to implement a recipe, you can then make a copy of the notebook you are interested
+in, and modify it to analyze your own problem with your own data.</p>
+<p>To download the cookbook in its entirity, use
+<a class="reference external" href="https://github.com/JamesPHoughton/PySD-Cookbook/archive/master.zip">this link</a> or visit
+the cookbook&#8217;s <a class="reference external" href="https://github.com/JamesPHoughton/PySD-Cookbook">Github Page</a>
+and select one of the options in the righthand panel.</p>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analyses/getting_started/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/getting_started/Hello_World_Teacup.ipynb.html">Hello World: The Teacup Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/getting_started/Installation_and_Setup.ipynb.html">Installation and Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyses/visualization/visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/visualization/Visualizations for Print Media.ipynb.html">Visualizations for Print Media</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyses/fitting/fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/fitting/Fitting a suite of datasets.ipynb.html">Fitting a suite of datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/fitting/Fitting_with_Optimization.ipynb.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/fitting/Step_at_a_time_optimization.ipynb.html">Step-at-a-time optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analyses/geo/geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#part-a-predict-state-level-values-from-national-model-fit">Part A: Predict state-level values from national model fit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analyses/geo/Exploring models across geographic scales.ipynb.html#part-b-fit-state-by-state-models">Part B: fit state-by-state models</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="extra-resources">
+<h2>Extra Resources<a class="headerlink" href="#extra-resources" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="http://pysd.readthedocs.org/">PySD Documentation</a> can answer most questions
+about how PySD itself should be used,
+with <a class="reference external" href="http://pysd.readthedocs.org/en/latest/basic_usage.html">basic examples</a>
+and <a class="reference external" href="http://pysd.readthedocs.org/en/latest/functions.html">function reference</a>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data/data.html">Data Gathering</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="analyses/getting_started/getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,2 +1,4 @@
 *.2mdl
 .ipynb_checkpoints/*
+*.3vm
+*-checkpoint.ipynb
