@@ -1,0 +1,10 @@
+Model Fitting
+=============
+
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   Fitting_with_Optimization
+   Step_at_a_time_optimization

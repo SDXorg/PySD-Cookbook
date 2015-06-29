@@ -29,10 +29,13 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   analyses/getting_started/getting_started
-   analyses/visualization/visualization
-   analyses/fitting/fitting
-   analyses/geo/geo
+   analyses/getting_started/index_getting_started
+   analyses/visualization/index_visualization
+   analyses/fitting/index_fitting
+   analyses/geo/index_geo
+   analyses/surrogating_functions/index_surrogate
+   data/index_data
+   future
 
 Extra Resources
 ---------------
@@ -41,11 +44,6 @@ about how PySD itself should be used,
 with `basic examples <http://pysd.readthedocs.org/en/latest/basic_usage.html>`_
 and `function reference <http://pysd.readthedocs.org/en/latest/functions.html>`_.
 
-.. toctree::
-   :maxdepth: 2
-
-   data/data
-   models/models
 
 
 Indices and tables
