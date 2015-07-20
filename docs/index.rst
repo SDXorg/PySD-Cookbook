@@ -34,6 +34,8 @@ Contents
    analyses/fitting/index_fitting
    analyses/geo/index_geo
    analyses/surrogating_functions/index_surrogate
+   analyses/realtime/index_realtime
+   analyses/workflow/index_workflow
    data/index_data
    future
 

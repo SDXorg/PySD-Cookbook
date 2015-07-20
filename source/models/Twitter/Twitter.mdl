@@ -1,0 +1,87 @@
+{UTF-8}
+Displacement=
+	Posts on Timeline/Displacement Timescale
+	~	
+	~		|
+
+Displacement Timescale=
+	3600
+	~	
+	~		|
+
+Posts on Timeline= INTEG (
+	Tweeting-Displacement,
+		0)
+	~	
+	~		|
+
+Tweeting=
+	4
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Posts on Timeline,358,173,40,20,3,3,0,0,0,0,0,0
+12,2,48,207,175,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(293,175)|
+1,5,6,2,100,0,0,22,0,0,0,-1--1--1,,1|(237,175)|
+11,6,0,263,175,6,8,34,3,0,0,1,0,0,0
+10,7,Tweeting,263,191,24,8,40,3,0,0,-1,0,0,0
+12,8,48,522,174,10,8,0,3,0,0,-1,0,0,0
+1,10,12,8,4,0,0,22,0,0,0,-1--1--1,,1|(486,174)|
+1,11,12,1,100,0,0,22,0,0,0,-1--1--1,,1|(423,174)|
+11,12,0,455,174,6,8,34,3,0,0,1,0,0,0
+10,13,Displacement,455,190,35,8,40,3,0,0,-1,0,0,0
+10,14,Displacement Timescale,496,111,35,14,8,3,0,0,0,0,0,0
+1,15,1,12,1,0,0,0,0,64,0,-1--1--1,,1|(399,125)|
+1,16,14,12,0,0,0,0,0,64,0,-1--1--1,,1|(476,140)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+23:0
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:Displacement Timescale
+24:0
+25:0
+26:0

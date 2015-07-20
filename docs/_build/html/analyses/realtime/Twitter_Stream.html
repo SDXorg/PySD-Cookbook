@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Feeding models with realtime streaming data &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Realtime Data Incorporation" href="index_realtime.html"/>
+        <link rel="next" title="Model Development Workflow" href="../workflow/index_workflow.html"/>
+        <link rel="prev" title="Nth Order Delay Demo" href="Nth_Order_Delay_Demo.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../index.html" class="icon icon-home"> PySD-Cookbook
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installation_and_Setup.html">Installation and Setup of PySD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#installing-python">Installing Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#installing-pip">Installing pip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#installing-pysd">Installing PySD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#manually-installing-pysd-s-dependencies">Manually installing PySD&#8217;s dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#launch-ipython-notebook-and-get-started">Launch iPython Notebook, and get started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#upgrading-pysd">Upgrading PySD</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#load-the-model">Load the model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#run-with-default-parameters">Run with default parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#return-additional-model-components">Return additional model components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#return-values-at-a-specific-time">Return values at a specific time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#specifying-model-initial-conditions">Specifying model initial conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#collecting-results">Collecting Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/Basic_Visualization.html">Basic Visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#ingredients">Ingredients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#basic-plotting">Basic Plotting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#plotting-a-suite-of-runs">Plotting a suite of runs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#add-on-packages">Add-on Packages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../visualization/Basic_Visualization.html#seaborn">Seaborn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../visualization/Basic_Visualization.html#mpld3">MPLD3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html#about-this-technique">About this technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html#ingredients">Ingredients:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html#recipe">Recipe</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html#step-1-construct-an-error-function">Step 1: Construct an &#8216;error&#8217; function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html#step-2-suggest-a-starting-point-and-parameter-bounds-for-the-optimizer">Step 2: Suggest a starting point and parameter bounds for the optimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html#step-3-minimize-the-error-with-an-optimization-function">Step 3: Minimize the error with an optimization function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#about-this-technique">About this technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#model">Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#the-recipe">The Recipe</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#step-1-shape-the-dataset-such-that-each-row-contains-the-start-and-end-of-a-step">Step 1: Shape the dataset such that each row contains the start and end of a &#8216;step&#8217;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#step-2-define-a-single-step-error-function">Step 2: Define a single-step error function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#step-3-define-an-error-function-for-the-full-dataset">Step 3: Define an error function for the full dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html#result">Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html#when-to-use-this-technique">When to use this technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html#data">Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html#the-recipe">The Recipe</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html#executing-the-optimization-in-parallel">Executing the optimization in parallel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#about-this-technique">About this technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#population-data-by-age-cohort">Population data by age cohort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#a-model-of-an-aging-population">A model of an aging population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#geography-information">Geography Information</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#recipe-part-a-predict-state-level-values-from-national-model-fit">Recipe Part A: Predict state-level values from national model fit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-1-initialize-the-model-using-census-data">Step 1: Initialize the model using census data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-2-fit-the-national-level-model-to-the-remaining-data">Step 2: Fit the national level model to the remaining data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-3-make-state-level-predictions">Step 3: Make state-level predictions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-4-compare-model-predictions-with-measured-data">Step 4: Compare model predictions with measured data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-5-merge-with-geo-data-to-plot">Step 5: Merge with geo data to plot</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#recipe-part-b-fit-state-by-state-models">Recipe Part B: fit state-by-state models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-1-write-the-optimization-functions-to-account-for-the-state">Step 1: Write the optimization functions to account for the state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-2-apply-optimization-to-each-state">Step 2: Apply optimization to each state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-3-merge-with-geographic-data">Step 3: Merge with geographic data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Massively Parallel Fitting.html">Parallel Model Fitting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_realtime.html">Realtime Data Incorporation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Nth_Order_Delay_Demo.html#about-this-technique">About this Technique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Nth_Order_Delay_Demo.html#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Nth_Order_Delay_Demo.html#the-game">The Game</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Feeding models with realtime streaming data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#libraries">Libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#twitter-credentials">Twitter Credentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-recipe">The Recipe</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#listening-to-twitter">Listening to twitter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#animation">Animation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit Testing.html">Unit Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Writing to Database.html">Saving Simulation Results to a Database</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/Writing to Database.html#ingredients">Ingredients</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../workflow/Writing to Database.html#model">Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../workflow/Writing to Database.html#a-database">A database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../workflow/Writing to Database.html#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../workflow/Writing to Database.html#the-recipe">The Recipe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#collect-data-on-male-population-by-age-county">Collect data on male population by age, county</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#start-with-the-2010-census">Start with the 2010 census</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#get-data-from-2000">Get data from 2000</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#align-the-datasets">Align the datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_realtime.html">Realtime Data Incorporation</a> &raquo;</li>
+      
+    <li>Feeding models with realtime streaming data</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/analyses/realtime/Twitter_Stream.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="feeding-models-with-realtime-streaming-data">
+<h1>Feeding models with realtime streaming data<a class="headerlink" href="#feeding-models-with-realtime-streaming-data" title="Permalink to this headline">¶</a></h1>
+<p>In this example, we&#8217;ll construct a very simple model of the number of
+posts relating to a given topic on twitter timelines around the world.
+We&#8217;ll feed the model with live streaming data from the twitter API and
+run the model in real time.</p>
+<div class="section" id="ingredients">
+<h2>Ingredients<a class="headerlink" href="#ingredients" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="libraries">
+<h3>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h3>
+<p>In addition to our standard data analytics stack, we&#8217;ll take advantage
+of the <a class="reference external" href="http://tweepy.readthedocs.org/">tweepy</a> library for
+interacting with the twitter API, the standard python library for
+dealing with <a class="reference external" href="https://docs.python.org/2/library/json.html">JSON</a>
+objects, and the standard python
+<a class="reference external" href="https://docs.python.org/2/library/threading.html">threading</a>
+library, to give us access to both the stream and the plots in real
+time.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>%pylab
+import tweepy
+import json
+import pysd
+import threading
+from matplotlib import animation
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Using matplotlib backend: MacOSX
+Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+<div class="section" id="twitter-credentials">
+<h3>Twitter Credentials<a class="headerlink" href="#twitter-credentials" title="Permalink to this headline">¶</a></h3>
+<p>If you want to execute this recipe, you&#8217;ll need to <a class="reference external" href="https://dev.twitter.com/">sign up for a
+twitter developer account</a> and create a
+file containing your credentials.</p>
+<p>Name this file <code class="docutils literal"><span class="pre">_twitter_credentials.py</span></code> and save it in the working
+directory. It should contain something similar to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">consumer_key</span> <span class="o">=</span> <span class="s">&#39;sdjfhkdgjhsk8u09wejne4vdj8j34&#39;</span>
+<span class="n">consumer_secret</span> <span class="o">=</span> <span class="s">&#39;nvjsdv8wp43nneri&#39;</span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="s">&#39;vndisoerihosfdbuttonmashingjkfdlasnvei&#39;</span>
+<span class="n">access_token_secret</span> <span class="o">=</span> <span class="s">&#39;navdjewrjodfjkmorebuttonmashingnjkasdoinv&#39;</span>
+</pre></div>
+</div>
+<p>We can load these into our environment using the <code class="docutils literal"><span class="pre">import</span> <span class="pre">*</span></code> syntax.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">_twitter_credentials</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<p>Our model is a simple delay process. The inflow of the process is the
+rate at which twitter users post messages containing our keywords, and
+the level decays over time as posts fall out of the top of users
+timelines.</p>
+<p>We&#8217;ll explicitly set the timescale in this demo, to show the behavior of
+the system in a short timeperiod.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Twitter/Twitter.mdl&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_components</span><span class="p">({</span><span class="s">&#39;displacement_timescale&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-recipe">
+<h2>The Recipe<a class="headerlink" href="#the-recipe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="listening-to-twitter">
+<h3>Listening to twitter<a class="headerlink" href="#listening-to-twitter" title="Permalink to this headline">¶</a></h3>
+<p>The first thing we&#8217;ll do is to create a variable that will track the
+total number of posts recieved in the last model interation timeperiod.
+This counter will be reset after every model timestep.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Next, we&#8217;ll construct a function that will be run whenever a tweet is
+recieved from the API. This function will increase the counter value,
+and format the tweet to print to the screen.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TweetListener</span><span class="p">(</span><span class="n">tweepy</span><span class="o">.</span><span class="n">StreamListener</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">counter</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="c"># Twitter returns data in JSON format - we need to decode it first</span>
+        <span class="n">decoded</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="c"># Also, we convert UTF-8 to ASCII ignoring all bad characters sent by users</span>
+        <span class="k">print</span> <span class="s">&#39;@</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">decoded</span><span class="p">[</span><span class="s">&#39;user&#39;</span><span class="p">][</span><span class="s">&#39;screen_name&#39;</span><span class="p">],</span> <span class="n">decoded</span><span class="p">[</span><span class="s">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;ascii&#39;</span><span class="p">,</span> <span class="s">&#39;ignore&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">on_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">status</span>
+</pre></div>
+</div>
+<p>The tweepy library manages formatting our credentials for the API
+request:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">access_token_secret</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally we create the object that will parse the twitter stream, and
+start it within its own thread.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stream</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">Stream</span><span class="p">(</span><span class="n">auth</span><span class="p">,</span> <span class="n">TweetListener</span><span class="p">())</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">filter</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;track&#39;</span><span class="p">:[</span><span class="s">&#39;ISDC&#39;</span><span class="p">,</span> <span class="s">&#39;PySD&#39;</span><span class="p">,</span> <span class="s">&#39;pizza&#39;</span><span class="p">]})</span>
+<span class="n">t</span><span class="o">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="animation">
+<h3>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h3>
+<p>First we create a function that will be called at every step in the
+integration:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#make the animation</span>
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">counter</span>
+    <span class="c">#run the simulation forward</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">({</span><span class="s">&#39;tweeting&#39;</span><span class="p">:</span><span class="n">counter</span><span class="p">},</span>
+              <span class="n">return_timestamps</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+              <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;tweeting&#39;</span><span class="p">,</span> <span class="s">&#39;posts_on_timeline&#39;</span><span class="p">],</span>
+              <span class="n">initial_condition</span><span class="o">=</span><span class="s">&#39;current&#39;</span><span class="p">,</span>
+              <span class="n">collect</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_record</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">&#39;tweeting&#39;</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Tweeting&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">&#39;posts_on_timeline&#39;</span><span class="p">],</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Posts on Timeline&#39;</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Lastly we set the parameters for the animation, set up the figure, reset
+the counter (which has been accumulating posts since we ran the first
+part of the code) and start the animation.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#set the animation parameters</span>
+<span class="n">fps</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">seconds</span><span class="o">=</span><span class="mi">60</span>
+<span class="n">dt</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">fps</span>
+
+<span class="c">#set up the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Twitter Messages in Model&#39;</span><span class="p">)</span>
+
+<span class="c">#reset the counter to start fresh.</span>
+<span class="n">counter</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c"># call the animator.</span>
+<span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                        <span class="n">frames</span><span class="o">=</span><span class="n">seconds</span><span class="o">*</span><span class="n">fps</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mf">1000.</span><span class="o">/</span><span class="n">fps</span><span class="p">,</span>
+                        <span class="n">blit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.animation.FuncAnimation at 0x108377c10&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../workflow/index_workflow.html" class="btn btn-neutral float-right" title="Model Development Workflow" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Nth_Order_Delay_Demo.html" class="btn btn-neutral" title="Nth Order Delay Demo" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
