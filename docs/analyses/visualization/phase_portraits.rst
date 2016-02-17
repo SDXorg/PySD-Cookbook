@@ -1,6 +1,6 @@
 
 Phase Portraits
----------------
+===============
 
 In this notebook we'll look at how to generate `phase
 portraits <https://en.wikipedia.org/wiki/Phase_portrait>`__. A phase
