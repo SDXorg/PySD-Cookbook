@@ -2,5 +2,6 @@
 .ipynb_checkpoints/*
 *.3vm
 *-checkpoint.ipynb
-#_*.py
+_*.py
 *.pyc
+*.vdf

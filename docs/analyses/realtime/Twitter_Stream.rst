@@ -75,7 +75,7 @@ the system in a short timeperiod.
 .. code:: python
 
     model = pysd.read_vensim('../../models/Twitter/Twitter.mdl')
-    model.set_components({'displacement_timescale':10})
+    model.set_components({'displacement_timescale':30})
 
 The Recipe
 ----------
@@ -127,7 +127,7 @@ start it within its own thread.
 
     stream = tweepy.Stream(auth, TweetListener())
     
-    t = threading.Thread(target=stream.filter, kwargs={'track':['ISDC', 'PySD', 'pizza']})
+    t = threading.Thread(target=stream.filter, kwargs={'track':['ISDC', 'PySD', 'ISDC15', 'Trump']})
     t.daemon = True
     t.start()
 
@@ -154,6 +154,23 @@ integration:
         ax.plot(out['posts_on_timeline'], 'b', label='Posts on Timeline')
         counter = 0
 
+
+.. parsed-literal::
+
+    @alisonjpotter: RT @queenfeminist: Retweet for Bernie Sanders fav for Hillary Clinton
+    
+    Ignore and Donald Trump wins
+    
+    @MrTommyCampbell: RT @swhammerhead: #WhenTrumpIsElected the letter H will be removed from the American lexicon as Trump doesn't pronounce it anyways.  It wil
+    
+    @JBRichard50: RT @BradThor: "It's impossible for Perry to have stayed gov of TX for so long if he really is the person we saw in those debates." http://t
+    
+    @AdeboyeOriade: RT @politicususa: President Obama Rips Donald Trump, Mike Huckabee, and The Entire Republican Party http://t.co/krMZwVV1u0 via @politicusus
+    
+    @1baldeagle77: The one thing that makes me take Donald Trump seriously as a candidate  Rush Limbaugh http://t.co/VxDAyO8xw7 via @voxdotcom
+    
+
+
 Lastly we set the parameters for the animation, set up the figure, reset
 the counter (which has been accumulating posts since we ran the first
 part of the code) and start the animation.
@@ -161,14 +178,16 @@ part of the code) and start the animation.
 .. code:: python
 
     #set the animation parameters
-    fps=2
-    seconds=60
+    fps=1
+    seconds=60*30
     dt=1./fps    
     
     #set up the plot
     fig, ax = plt.subplots()
-    ax.set_xlim(0,60)
-    title = ax.set_title('Twitter Messages in Model')
+    ax.set_xlim(0,seconds)
+    title = ax.set_title('Expected Twitter Messages on First Page of Feed')
+    ax.set_xlabel('Seconds')
+    ax.set_ylabel('Posts, Posts/second')
         
     #reset the counter to start fresh.
     counter=0    
@@ -179,11 +198,51 @@ part of the code) and start the animation.
                             blit=False)
 
 
+.. parsed-literal::
+
+    @shehelby: RT @ProBirdRights: How can they say me a bird can not be run for Presindent when Donal Trump a giant talking corn can??? #birb2016
+    
+    @LacrosseUpdate: Hope Hicks flies quietly in the eye of the Trump storm http://t.co/SSUZKcyyiG http://t.co/3MlnhhsEwc
+    
+    @thedancingqueer: RT @queenfeminist: Retweet for Bernie Sanders fav for Hillary Clinton
+    
+    Ignore and Donald Trump wins
+    
+    @BuzzFeedAndrew: "Never a Bush fan," Donald Trump campaigned for H.W. in 1988 held a fundraiser for Jeb in 2002. http://t.co/7S2u6eSyrN
+    
+    @david_alman: Fucking leftist media spends so much time covering Donald Trump's statements from 20 years ago that it neglects like...anything relevant.
+    
+    @kcasa7131: RT @pdacosta: #WhenTrumpIsElected, he might appoint himself as Chairman of the Federal Reserve, and begin to issue Trump dollars. http://t.
+    
+    @presidentrumped: President Trump: Mr Trump is a Gemini this means he is TOTALLY unpredictable! http://t.co/tP5lraAyUH
+    
+    @MicheleUpdate: Nicolle Wallace: Trump Is 'Doing One Thing Really, Really Well' http://t.co/kLfGNkCqyh
+    
+    @jjyorktown: RT @ConanOBrien: Im on vacation. Please keep Trump popular while Im gone, I need him in the debates.
+    
+    @MisaelDiazMLM: .@amazonmex @jcgs68 @amazon Amazon: Dejen de vender los libros de Donald Trump! - Firm la Peti... https://t.co/UMSTq5AxY2 va @Change_M
+    
+    @StrongerForce: RT @BradThor: "It's impossible for Perry to have stayed gov of TX for so long if he really is the person we saw in those debates." http://t
+    
+    @cheyannebiancab: RT @bigmacher: #WhenTrumpIsElected everyone will get a Trump action figure that will buy all your play houses &amp; then goes bankrupt. http://
+    
+    @BigEers: RT @Mediaite: Chris Christie Will No Longer Comment Publicly on Donald Trump http://t.co/UrfQEfGklZ (AUDIO) http://t.co/5fEw69cvM7
+    
+    @_miramira93: RT @SockHimBopHer: Bill Cosby's legacy is dead.. Donald Trump can possibly be the president.. The Klan is traveling like an AAU team.. And 
+    
+    @paigekathstev: RT @ConanOBrien: Im on vacation. Please keep Trump popular while Im gone, I need him in the debates.
+    
+    @BMLewis2: RT @GStuedler: I cant see it happening, but in the slim chance it doesa Donald Trump nomination would mean they have completely given up.
+    
+    @DebndanfarrDeb: Donald Trump Surges to Lead in NH GOP Presidential Poll, Erases Another's Iowa Lead - The Political Insider http://t.co/3exB1TrjPJ via
+    
+
+
 
 
 .. parsed-literal::
 
-    <matplotlib.animation.FuncAnimation at 0x108377c10>
+    <matplotlib.animation.FuncAnimation at 0x114fc0c90>
 
 
 

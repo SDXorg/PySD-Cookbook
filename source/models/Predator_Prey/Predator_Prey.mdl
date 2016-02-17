@@ -68,7 +68,7 @@ INITIAL TIME  = 0
 	|
 
 SAVEPER  = 
-        TIME STEP 
+        TIME STEP
 	~	Day [0,?]
 	~	The frequency with which output is stored.
 	|
@@ -120,7 +120,6 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 1,36,33,19,0,0,0,0,0,64,0,-1--1--1,,1|(502,368)|
 ///---\\\
 :L<%^E!@
-1:/Users/houghton/Google_Drive/Academic Projects/PYSD/pysd/example_models/Current.vdf
 9:Current
 22:$,Dollar,Dollars,$s
 22:Day,Days

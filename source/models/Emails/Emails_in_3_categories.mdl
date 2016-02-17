@@ -1,0 +1,213 @@
+{UTF-8}
+Arrival of Emails requiring Little Action=
+	Little Action Volume * PULSE(0, TIME STEP )
+	~	
+	~		|
+
+Arrival of Emails Requiring Significant Action=
+	Significant Action Volume * PULSE(0, TIME STEP )
+	~	
+	~		|
+
+Arrival of Emails Requiring Some Action=
+	Some Action Volume * PULSE(0, TIME STEP )
+	~	
+	~		|
+
+Emails Requiring Little Action= INTEG (
+	Arrival of Emails requiring Little Action-Response to Emails Requiring Little Action\
+		,
+		0)
+	~	
+	~		|
+
+Emails Requiring Significant Action= INTEG (
+	Arrival of Emails Requiring Significant Action-Response to Emails Requiring Significant Action\
+		,
+		0)
+	~	
+	~		|
+
+Emails Requiring Some Action= INTEG (
+	Arrival of Emails Requiring Some Action-Response to Emails Requiring Some Action,
+		0)
+	~	
+	~		|
+
+Little Action Order  = A FUNCTION OF( )
+	~	
+	~		|
+
+Little Action Time  = A FUNCTION OF( )
+	~	
+	~		|
+
+Little Action Volume=
+	10
+	~	
+	~		|
+
+Net email Output  = A FUNCTION OF( Response to Emails Requiring Little Action,Response to Emails Requiring Significant Action\
+		,Response to Emails Requiring Some Action)
+	~	
+	~		|
+
+Response to Emails Requiring Little Action=
+	DELAY N(Arrival of Emails requiring Little Action, Little Action Time, 0, Little Action Order\
+		)
+	~	
+	~		|
+
+Response to Emails Requiring Significant Action  = A FUNCTION OF( Arrival of Emails Requiring Significant Action\
+		,Significant Action Order,Significant Action Time)
+	~	
+	~		|
+
+Response to Emails Requiring Some Action  = A FUNCTION OF( Arrival of Emails Requiring Some Action\
+		,Some Action Order,Some Action Time)
+	~	
+	~		|
+
+Significant Action Order  = A FUNCTION OF( )
+	~	
+	~		|
+
+Significant Action Time  = A FUNCTION OF( )
+	~	
+	~		|
+
+Significant Action Volume=
+	10
+	~	
+	~		|
+
+Some Action Order  = A FUNCTION OF( )
+	~	
+	~		|
+
+Some Action Time  = A FUNCTION OF( )
+	~	
+	~		|
+
+Some Action Volume=
+	10
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Emails Requiring Little Action,450,245,38,26,3,131,0,0,0,0,0,0
+12,2,48,601,243,10,8,0,3,0,0,-1,0,0,0
+1,4,6,2,4,0,0,22,0,0,0,-1--1--1,,1|(568,243)|
+1,5,6,1,100,0,0,22,0,0,0,-1--1--1,,1|(511,243)|
+11,6,0,540,243,6,8,34,3,0,0,1,0,0,0
+10,7,Response to Emails Requiring Little Action,540,259,60,14,40,3,0,0,-1,0,0,0
+12,8,48,296,245,10,8,0,3,0,0,-1,0,0,0
+1,10,12,1,4,0,0,22,0,0,0,-1--1--1,,1|(386,245)|
+1,11,12,8,100,0,0,22,0,0,0,-1--1--1,,1|(327,245)|
+11,12,0,355,245,6,8,34,3,0,0,1,0,0,0
+10,13,Arrival of Emails requiring Little Action,355,261,58,14,40,3,0,0,-1,0,0,0
+10,15,Emails Requiring Some Action,453,343,40,20,3,3,0,0,0,0,0,0
+12,16,48,296,343,10,8,0,3,0,0,-1,0,0,0
+1,18,20,15,4,0,0,22,0,0,0,-1--1--1,,1|(389,343)|
+1,19,20,16,100,0,0,22,0,0,0,-1--1--1,,1|(329,343)|
+11,20,0,359,343,6,8,34,3,0,0,1,0,0,0
+10,21,Arrival of Emails Requiring Some Action,359,365,60,14,40,3,0,0,-1,0,0,0
+12,22,48,617,342,10,8,0,3,0,0,-1,0,0,0
+1,24,26,22,4,0,0,22,0,0,0,-1--1--1,,1|(581,342)|
+1,25,26,15,100,0,0,22,0,0,0,-1--1--1,,1|(518,342)|
+11,26,0,550,342,6,8,34,3,0,0,1,0,0,0
+10,27,Response to Emails Requiring Some Action,550,364,60,14,40,3,0,0,-1,0,0,0
+10,28,Emails Requiring Significant Action,452,461,39,24,3,131,0,0,0,0,0,0
+12,29,48,296,457,10,8,0,3,0,0,-1,0,0,0
+1,30,32,28,4,0,0,22,0,0,0,-1--1--1,,1|(389,457)|
+1,31,32,29,100,0,0,22,0,0,0,-1--1--1,,1|(329,457)|
+11,32,0,359,457,6,8,34,3,0,0,1,0,0,0
+10,33,Arrival of Emails Requiring Significant Action,359,479,56,21,40,3,0,0,-1,0,0,0
+12,34,48,617,456,10,8,0,3,0,0,-1,0,0,0
+1,35,37,34,4,0,0,22,0,0,0,-1--1--1,,1|(581,456)|
+1,36,37,28,100,0,0,22,0,0,0,-1--1--1,,1|(517,456)|
+11,37,0,550,456,6,8,34,3,0,0,1,0,0,0
+10,38,Response to Emails Requiring Significant Action,550,478,55,21,40,3,0,0,-1,0,0,0
+1,39,12,6,1,0,0,0,0,128,0,-1--1--1,,1|(447,195)|
+1,40,20,26,1,0,0,0,0,128,0,-1--1--1,,1|(452,302)|
+1,41,32,37,1,0,0,0,0,128,0,-1--1--1,,1|(456,421)|
+10,42,Little Action Time,541,174,47,8,8,3,0,0,0,0,0,0
+10,43,Some Action Time,549,289,47,8,8,3,0,0,0,0,0,0
+10,44,Significant Action Time,549,407,60,8,8,3,0,0,0,0,0,0
+1,45,42,6,0,0,0,0,0,128,0,-1--1--1,,1|(540,202)|
+1,46,43,26,0,0,0,0,0,128,0,-1--1--1,,1|(549,309)|
+1,47,44,37,0,0,0,0,0,128,0,-1--1--1,,1|(549,425)|
+10,48,Little Action Order,662,190,48,8,8,3,0,0,0,0,0,0
+10,49,Some Action Order,666,300,49,8,8,3,0,0,0,0,0,0
+10,50,Significant Action Order,670,416,35,14,8,3,0,0,0,0,0,0
+1,51,50,37,0,0,0,0,0,128,0,-1--1--1,,1|(601,438)|
+1,52,49,26,0,0,0,0,0,128,0,-1--1--1,,1|(606,321)|
+1,53,48,6,1,0,0,0,0,128,0,-1--1--1,,1|(595,205)|
+10,54,Little Action Volume,262,196,53,8,8,3,0,0,0,0,0,0
+10,55,Some Action Volume,250,298,53,8,8,3,0,0,0,0,0,0
+10,56,Significant Action Volume,255,408,47,14,8,3,0,0,0,0,0,0
+1,57,56,32,0,0,0,0,0,128,0,-1--1--1,,1|(312,435)|
+1,58,55,20,0,0,0,0,0,128,0,-1--1--1,,1|(304,320)|
+1,59,54,12,0,0,0,0,0,128,0,-1--1--1,,1|(306,219)|
+10,60,Net email Output,992,327,44,8,8,3,0,0,0,0,0,0
+10,61,Response to Emails Requiring Little Action,923,256,64,14,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,62,Response to Emails Requiring Significant Action,925,404,56,21,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,63,Response to Emails Requiring Some Action,831,327,65,14,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,64,61,60,0,0,0,0,0,128,0,-1--1--1,,1|(955,288)|
+1,65,63,60,0,0,0,0,0,128,0,-1--1--1,,1|(915,327)|
+1,66,62,60,0,0,0,0,0,128,0,-1--1--1,,1|(959,364)|
+10,67,TIME STEP,355,174,39,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,68,67,12,0,0,0,0,0,128,0,-1--1--1,,1|(355,203)|
+10,69,TIME STEP,363,403,39,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,70,TIME STEP,355,296,39,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,71,70,20,0,0,0,0,0,128,0,-1--1--1,,1|(355,313)|
+1,72,69,32,0,0,0,0,0,128,0,-1--1--1,,1|(361,424)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:Response to Emails Requiring Little Action
+24:0
+25:0
+26:0
