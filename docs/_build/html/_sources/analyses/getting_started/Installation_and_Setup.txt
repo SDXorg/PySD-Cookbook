@@ -2,11 +2,24 @@
 Installation and Setup of PySD
 ==============================
 
-Installing Python
------------------
+Using Anaconda
+--------------
 
-Some computers come with python preinstalled. To check if you have
-python already, at a command prompt, type:
+The simplest way to get started with Python is to use a prepackaged
+version such as Anaconda from Continuum analytics.
+
+Download and install version 2.7 from the following link:
+https://www.continuum.io/downloads
+
+Installing Python on its own
+----------------------------
+
+If you have an existing python installation, or you've worked
+extensively with python in the past, you might prefer to just use basic
+unpackaged python. This will give you some more control, but you'll have
+to do more of your own dependency resolution.
+
+To check if you have python already, at a command prompt, type:
 
 ::
 
@@ -25,7 +38,7 @@ latest version beginning with ``2.``. Some of the python utilities we
 will be using are not yet available in Python 3.
 
 Installing pip
---------------
+^^^^^^^^^^^^^^
 
 Pip is the primary python package distribution utility. Depending on how
 you set up python, you may have Pip already installed. To test this, at
@@ -45,7 +58,7 @@ https://pip.pypa.io/en/latest/installing.html
 Installing PySD
 ---------------
 
-With pip installed, at the command prompt you can type:
+With a python environment set up, at the command prompt you can type:
 
 ::
 

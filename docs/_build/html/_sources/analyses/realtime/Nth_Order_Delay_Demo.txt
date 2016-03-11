@@ -51,7 +51,6 @@ blue line to the level of the red line.
     #model = pysd.read_vensim('../../models/Basic_Structures/First_Order_Delay.mdl')
     model = pysd.read_vensim('../../models/Basic_Structures/Third_Order_Delay.mdl')
     
-    
     #set the delay time in the model
     model.set_components({'delay':5})
     
@@ -105,6 +104,7 @@ blue line to the level of the red line.
     anim = animation.FuncAnimation(fig, animate, repeat=False,
                                    frames=seconds*fps, interval=1000./fps, 
                                    blit=False)
+
 
 .. code:: python
 

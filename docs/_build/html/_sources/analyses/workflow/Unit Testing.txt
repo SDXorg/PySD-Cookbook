@@ -13,7 +13,7 @@ Unit testing us usually done not in the ipython notebook, but in a
 standalone python file. Tests for this demo are found in the
 accompanying file ``testsite.py``:
 
-.. literalinclude:: ../../../source/workflow/testsuite.py
+.. literalinclude:: ../../../source/analyses/workflow/testsuite.py
    :language: python
 
 .. code:: python

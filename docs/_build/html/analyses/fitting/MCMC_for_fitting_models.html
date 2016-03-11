@@ -5,16 +5,16 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Markov Chain Monte Carlo &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  <title>Fitting a model with Markov Chain Monte Carlo &mdash; PySD-Cookbook 0.1.0 documentation</title>
   
 
   
   
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
   
   
@@ -30,10 +30,13 @@
   
 
   
-    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Model Fitting" href="index_fitting.html"/>
+        <link rel="next" title="Geographic Analyses" href="../geo/index_geo.html"/>
+        <link rel="prev" title="Parallel Model Fitting" href="Massively_Parallel_Fitting.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
@@ -45,14 +48,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
         
-
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
         
-          <a href="../../index.html" class="icon icon-home"> PySD-Cookbook
-        
-
-        
-        </a>
-
         
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -61,122 +58,32 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
           
           
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installation_and_Setup.html">Installation and Setup of PySD</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#installing-python">Installing Python</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#installing-pip">Installing pip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#installing-pysd">Installing PySD</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#manually-installing-pysd-s-dependencies">Manually installing PySD&#8217;s dependencies</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#launch-ipython-notebook-and-get-started">Launch iPython Notebook, and get started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Installation_and_Setup.html#upgrading-pysd">Upgrading PySD</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#load-the-model">Load the model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#run-with-default-parameters">Run with default parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#return-additional-model-components">Return additional model components</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#return-values-at-a-specific-time">Return values at a specific time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#modify-parameter-values">Modify parameter values</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#specifying-model-initial-conditions">Specifying model initial conditions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html#collecting-results">Collecting Results</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installation_and_Setup.html">Installation and Setup of PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../visualization/Basic_Visualization.html">Basic Visualization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#ingredients">Ingredients</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#basic-plotting">Basic Plotting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#plotting-a-suite-of-runs">Plotting a suite of runs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../visualization/Basic_Visualization.html#add-on-packages">Add-on Packages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../visualization/Basic_Visualization.html#seaborn">Seaborn</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../visualization/Basic_Visualization.html#mpld3">MPLD3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/Basic_Visualization.html">Basic Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="index_fitting.html">Model Fitting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Fitting_with_Optimization.html#about-this-technique">About this technique</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Fitting_with_Optimization.html#ingredients">Ingredients:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Fitting_with_Optimization.html#recipe">Recipe</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Fitting_with_Optimization.html#step-1-construct-an-error-function">Step 1: Construct an &#8216;error&#8217; function</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Fitting_with_Optimization.html#step-2-suggest-a-starting-point-and-parameter-bounds-for-the-optimizer">Step 2: Suggest a starting point and parameter bounds for the optimizer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Fitting_with_Optimization.html#step-3-minimize-the-error-with-an-optimization-function">Step 3: Minimize the error with an optimization function</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Step_at_a_time_optimization.html">Step-at-a-time optimization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Step_at_a_time_optimization.html#about-this-technique">About this technique</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Step_at_a_time_optimization.html#ingredients">Ingredients</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Step_at_a_time_optimization.html#model">Model</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Step_at_a_time_optimization.html#data">Data</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="Step_at_a_time_optimization.html#the-recipe">The Recipe</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Step_at_a_time_optimization.html#step-1-shape-the-dataset-such-that-each-row-contains-the-start-and-end-of-a-step">Step 1: Shape the dataset such that each row contains the start and end of a &#8216;step&#8217;</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Step_at_a_time_optimization.html#step-2-define-a-single-step-error-function">Step 2: Define a single-step error function</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Step_at_a_time_optimization.html#step-3-define-an-error-function-for-the-full-dataset">Step 3: Define an error function for the full dataset</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Step_at_a_time_optimization.html#result">Result</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Massively_Parallel_Fitting.html">Parallel Model Fitting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Massively_Parallel_Fitting.html#when-to-use-this-technique">When to use this technique</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Massively_Parallel_Fitting.html#ingredients">Ingredients</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Massively_Parallel_Fitting.html#data">Data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Massively_Parallel_Fitting.html#model">Model</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="Massively_Parallel_Fitting.html#the-recipe">The Recipe</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Massively_Parallel_Fitting.html#executing-the-optimization-in-parallel">Executing the optimization in parallel</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_fitting.html">Model Fitting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Fitting a model with Markov Chain Monte Carlo</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#about-this-technique">About this technique</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#ingredients">Ingredients</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#population-data-by-age-cohort">Population data by age cohort</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#a-model-of-an-aging-population">A model of an aging population</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#geography-information">Geography Information</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#recipe-part-a-predict-state-level-values-from-national-model-fit">Recipe Part A: Predict state-level values from national model fit</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-1-initialize-the-model-using-census-data">Step 1: Initialize the model using census data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-2-fit-the-national-level-model-to-the-remaining-data">Step 2: Fit the national level model to the remaining data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-3-make-state-level-predictions">Step 3: Make state-level predictions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-4-compare-model-predictions-with-measured-data">Step 4: Compare model predictions with measured data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-5-merge-with-geo-data-to-plot">Step 5: Merge with geo data to plot</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#recipe-part-b-fit-state-by-state-models">Recipe Part B: fit state-by-state models</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-1-write-the-optimization-functions-to-account-for-the-state">Step 1: Write the optimization functions to account for the state</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-2-apply-optimization-to-each-state">Step 2: Apply optimization to each state</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html#step-3-merge-with-geographic-data">Step 3: Merge with geographic data</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../geo/Massively Parallel Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
@@ -184,53 +91,18 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html#about-this-technique">About this Technique</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html#ingredients">Ingredients</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html#the-game">The Game</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../realtime/Twitter_Stream.html#ingredients">Ingredients</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../realtime/Twitter_Stream.html#libraries">Libraries</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../realtime/Twitter_Stream.html#twitter-credentials">Twitter Credentials</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../realtime/Twitter_Stream.html#model">Model</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../realtime/Twitter_Stream.html#the-recipe">The Recipe</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../realtime/Twitter_Stream.html#listening-to-twitter">Listening to twitter</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../realtime/Twitter_Stream.html#animation">Animation</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../workflow/Unit Testing.html">Unit Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workflow/Writing to Database.html">Saving Simulation Results to a Database</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../workflow/Writing to Database.html#ingredients">Ingredients</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../workflow/Writing to Database.html#model">Model</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../workflow/Writing to Database.html#a-database">A database</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../workflow/Writing to Database.html#parameters">Parameters</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../workflow/Writing to Database.html#the-recipe">The Recipe</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Writing to Database.html">Saving Simulation Results to a Database</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#collect-data-on-male-population-by-age-county">Collect data on male population by age, county</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#start-with-the-2010-census">Start with the 2010 census</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#get-data-from-2000">Get data from 2000</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html#align-the-datasets">Align the datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
 </ul>
@@ -260,12 +132,12 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Markov Chain Monte Carlo</li>
+          <li><a href="index_fitting.html">Model Fitting</a> &raquo;</li>
+      
+    <li>Fitting a model with Markov Chain Monte Carlo</li>
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/analyses/fitting/MCMC_for_fitting_models.txt" rel="nofollow"> View page source</a>
-          
+          <a href="../../_sources/analyses/fitting/MCMC_for_fitting_models.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -273,16 +145,192 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="markov-chain-monte-carlo">
-<h1>Markov Chain Monte Carlo<a class="headerlink" href="#markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h1>
-<p>Resources:</p>
-<p><a class="reference external" href="http://healthyalgorithms.com/2010/11/29/mcmc-in-python-statistical-model-stuck-on-a-stochastic-system-dynamics-model-in-pymc/">http://healthyalgorithms.com/2010/11/29/mcmc-in-python-statistical-model-stuck-on-a-stochastic-system-dynamics-model-in-pymc/</a></p>
-<p><a class="reference external" href="http://healthyalgorithms.com/2010/10/19/mcmc-in-python-how-to-stick-a-statistical-model-on-a-system-dynamics-model-in-pymc/">http://healthyalgorithms.com/2010/10/19/mcmc-in-python-how-to-stick-a-statistical-model-on-a-system-dynamics-model-in-pymc/</a></p>
+  <div class="section" id="fitting-a-model-with-markov-chain-monte-carlo">
+<h1>Fitting a model with Markov Chain Monte Carlo<a class="headerlink" href="#fitting-a-model-with-markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h1>
+<p>Markov Chain Monte Carlo (MCMC) is a way to infer a distribution of
+model parameters, given that the measurements of the output of the model
+are influenced by some tractable random process. In this case, performs
+something akin to the opposite of what a standard Monte Carlo simultion
+will do. Instead of starting with distributions for the parameters of a
+model and using them to calculate a distribution (usually related to
+uncertainty) in the output of the simulation, we start with a
+distribution of that output and look for input distributions.</p>
+<div class="section" id="ingredients">
+<h2>Ingredients<a class="headerlink" href="#ingredients" title="Permalink to this headline">¶</a></h2>
+<p>For this analysis we&#8217;ll introduce the python package
+<a class="reference external" href="https://pymc-devs.github.io/pymc/README.html">PyMC</a> which implements
+MCMC algorithms for us. Another project which performs similar
+calculations is <a class="reference external" href="https://pystan.readthedocs.org/en/latest/">PyStan</a>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
+import pysd
+import pymc
+import pandas as pd
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+<p>For this example, we&#8217;ll revisit the ebola case, only assuming that our
+data has some noise, and we&#8217;ll use MCMC to estimate distributions for
+the parameters for the model. For a more detailed description of this
+model and the dataset see the recipe <a class="reference external" href="http://pysd-cookbook.readthedocs.org/en/latest/analyses/fitting/Fitting_with_Optimization.html">Fitting with
+Optimization</a>.</p>
+<p>We&#8217;ll assume that the model simulates an underlying process of disease
+propagation, but that the data is noisy - perhaps it represents
+admittance rates at a hospital, and so will be missing some cases, and
+may include some false positives through misdiagnosis.</p>
+<a class="reference internal image-reference" href="analyses/fitting/../../../source/models/SIModel/SIModel.png"><img alt="analyses/fitting/../../../source/models/SIModel/SIModel.png" src="analyses/fitting/../../../source/models/SIModel/SIModel.png" style="width: 600px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/SI Model/SI Model.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../../data/Ebola/Ebola_in_SL_Data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;Weeks&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_5_0.png" src="../../_images/MCMC_for_fitting_models_5_0.png" />
+</div>
+<div class="section" id="recipe">
+<h2>Recipe<a class="headerlink" href="#recipe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-establish-prior-distributions-for-the-input-parameters">
+<h3>Step 1: Establish prior distributions for the input parameters<a class="headerlink" href="#step-1-establish-prior-distributions-for-the-input-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Our first step is to establish prior distributions for the parameters
+for which we will be trying to infer posterior distributions. As in the
+optimization case, we&#8217;ll modify the effective population and the contact
+frequency. In real epidemiological modeling, we&#8217;d have a more complex
+model, and we&#8217;d have some information about the population, etc. but
+this makes for a relatively tight example.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">population</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s">&#39;total_population&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">contact_frequency</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s">&#39;contact_frequency&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-perform-the-simulation">
+<h3>Step 2: Perform the simulation<a class="headerlink" href="#step-2-perform-the-simulation" title="Permalink to this headline">¶</a></h3>
+<p>We now need to define a function that will run the model given a draw
+from the input distributions, and return the values that we will take as
+those of the fundamental underlying phenomena, before measurement noise
+is included.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nd">@pymc.deterministic</span>
+<span class="k">def</span> <span class="nf">sim</span><span class="p">(</span><span class="n">population</span><span class="o">=</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="o">=</span><span class="n">contact_frequency</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;total_population&#39;</span><span class="p">:</span><span class="n">population</span><span class="p">,</span>
+                               <span class="s">&#39;contact_frequency&#39;</span><span class="p">:</span><span class="n">contact_frequency</span><span class="p">},</span>
+                       <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;infection_rate&#39;</span><span class="p">],</span>
+                       <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;infection_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-include-noise-terms">
+<h3>Step 3: Include noise terms<a class="headerlink" href="#step-3-include-noise-terms" title="Permalink to this headline">¶</a></h3>
+<p>There are several ways we could include noise. If we expected no false
+positives, we could use a Binomial distribution, such that of <code class="docutils literal"><span class="pre">n</span></code>
+possible cases that could be reported, only a fraction <code class="docutils literal"><span class="pre">p</span></code> would be
+reported, and other cases missed. If we only want to model false
+positives, we could assume that there was an average rate of false
+positives, with the data following a poisson distribution. The full rate
+would be the sum of these two processes.</p>
+<p>For now, however, we&#8217;ll simplify the analysis by only looking at the
+Poisson noise component. The mean of the poisson process will be the
+results of our simulation.</p>
+<p>This is where we include our measured data into the model. PyMC will
+know how to calculate the log likelihood of seeing the observed data
+given the assumption that the simulation result represents the
+underlying process, subject to Poisson noise.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">admittances</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s">&#39;admittances&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">sim</span><span class="p">,</span>
+                           <span class="n">value</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;New Reported Cases&#39;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-perform-the-mcmc-sampling">
+<h3>Step 4: Perform the MCMC Sampling<a class="headerlink" href="#step-4-perform-the-mcmc-sampling" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have set up the problem for PyMC, we need only to run the
+MCMC sampler. What this will do, essentially, is take a trial set of
+points from our prior distribution, simulate the model, and evaluate the
+likelihood of the data given those input parameters, the simulation
+model, and the noise distribution. It will then use bayes law to decide
+whether to keep the trial points or throw them away. It will then choose
+a new set of points and start over. (There is a lot more cleverness
+happening than this, of course. If you want to know how it works, I
+recommend <a class="reference external" href="http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">Bayesian Methods for
+Hackers</a>.</p>
+<p>First we assemble the various pieces of the data flow that we built up
+into a model that pymc can recognize, and instantiate a sampler <code class="docutils literal"><span class="pre">MCMC</span></code>
+to run the algorithm for us.</p>
+<p>Then we&#8217;ll ask the MCMC algorithm to run until it has kept 20000 points.
+We&#8217;ll throw out the first 1000 of these, as they are likely to be biased
+towards the initial values we set up and not representative of the
+overall distribution.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mcmdl</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">admittances</span><span class="p">])</span>
+<span class="n">mcmc</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">mcmdl</span><span class="p">)</span>
+<span class="n">mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">20000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[-----------------100%-----------------] 20000 of 20000 complete in 68.7 sec
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-5-look-at-the-distribution">
+<h3>Step 5: Look at the distribution<a class="headerlink" href="#step-5-look-at-the-distribution" title="Permalink to this headline">¶</a></h3>
+<p>We can now evaluate the results by looking at the series of points we
+&#8216;kept&#8217;. These are stored as traces within the population and contact
+frequency objects we built earlier.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Fit distribution for the population parameter&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_15_0.png" src="../../_images/MCMC_for_fitting_models_15_0.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Fit distribution for the contact frequency parameter&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_16_0.png" src="../../_images/MCMC_for_fitting_models_16_0.png" />
+</div>
+<div class="section" id="step-6-understand-the-correlation-between-our-parameter-distributions">
+<h3>Step 6: Understand the correlation between our parameter distributions<a class="headerlink" href="#step-6-understand-the-correlation-between-our-parameter-distributions" title="Permalink to this headline">¶</a></h3>
+<p>PyMC has calculated for us the input distributions for the parameters we
+have based upon our data. This isn&#8217;t the whole story, however, as these
+values are not independent of one another. We can see by plotting them
+against one another that there is correlation:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Effective Population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Contact Frequency&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_18_0.png" src="../../_images/MCMC_for_fitting_models_18_0.png" />
+<p>If we use these distributions in the future to propagate uncertainty
+through the model (say in doing a policy test) we should make sure that
+we&#8217;re including this correlation. The simplest way to do this is just to
+use the traces themselves as inputs into a normal Monte Carlo error
+propagation calculation, making sure that we use the same index in each
+trace for any given run. This will automatically include the correlation
+for us. Clever!</p>
+</div>
+</div>
+<div class="section" id="resources">
+<h2>Resources:<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<p>The analysis in this notebook is inspired by blogt posts by Abraham
+Flaxman: -
+<a class="reference external" href="http://healthyalgorithms.com/2010/11/29/mcmc-in-python-statistical-model-stuck-on-a-stochastic-system-dynamics-model-in-pymc/">http://healthyalgorithms.com/2010/11/29/mcmc-in-python-statistical-model-stuck-on-a-stochastic-system-dynamics-model-in-pymc/</a></p>
+<ul class="simple">
+<li><a class="reference external" href="http://healthyalgorithms.com/2010/10/19/mcmc-in-python-how-to-stick-a-statistical-model-on-a-system-dynamics-model-in-pymc/">http://healthyalgorithms.com/2010/10/19/mcmc-in-python-how-to-stick-a-statistical-model-on-a-system-dynamics-model-in-pymc/</a></li>
+</ul>
+<p>A great resource for learning about MCMC is <a class="reference external" href="http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">Bayesian Methods for
+Hackers</a></p>
+</div>
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../geo/index_geo.html" class="btn btn-neutral float-right" title="Geographic Analyses">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Massively_Parallel_Fitting.html" class="btn btn-neutral" title="Parallel Model Fitting"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -292,10 +340,10 @@
         &copy; Copyright 2015, James Houghton.
     </p>
   </div>
+
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-
+  
 </footer>
-
         </div>
       </div>
 

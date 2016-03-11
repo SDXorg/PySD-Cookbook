@@ -1,112 +1,170 @@
-from __future__ import division                                 
-import numpy as np                                              
-from pysd import functions                                      
-from pysd import builder                                        
-                                                                
-class Components(builder.ComponentClass):                       
-                                                                
-    def new_reported_cases(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.infection_rate() 
 
-    def dpopulation_infected_with_ebola_dt(self):                       
-        return self.infection_rate()                           
+from __future__ import division
+import numpy as np
+from pysd import functions
 
-    def population_infected_with_ebola_init(self):                      
-        return 1                           
+def time():
+    return _t
 
-    def population_infected_with_ebola(self):                            
-        """ Stock: population_infected_with_ebola =                      
-                 self.infection_rate()                          
-                                             
-        Initial Value: 1                    
-        Do not overwrite this function       
-        """                                  
-        return self.state["population_infected_with_ebola"]              
-                                             
-    def dpopulation_susceptible_to_ebola_dt(self):                       
-        return -self.infection_rate()                           
+# Share the `time` function with the module for `step`, `pulse`, etc.
+functions.__builtins__.update({'time':time})
 
-    def population_susceptible_to_ebola_init(self):                      
-        return self.total_population()                           
 
-    def population_susceptible_to_ebola(self):                            
-        """ Stock: population_susceptible_to_ebola =                      
-                 -self.infection_rate()                          
-                                             
-        Initial Value: self.total_population()                    
-        Do not overwrite this function       
-        """                                  
-        return self.state["population_susceptible_to_ebola"]              
-                                             
-    def contact_frequency(self):
-        """Type: Flow or Auxiliary
-        """
-        return 7 
+def new_reported_cases():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = infection_rate()
 
-    def contacts_between_infected_and_uninfected_persons(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.probability_of_contact_with_infected_person()* self.susceptible_contacts() 
+    return output
 
-    def dcumulative_reported_cases_dt(self):                       
-        return self.new_reported_cases()                           
+def population_infected_with_ebola():
+    return _state['population_infected_with_ebola']
 
-    def cumulative_reported_cases_init(self):                      
-        return 0                           
+def _population_infected_with_ebola_init():
+    try:
+        loc_dimension_dir = population_infected_with_ebola.dimension_dir
+    except:
+        loc_dimension_dir = 0
+    return 1
 
-    def cumulative_reported_cases(self):                            
-        """ Stock: cumulative_reported_cases =                      
-                 self.new_reported_cases()                          
-                                             
-        Initial Value: 0                    
-        Do not overwrite this function       
-        """                                  
-        return self.state["cumulative_reported_cases"]              
-                                             
-    def infection_rate(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.contacts_between_infected_and_uninfected_persons()* self.infectivity() 
+def _dpopulation_infected_with_ebola_dt():
+    try:
+        loc_dimension_dir = population_infected_with_ebola.dimension_dir
+    except:
+        loc_dimension_dir = 0
+    return infection_rate()
 
-    def infectivity(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0.05 
+def population_susceptible_to_ebola():
+    return _state['population_susceptible_to_ebola']
 
-    def probability_of_contact_with_infected_person(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.population_infected_with_ebola()/ self.total_population() 
+def _population_susceptible_to_ebola_init():
+    try:
+        loc_dimension_dir = population_susceptible_to_ebola.dimension_dir
+    except:
+        loc_dimension_dir = 0
+    return total_population()
 
-    def susceptible_contacts(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.contact_frequency()* self.population_susceptible_to_ebola() 
+def _dpopulation_susceptible_to_ebola_dt():
+    try:
+        loc_dimension_dir = population_susceptible_to_ebola.dimension_dir
+    except:
+        loc_dimension_dir = 0
+    return -infection_rate()
 
-    def total_population(self):
-        """Type: Flow or Auxiliary
-        """
-        return 7150 
+def contact_frequency():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = 7
 
-    def final_time(self):
-        """Type: Flow or Auxiliary
-        """
-        return 35 
+    return output
 
-    def initial_time(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0 
+def contacts_between_infected_and_uninfected_persons():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = probability_of_contact_with_infected_person()*susceptible_contacts()
 
-    def saveper(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.time_step() 
+    return output
 
-    def time_step(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0.125 
+def cumulative_reported_cases():
+    return _state['cumulative_reported_cases']
 
+def _cumulative_reported_cases_init():
+    try:
+        loc_dimension_dir = cumulative_reported_cases.dimension_dir
+    except:
+        loc_dimension_dir = 0
+    return 0
+
+def _dcumulative_reported_cases_dt():
+    try:
+        loc_dimension_dir = cumulative_reported_cases.dimension_dir
+    except:
+        loc_dimension_dir = 0
+    return new_reported_cases()
+
+def infection_rate():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = contacts_between_infected_and_uninfected_persons()*infectivity()
+
+    return output
+
+def infectivity():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = 0.05
+
+    return output
+
+def probability_of_contact_with_infected_person():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = population_infected_with_ebola()/total_population()
+
+    return output
+
+def susceptible_contacts():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = contact_frequency()*population_susceptible_to_ebola()
+
+    return output
+
+def total_population():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = 7150
+
+    return output
+
+def final_time():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = 35
+
+    return output
+
+def initial_time():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = 0
+
+    return output
+
+def saveper():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = time_step()
+
+    return output
+
+def time_step():
+    """
+    
+    """
+    loc_dimension_dir = 0 
+    output = 0.125
+
+    return output

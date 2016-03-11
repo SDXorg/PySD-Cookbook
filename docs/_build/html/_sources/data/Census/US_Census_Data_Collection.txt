@@ -97,7 +97,7 @@ http://api.census.gov/data/2010/sf1/variables.html
 
 
 Collect data on male population by age, county
-==============================================
+----------------------------------------------
 
 For now I'm only going to look at males. This is probably a bad idea in
 general.
@@ -543,7 +543,7 @@ do it in chunks and stitch them together.
 
 
 Align the datasets
-==================
+------------------
 
 As they have different cohorts, we need to do some summation before we
 can merge the two census years into a single table. I'll break the data

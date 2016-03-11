@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Phase Portraits &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Visualization" href="index_visualization.html"/>
+        <link rel="next" title="Model Fitting" href="../fitting/index_fitting.html"/>
+        <link rel="prev" title="Basic Visualization" href="Basic_Visualization.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installation_and_Setup.html">Installation and Setup of PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_visualization.html">Visualization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Basic_Visualization.html">Basic Visualization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit Testing.html">Unit Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Writing to Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_visualization.html">Visualization</a> &raquo;</li>
+      
+    <li>Phase Portraits</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/visualization/phase_portraits.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="phase-portraits">
+<h1>Phase Portraits<a class="headerlink" href="#phase-portraits" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we&#8217;ll look at how to generate <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_portrait">phase
+portraits</a>. A phase
+diagram shows the trajectories that a dynamical system can take through
+its phase space. For any system that obeys the <a class="reference external" href="https://en.wikipedia.org/wiki/Markov_property">markov
+property</a> we can
+construct such a diagram, with one dimension for each of the system&#8217;s
+stocks.</p>
+<div class="section" id="ingredients">
+<h2>Ingredients<a class="headerlink" href="#ingredients" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="libraries">
+<h3>Libraries<a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h3>
+<p>In this analysis we&#8217;ll use:</p>
+<ul class="simple">
+<li><strong>numpy</strong> to create the grid of points that we&#8217;ll sample over</li>
+<li><strong>matplotlib</strong> via ipython&#8217;s pylab magic to construct the quiver plot</li>
+</ul>
+<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
+import pysd
+import numpy as np
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-model">
+<h3>Example Model<a class="headerlink" href="#example-model" title="Permalink to this headline">¶</a></h3>
+<p>A single pendulum makes for a great example of oscillatory behavior. The
+following model constructs equations of motion for the pendulum in
+radial coordinates, simplifying the model from one constructed in
+cartesian coordinates. In this model, the two state elements are the
+angle of the pendulum and the derivative of that angle, its angular
+velocity.</p>
+<a class="reference internal image-reference" href="../../_images/Single_Pendulum.png"><img alt="../../_images/Single_Pendulum.png" src="../../_images/Single_Pendulum.png" style="width: 400px;" /></a>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Pendulum/Single_Pendulum.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="recipe">
+<h2>Recipe<a class="headerlink" href="#recipe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-define-the-range-over-which-to-plot">
+<h3>Step 1: Define the range over which to plot<a class="headerlink" href="#step-1-define-the-range-over-which-to-plot" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ve defined the angle <span class="math">\(0\)</span> to imply that the pendulum is hanging
+straight down. To show the full range of motion, we&#8217;ll show the angles
+ragning from <span class="math">\(-1.5\pi\)</span> to <span class="math">\(+1.5\pi\)</span>, which will allow us to
+see the the points of stable and unstable equilibrium.</p>
+<p>We also want to sample over a range of angular velocities that are
+reasonable for our system, for the given values of length and weight.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">angular_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Numpy&#8217;s <code class="docutils literal"><span class="pre">meshgrid</span></code> lets us construct a 2d sample space based upon our
+arrays</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">angular_position</span><span class="p">,</span> <span class="n">angular_velocity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-calculate-the-state-space-derivatives-at-a-point">
+<h3>Step 2: Calculate the state space derivatives at a point<a class="headerlink" href="#step-2-calculate-the-state-space-derivatives-at-a-point" title="Permalink to this headline">¶</a></h3>
+<p>We&#8217;ll define a helper function, which given a point in the state space,
+will tell us what the derivatives of the state elements will be. One way
+to do this is to run the model over a single timestep, and extract the
+derivative information. In this case, the model&#8217;s stocks have only one
+inflow/outflow, so this is the derivative value.</p>
+<p>As the derivative of the angular position is just the angular velocity,
+whatever we pass in for the <code class="docutils literal"><span class="pre">av</span></code> parameter should be returned to us as
+the derivative of <code class="docutils literal"><span class="pre">ap</span></code>.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">av</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;angular_position&#39;</span><span class="p">:</span><span class="n">ap</span><span class="p">,</span>
+                            <span class="s">&#39;angular_velocity&#39;</span><span class="p">:</span><span class="n">av</span><span class="p">},</span>
+                    <span class="n">return_timestamps</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;change_in_angular_position&#39;</span><span class="p">,</span>
+                                    <span class="s">&#39;change_in_angular_velocity&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">derivatives</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-calculate-the-state-space-derivatives-across-our-sample-space">
+<h3>Step 3: Calculate the state space derivatives across our sample space<a class="headerlink" href="#step-3-calculate-the-state-space-derivatives-across-our-sample-space" title="Permalink to this headline">¶</a></h3>
+<p>We can use numpy&#8217;s <code class="docutils literal"><span class="pre">vectorize</span></code> to make the function accept the 2d
+sample space we have just created. Now we can generate the derivative of
+angular position vector <code class="docutils literal"><span class="pre">dapv</span></code> and that of the angular velocity vector
+<code class="docutils literal"><span class="pre">davv</span></code>. As before, the derivative of the angular posiiton should be
+equal to the angular velocity. We check that the vectors are equal.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">vderivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">derivatives</span><span class="p">)</span>
+
+<span class="n">dapv</span><span class="p">,</span> <span class="n">davv</span> <span class="o">=</span> <span class="n">vderivatives</span><span class="p">(</span><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span><span class="p">)</span>
+<span class="p">(</span><span class="n">dapv</span> <span class="o">==</span> <span class="n">avv</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-plot-the-phase-portrait">
+<h3>Step 4: Plot the phase portrait<a class="headerlink" href="#step-4-plot-the-phase-portrait" title="Permalink to this headline">¶</a></h3>
+<p>Now we have everything we need to draw the phase portrait. We&#8217;ll use
+matplotlib&#8217;s <code class="docutils literal"><span class="pre">quiver</span></code> function, which wants as arguments the grid of x
+and y coordinates, and the derivatives of these coordinates.</p>
+<p>In the plot we see the locations of stable and unstable equilibria, and
+can eyeball the trajectories that the system will take through the state
+space by following the arrows.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span><span class="p">,</span> <span class="n">dapv</span><span class="p">,</span> <span class="n">davv</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">1.6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Radians&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Radians/Second&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Phase portrait for a simple pendulum&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/phase_portraits_15_0.png" src="../../_images/phase_portraits_15_0.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fitting/index_fitting.html" class="btn btn-neutral float-right" title="Model Fitting">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Basic_Visualization.html" class="btn btn-neutral" title="Basic Visualization"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -59,6 +59,16 @@ identifiers.
     Populating the interactive namespace from numpy and matplotlib
 
 
+The ``read_vensim`` command we have just run does two things. First it
+translates the model into a python module which is stored
+``../../models/Teacup/Teacup.py`` in the same directory as the original
+file, with the filename changed to ``.py``. You can go and have a look
+at the file and compare it to the vensim model file that it came from to
+get a sense for how the translation works.
+
+The second thing the function does is load that translated python file
+into a PySD object and return it for use.
+
 Run with default parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -130,7 +140,7 @@ easily visualize the results.
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_7_1.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_8_1.png
 
 
 Return additional model components
@@ -197,7 +207,7 @@ components:
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_9_1.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_10_1.png
 
 
 Return values at a specific time
@@ -258,7 +268,7 @@ of timestamps, and will return values at those timestamps.
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_11_1.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_12_1.png
 
 
 Modify parameter values
@@ -277,7 +287,7 @@ run function. Here we set the room temperature to the constant value of
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_13_0.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_14_0.png
 
 
 We can also specify that a parameter be set with a time-varying input.
@@ -296,7 +306,7 @@ rises above that of the tea, the tea begins to warm up again.
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_15_0.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_16_0.png
 
 
 Specifying model initial conditions
@@ -318,7 +328,7 @@ dictionary containing the values of the stocks at that particular time.
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_17_0.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_18_0.png
 
 
 Once a model has been run, we can choose to run it forwards again from
@@ -335,7 +345,7 @@ which we would like the model to run, and pass the
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_19_0.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_20_0.png
 
 
 Collecting Results
@@ -365,7 +375,7 @@ into the cold.
 
 
 
-.. image:: Hello_World_Teacup_files/Hello_World_Teacup_21_0.png
+.. image:: Hello_World_Teacup_files/Hello_World_Teacup_22_0.png
 
 
 To reset the record, use the method ``.clear_record()`` :

@@ -168,7 +168,7 @@ values the optimizer will try.
 
 
 Result
-~~~~~~
+^^^^^^
 
 If we run the simulation with the parameters suggested by the optimizer,
 we see that the model follows the general behavior of the data, but is
