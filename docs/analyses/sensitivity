@@ -1,0 +1,198 @@
+
+Setting up a cluster with ipython
+---------------------------------
+
+Not the easiest thing in the world, actually
+
+http://danielhnyk.cz/ssh-ipcluster-local-and-remote-engines/
+
+Set up profile on local machine
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set up remote machines
+^^^^^^^^^^^^^^^^^^^^^^
+
+1. install python, ipyparallel
+2. create ssh key files to access remote machines
+3. add key files to ssh config file
+4. add hosts and number of elements to use on each machine
+
+Start ipcluster
+^^^^^^^^^^^^^^^
+
+.. code:: bash
+
+    ipcluster start --profile=distributed
+
+.. code:: python
+
+    import pysd
+    import pyDOE
+    import ipyparallel as ipp
+
+.. code:: python
+
+    c = ipp.Client(profile='distributed')
+    dv = c[:]
+    v = c.load_balanced_view()
+
+Set up model on remotes
+-----------------------
+
+.. code:: python
+
+    with open('../../models/Predator_Prey/Predator_Prey.py', 'r') as infile:
+        mdlstr = infile.read()
+    
+    dv.push({'mdlstr':mdlstr})
+
+
+
+
+.. parsed-literal::
+
+    <AsyncResult: _push>
+
+
+
+.. code:: python
+
+    %%px
+    with open('mdl.py', 'w') as outfile:
+        outfile.write(mdlstr)
+        
+    import pysd
+    model = pysd.load('mdl.py')
+
+.. code:: python
+
+    %%px
+    ranges = {'predator_food_driven_fertility':(0,.005),
+              'prey_fertility':(0,10),
+              'predator_mortality':(0,.1),
+              'predation_rate':(0,.0005)}
+    keys = ranges.keys()
+    
+    def monte(values):
+        params = dict(zip(keys, values))
+        return model.run(params)['prey_population'].max()
+
+Generate Samples
+----------------
+
+.. code:: python
+
+    #Generate Latin Hypercube Samples in the unit box
+    norm_samples = pyDOE.lhs(n=4, samples=2000)
+    
+    samples = norm_samples*[value[1] for value in ranges.values()]
+    samples[:3]
+
+
+
+
+.. parsed-literal::
+
+    array([[  2.87045323e-04,   3.75347168e-03,   2.12835086e+00,
+              8.64731825e-02],
+           [  1.41068448e-04,   4.18200570e-04,   1.06166427e+00,
+              7.64775689e-02],
+           [  5.68912216e-05,   2.61479662e-03,   5.17898745e+00,
+              7.91235670e-02]])
+
+
+
+.. code:: python
+
+    %%timeit
+    v.map_sync(monte, samples)
+
+
+.. parsed-literal::
+
+    1 loops, best of 3: 30.3 s per loop
+
+
+Locally
+~~~~~~~
+
+.. code:: python
+
+    model = pysd.read_vensim('../../models/Predator_Prey/Predator_Prey.mdl')
+    
+    ranges = {'predator_food_driven_fertility':(0,.005),
+              'prey_fertility':(0,10),
+              'predator_mortality':(0,.1),
+              'predation_rate':(0,.0005)}
+    keys = ranges.keys()
+    
+    def monte(values):
+        params = dict(zip(keys, values))
+        return model.run(params)['prey_population'].max()
+
+.. code:: python
+
+    %%timeit
+    map(monte, samples)
+
+
+.. parsed-literal::
+
+    1 loops, best of 3: 1min 28s per loop
+
+
+.. code:: python
+
+    %%px
+    import socket
+    socket.gethostbyname(socket.gethostname())
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[0:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[1:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[2:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[3:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[4:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[5:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[6:13]: [0m'192.168.1.5'
+
+
+
+.. parsed-literal::
+
+    [0;31mOut[7:13]: [0m'192.168.1.5'
+
+

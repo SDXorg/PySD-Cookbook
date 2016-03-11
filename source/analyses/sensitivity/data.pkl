@@ -1,0 +1,21 @@
+ccopy_reg
+_reconstructor
+p0
+(cpysd.pysd
+PySD
+p1
+c__builtin__
+object
+p2
+Ntp3
+Rp4
+(dp5
+S'record'
+p6
+(lp7
+sS'__str__'
+p8
+S'Import of ../../models/Predator_Prey/Predator_Prey.mdl'
+p9
+sS'components'
+p10
