@@ -1,0 +1,285 @@
+{UTF-8}
+Influence of Work Pressure on Improvement Time(
+	[(0,0)-(10,10)],(0,1),(1,1),(1.5,0.75),(2,0.25),(5,0))
+	~	Dmnl
+	~		|
+
+Investment in Capability=
+	Time Spend on Improvement * Capability improvement per investment
+	~	Widgets/Person Hour/Week
+	~		|
+
+Capability Erosion=
+	Capability/Erosion Timescale
+	~	Widgets/Person Hour/Week
+	~		|
+
+Capability improvement per investment=
+	0.5
+	~	Widgets/Person Hour/Person Hour [0,5,0.25]
+	~		|
+
+Change in Pressure to Do Work=
+	(Stretch - Pressure to Do Work)/Work Harder Adjustment Time
+	~	1/Weeks
+	~		|
+
+Change in Pressure to Improve Capability=
+	(Stretch - Pressure to Improve Capability)/Improve Capability Adjustment Time + Exogenous Capability Pressure
+	~	1/Weeks
+	~		|
+
+Desired Performance=
+	3000 + STEP(Performance Step, 10 )
+	~	Widgets/Week
+	~		|
+
+Erosion Timescale=
+	20
+	~	Weeks [0,50,1]
+	~		|
+
+Exogenous Capability Pressure=
+	STEP(Pressure Step, 10)
+	~	
+	~		|
+
+Improve Capability Adjustment Time=
+	9
+	~	Weeks [0,50,1]
+	~		|
+
+Influence of Capability Pressure on Improvement Time(
+	[(-1,-1)-(10,10)],(0,0),(0.5,0),(0.75,0.5),(1,1),(2,1.5),(5,1.5))
+	~	Dmnl
+	~		|
+
+Influence of Pressure on Work Time(
+	[(0,0)-(10,2)],(0,0.75),(0.75,0.75),(1,1),(1.25,1.25),(2,1.5),(10,1.5))
+	~	Dmnl
+	~		|
+
+Work Harder Adjustment Time=
+	3
+	~	Weeks
+	~		|
+
+Pressure to Do Work= INTEG (
+	Change in Pressure to Do Work,
+		1)
+	~	Dmnl
+	~		|
+
+Maximum Work Time=
+	40
+	~	Person Hours/Week [0,100,5]
+	~		|
+
+Normal Time Spent on Improvement=
+	10
+	~	Person Hours/Week
+	~		|
+
+Normal Time Spent Working=
+	30
+	~	Person Hours/Week
+	~		|
+
+Performance Step=
+	0
+	~	Widgets/Week [0,1000,50]
+	~		|
+
+Pressure Step=
+	0
+	~	 [-0.05,0.1,0.01]
+	~		|
+
+Time Spend on Improvement=
+	Normal Time Spent on Improvement * Influence of Capability Pressure on Improvement Time\
+		(Pressure to Improve Capability) *Influence of Work Pressure on Improvement Time(Pressure to Do Work\
+		)
+	~	Person Hours/Week
+	~		|
+
+Pressure to Improve Capability= INTEG (
+	Change in Pressure to Improve Capability,
+		1)
+	~	Dmnl
+	~		|
+
+Stretch=
+	Desired Performance / Actual Performance
+	~	Dmnl
+	~		|
+
+Time Spent Working=
+	MIN(Normal Time Spent Working * Influence of Pressure on Work Time(Pressure to Do Work\
+		), Maximum Work Time - Time Spend on Improvement)
+	~	Person Hours/Week
+	~	This formulation not quite correct, need to de-conflate the pressure to \
+		work from the time spent on improvement...
+	|
+
+Actual Performance=
+	Capability * Time Spent Working
+	~	Widgets/Week
+	~		|
+
+Capability= INTEG (
+	Investment in Capability-Capability Erosion,
+		100)
+	~	Widgets/Person Hour
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Week
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Week
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Week [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0625
+	~	Week [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Capability,480,129,40,20,3,3,0,0,0,0,0,0
+12,2,48,665,127,10,8,0,3,0,0,-1,0,0,0
+1,3,5,2,4,0,0,22,0,0,0,-1--1--1,,1|(624,127)|
+1,4,5,1,100,0,0,22,0,0,0,-1--1--1,,1|(550,127)|
+11,5,48,587,127,6,8,34,3,0,0,1,0,0,0
+10,6,Capability Erosion,587,142,55,7,40,3,0,0,-1,0,0,0
+12,7,48,283,129,10,8,0,3,0,0,-1,0,0,0
+1,8,10,1,4,0,0,22,0,0,0,-1--1--1,,1|(406,129)|
+1,9,10,7,100,0,0,22,0,0,0,-1--1--1,,1|(326,129)|
+11,10,48,366,129,6,8,34,3,0,0,1,0,0,0
+10,11,Investment in Capability,366,149,41,12,40,3,0,0,-1,0,0,0
+10,12,Actual Performance,595,235,59,7,8,3,0,0,0,0,0,0
+10,13,Stretch,597,313,23,7,8,3,0,0,0,0,0,0
+10,14,Pressure to Do Work,459,383,40,20,3,3,0,0,0,0,0,0
+12,15,48,581,379,10,8,0,3,0,0,-1,0,0,0
+1,16,18,14,4,0,0,22,0,0,0,-1--1--1,,1|(520,379)|
+1,17,18,15,100,0,0,22,0,0,0,-1--1--1,,1|(562,379)|
+11,18,48,547,379,6,8,34,3,0,0,1,0,0,0
+10,19,Change in Pressure to Do Work,547,405,46,18,40,131,0,0,-1,0,0,0
+1,20,14,18,1,0,0,0,0,128,0,-1--1--1,,1|(506,353)|
+10,21,Work Harder Adjustment Time,494,458,52,12,8,3,0,0,0,0,0,0
+1,22,21,19,0,0,0,0,0,128,0,-1--1--1,,1|(512,439)|
+1,23,13,18,1,0,0,0,0,128,0,-1--1--1,,1|(583,346)|
+1,24,12,13,1,0,0,0,0,128,0,-1--1--1,,1|(603,272)|
+10,25,Time Spent Working,464,247,34,12,8,3,0,0,0,0,0,0
+10,26,Normal Time Spent Working,420,177,45,12,8,3,0,0,0,0,0,0
+10,27,Desired Performance,683,355,40,12,8,3,0,0,0,0,0,0
+1,28,27,13,0,0,0,0,0,128,0,-1--1--1,,1|(641,334)|
+1,29,1,12,1,0,0,0,0,128,0,-1--1--1,,1|(552,173)|
+1,30,25,12,1,0,0,0,0,128,0,-1--1--1,,1|(513,223)|
+1,31,14,25,1,0,0,0,0,128,0,-1--1--1,,1|(422,313)|
+1,32,26,25,0,0,0,0,0,128,0,-1--1--1,,1|(437,206)|
+10,33,Time Spend on Improvement,282,294,46,12,8,3,0,0,0,0,0,0
+1,34,14,33,1,0,0,0,0,128,0,-1--1--1,,1|(357,375)|
+1,35,33,11,1,0,0,0,0,128,0,-1--1--1,,1|(271,226)|
+10,36,Capability improvement per investment,351,56,52,18,8,3,0,0,0,0,0,0
+1,37,36,10,0,0,0,0,0,128,0,-1--1--1,,1|(357,91)|
+10,38,Normal Time Spent on Improvement,137,242,41,18,8,3,0,0,0,0,0,0
+1,39,38,33,0,0,0,0,0,128,0,-1--1--1,,1|(206,266)|
+10,40,Influence of Pressure on Work Time,343,208,54,18,8,3,0,0,0,0,0,0
+1,41,40,25,0,0,0,0,0,128,0,-1--1--1,,1|(406,228)|
+10,42,Erosion Timescale,592,65,55,7,8,3,0,0,0,0,0,0
+1,43,42,5,0,0,0,0,0,128,0,-1--1--1,,1|(590,89)|
+10,44,Pressure to Improve Capability,418,517,40,20,3,3,0,0,0,0,0,0
+12,45,48,546,518,10,8,0,3,0,0,-1,0,0,0
+1,46,48,44,4,0,0,22,0,0,0,-1--1--1,,1|(478,516)|
+1,47,48,45,100,0,0,22,0,0,0,-1--1--1,,1|(523,516)|
+11,48,48,504,516,6,8,34,3,0,0,1,0,0,0
+10,49,Change in Pressure to Improve Capability,504,542,57,18,40,3,0,0,-1,0,0,0
+1,50,13,48,1,0,0,0,0,128,0,-1--1--1,,1|(604,445)|
+1,51,44,33,1,0,0,0,0,128,0,-1--1--1,,1|(309,443)|
+10,52,Improve Capability Adjustment Time,418,604,52,18,8,3,0,0,0,0,0,0
+1,53,52,49,0,0,0,0,0,128,0,-1--1--1,,1|(454,577)|
+1,54,44,48,1,0,0,0,0,128,0,-1--1--1,,1|(473,493)|
+10,55,Influence of Capability Pressure on Improvement Time,108,321,66,18,8,3,0,0,0,0,0,0
+1,56,55,33,0,0,0,0,0,128,0,-1--1--1,,1|(198,307)|
+1,57,33,25,1,0,0,0,0,128,0,-1--1--1,,1|(351,260)|
+10,58,Maximum Work Time,507,185,33,12,8,3,0,0,0,0,0,0
+1,59,58,25,0,0,0,0,0,128,0,-1--1--1,,1|(489,210)|
+10,60,Influence of Work Pressure on Improvement Time,159,381,57,18,8,3,0,0,0,0,0,0
+1,61,60,33,1,0,0,0,0,128,0,-1--1--1,,1|(236,335)|
+1,62,1,5,1,0,0,0,0,128,0,-1--1--1,,1|(539,101)|
+12,63,42196040,927,87,187,69,3,188,0,0,2,0,0,0
+Capability,Graph
+12,64,42196044,941,485,185,116,3,188,0,0,1,0,0,0
+Output_and_Target
+10,65,Performance Step,680,409,54,7,8,3,0,0,0,0,0,0
+1,66,65,27,0,0,0,0,0,128,0,-1--1--1,,1|(680,391)|
+10,67,Exogenous Capability Pressure,632,541,35,18,8,3,0,0,0,0,0,0
+1,68,67,49,0,0,0,0,0,128,0,-1--1--1,,1|(586,541)|
+10,69,Pressure Step,631,609,43,7,8,3,0,0,0,0,0,0
+1,70,69,67,0,0,0,0,0,128,0,-1--1--1,,1|(631,587)|
+12,71,42196232,924,260,183,92,3,188,0,0,1,0,0,0
+Time_on_Task
+///---\\\
+:GRAPH Output_and_Target
+:TITLE Output and Target
+:X-AXIS Time
+:SCALE
+:VAR Desired Performance
+:VAR Actual Performance
+
+:GRAPH Time_on_Task
+:TITLE Time on Task
+:X-AXIS Time
+:STACK 0
+:SCALE
+:VAR Time Spend on Improvement
+:Y-MIN 0
+:Y-MAX 80
+:VAR Time Spent Working
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person Hour,Person Hours
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Pressure Step
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:3
+41:0
+42:0
+24:0
+25:100
+26:100

@@ -48,6 +48,7 @@ Contents
    analyses/workflow/index_workflow
    data/index_data
    future
+   endnotes
 
 Extra Resources
 ---------------
