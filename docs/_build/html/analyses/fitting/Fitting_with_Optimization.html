@@ -66,12 +66,22 @@
           
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installation_and_Setup.html">Installation and Setup of PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../visualization/Basic_Visualization.html">Basic Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
 </ul>
 </li>
@@ -96,18 +106,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit Testing.html">Unit Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../workflow/Writing to Database.html">Saving Simulation Results to a Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -172,6 +187,11 @@ import scipy.optimize
 <div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+
+  UserWarning)
+</pre></div>
+</div>
 <p>The model that we&#8217;ll try to fit is simple &#8216;Susceptible-Infectious&#8217;
 model. This model assumes that everyone is either susceptible, or
 infectious. It assumes that there is no recovery, or death; and doesn&#8217;t
@@ -222,7 +242,7 @@ interested in, at the timestamps that match our data.</p>
 <span class="n">error</span><span class="p">([</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mf">176776872.44224554</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">157979297.36259085</span>
 </pre></div>
 </div>
 </div>
@@ -261,14 +281,15 @@ values the optimizer will try.</p>
 <span class="n">res</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre> status: 0
-success: True
-   nfev: 120
-    fun: 21274102.213913631
-      x: array([  8.84005912e+03,   8.04113242e+00])
-message: &#39;CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH&#39;
-    jac: array([ -71.1530447 , -160.56001186])
-    nit: 11
+<div class="highlight-python"><div class="highlight"><pre>     fun: 22180775.88110314
+hess_inv: &lt;2x2 LbfgsInvHessProduct with dtype=float64&gt;
+     jac: array([   0.37252903,  343.47176552])
+ message: &#39;CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH&#39;
+    nfev: 90
+     nit: 10
+  status: 0
+ success: True
+       x: array([  8.82037219e+03,   8.20434113e+00])
 </pre></div>
 </div>
 </div>

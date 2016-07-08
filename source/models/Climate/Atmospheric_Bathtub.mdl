@@ -1,0 +1,80 @@
+{UTF-8}
+Emissions  = A FUNCTION OF( )
+	~	
+	~		|
+
+Excess Atmospheric Carbon  = A FUNCTION OF( -Natural Removal,Emissions)
+	~	
+	~		|
+
+Natural Removal  = A FUNCTION OF( Removal Constant,Excess Atmospheric Carbon)
+	~	
+	~		|
+
+Removal Constant  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Excess Atmospheric Carbon,293,200,40,20,3,3,0,0,0,0,0,0
+12,2,48,113,199,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(223,199)|
+1,5,6,2,100,0,0,22,0,0,0,-1--1--1,,1|(152,199)|
+11,6,0,188,199,6,8,34,3,0,0,1,0,0,0
+10,7,Emissions,188,214,32,7,40,3,0,0,-1,0,0,0
+1,11,12,1,100,0,0,22,0,0,0,-1--1--1,,1|(359,200)|
+11,12,0,392,200,6,8,34,3,0,0,1,0,0,0
+10,13,Natural Removal,392,215,50,7,40,3,0,0,-1,0,0,0
+1,14,1,13,1,0,0,0,0,128,0,-1--1--1,,1|(335,251)|
+10,16,Removal Constant,390,141,55,7,8,3,0,0,0,0,0,0
+1,17,16,12,0,0,0,0,0,128,0,-1--1--1,,1|(390,164)|
+12,18,48,459,199,10,8,0,3,0,0,-1,0,0,0
+1,19,12,18,4,0,0,22,0,0,0,-1--1--1,,1|(423,200)|
+///---\\\
+:L<%^E!@
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:Removal Constant
+24:0
+25:0
+26:0

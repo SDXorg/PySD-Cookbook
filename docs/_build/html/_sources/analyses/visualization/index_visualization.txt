@@ -6,5 +6,6 @@ Visualization
    :maxdepth: 2
    :glob:
    
-   Basic_Visualization
+   matplotlib
+   other_visualization_libraries
    phase_portraits

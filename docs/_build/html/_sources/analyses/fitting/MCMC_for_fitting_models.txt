@@ -154,7 +154,7 @@ overall distribution.
 
 .. parsed-literal::
 
-     [-----------------100%-----------------] 20000 of 20000 complete in 68.7 sec
+     [-----------------100%-----------------] 20000 of 20000 complete in 67.1 sec
 
 Step 5: Look at the distribution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -165,6 +165,7 @@ frequency objects we built earlier.
 
 .. code:: python
 
+    plt.figure(figsize=(6,2))
     plt.hist(population.trace[:], bins=100, histtype='stepfilled', normed=True, alpha=.6);
     plt.title('Fit distribution for the population parameter');
 
@@ -175,6 +176,7 @@ frequency objects we built earlier.
 
 .. code:: python
 
+    plt.figure(figsize=(6,2))
     plt.hist(contact_frequency.trace[:], bins=100, histtype='stepfilled', normed=True, alpha=.6);
     plt.title('Fit distribution for the contact frequency parameter');
 
@@ -182,6 +184,31 @@ frequency objects we built earlier.
 
 .. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_16_0.png
 
+
+.. code:: python
+
+    plt.figure(figsize=(6,1))
+    plt.hist(contact_frequency.trace[:], bins=100, histtype='stepfilled', normed=True, alpha=.6);
+    plt.yticks([])
+    plt.title('Fit distribution for the characteristic time parameter');
+    plt.xlabel('Minutes')
+
+
+
+
+.. parsed-literal::
+
+    <matplotlib.text.Text at 0x10cf40350>
+
+
+
+
+.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_17_1.png
+
+
+.. code:: python
+
+    pymc.Normal()
 
 Step 6: Understand the correlation between our parameter distributions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -199,7 +226,7 @@ against one another that there is correlation:
 
 
 
-.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_18_0.png
+.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_20_0.png
 
 
 If we use these distributions in the future to propagate uncertainty

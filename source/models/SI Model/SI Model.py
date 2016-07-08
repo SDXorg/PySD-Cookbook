@@ -1,170 +1,291 @@
 
+"""
+Python model ../../models/SI Model/SI Model.py
+Translated using PySD version 0.6.1
+"""
 from __future__ import division
 import numpy as np
+from pysd import utils
+import xarray as xr
+
+from pysd.functions import cache
 from pysd import functions
+
+_subscript_dict = {}
+
+_namespace = {
+    'TIME STEP': 'time_step',
+    'Total Population': 'total_population',
+    'FINAL TIME': 'final_time',
+    'Population Infected with Ebola': 'population_infected_with_ebola',
+    'Contact Frequency': 'contact_frequency',
+    'Susceptible Contacts': 'susceptible_contacts',
+    'SAVEPER': 'saveper',
+    'New Reported Cases': 'new_reported_cases',
+    'Infectivity': 'infectivity',
+    'INITIAL TIME': 'initial_time',
+    'Cumulative Reported Cases': 'cumulative_reported_cases',
+    'Infection Rate': 'infection_rate',
+    'Probability of Contact with Infected Person': 'probability_of_contact_with_infected_person',
+    'Contacts Between Infected and Uninfected Persons': 'contacts_between_infected_and_uninfected_persons',
+    'Population Susceptible to Ebola': 'population_susceptible_to_ebola'}
+
+
+@cache('run')
+def total_population():
+    """
+    Total Population
+    ----------------
+    (total_population)
+    Persons
+
+    """
+    return 7150
+
+
+@cache('step')
+def _dpopulation_infected_with_ebola_dt():
+    """
+    Implicit
+    --------
+    (_dpopulation_infected_with_ebola_dt)
+    See docs for population_infected_with_ebola
+    Provides derivative for population_infected_with_ebola function
+    """
+    return infection_rate()
+
+
+@cache('step')
+def new_reported_cases():
+    """
+    New Reported Cases
+    ------------------
+    (new_reported_cases)
+    Persons/Week
+
+    """
+    return infection_rate()
+
+
+@cache('step')
+def population_infected_with_ebola():
+    """
+    Population Infected with Ebola
+    ------------------------------
+    (population_infected_with_ebola)
+    Persons
+
+    """
+    return _state['population_infected_with_ebola']
+
+
+@cache('run')
+def contact_frequency():
+    """
+    Contact Frequency
+    -----------------
+    (contact_frequency)
+    Persons/Person/Week
+
+    """
+    return 7
+
+
+def _init_cumulative_reported_cases():
+    """
+    Implicit
+    --------
+    (_init_cumulative_reported_cases)
+    See docs for cumulative_reported_cases
+    Provides initial conditions for cumulative_reported_cases function
+    """
+    return 0
+
+
+def _init_population_susceptible_to_ebola():
+    """
+    Implicit
+    --------
+    (_init_population_susceptible_to_ebola)
+    See docs for population_susceptible_to_ebola
+    Provides initial conditions for population_susceptible_to_ebola function
+    """
+    return total_population()
+
+
+@cache('step')
+def susceptible_contacts():
+    """
+    Susceptible Contacts
+    --------------------
+    (susceptible_contacts)
+    Persons/Week
+
+    """
+    return contact_frequency() * population_susceptible_to_ebola()
+
+
+@cache('step')
+def cumulative_reported_cases():
+    """
+    Cumulative Reported Cases
+    -------------------------
+    (cumulative_reported_cases)
+    Persons
+
+    """
+    return _state['cumulative_reported_cases']
+
+
+@cache('run')
+def infectivity():
+    """
+    Infectivity
+    -----------
+    (infectivity)
+    Dmnl [-1,1,0.001]
+
+    """
+    return 0.05
+
+
+@cache('step')
+def saveper():
+    """
+    SAVEPER
+    -------
+    (saveper)
+    Week [0,?]
+    The frequency with which output is stored.
+    """
+    return time_step()
+
+
+@cache('run')
+def initial_time():
+    """
+    INITIAL TIME
+    ------------
+    (initial_time)
+    Week
+    The initial time for the simulation.
+    """
+    return 0
+
+
+@cache('step')
+def _dpopulation_susceptible_to_ebola_dt():
+    """
+    Implicit
+    --------
+    (_dpopulation_susceptible_to_ebola_dt)
+    See docs for population_susceptible_to_ebola
+    Provides derivative for population_susceptible_to_ebola function
+    """
+    return -infection_rate()
+
+
+@cache('run')
+def final_time():
+    """
+    FINAL TIME
+    ----------
+    (final_time)
+    Week
+    The final time for the simulation.
+    """
+    return 35
+
+
+@cache('step')
+def _dcumulative_reported_cases_dt():
+    """
+    Implicit
+    --------
+    (_dcumulative_reported_cases_dt)
+    See docs for cumulative_reported_cases
+    Provides derivative for cumulative_reported_cases function
+    """
+    return new_reported_cases()
+
+
+@cache('run')
+def time_step():
+    """
+    TIME STEP
+    ---------
+    (time_step)
+    Week [0,?]
+    The time step for the simulation.
+    """
+    return 0.125
+
+
+@cache('step')
+def population_susceptible_to_ebola():
+    """
+    Population Susceptible to Ebola
+    -------------------------------
+    (population_susceptible_to_ebola)
+    Persons
+    The Population Susceptible to Ebola is the equal to the population
+                susceptible prior to the onset of the disease less all of those that have
+                contracted it. It is initialized to the Total Effective Population.
+    """
+    return _state['population_susceptible_to_ebola']
+
+
+def _init_population_infected_with_ebola():
+    """
+    Implicit
+    --------
+    (_init_population_infected_with_ebola)
+    See docs for population_infected_with_ebola
+    Provides initial conditions for population_infected_with_ebola function
+    """
+    return 1
+
+
+@cache('step')
+def contacts_between_infected_and_uninfected_persons():
+    """
+    Contacts Between Infected and Uninfected Persons
+    ------------------------------------------------
+    (contacts_between_infected_and_uninfected_persons)
+    Persons/Week
+
+    """
+    return probability_of_contact_with_infected_person() * susceptible_contacts()
+
+
+@cache('step')
+def infection_rate():
+    """
+    Infection Rate
+    --------------
+    (infection_rate)
+    Persons/Week
+    The infection rate is determined by the total number of contacts between
+                infected and uninfected people each week (Contacts Between Infected and
+                Uninfected Persons), and the probability that each such contact results in
+                transmission from the infected to uninfected person (Infectivity).
+    """
+    return contacts_between_infected_and_uninfected_persons() * infectivity()
+
+
+@cache('step')
+def probability_of_contact_with_infected_person():
+    """
+    Probability of Contact with Infected Person
+    -------------------------------------------
+    (probability_of_contact_with_infected_person)
+    Dmnl
+
+    """
+    return population_infected_with_ebola() / total_population()
+
 
 def time():
     return _t
-
-# Share the `time` function with the module for `step`, `pulse`, etc.
-functions.__builtins__.update({'time':time})
-
-
-def new_reported_cases():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = infection_rate()
-
-    return output
-
-def population_infected_with_ebola():
-    return _state['population_infected_with_ebola']
-
-def _population_infected_with_ebola_init():
-    try:
-        loc_dimension_dir = population_infected_with_ebola.dimension_dir
-    except:
-        loc_dimension_dir = 0
-    return 1
-
-def _dpopulation_infected_with_ebola_dt():
-    try:
-        loc_dimension_dir = population_infected_with_ebola.dimension_dir
-    except:
-        loc_dimension_dir = 0
-    return infection_rate()
-
-def population_susceptible_to_ebola():
-    return _state['population_susceptible_to_ebola']
-
-def _population_susceptible_to_ebola_init():
-    try:
-        loc_dimension_dir = population_susceptible_to_ebola.dimension_dir
-    except:
-        loc_dimension_dir = 0
-    return total_population()
-
-def _dpopulation_susceptible_to_ebola_dt():
-    try:
-        loc_dimension_dir = population_susceptible_to_ebola.dimension_dir
-    except:
-        loc_dimension_dir = 0
-    return -infection_rate()
-
-def contact_frequency():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = 7
-
-    return output
-
-def contacts_between_infected_and_uninfected_persons():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = probability_of_contact_with_infected_person()*susceptible_contacts()
-
-    return output
-
-def cumulative_reported_cases():
-    return _state['cumulative_reported_cases']
-
-def _cumulative_reported_cases_init():
-    try:
-        loc_dimension_dir = cumulative_reported_cases.dimension_dir
-    except:
-        loc_dimension_dir = 0
-    return 0
-
-def _dcumulative_reported_cases_dt():
-    try:
-        loc_dimension_dir = cumulative_reported_cases.dimension_dir
-    except:
-        loc_dimension_dir = 0
-    return new_reported_cases()
-
-def infection_rate():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = contacts_between_infected_and_uninfected_persons()*infectivity()
-
-    return output
-
-def infectivity():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = 0.05
-
-    return output
-
-def probability_of_contact_with_infected_person():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = population_infected_with_ebola()/total_population()
-
-    return output
-
-def susceptible_contacts():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = contact_frequency()*population_susceptible_to_ebola()
-
-    return output
-
-def total_population():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = 7150
-
-    return output
-
-def final_time():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = 35
-
-    return output
-
-def initial_time():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = 0
-
-    return output
-
-def saveper():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = time_step()
-
-    return output
-
-def time_step():
-    """
-    
-    """
-    loc_dimension_dir = 0 
-    output = 0.125
-
-    return output
+functions.time = time
+functions.initial_time = initial_time

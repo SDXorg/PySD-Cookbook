@@ -1,97 +1,250 @@
-from __future__ import division                                 
-import numpy as np                                              
-from pysd import functions                                      
-from pysd import builder                                        
-                                                                
-class Components(builder.ComponentClass):                       
-                                                                
-    def prey_births(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.prey_fertility()*self.prey_population() 
 
-    def predation_rate(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0.0001 
+"""
+Python model ../../models/Predator_Prey/Predator_Prey.py
+Translated using PySD version 0.6.1
+"""
+from __future__ import division
+import numpy as np
+from pysd import utils
+import xarray as xr
 
-    def prey_deaths(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.predation_rate()*self.prey_population()*self.predator_population() 
+from pysd.functions import cache
+from pysd import functions
 
-    def prey_fertility(self):
-        """Type: Flow or Auxiliary
-        """
-        return 2 
+_subscript_dict = {}
 
-    def dprey_population_dt(self):                       
-        return self.prey_births()-self.prey_deaths()                           
+_namespace = {
+    'Predator Mortality': 'predator_mortality',
+    'TIME STEP': 'time_step',
+    'INITIAL TIME': 'initial_time',
+    'SAVEPER': 'saveper',
+    'FINAL TIME': 'final_time',
+    'Prey Fertility': 'prey_fertility',
+    'Prey Population': 'prey_population',
+    'Predation Rate': 'predation_rate',
+    'Predator Population': 'predator_population',
+    'Prey Births': 'prey_births',
+    'Predator Food Driven Fertility': 'predator_food_driven_fertility',
+    'Predator Deaths': 'predator_deaths',
+    'Predator Births': 'predator_births',
+    'Prey Deaths': 'prey_deaths'}
 
-    def prey_population_init(self):                      
-        return 250                           
 
-    def prey_population(self):                            
-        """ Stock: prey_population =                      
-                 self.prey_births()-self.prey_deaths()                          
-                                             
-        Initial Value: 250                    
-        Do not overwrite this function       
-        """                                  
-        return self.state["prey_population"]              
-                                             
-    def predator_births(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.predator_food_driven_fertility()*self.prey_population()*self.predator_population() 
+def _init_predator_population():
+    """
+    Implicit
+    --------
+    (_init_predator_population)
+    See docs for predator_population
+    Provides initial conditions for predator_population function
+    """
+    return 100
 
-    def predator_deaths(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.predator_mortality()*self.predator_population() 
 
-    def predator_food_driven_fertility(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0.001 
+@cache('step')
+def prey_population():
+    """
+    Prey Population
+    ---------------
+    (prey_population)
+    Prey [0,?]
 
-    def predator_mortality(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0.01 
+    """
+    return _state['prey_population']
 
-    def dpredator_population_dt(self):                       
-        return self.predator_births()-self.predator_deaths()                           
 
-    def predator_population_init(self):                      
-        return 100                           
+@cache('run')
+def predator_food_driven_fertility():
+    """
+    Predator Food Driven Fertility
+    ------------------------------
+    (predator_food_driven_fertility)
+    Predators/Day/Predator/Prey [0,0.0001,1e-06]
 
-    def predator_population(self):                            
-        """ Stock: predator_population =                      
-                 self.predator_births()-self.predator_deaths()                          
-                                             
-        Initial Value: 100                    
-        Do not overwrite this function       
-        """                                  
-        return self.state["predator_population"]              
-                                             
-    def final_time(self):
-        """Type: Flow or Auxiliary
-        """
-        return 50 
+    """
+    return 0.001
 
-    def initial_time(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0 
 
-    def saveper(self):
-        """Type: Flow or Auxiliary
-        """
-        return self.time_step() 
+@cache('run')
+def prey_fertility():
+    """
+    Prey Fertility
+    --------------
+    (prey_fertility)
+    Prey/Day/Prey [0,10,0.1]
 
-    def time_step(self):
-        """Type: Flow or Auxiliary
-        """
-        return 0.015625 
+    """
+    return 2
 
+
+@cache('run')
+def final_time():
+    """
+    FINAL TIME
+    ----------
+    (final_time)
+    Day
+    The final time for the simulation.
+    """
+    return 50
+
+
+@cache('run')
+def predation_rate():
+    """
+    Predation Rate
+    --------------
+    (predation_rate)
+    Prey/Day/Prey/Predator [0,0.0001,1e-05]
+
+    """
+    return 0.0001
+
+
+@cache('step')
+def predator_deaths():
+    """
+    Predator Deaths
+    ---------------
+    (predator_deaths)
+    Predator/Day
+
+    """
+    return predator_mortality() * predator_population()
+
+
+@cache('step')
+def _dprey_population_dt():
+    """
+    Implicit
+    --------
+    (_dprey_population_dt)
+    See docs for prey_population
+    Provides derivative for prey_population function
+    """
+    return prey_births() - prey_deaths()
+
+
+@cache('step')
+def prey_deaths():
+    """
+    Prey Deaths
+    -----------
+    (prey_deaths)
+    Prey/Day
+
+    """
+    return predation_rate() * prey_population() * predator_population()
+
+
+def _init_prey_population():
+    """
+    Implicit
+    --------
+    (_init_prey_population)
+    See docs for prey_population
+    Provides initial conditions for prey_population function
+    """
+    return 250
+
+
+@cache('step')
+def saveper():
+    """
+    SAVEPER
+    -------
+    (saveper)
+    Day [0,?]
+    The frequency with which output is stored.
+    """
+    return time_step()
+
+
+@cache('run')
+def initial_time():
+    """
+    INITIAL TIME
+    ------------
+    (initial_time)
+    Day
+    The initial time for the simulation.
+    """
+    return 0
+
+
+@cache('step')
+def predator_births():
+    """
+    Predator Births
+    ---------------
+    (predator_births)
+    Predator/Day
+
+    """
+    return predator_food_driven_fertility() * prey_population() * predator_population()
+
+
+@cache('step')
+def predator_population():
+    """
+    Predator Population
+    -------------------
+    (predator_population)
+    Predators
+
+    """
+    return _state['predator_population']
+
+
+@cache('step')
+def _dpredator_population_dt():
+    """
+    Implicit
+    --------
+    (_dpredator_population_dt)
+    See docs for predator_population
+    Provides derivative for predator_population function
+    """
+    return predator_births() - predator_deaths()
+
+
+@cache('run')
+def time_step():
+    """
+    TIME STEP
+    ---------
+    (time_step)
+    Day [0,?]
+    The time step for the simulation.
+    """
+    return 0.015625
+
+
+@cache('step')
+def prey_births():
+    """
+    Prey Births
+    -----------
+    (prey_births)
+    Prey/Day
+
+    """
+    return prey_fertility() * prey_population()
+
+
+@cache('run')
+def predator_mortality():
+    """
+    Predator Mortality
+    ------------------
+    (predator_mortality)
+    Predator/Day/Predator [0,1]
+
+    """
+    return 0.01
+
+
+def time():
+    return _t
+functions.time = time
+functions.initial_time = initial_time
