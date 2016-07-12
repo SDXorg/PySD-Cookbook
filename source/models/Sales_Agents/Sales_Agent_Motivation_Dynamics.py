@@ -1,7 +1,7 @@
 
 """
 Python model ../../models/Sales_Agents/Sales_Agent_Motivation_Dynamics.py
-Translated using PySD version 0.6.1
+Translated using PySD version 0.6.3
 """
 from __future__ import division
 import numpy as np
@@ -16,19 +16,30 @@ _subscript_dict = {}
 _namespace = {
     'Months of Expenses per Sale': 'months_of_expenses_per_sale',
     'Effort Required to Make a Sale': 'effort_required_to_make_a_sale',
-    'Accumulating Tenure': 'accumulating_tenure', 'TIME STEP': 'time_step',
-    'Total Cumulative Income': 'total_cumulative_income', 'SAVEPER': 'saveper',
-    'Fraction of Effort for Sales': 'fraction_of_effort_for_sales', 'Income': 'income',
+    'Accumulating Income': 'accumulating_income',
+    'TIME STEP': 'time_step',
+    'Total Cumulative Income': 'total_cumulative_income',
+    'Sales': 'sales',
+    'SAVEPER': 'saveper',
+    'Fraction of Effort for Sales': 'fraction_of_effort_for_sales',
+    'Income': 'income',
     'INITIAL TIME': 'initial_time',
     'Impact of Motivation on Effort': 'impact_of_motivation_on_effort',
     'Total Effort Available': 'total_effort_available',
-    'Sales Effort Available': 'sales_effort_available', 'FINAL TIME': 'final_time',
-    'Effort': 'effort', 'Startup Subsidy Length': 'startup_subsidy_length',
-    'Motivation Adjustment': 'motivation_adjustment', 'Tenure': 'tenure',
-    'Success Rate': 'success_rate', 'Motivation': 'motivation',
-    'Total Cumulative Sales': 'total_cumulative_sales', 'Startup Subsidy': 'startup_subsidy',
-    'Accumulating Income': 'accumulating_income', 'Sales': 'sales',
-    'Still Employed': 'still_employed', 'Motivation Adjustment Time': 'motivation_adjustment_time',
+    'Sales Effort Available': 'sales_effort_available',
+    'FINAL TIME': 'final_time',
+    'Effort': 'effort',
+    'Startup Subsidy Length': 'startup_subsidy_length',
+    'Motivation Adjustment': 'motivation_adjustment',
+    'Tenure': 'tenure',
+    'Success Rate': 'success_rate',
+    'Motivation': 'motivation',
+    'Total Cumulative Sales': 'total_cumulative_sales',
+    'Startup Subsidy': 'startup_subsidy',
+    'Accumulating Tenure': 'accumulating_tenure',
+    'Motivation Threshold': 'motivation_threshold',
+    'Still Employed': 'still_employed',
+    'Motivation Adjustment Time': 'motivation_adjustment_time',
     'Accumulating Sales': 'accumulating_sales'}
 
 
@@ -64,7 +75,7 @@ def final_time():
     Month
     The final time for the simulation.
     """
-    return 48
+    return 200
 
 
 @cache('step')
@@ -91,16 +102,16 @@ def startup_subsidy_length():
     return 6
 
 
-@cache('step')
-def sales():
+@cache('run')
+def startup_subsidy():
     """
-    Sales
-    -----
-    (sales)
-    Persons/Month
-
+    Startup Subsidy
+    ---------------
+    (startup_subsidy)
+    Dmnl
+    Months of expenses per month
     """
-    return effort() / effort_required_to_make_a_sale() * success_rate()
+    return 0.5
 
 
 @cache('run')
@@ -227,6 +238,18 @@ def income():
                                                                             startup_subsidy_length(), startup_subsidy(), 0)
 
 
+@cache('run')
+def motivation_threshold():
+    """
+    Motivation Threshold
+    --------------------
+    (motivation_threshold)
+
+
+    """
+    return 0.1
+
+
 def impact_of_motivation_on_effort(x):
     """
     Impact of Motivation on Effort
@@ -275,6 +298,18 @@ def months_of_expenses_per_sale():
 
 
 @cache('step')
+def sales():
+    """
+    Sales
+    -----
+    (sales)
+    Persons/Month
+
+    """
+    return effort() / effort_required_to_make_a_sale() * success_rate()
+
+
+@cache('step')
 def accumulating_tenure():
     """
     Accumulating Tenure
@@ -307,7 +342,7 @@ def still_employed():
     Dmnl
 
     """
-    return functions.if_then_else(motivation() > 0, 1, 0)
+    return functions.if_then_else(motivation() > motivation_threshold(), 1, 0)
 
 
 @cache('step')
@@ -391,18 +426,6 @@ def total_cumulative_income():
     Express income in units of 'months of expenses'
     """
     return _state['total_cumulative_income']
-
-
-@cache('run')
-def startup_subsidy():
-    """
-    Startup Subsidy
-    ---------------
-    (startup_subsidy)
-    Dmnl
-    Months of expenses per month
-    """
-    return 0.5
 
 
 @cache('step')

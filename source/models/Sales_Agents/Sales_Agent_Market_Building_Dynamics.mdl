@@ -398,7 +398,7 @@ Tier 1 Clients= INTEG (
 		Simulation Control Parameters
 	|
 
-FINAL TIME  = 120
+FINAL TIME  = 200
 	~	Month
 	~	The final time for the simulation.
 	|
@@ -409,7 +409,7 @@ INITIAL TIME  = 0
 	|
 
 SAVEPER  = 
-        TIME STEP
+        TIME STEP 
 	~	Month [0,?]
 	~	The frequency with which output is stored.
 	|

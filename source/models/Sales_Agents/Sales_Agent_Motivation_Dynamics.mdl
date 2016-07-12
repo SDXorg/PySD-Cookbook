@@ -1,4 +1,14 @@
 {UTF-8}
+Still Employed=
+	IF THEN ELSE(Motivation>Motivation Threshold, 1 , 0 )
+	~	Dmnl
+	~		|
+
+Motivation Threshold=
+	0.1
+	~	
+	~		|
+
 Accumulating Income=
 	Income
 	~	Month/Month
@@ -110,11 +120,6 @@ Startup Subsidy Length=
 	~	Month
 	~		|
 
-Still Employed=
-	IF THEN ELSE(Motivation>0, 1 , 0 )
-	~	Dmnl
-	~		|
-
 Success Rate=
 	0.2
 	~	Dmnl
@@ -126,7 +131,7 @@ Success Rate=
 		Simulation Control Parameters
 	|
 
-FINAL TIME  = 48
+FINAL TIME  = 200
 	~	Month
 	~	The final time for the simulation.
 	|
@@ -191,6 +196,8 @@ $192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
 1,38,37,18,0,0,0,0,0,128,0,-1--1--1,,1|(534,202)|
 10,39,Fraction of Effort for Sales,572,260,46,12,8,3,0,0,0,0,0,0
 1,40,39,18,0,0,0,0,0,128,0,-1--1--1,,1|(531,244)|
+10,41,Motivation Threshold,337,44,32,12,8,3,0,0,0,0,0,0
+1,42,41,28,1,0,0,0,0,128,0,-1--1--1,,1|(393,78)|
 \\\---/// Sketch information - do not modify anything except names
 V300  Do not put anything below this section - it will be ignored
 *Metrics
@@ -233,11 +240,11 @@ $192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
 22:Week,Weeks
 22:Year,Years
 15:0,0,0,0,0,0
-19:100,1
+19:100,0
 27:2,
 34:0,
 4:Time
-5:Motivation Adjustment
+5:Still Employed
 35:Date
 36:YYYY-MM-DD
 37:2000
@@ -247,5 +254,5 @@ $192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
 41:0
 42:1
 24:0
-25:48
-26:48
+25:200
+26:200

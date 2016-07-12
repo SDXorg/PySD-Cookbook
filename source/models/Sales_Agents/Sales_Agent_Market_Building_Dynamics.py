@@ -1,7 +1,7 @@
 
 """
 Python model ../../models/Sales_Agents/Sales_Agent_Market_Building_Dynamics.py
-Translated using PySD version 0.6.1
+Translated using PySD version 0.6.3
 """
 from __future__ import division
 import numpy as np
@@ -120,7 +120,7 @@ def final_time():
     Month
     The final time for the simulation.
     """
-    return 120
+    return 200
 
 
 @cache('step')
