@@ -199,6 +199,11 @@ it&#8217;s familiar:</p>
 <span class="n">emissions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+
+  UserWarning)
+</pre></div>
+</div>
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -295,13 +300,10 @@ look</a>:</p>
 values:</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s">&#39;Total Emissions&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">1950</span><span class="p">,</span><span class="mi">2000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="mi">7500</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="mi">7500</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">7500</span><span class="p">)</span>
-</pre></div>
-</div>
-<img alt="../../_images/matplotlib_12_1.png" src="../../_images/matplotlib_12_1.png" />
+<img alt="../../_images/matplotlib_12_0.png" src="../../_images/matplotlib_12_0.png" />
 </div>
 <div class="section" id="multiple-lines">
 <h2>Multiple lines<a class="headerlink" href="#multiple-lines" title="Permalink to this headline">¶</a></h2>
@@ -316,10 +318,7 @@ appropriate references to each line:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;upper left&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.legend.Legend at 0x1147343d0&gt;
-</pre></div>
-</div>
-<img alt="../../_images/matplotlib_14_1.png" src="../../_images/matplotlib_14_1.png" />
+<img alt="../../_images/matplotlib_14_0.png" src="../../_images/matplotlib_14_0.png" />
 </div>
 <div class="section" id="other-plot-types">
 <h2>Other plot types<a class="headerlink" href="#other-plot-types" title="Permalink to this headline">¶</a></h2>
@@ -365,7 +364,9 @@ for how our plots are shown:</p>
 <div class="section" id="matplotlib-and-pysd">
 <h3>Matplotlib and PySD<a class="headerlink" href="#matplotlib-and-pysd" title="Permalink to this headline">¶</a></h3>
 <p>As PySD returns a Pandas Dataframe, we can either use the plotting
-interface directly, or Pandas&#8217;s convenience wrapper.</p>
+interface directly, or Pandas&#8217;s convenience wrapper. Here we&#8217;ll load a
+model which produces a chaotic output in three dimensions to use in our
+demonstration.</p>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pysd</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Roessler_Chaos/roessler_chaos.mdl&#39;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>

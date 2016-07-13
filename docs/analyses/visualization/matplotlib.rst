@@ -49,6 +49,13 @@ it's familiar:
     emissions.head(3)
 
 
+.. parsed-literal::
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+    
+      UserWarning)
+
+
 
 
 .. raw:: html
@@ -174,19 +181,11 @@ values:
 
     plt.plot(emissions.index, emissions['Total Emissions'])
     plt.xlim(1950,2000)
-    plt.ylim(1500,7500)
+    plt.ylim(1500,7500);
 
 
 
-
-.. parsed-literal::
-
-    (1500, 7500)
-
-
-
-
-.. image:: matplotlib_files/matplotlib_12_1.png
+.. image:: matplotlib_files/matplotlib_12_0.png
 
 
 Multiple lines
@@ -207,15 +206,7 @@ appropriate references to each line:
 
 
 
-
-.. parsed-literal::
-
-    <matplotlib.legend.Legend at 0x1147343d0>
-
-
-
-
-.. image:: matplotlib_files/matplotlib_14_1.png
+.. image:: matplotlib_files/matplotlib_14_0.png
 
 
 Other plot types
@@ -289,7 +280,9 @@ Matplotlib and PySD
 -------------------
 
 As PySD returns a Pandas Dataframe, we can either use the plotting
-interface directly, or Pandas's convenience wrapper.
+interface directly, or Pandas's convenience wrapper. Here we'll load a
+model which produces a chaotic output in three dimensions to use in our
+demonstration.
 
 .. code:: python
 

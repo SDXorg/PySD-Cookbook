@@ -164,7 +164,29 @@ import scipy.stats.distributions as dist
 import multiprocessing
 </pre></div>
 </div>
+<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+
+  UserWarning)
+</pre></div>
+</div>
 <div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Capability_Trap/Capability Trap.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># define the sample space</span>
+<span class="n">ranges</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Fraction of Effort for Sales&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="s">&#39;Startup Subsidy&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+          <span class="s">&#39;Startup Subsidy Length&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)}</span>
+
+<span class="c"># generate LHS samples within the unit square</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">pyDOE</span><span class="o">.</span><span class="n">lhs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">),</span> <span class="n">samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c"># transform samples into our sample space</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">dist</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ranges</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+                      <span class="n">scale</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ranges</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">lhs</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">ranges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="n">samples</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <div>
@@ -547,7 +569,27 @@ import multiprocessing
   </tbody>
 </table>
 <p>1601 rows × 3 columns</p>
-</div><div class="code python highlight-python"><div class="highlight"><pre><span class="c"># define the sample space</span>
+</div><div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">runner</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">market</span> <span class="o">=</span> <span class="n">market_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">])</span>
+    <span class="n">motiv</span> <span class="o">=</span> <span class="n">motivation_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;market&#39;</span><span class="p">:</span><span class="n">market</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                      <span class="s">&#39;motivation&#39;</span><span class="p">:</span><span class="n">motiv</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]})</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_apply_df</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">apply_by_multiprocessing</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">workers</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_apply_df</span><span class="p">,</span> <span class="p">[(</span><span class="n">d</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">workers</span><span class="p">)])</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">apply_by_multiprocessing</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># define the sample space</span>
 <span class="n">ranges</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Fraction of Effort for Sales&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
           <span class="s">&#39;Startup Subsidy&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
           <span class="s">&#39;Startup Subsidy Length&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)}</span>

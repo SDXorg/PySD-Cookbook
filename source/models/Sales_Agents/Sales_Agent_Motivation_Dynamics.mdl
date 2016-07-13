@@ -197,7 +197,7 @@ $192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
 10,39,Fraction of Effort for Sales,572,260,46,12,8,3,0,0,0,0,0,0
 1,40,39,18,0,0,0,0,0,128,0,-1--1--1,,1|(531,244)|
 10,41,Motivation Threshold,337,44,32,12,8,3,0,0,0,0,0,0
-1,42,41,28,1,0,0,0,0,128,0,-1--1--1,,1|(393,78)|
+1,42,41,28,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(393,78)|
 \\\---/// Sketch information - do not modify anything except names
 V300  Do not put anything below this section - it will be ignored
 *Metrics

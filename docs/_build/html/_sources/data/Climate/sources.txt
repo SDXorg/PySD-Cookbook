@@ -15,3 +15,9 @@ Atmospheric Carbon
 Data for atmospheric carbon concentrations is the Scripps CO2 program
 Mauna Loa Monthly measurements, available at:
 http://scrippsco2.ucsd.edu/data/atmospheric\_co2.
+
+World Population
+^^^^^^^^^^^^^^^^
+
+Data for the world population estimates comes from OurWorldInData.org:
+https://ourworldindata.org/world-population-growth/
