@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Model Assessment &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Model Assessment</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/model_comparison/Comparing_Models.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="model-assessment">
+<h1>Model Assessment<a class="headerlink" href="#model-assessment" title="Permalink to this headline">¶</a></h1>
+<p>In this analysis, we&#8217;ll use a case study looking at an individual&#8217;s
+email habits.</p>
+<p>We hypothesize that there are two types of emails that arrive in a
+person&#8217;s inbox and require a response:</p>
+<ol class="arabic simple">
+<li>Those that have no task associated other than to reply with an
+immediately available piece of information</li>
+<li>Those that require a task to be accomplished before they can be
+replied to.</li>
+</ol>
+<p>The outflow of the first of these types of emails can be modeled as a
+first order delay on their inflow, which would be equivalent to assuming
+that email sending and email checking follow a poisson process, and the
+time between message arrival and the next inbox check follows an
+exponential distribution.</p>
+<p>The second type can be modeled as a higher order delay, as the &#8216;task&#8217;
+associated with the email&#8217;s arrival first must be acted upon and then
+written about.</p>
+<div class="section" id="sd-model">
+<h2>SD Model<a class="headerlink" href="#sd-model" title="Permalink to this headline">¶</a></h2>
+<p>Such a model would look something like this:</p>
+<div class="figure" id="id1">
+<img alt="Model Screenshot" src="analyses/model_comparison/../../models/Emails/full_model.png" />
+<p class="caption"><span class="caption-text">Model Screenshot</span></p>
+</div>
+<p>Normally, emails would arrive over a period of time, and would be
+responded to continuously, and the distribution itself would get all
+mixed up in the day to day fluctuations. However, if we time-shift the
+arrival of each email to arrive at time 0, then the output of each of
+these stocks will represent the distribution of time between arrival and
+reply to each type of message. To do this we create a 1-timestep pulse
+input with the full volume of the messages, and build our delay around
+these values:</p>
+<div class="highlight-python"><div class="highlight"><pre>Easy Arrival=
+    Easy Email Volume / TIME STEP * PULSE(0, TIME STEP )
+
+Easy Reply=
+    DELAY N(Easy Arrival, Easy Reply Time, 0, 1)
+</pre></div>
+</div>
+<p>Below we see how the sum of replies to easy and hard emails creates a
+distribution of response times.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
+import pysd
+import pandas as pd
+import scipy.optimize
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Emails/Emails_in_2_fixed_categories.mdl&#39;</span><span class="p">)</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;total_emails&#39;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span>
+          <span class="s">&#39;easy_fraction&#39;</span><span class="p">:</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span>
+          <span class="s">&#39;easy_reply_time&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+          <span class="s">&#39;hard_reply_time&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">}</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="p">,</span>
+          <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;net_email_output&#39;</span><span class="p">,</span> <span class="s">&#39;easy_reply&#39;</span><span class="p">,</span> <span class="s">&#39;hard_reply&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Timeseries output representing a distribution over time deltas&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/Comparing_Models_2_0.png" src="../../_images/Comparing_Models_2_0.png" />
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>Now our task will be to compare this output distribution with data
+collected on response times from an actual inbox. In this case, mine.
+The data comes (from our <a class="reference external" href="http://www.jamesphoughton.com/2016/02/06/Email-Data-Formatter.html">data processing
+script</a>)
+with a single time delta per row, so we take a histogram to get a
+distribution we can compare with model output.</p>
+<p>As we&#8217;ve taken a histogram bin size of 1 day, then the height of the
+bins themselves represents the number of messages per day we can expect
+to come out of our model. If we changed the bins size, we would need to
+scale these values to preserve the units.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">response_times</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../../data/Emails/days_to_join_conversation.csv&#39;</span><span class="p">,</span>
+                             <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">,</span><span class="s">&#39;Days&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
+<span class="n">num_conversations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">response_times</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">&#39;Loaded </span><span class="si">%i</span><span class="s"> conversations&#39;</span><span class="o">%</span><span class="n">num_conversations</span>
+
+<span class="n">counts</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">response_times</span><span class="p">[</span><span class="s">&#39;Days&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">),</span>
+                            <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">counts</span><span class="p">,</span>
+                 <span class="n">index</span><span class="o">=</span><span class="mf">1.</span><span class="o">*</span><span class="p">(</span><span class="n">edges</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">edges</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="c">#take the average location in the bin</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span>
+          <span class="n">title</span><span class="o">=</span><span class="s">&#39;Histogram of response times&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Days to first response&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Loaded 1403 conversations
+</pre></div>
+</div>
+<img alt="../../_images/Comparing_Models_4_1.png" src="../../_images/Comparing_Models_4_1.png" />
+</div>
+<div class="section" id="fitting">
+<h2>Fitting<a class="headerlink" href="#fitting" title="Permalink to this headline">¶</a></h2>
+<p>Our task is now to fit the model output to the observed distribution. To
+do this we&#8217;ll construct a helper function to take an array of parameters
+(which the optimizer provides), run the model, and calculate the sum of
+squared errors between the model output and the data distribution.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">param_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;easy_fraction&#39;</span><span class="p">,</span> <span class="s">&#39;easy_reply_time&#39;</span><span class="p">,</span> <span class="s">&#39;hard_reply_time&#39;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="n">param_list</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">num_conversations</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">param_names</span><span class="p">,</span> <span class="n">param_list</span><span class="p">))</span>
+    <span class="n">params</span><span class="p">[</span><span class="s">&#39;total_emails&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_conversations</span>
+
+    <span class="c">#run the model with the new parameters, returning the info we&#39;re interested in</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                       <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;net_email_output&#39;</span><span class="p">],</span>
+                       <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="c">#the sum of the squared errors</span>
+    <span class="n">sse</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;net_email_output&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sse</span>
+
+<span class="n">error</span><span class="p">([</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">data</span><span class="p">,</span> <span class="n">num_conversations</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="mf">128962.22585551594</span>
+</pre></div>
+</div>
+<p>Fitting is relatively straightforward, we pass the error function to
+scipy&#8217;s optimizer, with a few bounds, and an initial guess.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;easy_fraction&#39;</span><span class="p">:</span><span class="o">.</span><span class="mi">8</span><span class="p">,</span>
+          <span class="s">&#39;easy_reply_time&#39;</span><span class="p">:</span><span class="mf">1.1</span><span class="p">,</span>
+          <span class="s">&#39;hard_reply_time&#39;</span><span class="p">:</span><span class="mi">7</span><span class="p">}</span>
+
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;easy_fraction&#39;</span><span class="p">:[</span><span class="mf">0.001</span><span class="p">,</span><span class="o">.</span><span class="mi">999</span><span class="p">],</span>
+          <span class="s">&#39;easy_reply_time&#39;</span><span class="p">:[</span><span class="mf">0.001</span><span class="p">,</span><span class="mi">21</span><span class="p">],</span>
+          <span class="s">&#39;hard_reply_time&#39;</span><span class="p">:[</span><span class="o">.</span><span class="mo">001</span><span class="p">,</span><span class="mi">52</span><span class="p">]}</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="p">[</span><span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">param_names</span><span class="p">],</span>
+                              <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num_conversations</span><span class="p">),</span>
+                              <span class="n">method</span><span class="o">=</span><span class="s">&#39;L-BFGS-B&#39;</span><span class="p">,</span><span class="c">#&#39;L-BFGS-B&#39;, #&#39;SLSQP&#39;, #&#39;TNC&#39;</span>
+                              <span class="n">bounds</span><span class="o">=</span><span class="p">[</span><span class="n">bounds</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">param_names</span><span class="p">])</span>
+<span class="n">res</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>  status: 0
+ success: True
+    nfev: 512
+hess_inv: &lt;3x3 LbfgsInvHessProduct with dtype=float64&gt;
+     fun: 10986.275201802197
+       x: array([  0.84894292,   0.71866884,  20.6090577 ])
+ message: &#39;CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH&#39;
+     jac: array([  9946.84851321,  31919.28553861,     95.6661097 ])
+     nit: 12
+</pre></div>
+</div>
+</div>
+<div class="section" id="plotting-the-result">
+<h2>Plotting the result<a class="headerlink" href="#plotting-the-result" title="Permalink to this headline">¶</a></h2>
+<p>The fit parameters can be seen below, with the calculated data
+distribution in black.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">param_names</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">]))</span>
+<span class="n">params</span><span class="p">[</span><span class="s">&#39;total_emails&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_conversations</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="p">,</span>
+          <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;net_email_output&#39;</span><span class="p">,</span> <span class="s">&#39;easy_reply&#39;</span><span class="p">,</span> <span class="s">&#39;hard_reply&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span>
+          <span class="n">title</span><span class="o">=</span><span class="s">&#39;Histogram of response times&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Days to first response&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/Comparing_Models_10_0.png" src="../../_images/Comparing_Models_10_0.png" />
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

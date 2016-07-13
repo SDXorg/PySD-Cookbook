@@ -1,0 +1,183 @@
+{UTF-8}
+Good Fit Fraction=
+	0.2
+	~	Dmnl
+	~		|
+
+Good Fit Mean Tenure=
+	48
+	~	Months
+	~		|
+
+Good Fit Productivity=
+	1
+	~	Sales/Agent/Month
+	~		|
+
+Gross Hiring Rate=
+	1
+	~	Agents/Month
+	~		|
+
+Hiring Good Fit Agents=
+	Good Fit Fraction * Gross Hiring Rate
+	~	Agents/Month
+	~		|
+
+Hiring Poor Fit Agents=
+	(1 - Good Fit Fraction) * Gross Hiring Rate
+	~	Agents/Month
+	~		|
+
+Poor Fit Mean Tenure=
+	6
+	~	Months
+	~		|
+
+Poor Fit Productivity=
+	0.5
+	~	Sales/Agent/Month
+	~		|
+
+Sales Agents with Good Fit= INTEG (
+	Hiring Good Fit Agents-Turnover of Good Fit Agents,
+		0)
+	~	Agents
+	~		|
+
+Sales Agents with Poor Fit= INTEG (
+	Hiring Poor Fit Agents-Turnover of Poor Fit Agents,
+		0)
+	~	Agents
+	~		|
+
+Total Productivity=
+	Good Fit Productivity*Sales Agents with Good Fit + Poor Fit Productivity*Sales Agents with Poor Fit
+	~	Sales/Month
+	~		|
+
+Turnover of Good Fit Agents=
+	Sales Agents with Good Fit/Good Fit Mean Tenure
+	~	Agents/Month
+	~		|
+
+Turnover of Poor Fit Agents=
+	Sales Agents with Poor Fit/Poor Fit Mean Tenure
+	~	Agents/Month
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 120
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0625
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Turnover
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Sales Agents with Good Fit,396,359,40,20,3,3,0,0,0,0,0,0
+10,2,Sales Agents with Poor Fit,396,223,40,20,3,3,0,0,0,0,0,0
+12,3,48,206,223,10,8,0,3,0,0,-1,0,0,0
+1,4,6,2,4,0,0,22,0,0,0,-1--1--1,,1|(322,223)|
+1,5,6,3,100,0,0,22,0,0,0,-1--1--1,,1|(246,223)|
+11,6,0,282,223,6,8,34,3,0,0,1,0,0,0
+10,7,Hiring Poor Fit Agents,282,243,35,12,40,3,0,0,-1,0,0,0
+12,8,48,206,362,10,8,0,3,0,0,-1,0,0,0
+1,9,11,1,4,0,0,22,0,0,0,-1--1--1,,1|(322,362)|
+1,10,11,8,100,0,0,22,0,0,0,-1--1--1,,1|(246,362)|
+11,11,0,282,362,6,8,34,3,0,0,1,0,0,0
+10,12,Hiring Good Fit Agents,282,382,37,12,40,3,0,0,-1,0,0,0
+12,13,48,596,221,10,8,0,3,0,0,-1,0,0,0
+1,14,16,13,4,0,0,22,0,0,0,-1--1--1,,1|(551,221)|
+1,15,16,2,100,0,0,22,0,0,0,-1--1--1,,1|(470,221)|
+11,16,0,511,221,6,8,34,3,0,0,1,0,0,0
+10,17,Turnover of Poor Fit Agents,511,241,47,12,40,3,0,0,-1,0,0,0
+12,18,48,596,359,10,8,0,3,0,0,-1,0,0,0
+1,19,21,18,4,0,0,22,0,0,0,-1--1--1,,1|(551,359)|
+1,20,21,1,100,0,0,22,0,0,0,-1--1--1,,1|(470,359)|
+11,21,0,511,359,6,8,34,3,0,0,1,0,0,0
+10,22,Turnover of Good Fit Agents,511,379,49,12,40,3,0,0,-1,0,0,0
+10,23,Gross Hiring Rate,147,280,53,7,8,3,0,0,0,0,0,0
+10,24,Good Fit Fraction,150,313,52,7,8,3,0,0,0,0,0,0
+1,25,23,7,1,0,0,0,0,128,0,-1--1--1,,1|(204,274)|
+1,26,23,11,1,0,0,0,0,128,0,-1--1--1,,1|(233,303)|
+1,27,24,7,1,0,0,0,0,128,0,-1--1--1,,1|(217,299)|
+1,28,24,11,1,0,0,0,0,128,0,-1--1--1,,1|(212,329)|
+10,29,Poor Fit Mean Tenure,546,160,42,12,8,3,0,0,0,0,0,0
+10,30,Good Fit Mean Tenure,540,448,39,12,8,3,0,0,0,0,0,0
+1,31,2,16,1,0,0,0,0,128,0,-1--1--1,,1|(455,186)|
+1,32,29,16,0,0,0,0,0,128,0,-1--1--1,,1|(530,187)|
+1,33,1,22,1,0,0,0,0,128,0,-1--1--1,,1|(450,406)|
+1,34,30,22,0,0,0,0,0,128,0,-1--1--1,,1|(528,419)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Productivity
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Sales Agents with Good Fit,304,115,41,12,8,3,0,0,-1,0,0,0
+10,2,Hiring Good Fit Agents,304,139,41,12,8,2,1,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,3,2,1,0,1,0,0,0,64,0,-1--1--1,,1|(304,127)|
+10,4,Turnover of Good Fit Agents,304,139,53,12,8,2,1,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,5,4,1,0,1,0,0,0,64,0,-1--1--1,,1|(304,127)|
+10,6,Sales Agents with Poor Fit,308,210,40,12,8,3,0,0,-1,0,0,0
+10,7,Hiring Poor Fit Agents,308,234,39,12,8,2,1,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,8,7,6,0,1,0,0,0,64,0,-1--1--1,,1|(308,222)|
+10,9,Turnover of Poor Fit Agents,308,234,51,12,8,2,1,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,10,9,6,0,1,0,0,0,64,0,-1--1--1,,1|(308,222)|
+10,11,Good Fit Productivity,439,61,37,12,8,3,0,0,0,0,0,0
+10,12,Poor Fit Productivity,433,267,37,12,8,3,0,0,0,0,0,0
+10,13,Total Productivity,477,161,52,7,8,3,0,0,0,0,0,0
+1,14,1,13,0,0,0,0,0,128,0,-1--1--1,,1|(390,137)|
+1,15,6,13,0,0,0,0,0,128,0,-1--1--1,,1|(393,185)|
+1,16,12,13,0,0,0,0,0,128,0,-1--1--1,,1|(452,217)|
+1,17,11,13,0,0,0,0,0,128,0,-1--1--1,,1|(455,106)|
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,1
+27:2,
+34:0,
+4:Time
+5:Total Productivity
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:120
+26:120

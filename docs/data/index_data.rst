@@ -9,7 +9,10 @@ The notebooks listed here show how each set was collected or generated.
    :maxdepth: 2
    :glob:
 
-   Ebola/*
-   Census/*
-   Defects_Synthetic/*
    Baby_Names/*
+   Census/*
+   Climate/*
+   Defects_Synthetic/*
+   Ebola/*
+   Emails/*
+   MA_Towns/*

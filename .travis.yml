@@ -1,0 +1,15 @@
+language: python
+python:
+  - "2.7"
+# command to install dependencies
+install:
+  - pip install pysd
+  - pip install -r requirements.txt
+  - pip install coveralls
+# command to run tests
+script:
+    # Todo: execute tests of modified notebooks
+    - python build_docs.py
+    - cd tests
+    - nosetests --with-coverage --cover-package=pysd
+    - coveralls

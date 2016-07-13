@@ -40,6 +40,7 @@ Contents
    :maxdepth: 2
 
    analyses/getting_started/index_getting_started
+   analyses/data_handling/index_data_handling
    analyses/visualization/index_visualization
    analyses/fitting/index_fitting
    analyses/geo/index_geo
@@ -48,6 +49,7 @@ Contents
    analyses/workflow/index_workflow
    data/index_data
    future
+   endnotes
 
 Extra Resources
 ---------------

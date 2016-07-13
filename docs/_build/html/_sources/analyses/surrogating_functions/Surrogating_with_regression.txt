@@ -24,6 +24,13 @@ a single output. When confrontied with this situation, other paradigms
     Populating the interactive namespace from numpy and matplotlib
 
 
+.. parsed-literal::
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+    
+      UserWarning)
+
+
 .. code:: python
 
     model = pysd.read_vensim('../../models/Manufacturing_Defects/Defects.mdl')
@@ -123,8 +130,7 @@ a single output. When confrontied with this situation, other paradigms
 .. parsed-literal::
 
     SVR(C=1.0, cache_size=200, coef0=0.0, degree=3, epsilon=0.1, gamma=0.0,
-      kernel='rbf', max_iter=-1, probability=False, random_state=None,
-      shrinking=True, tol=0.001, verbose=False)
+      kernel='rbf', max_iter=-1, shrinking=True, tol=0.001, verbose=False)
 
 
 

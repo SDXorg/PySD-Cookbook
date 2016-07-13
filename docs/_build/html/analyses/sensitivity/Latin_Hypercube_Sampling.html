@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/sensitivity/Latin_Hypercube_Sampling.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="code python highlight-python"><div class="highlight"><pre>%matplotlib inline
+import pysd
+import numpy as np
+import pandas as pd
+import pyDOE
+import scipy.stats.distributions as dist
+import multiprocessing
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+
+  UserWarning)
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Capability_Trap/Capability Trap.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># define the sample space</span>
+<span class="n">ranges</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Fraction of Effort for Sales&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="s">&#39;Startup Subsidy&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+          <span class="s">&#39;Startup Subsidy Length&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)}</span>
+
+<span class="c"># generate LHS samples within the unit square</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">pyDOE</span><span class="o">.</span><span class="n">lhs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">),</span> <span class="n">samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c"># transform samples into our sample space</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">dist</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ranges</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+                      <span class="n">scale</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ranges</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">lhs</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">ranges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="n">samples</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Capability</th>
+      <th>Pressure to Do Work</th>
+      <th>Pressure to Improve Capability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.0625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.1250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.1875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.2500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.3125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.3750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.4375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.5000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.5625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.6250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.6875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.7500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.8125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.8750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>0.9375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.0000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.0625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.1250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.1875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.2500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.3125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.3750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.4375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.5000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.5625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.6250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.6875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.7500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.8125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>98.1875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.2500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.3125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.3750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.4375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.5000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.5625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.6250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.6875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.7500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.8125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.8750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>98.9375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.0000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.0625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.1250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.1875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.2500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.3125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.3750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.4375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.5000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.5625</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.6250</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.6875</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.7500</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.8125</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.8750</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>99.9375</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>100.0000</th>
+      <td>100.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1601 rows × 3 columns</p>
+</div><div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">runner</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">market</span> <span class="o">=</span> <span class="n">market_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">])</span>
+    <span class="n">motiv</span> <span class="o">=</span> <span class="n">motivation_model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">params</span><span class="p">),</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s">&#39;market&#39;</span><span class="p">:</span><span class="n">market</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                      <span class="s">&#39;motivation&#39;</span><span class="p">:</span><span class="n">motiv</span><span class="p">[</span><span class="s">&#39;Tenure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]})</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">_apply_df</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">apply_by_multiprocessing</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">workers</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_apply_df</span><span class="p">,</span> <span class="p">[(</span><span class="n">d</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">workers</span><span class="p">)])</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">apply_by_multiprocessing</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">runner</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c"># define the sample space</span>
+<span class="n">ranges</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Fraction of Effort for Sales&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+          <span class="s">&#39;Startup Subsidy&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+          <span class="s">&#39;Startup Subsidy Length&#39;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">)}</span>
+
+<span class="c"># generate LHS samples within the unit square</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">pyDOE</span><span class="o">.</span><span class="n">lhs</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ranges</span><span class="p">),</span> <span class="n">samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c"># transform samples into our sample space</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">dist</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ranges</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
+                      <span class="n">scale</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ranges</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">lhs</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">ranges</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="n">samples</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

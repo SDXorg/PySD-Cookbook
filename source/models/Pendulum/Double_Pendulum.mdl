@@ -1,0 +1,198 @@
+{UTF-8}
+Change in Angular Velocity=
+	( Acceleration due to Gravity * (2*Mass of Pendulum +Mass of Pendulum2) * SIN(Angular Position\
+		) - Mass of Pendulum2 * Acceleration due to Gravity
+	 * SIN(Angular Position - 2*Angular Position2) - 2 * SIN(Angular Position - Angular Position2\
+		) * Mass of Pendulum2 * (Angular Velocity2
+	^2 *Length of Pendulum2 + Angular Velocity^2 * Length of Pendulum * COS(Angular Position\
+		 - Angular Position2)) ) / (Length of Pendulum * (2*Mass of Pendulum + Mass of Pendulum2\
+		 - Mass of Pendulum2 * COS(2 * Angular Position - 2 * Angular Position2)) )
+	~	
+	~	If anything is worth doing, it's worth doing well.
+		This is not worth doing well.
+	|
+
+Change in Angular Velocity2=
+	( 2* SIN(Angular Position - Angular Position2) * (Angular Velocity^2 * Length of Pendulum\
+		 * (Mass of Pendulum + Mass of Pendulum2) + Acceleration due to Gravity*(Mass of Pendulum\
+		 + Mass of Pendulum2) * COS(Angular Position) + Angular Velocity2^2 * Length of Pendulum2\
+		 * Mass of Pendulum2 * COS(Angular Position - Angular Position2))) / ( Length of Pendulum2\
+		 * (2*Mass of Pendulum + Mass of Pendulum2 - Mass of Pendulum2 * COS(2*Angular Position\
+		 - 2*Angular Position2)))
+	~	
+	~		|
+
+Acceleration due to Gravity=
+	-9.8
+	~	Meters/Second/Second
+	~		|
+
+Angular Position= INTEG (
+	Change in Angular Position,
+		1)
+	~	radians
+	~	Angle between the pendulum and vertical
+	|
+
+Angular Position2= INTEG (
+	Change in Angular Position2,
+		1)
+	~	radians
+	~	http://www.myphysicslab.com/dbl_pendulum.html
+	|
+
+Angular Velocity= INTEG (
+	Change in Angular Velocity,
+		0)
+	~	
+	~		|
+
+Angular Velocity2= INTEG (
+	Change in Angular Velocity2,
+		0)
+	~	
+	~		|
+
+Change in Angular Position=
+	Angular Velocity
+	~	
+	~		|
+
+Change in Angular Position2=
+	Angular Velocity2
+	~	
+	~		|
+
+Length of Pendulum=
+	10
+	~	Meter
+	~		|
+
+Length of Pendulum2=
+	10
+	~	Meter
+	~		|
+
+Mass of Pendulum=
+	10
+	~	Kilogram
+	~		|
+
+Mass of Pendulum2=
+	10
+	~	Kilogram
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Second
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Second
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 0.1
+	~	Second [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0078125
+	~	Second [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Angular Position,463,121,40,20,3,3,0,0,0,0,0,0
+10,2,Angular Velocity,318,241,40,20,3,3,0,0,0,0,0,0
+12,3,48,294,122,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(396,122)|
+1,5,6,3,100,0,0,22,0,0,0,-1--1--1,,1|(330,122)|
+11,6,48,363,122,6,8,34,3,0,0,1,0,0,0
+10,7,Change in Angular Position,363,142,51,12,40,3,0,0,-1,0,0,0
+12,8,48,469,241,10,8,0,3,0,0,-1,0,0,0
+1,9,11,2,4,0,0,22,0,0,0,-1--1--1,,1|(388,242)|
+1,10,11,8,100,0,0,22,0,0,0,-1--1--1,,1|(444,242)|
+11,11,48,424,242,6,8,34,3,0,0,1,0,0,0
+10,12,Change in Angular Velocity,424,262,50,12,40,3,0,0,-1,0,0,0
+10,13,Acceleration due to Gravity,376,313,43,12,8,3,0,0,0,0,0,0
+10,14,Length of Pendulum,579,322,31,12,8,3,0,0,0,0,0,0
+10,15,Mass of Pendulum,615,174,55,7,8,3,0,0,0,0,0,0
+1,16,2,7,1,0,0,0,0,128,0,-1--1--1,,1|(331,184)|
+10,17,Angular Position2,453,354,40,20,3,3,0,0,0,0,0,0
+10,18,Angular Velocity2,316,459,40,20,3,3,0,0,0,0,0,0
+12,19,48,313,355,10,8,0,3,0,0,-1,0,0,0
+1,20,22,17,4,0,0,22,0,0,0,-1--1--1,,1|(385,356)|
+1,21,22,19,100,0,0,22,0,0,0,-1--1--1,,1|(334,356)|
+11,22,48,352,356,6,8,34,3,0,0,1,0,0,0
+10,23,Change in Angular Position2,352,382,31,18,40,3,0,0,-1,0,0,0
+12,24,48,467,459,10,8,0,3,0,0,-1,0,0,0
+1,25,27,18,4,0,0,22,0,0,0,-1--1--1,,1|(386,460)|
+1,26,27,24,100,0,0,22,0,0,0,-1--1--1,,1|(442,460)|
+11,27,48,422,460,6,8,34,3,0,0,1,0,0,0
+10,28,Change in Angular Velocity2,422,480,31,18,40,3,0,0,-1,0,0,0
+10,29,Length of Pendulum2,561,497,35,12,8,3,0,0,0,0,0,0
+10,30,Mass of Pendulum2,581,369,59,7,8,3,0,0,0,0,0,0
+1,31,18,23,1,0,0,0,0,128,0,-1--1--1,,1|(307,419)|
+1,32,13,12,0,0,0,0,0,128,0,-1--1--1,,1|(394,292)|
+10,33,Mass of Pendulum2,589,221,39,12,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,34,1,11,0,0,0,0,0,128,0,-1--1--1,,1|(443,181)|
+1,35,17,12,0,0,0,0,0,128,0,-1--1--1,,1|(439,310)|
+1,36,14,12,0,0,0,0,0,128,0,-1--1--1,,1|(508,294)|
+1,37,33,12,0,0,0,0,0,128,0,-1--1--1,,1|(517,238)|
+1,38,15,11,0,0,0,0,0,128,0,-1--1--1,,1|(519,207)|
+1,39,17,27,0,0,0,0,0,128,0,-1--1--1,,1|(437,407)|
+1,40,1,28,1,0,0,0,0,128,0,-1--1--1,,1|(773,279)|
+10,41,Acceleration due to Gravity,389,540,47,12,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,42,Length of Pendulum,557,459,35,12,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,43,41,28,0,0,0,0,0,128,0,-1--1--1,,1|(400,519)|
+1,44,42,28,0,0,0,0,0,128,0,-1--1--1,,1|(494,468)|
+1,45,29,28,0,0,0,0,0,128,0,-1--1--1,,1|(496,488)|
+1,46,30,27,0,0,0,0,0,128,0,-1--1--1,,1|(504,413)|
+10,47,Length of Pendulum2,580,276,39,12,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,48,47,12,0,0,0,0,0,128,0,-1--1--1,,1|(514,270)|
+10,49,Mass of Pendulum,573,410,35,12,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,50,49,28,0,0,0,0,0,128,0,-1--1--1,,1|(506,440)|
+1,51,2,28,1,0,0,0,0,128,0,-1--1--1,,1|(200,426)|
+1,52,18,12,1,0,0,0,0,128,0,-1--1--1,,1|(282,383)|
+1,53,2,11,1,0,0,0,0,128,0,-1--1--1,,1|(370,210)|
+1,54,18,27,1,0,0,0,0,128,0,-1--1--1,,1|(387,420)|
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,1,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Angular Position2
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:7
+41:0
+42:0
+24:0
+25:99.9375
+26:99.9375

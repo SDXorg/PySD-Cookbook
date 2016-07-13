@@ -1,0 +1,698 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Estimating penny population parameters &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Estimating penny population parameters</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/fitting/Penny_Jar.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="estimating-penny-population-parameters">
+<h1>Estimating penny population parameters<a class="headerlink" href="#estimating-penny-population-parameters" title="Permalink to this headline">¶</a></h1>
+<p>In this example we&#8217;ll use a System Dynamics model to estimate the total
+number of pennies in circulation, based upon the number of pennies
+produced in a given year, and the number of pennies in a coin jar.</p>
+<p>We start with a simple aging model for pennies, in essence a second
+order delay. Pennies are minted each year, and go into a stock of &#8216;post
+production&#8217; pennies that are distributed to banks, etc. After this they
+go into general circulation, from which they are eventually lost.</p>
+<p>In this analysis we&#8217;ll try and infer the parameters for entry into
+circulation and loss based upon the number of pennies produced in each
+year, and a random sample of pennies taken from circulation over a four
+year period. An interesting component of this analysis is that it
+requires a whole suite of models (one for each model year) but these
+models don&#8217;t interact with one another except through the sampling and
+statistical analysis we perform.</p>
+<p>In this demo, we&#8217;ll use &#8216;pymc&#8217;, a package for doing markov chain monte
+carlo analysis.</p>
+<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
+import pandas as pd
+import pysd
+import pymc as mc
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+<div class="section" id="load-model">
+<h2>Load Model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
+<p>To get a sense for how the model behaves, we&#8217;ll run it with arbitrary
+parameter values. We see that pennies enter the &#8216;post production&#8217; stock
+quickly, and the &#8216;in circulation&#8217; stock grows, peaks, and decays as the
+pennies get lost.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;penny_jar.mdl&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="c">#model.get_free_parameters()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11733d710&gt;
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.figure.Figure at 0x1172e6e10&gt;
+</pre></div>
+</div>
+<img alt="../../_images/Penny_Jar_3_2.png" src="../../_images/Penny_Jar_3_2.png" />
+</div>
+<div class="section" id="load-data">
+<h2>Load Data<a class="headerlink" href="#load-data" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ll start with some data about the number of coins produced in each
+year. We have production data for both the Denver and Philadelphia
+mints:</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">production</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;Production_Figures.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">production</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Pennies Produced Per Year&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/Penny_Jar_5_0.png" src="../../_images/Penny_Jar_5_0.png" />
+<p>We&#8217;ll also use &#8216;data&#8217; (pennies) collected in a penny jar over the last
+few years</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">coin_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;pennies_in_jar.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">coin_counts</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Pennies in my Jar&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/Penny_Jar_7_0.png" src="../../_images/Penny_Jar_7_0.png" />
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">coin_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>All_Marks       1004
+Denver           209
+Philadelphia     795
+dtype: int64
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">coin_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">coin_counts</span><span class="p">[</span><span class="s">&#39;Philadelphia&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">coin_counts</span><span class="p">[</span><span class="s">&#39;Philadelphia&#39;</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Predicted Pennies in Jar&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Mint Year&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Likelihood for any given penny&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">1950</span><span class="p">,</span><span class="mi">2015</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mi">1950</span><span class="p">,</span> <span class="mi">2015</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/Penny_Jar_9_1.png" src="../../_images/Penny_Jar_9_1.png" />
+</div>
+<div class="section" id="set-up-models">
+<h2>Set up models<a class="headerlink" href="#set-up-models" title="Permalink to this headline">¶</a></h2>
+<p>We set up a model for each year that pennies are produced, and
+initialize them with production data.</p>
+<p>We divide the data to put pennies in units of 100,000 to make life
+easier for the integrator. This won&#8217;t matter in the end, as we normalize
+the distribution of pennies in circulation before we take our samples.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#load a model for each mint year</span>
+<span class="n">models</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[[</span><span class="n">year</span><span class="p">,</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;penny_jar.mdl&#39;</span><span class="p">)]</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1930</span><span class="p">,</span><span class="mi">2014</span><span class="p">)],</span>
+                      <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Year&#39;</span><span class="p">,</span> <span class="s">&#39;model&#39;</span><span class="p">])</span>
+
+<span class="n">models</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">keys</span><span class="o">=</span><span class="s">&#39;Year&#39;</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c">#bring in the data on production</span>
+<span class="n">models</span><span class="p">[</span><span class="s">&#39;Philadelphia Production&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">production</span><span class="p">[</span><span class="s">&#39;Philadelphia&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100000</span>
+<span class="c">#production will now be in units of hundred-thousands</span>
+
+<span class="c">#bring in the sample data</span>
+<span class="n">models</span><span class="p">[</span><span class="s">&#39;Philadelphia Samples&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">coin_counts</span><span class="p">[</span><span class="s">&#39;Philadelphia&#39;</span><span class="p">]</span>
+
+<span class="c">#set the mint year parameters properly</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">row</span><span class="p">[</span><span class="s">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_components</span><span class="p">({</span><span class="s">&#39;production_year&#39;</span><span class="p">:</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Year&#39;</span><span class="p">],</span> <span class="s">&#39;production_volume&#39;</span><span class="p">:</span><span class="n">row</span><span class="p">[</span><span class="s">&#39;Philadelphia Production&#39;</span><span class="p">]})</span>
+
+<span class="c">#drop rows (probably at the end) which are missing data</span>
+<span class="n">models</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">models</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+/Library/Python/2.7/site-packages/IPython/core/formatters.pyc in __call__(self, obj)
+    688                 type_pprinters=self.type_printers,
+    689                 deferred_pprinters=self.deferred_printers)
+--&gt; 690             printer.pretty(obj)
+    691             printer.flush()
+    692             return stream.getvalue()
+
+
+/Library/Python/2.7/site-packages/IPython/lib/pretty.pyc in pretty(self, obj)
+    407                             if callable(meth):
+    408                                 return meth(obj, self, cycle)
+--&gt; 409             return _default_pprint(obj, self, cycle)
+    410         finally:
+    411             self.end_group()
+
+
+/Library/Python/2.7/site-packages/IPython/lib/pretty.pyc in _default_pprint(obj, p, cycle)
+    527     if _safe_getattr(klass, &#39;__repr__&#39;, None) not in _baseclass_reprs:
+    528         # A user-provided repr. Find newlines and replace them with p.break_()
+--&gt; 529         _repr_pprint(obj, p, cycle)
+    530         return
+    531     p.begin_group(1, &#39;&lt;&#39;)
+
+
+/Library/Python/2.7/site-packages/IPython/lib/pretty.pyc in _repr_pprint(obj, p, cycle)
+    709     &quot;&quot;&quot;A pprint that just redirects to the normal repr function.&quot;&quot;&quot;
+    710     # Find newlines and replace them with p.break_()
+--&gt; 711     output = repr(obj)
+    712     for idx,output_line in enumerate(output.splitlines()):
+    713         if idx:
+
+
+/Library/Python/2.7/site-packages/pandas/core/base.pyc in __repr__(self)
+     62         Yields Bytestring in Py2, Unicode String in py3.
+     63         &quot;&quot;&quot;
+---&gt; 64         return str(self)
+     65
+     66
+
+
+/Library/Python/2.7/site-packages/pandas/core/base.pyc in __str__(self)
+     42         if compat.PY3:
+     43             return self.__unicode__()
+---&gt; 44         return self.__bytes__()
+     45
+     46     def __bytes__(self):
+
+
+/Library/Python/2.7/site-packages/pandas/core/base.pyc in __bytes__(self)
+     54
+     55         encoding = get_option(&quot;display.encoding&quot;)
+---&gt; 56         return self.__unicode__().encode(encoding, &#39;replace&#39;)
+     57
+     58     def __repr__(self):
+
+
+/Library/Python/2.7/site-packages/pandas/core/frame.pyc in __unicode__(self)
+    507             width = None
+    508         self.to_string(buf=buf, max_rows=max_rows, max_cols=max_cols,
+--&gt; 509                        line_width=width, show_dimensions=show_dimensions)
+    510
+    511         return buf.getvalue()
+
+
+/Library/Python/2.7/site-packages/pandas/core/frame.pyc in to_string(self, buf, columns, col_space, colSpace, header, index, na_rep, formatters, float_format, sparsify, index_names, justify, line_width, max_rows, max_cols, show_dimensions)
+   1341                                            max_cols=max_cols,
+   1342                                            show_dimensions=show_dimensions)
+-&gt; 1343         formatter.to_string()
+   1344
+   1345         if buf is None:
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in to_string(self)
+    509             text = info_line
+    510         else:
+--&gt; 511             strcols = self._to_str_columns()
+    512             if self.line_width is None:  # no need to wrap around just print the whole frame
+    513                 text = adjoin(1, *strcols)
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _to_str_columns(self)
+    437                                    *(_strlen(x) for x in cheader))
+    438
+--&gt; 439                 fmt_values = self._format_col(i)
+    440
+    441                 fmt_values = _make_fixed_width(fmt_values, self.justify,
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _format_col(self, i)
+    691             (frame.iloc[:, i]).get_values(),
+    692             formatter, float_format=self.float_format, na_rep=self.na_rep,
+--&gt; 693             space=self.col_space
+    694         )
+    695
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in format_array(values, formatter, float_format, na_rep, digits, space, justify)
+   1928                         justify=justify)
+   1929
+-&gt; 1930     return fmt_obj.get_result()
+   1931
+   1932
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in get_result(self)
+   1944
+   1945     def get_result(self):
+-&gt; 1946         fmt_values = self._format_strings()
+   1947         return _make_fixed_width(fmt_values, self.justify)
+   1948
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _format_strings(self)
+   1982                 fmt_values.append(float_format(v))
+   1983             else:
+-&gt; 1984                 fmt_values.append(&#39; %s&#39; % _format(v))
+   1985
+   1986         return fmt_values
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _format(x)
+   1968             else:
+   1969                 # object dtype
+-&gt; 1970                 return &#39;%s&#39; % formatter(x)
+   1971
+   1972         vals = self.values
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in &lt;lambda&gt;(x)
+   1957
+   1958         formatter = self.formatter if self.formatter is not None else \
+-&gt; 1959             (lambda x: com.pprint_thing(x, escape_chars=(&#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;)))
+   1960
+   1961         def _format(x):
+
+
+/Library/Python/2.7/site-packages/pandas/core/common.pyc in pprint_thing(thing, _nest_lvl, escape_chars, default_escapes, quote_strings, max_seq_items)
+   3275         result = fmt % as_escaped_unicode(thing)
+   3276     else:
+-&gt; 3277         result = as_escaped_unicode(thing)
+   3278
+   3279     return compat.text_type(result)  # always unicode
+
+
+/Library/Python/2.7/site-packages/pandas/core/common.pyc in as_escaped_unicode(thing, escape_chars)
+   3237
+   3238         try:
+-&gt; 3239             result = compat.text_type(thing)  # we should try this first
+   3240         except UnicodeDecodeError:
+   3241             # either utf-8 or we replace errors
+
+
+TypeError: coercing to Unicode: need string or buffer, method-wrapper found
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+/Library/Python/2.7/site-packages/IPython/core/formatters.pyc in __call__(self, obj)
+    332             method = _safe_get_formatter_method(obj, self.print_method)
+    333             if method is not None:
+--&gt; 334                 return method()
+    335             return None
+    336         else:
+
+
+/Library/Python/2.7/site-packages/pandas/core/frame.pyc in _repr_html_(self)
+    541             return self.to_html(max_rows=max_rows, max_cols=max_cols,
+    542                                 show_dimensions=show_dimensions,
+--&gt; 543                                 notebook=True)
+    544         else:
+    545             return None
+
+
+/Library/Python/2.7/site-packages/pandas/core/frame.pyc in to_html(self, buf, columns, col_space, colSpace, header, index, na_rep, formatters, float_format, sparsify, index_names, justify, bold_rows, classes, escape, max_rows, max_cols, show_dimensions, notebook)
+   1392                                            max_cols=max_cols,
+   1393                                            show_dimensions=show_dimensions)
+-&gt; 1394         formatter.to_html(classes=classes, notebook=notebook)
+   1395
+   1396         if buf is None:
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in to_html(self, classes, notebook)
+    709                                       notebook=notebook)
+    710         if hasattr(self.buf, &#39;write&#39;):
+--&gt; 711             html_renderer.write_result(self.buf)
+    712         elif isinstance(self.buf, compat.string_types):
+    713             with open(self.buf, &#39;w&#39;) as f:
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in write_result(self, buf)
+    917         indent += self.indent_delta
+    918         indent = self._write_header(indent)
+--&gt; 919         indent = self._write_body(indent)
+    920
+    921         self.write(&#39;&lt;/table&gt;&#39;, indent)
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _write_body(self, indent)
+   1065         fmt_values = {}
+   1066         for i in range(min(len(self.columns), self.max_cols)):
+-&gt; 1067             fmt_values[i] = self.fmt._format_col(i)
+   1068
+   1069         # write values
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _format_col(self, i)
+    691             (frame.iloc[:, i]).get_values(),
+    692             formatter, float_format=self.float_format, na_rep=self.na_rep,
+--&gt; 693             space=self.col_space
+    694         )
+    695
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in format_array(values, formatter, float_format, na_rep, digits, space, justify)
+   1928                         justify=justify)
+   1929
+-&gt; 1930     return fmt_obj.get_result()
+   1931
+   1932
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in get_result(self)
+   1944
+   1945     def get_result(self):
+-&gt; 1946         fmt_values = self._format_strings()
+   1947         return _make_fixed_width(fmt_values, self.justify)
+   1948
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _format_strings(self)
+   1982                 fmt_values.append(float_format(v))
+   1983             else:
+-&gt; 1984                 fmt_values.append(&#39; %s&#39; % _format(v))
+   1985
+   1986         return fmt_values
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in _format(x)
+   1968             else:
+   1969                 # object dtype
+-&gt; 1970                 return &#39;%s&#39; % formatter(x)
+   1971
+   1972         vals = self.values
+
+
+/Library/Python/2.7/site-packages/pandas/core/format.pyc in &lt;lambda&gt;(x)
+   1957
+   1958         formatter = self.formatter if self.formatter is not None else \
+-&gt; 1959             (lambda x: com.pprint_thing(x, escape_chars=(&#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;)))
+   1960
+   1961         def _format(x):
+
+
+/Library/Python/2.7/site-packages/pandas/core/common.pyc in pprint_thing(thing, _nest_lvl, escape_chars, default_escapes, quote_strings, max_seq_items)
+   3275         result = fmt % as_escaped_unicode(thing)
+   3276     else:
+-&gt; 3277         result = as_escaped_unicode(thing)
+   3278
+   3279     return compat.text_type(result)  # always unicode
+
+
+/Library/Python/2.7/site-packages/pandas/core/common.pyc in as_escaped_unicode(thing, escape_chars)
+   3237
+   3238         try:
+-&gt; 3239             result = compat.text_type(thing)  # we should try this first
+   3240         except UnicodeDecodeError:
+   3241             # either utf-8 or we replace errors
+
+
+TypeError: coercing to Unicode: need string or buffer, method-wrapper found
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-up-a-markov-chain-monte-carlo-analysis">
+<h2>Set up a Markov Chain Monte Carlo Analysis<a class="headerlink" href="#set-up-a-markov-chain-monte-carlo-analysis" title="Permalink to this headline">¶</a></h2>
+<p>MCMC works by choosing an arbitrary value from a distribution of input
+parameters, running the simulation, and asking what the likelihood of
+the data is given those parameters. It then decides whether to keep the
+selected parameters to display in an output distribution based upon this
+likeliood.</p>
+<p>We start then by setting up a &#8216;prior&#8217; distribution for the loss rate and
+entry rate parameters that will be applied to each of the mint year
+models.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">entry_rate</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s">&#39;entry_rate&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=.</span><span class="mi">99</span><span class="p">,</span> <span class="n">value</span><span class="o">=.</span><span class="mi">08</span><span class="p">)</span>
+<span class="n">loss_rate</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s">&#39;loss_rate&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">value</span><span class="o">=.</span><span class="mo">025</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We&#8217;ll ask our models for the population of coins from which the sample
+was drawn, and as this happened over a period of time, not all in the
+same timestep, we&#8217;ll assume that there is equal likelihood that a sample
+was drawn (or a penny collected) any time during that window.</p>
+<p>We then construct a function that returns to us the likelihood of the
+data given the distribution of pennies in circulation, as calculated by
+our model.</p>
+<p>PyMC expects this likelihood to be expressed as a log probability, to
+give resolution in the &#8216;very small likelihood&#8217; regimes that our model
+will predict for our observations.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get_population</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">entry_rate</span><span class="p">,</span> <span class="n">loss_rate</span><span class="p">):</span>
+    <span class="n">in_circulation</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;entry_rate&#39;</span><span class="p">:</span><span class="n">entry_rate</span><span class="p">,</span> <span class="s">&#39;loss_rate&#39;</span><span class="p">:</span><span class="n">loss_rate</span><span class="p">},</span>
+                               <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;in_circulation&#39;</span><span class="p">],</span>
+                               <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">2011</span><span class="p">,</span><span class="mi">2015</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">in_circulation</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="nd">@mc.stochastic</span><span class="p">(</span><span class="n">trace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c">#stupid observed flag! got to get that right!</span>
+<span class="k">def</span> <span class="nf">circulation</span><span class="p">(</span><span class="n">entry_rate</span><span class="o">=</span><span class="n">entry_rate</span><span class="p">,</span> <span class="n">loss_rate</span><span class="o">=</span><span class="n">loss_rate</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+    <span class="n">mapfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_population</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">entry_rate</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">loss_rate</span><span class="p">)</span>
+    <span class="n">population</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="s">&#39;model&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">mapfunc</span><span class="p">)</span>
+
+    <span class="c">#transform to log probability and then normalize (in the log domain, just by subtraction)</span>
+    <span class="n">log_distribution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">population</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="c">#calculate the probability of the data from the distribution</span>
+    <span class="n">log_prob</span> <span class="o">=</span> <span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="s">&#39;Philadelphia Samples&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">log_distribution</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">log_prob</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="perform-the-mcmc-sampling">
+<h2>Perform the MCMC Sampling<a class="headerlink" href="#perform-the-mcmc-sampling" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mcmc</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">mc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">entry_rate</span><span class="p">,</span> <span class="n">loss_rate</span><span class="p">,</span> <span class="n">circulation</span><span class="p">]))</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#mcmc.sample(20000)</span>
+<span class="n">mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre>[------------------110%-------------------] 11 of 10 complete in 435.2 sec
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-the-results">
+<h2>Plot the results<a class="headerlink" href="#plot-the-results" title="Permalink to this headline">¶</a></h2>
+<p>We can plot a histogram of the output of the MCMC analysis, showing the
+uncertainty in our estimate of the loss rate and entry rate based upon
+our model and data selection. We also see that these distributions are
+not entirely independant, by plotting the sample values for each
+parameter against one another, and using a hex-binned two-dimensional
+histogram.</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;loss_rate&#39;</span><span class="p">)[</span><span class="mi">10000</span><span class="p">:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Loss Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Loss Rate Likelihood&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;entry_rate&#39;</span><span class="p">)[</span><span class="mi">10000</span><span class="p">:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Entry Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Entry Rate Likelihood&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;loss_rate&#39;</span><span class="p">)[:],</span> <span class="n">mcmc</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s">&#39;entry_rate&#39;</span><span class="p">)[:],</span> <span class="n">gridsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Loss Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Entry Rate&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

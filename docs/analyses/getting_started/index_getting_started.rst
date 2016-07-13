@@ -6,5 +6,9 @@ Getting Started
    :maxdepth: 2
    :glob:
 
-   Installation_and_Setup
+   Introduction
+   Installing
+   Python
+   Notebook
+   Git_and_Github
    Hello_World_Teacup

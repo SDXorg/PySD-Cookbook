@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="Ebola Data Loader" href="Ebola/Ebola_Data_Loader.html"/>
-        <link rel="prev" title="Saving Simulation Results to a Database" href="../analyses/workflow/Writing to Database.html"/> 
+        <link rel="next" title="Baby Name Data" href="Baby_Names/Baby_Name_Data.html"/>
+        <link rel="prev" title="Unit Testing" href="../analyses/workflow/Unit_Testing.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -65,12 +65,22 @@
           
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../analyses/getting_started/index_getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Installation_and_Setup.html">Installation and Setup of PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../analyses/getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../analyses/data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../analyses/visualization/index_visualization.html">Visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../analyses/visualization/Basic_Visualization.html">Basic Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../analyses/visualization/phase_portraits.html">Phase Portraits</a></li>
 </ul>
 </li>
@@ -95,18 +105,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../analyses/workflow/index_workflow.html">Model Development Workflow</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../analyses/workflow/Unit Testing.html">Unit Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../analyses/workflow/Writing to Database.html">Saving Simulation Results to a Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analyses/workflow/Unit_Testing.html">Unit Testing</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Data Used in this Cookbook</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
 </ul>
 
           
@@ -149,14 +164,29 @@ or is created synthetically for the purpose of this cookbook.
 The notebooks listed here show how each set was collected or generated.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Census/US_Census_Data_Collection.html">Collecting US decennial census data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Census/US_Census_Data_Collection.html#collect-data-on-male-population-by-age-county">Collect data on male population by age, county</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Census/US_Census_Data_Collection.html#align-the-datasets">Align the datasets</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Climate/sources.html">Carbon Data Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Climate/sources.html#carbon-emissions">Carbon Emissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Climate/sources.html#atmospheric-carbon">Atmospheric Carbon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Climate/sources.html#world-population">World Population</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html#step-1-extract-relevant-information-from-mbox-file">Step 1: extract relevant information from mbox file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html#step-2-group-the-messages-by-thread">Step 2: group the messages by thread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html#step-3-find-relevant-timestamps">Step 3: find relevant timestamps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html#step-4-calculate-the-time-delta">Step 4: Calculate the time delta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html#step-5-filter-out-threads-started-by-the-account-holder">Step 5: Filter out threads started by the account holder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Emails/Email_Data_Formatter.html#step-6-save-to-csv">Step 6: Save to csv</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -167,10 +197,10 @@ The notebooks listed here show how each set was collected or generated.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Ebola/Ebola_Data_Loader.html" class="btn btn-neutral float-right" title="Ebola Data Loader">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Baby_Names/Baby_Name_Data.html" class="btn btn-neutral float-right" title="Baby Name Data">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../analyses/workflow/Writing to Database.html" class="btn btn-neutral" title="Saving Simulation Results to a Database"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../analyses/workflow/Unit_Testing.html" class="btn btn-neutral" title="Unit Testing"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

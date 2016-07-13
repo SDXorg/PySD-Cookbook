@@ -35,6 +35,13 @@ introduce the optimization functionality provided by ``scipy.optimize``.
     Populating the interactive namespace from numpy and matplotlib
 
 
+.. parsed-literal::
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+    
+      UserWarning)
+
+
 The model that we'll try to fit is simple 'Susceptible-Infectious'
 model. This model assumes that everyone is either susceptible, or
 infectious. It assumes that there is no recovery, or death; and doesn't
@@ -106,7 +113,7 @@ interested in, at the timestamps that match our data.
 
 .. parsed-literal::
 
-    176776872.44224554
+    157979297.36259085
 
 
 
@@ -156,14 +163,15 @@ values the optimizer will try.
 
 .. parsed-literal::
 
-      status: 0
-     success: True
-        nfev: 120
-         fun: 21274102.213913631
-           x: array([  8.84005912e+03,   8.04113242e+00])
-     message: 'CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH'
-         jac: array([ -71.1530447 , -160.56001186])
-         nit: 11
+          fun: 22180775.88110314
+     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+          jac: array([   0.37252903,  343.47176552])
+      message: 'CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH'
+         nfev: 90
+          nit: 10
+       status: 0
+      success: True
+            x: array([  8.82037219e+03,   8.20434113e+00])
 
 
 
@@ -188,5 +196,4 @@ too simple to truly capture the correct shape of the curve.
 
 
 .. image:: Fitting_with_Optimization_files/Fitting_with_Optimization_16_0.png
-
 
