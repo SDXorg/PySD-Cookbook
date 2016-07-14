@@ -1,0 +1,158 @@
+{UTF-8}
+cumulative cases= INTEG (
+	report case,
+		0)
+	~	
+	~		|
+
+report case=
+	infect
+	~	
+	~		|
+
+********************************************************
+	.sir
+********************************************************~
+		This is a standard 'Susceptible - Infectious - Recovered' model.
+	|
+
+infect=
+	susceptible*(infectious/total population) * contact infectivity
+	~	Persons/Day
+	~		|
+
+contact infectivity=
+	0.7
+	~	Persons/Persons/Day
+	~	A joint parameter listing both how many people you contact, and how likely \
+		you are to give them the disease.
+	|
+
+recovery period=
+	5
+	~	Days
+	~	How long are you infectious for?
+	|
+
+infectious= INTEG (
+	infect-recover,
+		5)
+	~	Persons
+	~	The population with the disease, manifesting symptoms, and able to \
+		transmit it to other people.
+	|
+
+recovered= INTEG (
+	recover,
+		0)
+	~	Persons
+	~	These people have recovered from the disease. Yay! Nobody dies in this \
+		model.
+	|
+
+recover=
+	infectious/recovery period
+	~	Persons/Day
+	~		|
+
+susceptible= INTEG (
+	-infect,
+		total population)
+	~	Persons
+	~	The population that has not yet been infected.
+	|
+
+total population=
+	1000
+	~	Persons
+	~	This is just a simplification to make it easer to track how many folks \
+		there are without having to sum up all the stocks.
+	|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Day
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Day
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Day [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.5
+	~	Day [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|120,120,140,0
+10,1,susceptible,413,340,67,33,3,3,0,0,0,0,0,0
+10,2,infectious,688,340,67,33,3,3,0,0,0,0,0,0
+10,3,recovered,965,340,67,33,3,3,0,0,0,0,0,0
+1,4,6,2,4,0,0,22,0,0,0,-1--1--1,,1|(591,342)|
+1,5,6,1,100,0,0,22,0,0,0,-1--1--1,,1|(511,342)|
+11,6,348,552,342,10,13,34,3,0,0,1,0,0,0
+10,7,infect,552,368,53,13,40,3,0,0,-1,0,0,0
+1,8,10,3,4,0,0,22,0,0,0,-1--1--1,,1|(866,342)|
+1,9,10,2,100,0,0,22,0,0,0,-1--1--1,,1|(785,342)|
+11,10,172,825,342,10,13,34,3,0,0,1,0,0,0
+10,11,recover,825,368,36,12,40,3,0,0,-1,0,0,0
+1,12,2,11,1,0,0,0,0,64,0,-1--1--1,,1|(765,417)|
+1,13,1,7,1,0,0,0,0,64,0,-1--1--1,,1|(430,392)|
+1,14,2,7,1,0,0,0,0,64,0,-1--1--1,,1|(647,413)|
+10,15,contact infectivity,628,235,43,22,8,3,0,0,0,0,0,0
+10,16,total population,459,243,70,13,8,3,0,0,0,0,0,0
+1,17,15,6,1,0,0,0,0,64,0,-1--1--1,,1|(598,301)|
+1,18,16,6,1,0,0,0,0,64,0,-1--1--1,,1|(515,284)|
+10,19,recovery period,883,228,37,22,8,3,0,0,0,0,0,0
+1,20,19,10,1,0,0,0,0,64,0,-1--1--1,,1|(848,270)|
+10,21,cumulative cases,722,497,70,30,3,131,0,0,0,0,0,0
+12,22,48,496,496,10,8,0,3,0,0,-1,0,0,0
+1,23,25,21,4,0,0,22,0,0,0,-1--1--1,,1|(614,496)|
+1,24,25,22,100,0,0,22,0,0,0,-1--1--1,,1|(535,496)|
+11,25,48,570,496,6,8,34,3,0,0,1,0,0,0
+10,26,report case,570,516,46,12,40,3,0,0,-1,0,0,0
+1,27,7,26,1,0,0,0,0,128,0,-1--1--1,,1|(552,472)|
+1,28,16,1,1,0,0,0,0,128,1,-1--1--1,,1|(409,317)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:140,0
+27:2,
+34:0,
+4:Time
+5:contact infectivity
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:4
+41:0
+42:1
+24:0
+25:100
+26:100
