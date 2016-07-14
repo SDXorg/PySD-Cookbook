@@ -1,7 +1,7 @@
 
 """
-Python model ../../models/SI Model/SI Model.py
-Translated using PySD version 0.6.1
+Python model ../../models/Epidemic/SI Model.py
+Translated using PySD version 0.6.3
 """
 from __future__ import division
 import numpy as np
