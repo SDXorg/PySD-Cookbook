@@ -35,6 +35,13 @@ oscillatory behavior.
     Populating the interactive namespace from numpy and matplotlib
 
 
+.. parsed-literal::
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+    
+      UserWarning)
+
+
 Ingredients
 -----------
 
@@ -48,8 +55,12 @@ model:
 .. image:: ../../../source/models/Predator_Prey/Predator_Prey.png
    :width: 300 px
 
-to a predator/prey system consisting of Didinium and Paramecium, that
-was described in:
+.. code:: python
+
+    model = pysd.read_vensim('../../models/Predator_Prey/Predator_Prey.mdl')
+
+We will apply this model to a predator/prey system consisting of
+Didinium and Paramecium, that was described in:
 
 ::
 
@@ -58,10 +69,6 @@ was described in:
 There are four parameters in this model that it will be our task to set,
 with the goal of minimizing the sum of squared errors between the
 model's step-at-a-time prediction and the measured data.
-
-.. code:: python
-
-    model = pysd.read_vensim('../../models/Predator_Prey/Predator_Prey.mdl')
 
 Data
 ~~~~
@@ -73,7 +80,7 @@ Jost <http://robjhyndman.com/tsdldata/data/veilleux.dat>`__.
 
     data = pd.read_csv('../../data/Predator_Prey/Veilleux_CC_0.5_Pretator_Prey.txt', sep='\s+', header=4)
     data[['prey(#ind/ml)','predator(#ind/ml)']].plot();
-    data.head()
+    data.head(2)
 
 
 
@@ -103,24 +110,6 @@ Jost <http://robjhyndman.com/tsdldata/data/veilleux.dat>`__.
           <td>53.57</td>
           <td>9.05</td>
         </tr>
-        <tr>
-          <th>2</th>
-          <td>1.0</td>
-          <td>73.34</td>
-          <td>17.26</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>1.5</td>
-          <td>93.93</td>
-          <td>41.97</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>2.0</td>
-          <td>115.40</td>
-          <td>55.97</td>
-        </tr>
       </tbody>
     </table>
     </div>
@@ -128,7 +117,7 @@ Jost <http://robjhyndman.com/tsdldata/data/veilleux.dat>`__.
 
 
 
-.. image:: Step_at_a_time_optimization_files/Step_at_a_time_optimization_7_1.png
+.. image:: Step_at_a_time_optimization_files/Step_at_a_time_optimization_10_1.png
 
 
 The Recipe
@@ -306,5 +295,5 @@ time:
 
 
 
-.. image:: Step_at_a_time_optimization_files/Step_at_a_time_optimization_17_1.png
+.. image:: Step_at_a_time_optimization_files/Step_at_a_time_optimization_21_1.png
 

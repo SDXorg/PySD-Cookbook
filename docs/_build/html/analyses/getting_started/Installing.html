@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Getting Started" href="index_getting_started.html"/>
         <link rel="next" title="Getting Started with Python" href="Python.html"/>
@@ -67,7 +70,7 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index_getting_started.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction to the PySD Cookbook</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and Setup of Python and PySD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Python.html">Getting Started with Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Notebook.html">Using the Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -166,56 +181,25 @@
 <h2>Using Anaconda<a class="headerlink" href="#using-anaconda" title="Permalink to this headline">¶</a></h2>
 <p>The simplest way to get started with Python is to use a prepackaged
 version such as Anaconda from Continuum analytics.</p>
-<p>Download and install version 2.7 from the following link:
+<p>PySD works with Python 2.7+ or 3.5+. I recommend using the latest
+version of python 3 from the following link:
 <a class="reference external" href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a></p>
-</div>
-<div class="section" id="installing-python-on-its-own">
-<h2>Installing Python on its own<a class="headerlink" href="#installing-python-on-its-own" title="Permalink to this headline">¶</a></h2>
-<p>If you have an existing python installation, or you&#8217;ve worked
-extensively with python in the past, you might prefer to just use basic
-unpackaged python. This will give you some more control, but you&#8217;ll have
-to do more of your own dependency resolution.</p>
-<p>To check if you have python already, at a command prompt, type:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">python</span> <span class="o">-</span><span class="n">V</span>
-</pre></div>
-</div>
-<p>If python is installed, you should see some information about the
-version you are running. For example:</p>
-<div class="highlight-python"><div class="highlight"><pre>Python 2.7.6
-</pre></div>
-</div>
-<p>If you get an error, you probably need to install python from scratch.
-To do so, visit <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a> and download the
-latest version beginning with <code class="docutils literal"><span class="pre">2.</span></code>. Some of the python utilities we
-will be using are not yet available in Python 3.</p>
-<div class="section" id="installing-pip">
-<h3>Installing pip<a class="headerlink" href="#installing-pip" title="Permalink to this headline">¶</a></h3>
-<p>Pip is the primary python package distribution utility. Depending on how
-you set up python, you may have Pip already installed. To test this, at
-your command prompt, type:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip list
-</pre></div>
-</div>
-<p>If pip is installed, you will see a list of installed packages managed
-by pip.</p>
-<p>If you get an error, you will need to install pip from scratch. To do
-this, follow the instructions here:
-<a class="reference external" href="https://pip.pypa.io/en/latest/installing.html">https://pip.pypa.io/en/latest/installing.html</a></p>
-</div>
 </div>
 <div class="section" id="installing-pysd">
 <h2>Installing PySD<a class="headerlink" href="#installing-pysd" title="Permalink to this headline">¶</a></h2>
 <p>With a python environment set up, at the command prompt you can type:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install pysd
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pysd</span>
 </pre></div>
 </div>
 <p>this should install PySD and all of its dependencies. In some cases you
 may need to prepend the command with &#8216;sudo&#8217; to give it administrative
 priveledges:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo pip install pysd
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pysd</span>
 </pre></div>
 </div>
 <p>You&#8217;ll be prompted for your administrator password.</p>
+<div class="section" id="manually-installing-pysd-s-dependencies">
+<h3>Manually installing PySD&#8217;s dependencies<a class="headerlink" href="#manually-installing-pysd-s-dependencies" title="Permalink to this headline">¶</a></h3>
 <p>On the off chance that pip fails to install the dependencies, you can do
 the task yourself.</p>
 <p>There are a few packages which form the core of the python scientific
@@ -229,22 +213,28 @@ features, such as stats, etc.</li>
 <li>ipython - an environment for interacting with python and writing
 clever text/documentation documents, such as this one.</li>
 </ol>
+<p>PySD also requires a few additional package beyond the basic data
+science stack:</p>
+<ol class="arabic simple">
+<li>parsimonious - a text parsing library</li>
+<li>yapf - a python code formatting library</li>
+</ol>
 <p>To install these packages, use the syntax:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install numpy
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">numpy</span>
 </pre></div>
 </div>
 <p>Run the command once for each package, replacing <code class="docutils literal"><span class="pre">numpy</span></code> with
-<code class="docutils literal"><span class="pre">scipy</span></code> etc.</p>
-<p>PySD also requires one additional package beyond the basic data science
-stack, called <code class="docutils literal"><span class="pre">parsimonious</span></code>. Use pip to install it:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install parsimonious
-</pre></div>
+<code class="docutils literal"><span class="pre">scipy</span></code>, <code class="docutils literal"><span class="pre">matplotlib</span></code>, etc.</p>
 </div>
 </div>
-<div class="section" id="launch-ipython-notebook-and-get-started">
-<h2>Launch iPython Notebook, and get started<a class="headerlink" href="#launch-ipython-notebook-and-get-started" title="Permalink to this headline">¶</a></h2>
-<p>Now at your command line type:</p>
-<div class="highlight-python"><div class="highlight"><pre>ipython notebook
+<div class="section" id="launch-jupyter-notebook-and-get-started">
+<h2>Launch Jupyter Notebook, and get started<a class="headerlink" href="#launch-jupyter-notebook-and-get-started" title="Permalink to this headline">¶</a></h2>
+<p>If you used the anaconda graphical installer, you should have a
+&#8216;Anaconda Launcher&#8217; user interface installed. Opening this program and
+clicking the &#8216;Jupyter Notebook&#8217; will fire up the notebook explorer in
+your browser.</p>
+<p>Alternately, at your command line type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">notebook</span>
 </pre></div>
 </div>
 <p>Your browser should start, and give you a document much like this one
@@ -255,7 +245,7 @@ that you can play with.</p>
 <p>PySD is a work in progress, and from time to time, we&#8217;ll ipgrade its
 features. To upgrade to the latest version of PySD (or any of the other
 packages, for that matter) use the syntax:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install pysd --upgrade
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pysd</span> <span class="o">--</span><span class="n">upgrade</span>
 </pre></div>
 </div>
 </div>

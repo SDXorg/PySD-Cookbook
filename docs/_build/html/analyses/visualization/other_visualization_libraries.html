@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Visualization" href="index_visualization.html"/>
         <link rel="next" title="Phase Portraits" href="phase_portraits.html"/>
@@ -81,7 +84,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index_visualization.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Other Visualization Packages in Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="phase_portraits.html">Phase Portraits</a></li>
 </ul>
 </li>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -166,10 +181,10 @@
 on their own, to extend python&#8217;s plotting abilities.</p>
 <p>We&#8217;ll use the Roessler chaos model to generate data for plotting in this
 notebook:</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import pysd
-model = pysd.read_vensim(&#39;../../models/Roessler_Chaos/roessler_chaos.mdl&#39;)
-res = model.run()
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Roessler_Chaos/roessler_chaos.mdl&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="section" id="seaborn">
@@ -180,8 +195,8 @@ to import it into the python environment and continue plotting as with
 <code class="docutils literal"><span class="pre">matplotlib</span></code>. <code class="docutils literal"><span class="pre">Seaborn</span></code> provides a host of new functions and
 customizations that are illustrated
 <a class="reference external" href="http://stanford.edu/~mwaskom/software/seaborn/examples/index.html">here</a>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">seaborn</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">]);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 <img alt="../../_images/other_visualization_libraries_4_0.png" src="../../_images/other_visualization_libraries_4_0.png" />
@@ -196,8 +211,8 @@ with the image.</p>
 <p>Syntax here is very similar to before, with the addition of a call to
 the <code class="docutils literal"><span class="pre">display</span></code> function. For further examples see the <a class="reference external" href="http://mpld3.github.io/examples/index.html">mpld3
 gallery</a>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">mpld3</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s">&#39;x&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s">&#39;y&#39;</span><span class="p">]);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mpld3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]);</span>
 <span class="n">mpld3</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
 </pre></div>
 </div>

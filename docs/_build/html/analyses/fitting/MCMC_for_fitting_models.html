@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Model Fitting" href="index_fitting.html"/>
         <link rel="next" title="Geographic Analyses" href="../geo/index_geo.html"/>
@@ -89,15 +92,27 @@
 <li class="toctree-l2"><a class="reference internal" href="Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Fitting a model with Markov Chain Monte Carlo</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fitting a model with Markov Chain Monte Carlo</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -176,13 +191,13 @@ distribution of that output and look for input distributions.</p>
 <a class="reference external" href="https://pymc-devs.github.io/pymc/README.html">PyMC</a> which implements
 MCMC algorithms for us. Another project which performs similar
 calculations is <a class="reference external" href="https://pystan.readthedocs.org/en/latest/">PyStan</a>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import pysd
-import pymc
-import pandas as pd
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">pymc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
 <p>For this example, we&#8217;ll revisit the ebola case, only assuming that our
@@ -195,10 +210,10 @@ propagation, but that the data is noisy - perhaps it represents
 admittance rates at a hospital, and so will be missing some cases, and
 may include some false positives through misdiagnosis.</p>
 <a class="reference internal image-reference" href="analyses/fitting/../../../source/models/SIModel/SIModel.png"><img alt="analyses/fitting/../../../source/models/SIModel/SIModel.png" src="analyses/fitting/../../../source/models/SIModel/SIModel.png" style="width: 600px;" /></a>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/SI Model/SI Model.mdl&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/SI Model/SI Model.mdl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../../data/Ebola/Ebola_in_SL_Data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;Weeks&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Ebola/Ebola_in_SL_Data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Weeks&#39;</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -214,8 +229,8 @@ optimization case, we&#8217;ll modify the effective population and the contact
 frequency. In real epidemiological modeling, we&#8217;d have a more complex
 model, and we&#8217;d have some information about the population, etc. but
 this makes for a relatively tight example.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">population</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s">&#39;total_population&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
-<span class="n">contact_frequency</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s">&#39;contact_frequency&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;total_population&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">contact_frequency</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s1">&#39;contact_frequency&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -225,13 +240,13 @@ this makes for a relatively tight example.</p>
 from the input distributions, and return the values that we will take as
 those of the fundamental underlying phenomena, before measurement noise
 is included.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="nd">@pymc.deterministic</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@pymc</span><span class="o">.</span><span class="n">deterministic</span>
 <span class="k">def</span> <span class="nf">sim</span><span class="p">(</span><span class="n">population</span><span class="o">=</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="o">=</span><span class="n">contact_frequency</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;total_population&#39;</span><span class="p">:</span><span class="n">population</span><span class="p">,</span>
-                               <span class="s">&#39;contact_frequency&#39;</span><span class="p">:</span><span class="n">contact_frequency</span><span class="p">},</span>
-                       <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;infection_rate&#39;</span><span class="p">],</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;total_population&#39;</span><span class="p">:</span><span class="n">population</span><span class="p">,</span>
+                               <span class="s1">&#39;contact_frequency&#39;</span><span class="p">:</span><span class="n">contact_frequency</span><span class="p">},</span>
+                       <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;infection_rate&#39;</span><span class="p">],</span>
                        <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;infection_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;infection_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
@@ -251,8 +266,8 @@ results of our simulation.</p>
 know how to calculate the log likelihood of seeing the observed data
 given the assumption that the simulation result represents the
 underlying process, subject to Poisson noise.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">admittances</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s">&#39;admittances&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">sim</span><span class="p">,</span>
-                           <span class="n">value</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;New Reported Cases&#39;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">admittances</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;admittances&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">sim</span><span class="p">,</span>
+                           <span class="n">value</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;New Reported Cases&#39;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -275,12 +290,12 @@ to run the algorithm for us.</p>
 We&#8217;ll throw out the first 1000 of these, as they are likely to be biased
 towards the initial values we set up and not representative of the
 overall distribution.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mcmdl</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">admittances</span><span class="p">])</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">mcmdl</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">admittances</span><span class="p">])</span>
 <span class="n">mcmc</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="n">mcmdl</span><span class="p">)</span>
 <span class="n">mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">20000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>[-----------------100%-----------------] 20000 of 20000 complete in 67.1 sec
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">-----------------</span><span class="mi">100</span><span class="o">%-----------------</span><span class="p">]</span> <span class="mi">20000</span> <span class="n">of</span> <span class="mi">20000</span> <span class="n">complete</span> <span class="ow">in</span> <span class="mf">67.1</span> <span class="n">sec</span>
 </pre></div>
 </div>
 </div>
@@ -289,32 +304,29 @@ overall distribution.</p>
 <p>We can now evaluate the results by looking at the series of points we
 &#8216;kept&#8217;. These are stored as traces within the population and contact
 frequency objects we built earlier.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Fit distribution for the population parameter&#39;</span><span class="p">);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fit distribution for the population parameter&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="../../_images/MCMC_for_fitting_models_15_0.png" src="../../_images/MCMC_for_fitting_models_15_0.png" />
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Fit distribution for the contact frequency parameter&#39;</span><span class="p">);</span>
+<img alt="../../_images/MCMC_for_fitting_models_18_0.png" src="../../_images/MCMC_for_fitting_models_18_0.png" />
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fit distribution for the contact frequency parameter&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="../../_images/MCMC_for_fitting_models_16_0.png" src="../../_images/MCMC_for_fitting_models_16_0.png" />
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<img alt="../../_images/MCMC_for_fitting_models_19_0.png" src="../../_images/MCMC_for_fitting_models_19_0.png" />
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Fit distribution for the characteristic time parameter&#39;</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fit distribution for the characteristic time parameter&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x10cf40350&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">Text</span> <span class="n">at</span> <span class="mh">0x10cf40350</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<img alt="../../_images/MCMC_for_fitting_models_17_1.png" src="../../_images/MCMC_for_fitting_models_17_1.png" />
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pymc</span><span class="o">.</span><span class="n">Normal</span><span class="p">()</span>
-</pre></div>
-</div>
+<img alt="../../_images/MCMC_for_fitting_models_20_1.png" src="../../_images/MCMC_for_fitting_models_20_1.png" />
 </div>
 <div class="section" id="step-6-understand-the-correlation-between-our-parameter-distributions">
 <h3>Step 6: Understand the correlation between our parameter distributions<a class="headerlink" href="#step-6-understand-the-correlation-between-our-parameter-distributions" title="Permalink to this headline">¶</a></h3>
@@ -322,12 +334,12 @@ frequency objects we built earlier.</p>
 have based upon our data. This isn&#8217;t the whole story, however, as these
 values are not independent of one another. We can see by plotting them
 against one another that there is correlation:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Effective Population&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Contact Frequency&#39;</span><span class="p">);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Effective Population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Contact Frequency&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="../../_images/MCMC_for_fitting_models_20_0.png" src="../../_images/MCMC_for_fitting_models_20_0.png" />
+<img alt="../../_images/MCMC_for_fitting_models_22_0.png" src="../../_images/MCMC_for_fitting_models_22_0.png" />
 <p>If we use these distributions in the future to propagate uncertainty
 through the model (say in doing a policy test) we should make sure that
 we&#8217;re including this correlation. The simplest way to do this is just to

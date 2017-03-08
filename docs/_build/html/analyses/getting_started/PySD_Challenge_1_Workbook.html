@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SIR Peak Infection Challenge &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>SIR Peak Infection Challenge</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/getting_started/PySD_Challenge_1_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="sir-peak-infection-challenge">
+<h1>SIR Peak Infection Challenge<a class="headerlink" href="#sir-peak-infection-challenge" title="Permalink to this headline">¶</a></h1>
+<p>You are the chief epidemiologist of the
+<a class="reference external" href="https://en.wikipedia.org/wiki/McMurdo_Station">McMurdo</a> Antartic
+Research Station, a scientific outpost with a population of 1000
+persons. A new and unusual disease, currently known as penguin foot, has
+struck 10 individuals in the camp, and seems to be spreading.</p>
+<p>The disease has several properties. While infected (and contagious),
+individuals behave as normal but are unable to drive <a class="reference external" href="https://youtu.be/gcIwrdeP21s?t=1m46s">snow
+machines</a>, the base&#8217;s primary
+mode of evacuation in case of an emergency. (It is universally
+acknowledged that penguins cannot drive snow machines.) Snow machines
+can carry one passenger in addition to the driver, and so at any given
+time, at least half of the population must be able to drive.</p>
+<p>The period of infection is on average 10 days, after which individuals
+return to their normal state and are immune to further infection. The
+infectivity of the disease is much less well known. The chance of
+infection from an encounter between an infected and a non-infected
+person could be anywhere from 0.5% to 10%.</p>
+<p>As there are no lasting consequences of penguin foot, the base has
+continued to operate as normal, with each individual coming into contact
+with about 25 people per day, with relatively uniform mixing between
+individuals.</p>
+<p>The primary danger posed by the disease is that there will come a point
+when there aren&#8217;t enough people to drive snow machines. Your task is to
+calculate the maximum number of infections for a range of values of
+infectivity between <code class="docutils literal"><span class="pre">.005</span></code> and <code class="docutils literal"><span class="pre">0.1</span></code>.</p>
+<p>Specifically, you need to know the minimum value of infectivity that is
+sufficient to incapacitate over half the base at one time, so that as
+new measurements become available, you can assess the risk of this
+possibility.</p>
+<div class="section" id="load-libraries">
+<h2>Load libraries<a class="headerlink" href="#load-libraries" title="Permalink to this headline">¶</a></h2>
+<p>The cell below gets us started by loading the plotting library.</p>
+<p>Add a line to this cell to load the <code class="docutils literal"><span class="pre">pysd</span></code> library using the standard
+python
+<a class="reference external" href="https://www.codementor.io/python/tutorial/python-path-virtualenv-import-for-beginners">import</a>
+<a class="reference external" href="https://docs.python.org/2/tutorial/modules.html#modules">syntax</a>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="o">&lt;&lt;...&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-model">
+<h2>Load model<a class="headerlink" href="#load-model" title="Permalink to this headline">¶</a></h2>
+<p>Now, use PySD&#8217;s <code class="docutils literal"><span class="pre">load_vensim</span></code>
+<a class="reference external" href="http://pysd.readthedocs.io/en/master/functions.html#pysd.read_vensim">function</a>
+to read the SIR model found at relative location:
+&#8216;<code class="docutils literal"><span class="pre">../../models/Epidemic/SIR.mdl</span></code>&#8216;, and name the resulting object
+&#8216;<code class="docutils literal"><span class="pre">model</span></code>&#8216;.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="o">&lt;&lt;...&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Just to practice, <a class="reference external" href="http://pysd.readthedocs.io/en/master/functions.html#pysd.PySD.run">run the
+model</a>,
+using the <code class="docutils literal"><span class="pre">.run()</span></code> function&#8217;s <code class="docutils literal"><span class="pre">params</span></code> argument to set the value of
+<code class="docutils literal"><span class="pre">Infectivity</span></code> to <code class="docutils literal"><span class="pre">0.02</span></code>.</p>
+<p>Save the result in a variable named <code class="docutils literal"><span class="pre">res</span></code>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=&lt;&lt;...&gt;&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The cell below contains code to plot the result of your simulation.
+Execute it and ensure that everything is working properly.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Days&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Individuals Infected&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="identify-the-peak-for-this-base-case-run">
+<h2>Identify the peak for this base case run<a class="headerlink" href="#identify-the-peak-for-this-base-case-run" title="Permalink to this headline">¶</a></h2>
+<p>In the cell below, write an expression to calculate (for your base case)
+the <a class="reference external" href="find%20ref%20to%20pandas%20max">maximum</a> number of individuals
+who are infected at any one time. You&#8217;ll need to use Pandas syntax to
+select the column named &#8216;Infected&#8217; and then use the Pandas functions
+referenced above.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">peak_value</span> <span class="o">=</span> <span class="o">&lt;&lt;...&gt;&gt;</span>
+
+<span class="nb">print</span> <span class="s1">&#39;Up to&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak_value</span><span class="p">),</span> <span class="s1">&#39;individuals are infected at one time.&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="define-the-range-of-infectivities-we-want-to-sweep-over">
+<h2>Define the range of infectivities we want to sweep over<a class="headerlink" href="#define-the-range-of-infectivities-we-want-to-sweep-over" title="Permalink to this headline">¶</a></h2>
+<p>To identify the worst case scenario, we need to sweep over the plausible
+values of <code class="docutils literal"><span class="pre">infectivity</span></code>, from 0.005 to 0.1, in increments of .005. Our
+next step is to generate an array of these values. We can use the python
+package <a href="#id1"><span class="problematic" id="id2">`numpy &lt;&gt;`__</span></a> which handles matrix mathematics and array
+manipulation. (It is common practice to give the numpy module the short
+handle &#8216;<code class="docutils literal"><span class="pre">np</span></code>&#8216; as I have done below).</p>
+<p>You&#8217;ll specifically want to use the <code class="docutils literal"><span class="pre">np.arange(...)</span></code> function, which
+extends the python standard <code class="docutils literal"><span class="pre">range</span></code> function to handle non-integer
+values. Consult the <a href="#id1"><span class="problematic" id="id3">`numpy documentation &lt;&gt;`__</span></a> to determine the
+arguments you&#8217;ll want to pass in to this function to generate an array
+that looks like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="o">...</span> <span class="mf">0.095</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You may have to be creative to ensure that the last value in the array
+is actually <code class="docutils literal"><span class="pre">0.1</span></code>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">infectivity_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">infectivity_values</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="evaluate-the-peak-of-infections-for-each-value-of-infectivity">
+<h2>Evaluate the peak of infections for each value of infectivity<a class="headerlink" href="#evaluate-the-peak-of-infections-for-each-value-of-infectivity" title="Permalink to this headline">¶</a></h2>
+<p>We now want to calculate the peak for the list of possible
+infectivities, and collect them in a pair of lists. To do this, write a
+for loop that iterates over each value in the array of infectivites.
+I&#8217;ve started this off for you below.</p>
+<p>Within the body of the for loop, run the model with that value of
+infectivity, saving the result to a variable named res. Then use
+python&#8217;s <a href="#id1"><span class="problematic" id="id4">`list append &lt;&gt;`__</span></a> syntax to add the appropriate values to the
+end of the <code class="docutils literal"><span class="pre">peak_value_list</span></code>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">peak_value_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="o">&lt;&lt;...&gt;&gt;</span>
+
+<span class="n">peak_value_list</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plot-the-result">
+<h2>Plot the result<a class="headerlink" href="#plot-the-result" title="Permalink to this headline">¶</a></h2>
+<p>Now create a plot showing showing the values of infectivity on the
+x-axis, and the peak value of the infections on the y axis. Label each
+axis, and give the plot a title. From this plot we can eyeball the value
+of infectivity beyond which the peak level of infections rises over 500.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infectivity_values</span><span class="p">,</span> <span class="n">peak_value_list</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Infectivity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Peak Value of Infections&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Peak level of infection as a function of infectivity.&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="section" id="bonus-activities">
+<h3>Bonus Activities<a class="headerlink" href="#bonus-activities" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Identify the first day that the base might not be able to evacuate,
+for any value of infectivity.</li>
+<li>Identify the maximum total number of days that the base might be
+unable to evacuate, for the range of values of infectivity listed
+above.</li>
+<li>Come up with a better story for this example than &#8216;penguin foot&#8217;. =)</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

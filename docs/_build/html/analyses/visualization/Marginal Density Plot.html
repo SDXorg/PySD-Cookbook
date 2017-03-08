@@ -1,0 +1,485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Demo of a KDE plot beside timeseries set &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Demo of a KDE plot beside timeseries set</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/visualization/Marginal Density Plot.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="demo-of-a-kde-plot-beside-timeseries-set">
+<h1>Demo of a KDE plot beside timeseries set<a class="headerlink" href="#demo-of-a-kde-plot-beside-timeseries-set" title="Permalink to this headline">¶</a></h1>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<div class="section" id="load-the-model-using-pysd">
+<h2>Load the model using PySD<a class="headerlink" href="#load-the-model-using-pysd" title="Permalink to this headline">¶</a></h2>
+<p>The model is a basic, 1-stock carbon bathtub model</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Climate/Atmospheric_Bathtub.mdl&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">model</span><span class="o">.</span><span class="n">doc</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>|    | name                      | modelName                 | unit        | comment                                    |
+|----+---------------------------+---------------------------+-------------+--------------------------------------------|
+|  0 | Emissions                 | emissions                 |             | nan                                        |
+|  1 | Excess Atmospheric Carbon | excess_atmospheric_carbon |             | nan                                        |
+|  2 | FINAL TIME                | final_time                | Month       | The final time for the simulation.         |
+|  3 | INITIAL TIME              | initial_time              | Month       | The initial time for the simulation.       |
+|  4 | Natural Removal           | natural_removal           |             | nan                                        |
+|  5 | Removal Constant          | removal_constant          |             | nan                                        |
+|  6 | SAVEPER                   | saveper                   | Month [0,?] | The frequency with which output is stored. |
+|  7 | TIME STEP                 | time_step                 | Month [0,?] | The time step for the simulation.          |
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-a-set-of-parameters-to-use-as-input">
+<h2>Generate a set of parameters to use as input<a class="headerlink" href="#generate-a-set-of-parameters-to-use-as-input" title="Permalink to this headline">¶</a></h2>
+<p>Here, drawing 1000 constant values for the <code class="docutils literal"><span class="pre">Emissions</span></code> parameter from
+an exponential distribution</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">n_runs</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">runs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Emissions&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_runs</span><span class="p">)})</span>
+<span class="n">runs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Emissions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>754.742333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>14749.039754</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7241.957594</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4284.263487</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22376.864579</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="run-the-model-with-the-various-parameters">
+<h2>Run the model with the various parameters<a class="headerlink" href="#run-the-model-with-the-various-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">))[</span><span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">],</span>
+                    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">result</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>990</th>
+      <th>991</th>
+      <th>992</th>
+      <th>993</th>
+      <th>994</th>
+      <th>995</th>
+      <th>996</th>
+      <th>997</th>
+      <th>998</th>
+      <th>999</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>754.742333</td>
+      <td>14749.039754</td>
+      <td>7241.957594</td>
+      <td>4284.263487</td>
+      <td>22376.864579</td>
+      <td>8302.073685</td>
+      <td>23364.988335</td>
+      <td>9642.752933</td>
+      <td>9246.002982</td>
+      <td>29150.232322</td>
+      <td>...</td>
+      <td>6422.187598</td>
+      <td>10433.929055</td>
+      <td>5228.257878</td>
+      <td>29585.251330</td>
+      <td>7903.097871</td>
+      <td>7765.682923</td>
+      <td>5425.788505</td>
+      <td>8576.242429</td>
+      <td>18934.396132</td>
+      <td>3688.825398</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>1501.937242</td>
+      <td>29350.589111</td>
+      <td>14411.495612</td>
+      <td>8525.684340</td>
+      <td>44529.960511</td>
+      <td>16521.126633</td>
+      <td>46496.326786</td>
+      <td>19189.078336</td>
+      <td>18399.545933</td>
+      <td>58008.962321</td>
+      <td>...</td>
+      <td>12780.153321</td>
+      <td>20763.518819</td>
+      <td>10404.233177</td>
+      <td>58874.650147</td>
+      <td>15727.164763</td>
+      <td>15453.709018</td>
+      <td>10797.319125</td>
+      <td>17066.722433</td>
+      <td>37679.448302</td>
+      <td>7340.762543</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>2241.660202</td>
+      <td>43806.122973</td>
+      <td>21509.338250</td>
+      <td>12724.690984</td>
+      <td>66461.525485</td>
+      <td>24657.989052</td>
+      <td>69396.351853</td>
+      <td>28639.940486</td>
+      <td>27461.553456</td>
+      <td>86579.105020</td>
+      <td>...</td>
+      <td>19074.539386</td>
+      <td>30989.812686</td>
+      <td>15528.448722</td>
+      <td>87871.154975</td>
+      <td>23472.990987</td>
+      <td>23064.854851</td>
+      <td>16115.134440</td>
+      <td>25472.297638</td>
+      <td>56237.049950</td>
+      <td>10956.180316</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>2973.985933</td>
+      <td>58117.101498</td>
+      <td>28536.202462</td>
+      <td>16881.707561</td>
+      <td>88173.774809</td>
+      <td>32713.482847</td>
+      <td>92067.376669</td>
+      <td>37996.294014</td>
+      <td>36432.940903</td>
+      <td>114863.546291</td>
+      <td>...</td>
+      <td>25305.981590</td>
+      <td>41113.843614</td>
+      <td>20601.422113</td>
+      <td>116577.694755</td>
+      <td>31141.358948</td>
+      <td>30599.889226</td>
+      <td>21379.771600</td>
+      <td>33793.817090</td>
+      <td>74609.075583</td>
+      <td>14535.443911</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1000 columns</p>
+</div></div>
+<div class="section" id="draw-a-plot-showing-the-results-and-a-marginal-density-plot">
+<h2>Draw a plot showing the results, and a marginal density plot<a class="headerlink" href="#draw-a-plot-showing-the-results-and-a-marginal-density-plot" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># left side should have all traces plotted</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">02</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="c1"># right side has gaussian KDE on last timestamp</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Emissions scenarios under uncertainty&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="analyses/visualization/Marginal%20Density%20Plot_files/Marginal%20Density%20Plot_9_0.png" src="analyses/visualization/Marginal%20Density%20Plot_files/Marginal%20Density%20Plot_9_0.png" />
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

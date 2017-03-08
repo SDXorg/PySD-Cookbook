@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Data Handling" href="index_data_handling.html"/>
         <link rel="next" title="Visualization" href="../visualization/index_visualization.html"/>
@@ -76,7 +79,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index_data_handling.html">Data Handling</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pandas.html">Data handling with Pandas</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Saving Simulation Results to a Database</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Saving Simulation Results to a Database</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -173,8 +188,8 @@ especially in large models</li>
 </ul>
 <p>It&#8217;s relatively easy to set up a sequel database and commit runs output
 to it. This demo uses sqlite, which creates a database in a local file.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sqlite3</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pysd</span>
 </pre></div>
 </div>
@@ -184,7 +199,7 @@ to it. This demo uses sqlite, which creates a database in a local file.</p>
 <h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
 <p>We&#8217;ll use the simple teacup model for this experiment, and we&#8217;ll ask for
 the value at integer times from <code class="docutils literal"><span class="pre">[0..29]</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Teacup/Teacup.mdl&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Teacup/Teacup.mdl&#39;</span><span class="p">)</span>
 <span class="n">tseries</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -195,13 +210,13 @@ the value at integer times from <code class="docutils literal"><span class="pre"
 working directory as <code class="docutils literal"><span class="pre">example.db</span></code>. We populate its columns with two
 columns for storing the parameter values that we&#8217;ll change from run to
 run, and then a column for each timestamp value we intend to save:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&#39;example.db&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
-<span class="c"># Create table</span>
-<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;&#39;&#39;CREATE TABLE simulations</span>
-<span class="s">             (room_temperature real, init_teacup_temperature real,</span>
-<span class="s">              </span><span class="si">%s</span><span class="s"> ) &#39;&#39;&#39;</span><span class="o">%</span><span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;t</span><span class="si">%i</span><span class="s"> real&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tseries</span><span class="p">]));</span>
+<span class="c1"># Create table</span>
+<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;CREATE TABLE simulations</span>
+<span class="s1">             (room_temperature real, init_teacup_temperature real,</span>
+<span class="s1">              </span><span class="si">%s</span><span class="s1"> ) &#39;&#39;&#39;</span><span class="o">%</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;t</span><span class="si">%i</span><span class="s1"> real&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tseries</span><span class="p">]));</span>
 </pre></div>
 </div>
 </div>
@@ -209,7 +224,7 @@ run, and then a column for each timestamp value we intend to save:</p>
 <h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>We want to save the output of our model when driven with a variety of
 parameters. For demonstration, we&#8217;ll set these randomly:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">room_temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">room_temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">init_tea_temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">175</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -220,23 +235,23 @@ parameters. For demonstration, we&#8217;ll set these randomly:</p>
 <p>We&#8217;re now ready to simulate our model with the various parameters. After
 execution, we construct a SQL insert querry containing each of the
 returned values, and commit it to the database.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">room_temp</span><span class="p">,</span> <span class="n">init_tea_temp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">room_temps</span><span class="p">,</span> <span class="n">init_tea_temps</span><span class="p">):</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room_temperature&#39;</span><span class="p">:</span><span class="n">room_temp</span><span class="p">},</span>
-                       <span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,{</span><span class="s">&#39;teacup_temperature&#39;</span><span class="p">:</span><span class="n">init_tea_temp</span><span class="p">}),</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">room_temp</span><span class="p">,</span> <span class="n">init_tea_temp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">room_temps</span><span class="p">,</span> <span class="n">init_tea_temps</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;room_temperature&#39;</span><span class="p">:</span><span class="n">room_temp</span><span class="p">},</span>
+                       <span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,{</span><span class="s1">&#39;teacup_temperature&#39;</span><span class="p">:</span><span class="n">init_tea_temp</span><span class="p">}),</span>
                        <span class="n">return_timestamps</span><span class="o">=</span><span class="n">tseries</span><span class="p">)</span>
 
-    <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&quot;INSERT INTO simulations VALUES (</span><span class="si">%i</span><span class="s">,</span><span class="si">%i</span><span class="s">,</span><span class="si">%s</span><span class="s">)&quot;</span><span class="o">%</span>
-              <span class="p">(</span><span class="n">room_temp</span><span class="p">,</span> <span class="n">init_tea_temp</span><span class="p">,</span> <span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s">&#39;teacup_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">))))</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO simulations VALUES (</span><span class="si">%i</span><span class="s2">,</span><span class="si">%i</span><span class="s2">,</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="o">%</span>
+              <span class="p">(</span><span class="n">room_temp</span><span class="p">,</span> <span class="n">init_tea_temp</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;teacup_temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">))))</span>
 
     <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>We can see that the result was added properly by fetching a record:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">&#39;SELECT * FROM simulations&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM simulations&#39;</span><span class="p">)</span>
 <span class="n">c</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mf">76.0</span><span class="p">,</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">76.0</span><span class="p">,</span>
  <span class="mf">164.0</span><span class="p">,</span>
  <span class="mf">164.722280167</span><span class="p">,</span>
  <span class="mf">156.282130733</span><span class="p">,</span>
@@ -271,10 +286,10 @@ returned values, and commit it to the database.</p>
 </pre></div>
 </div>
 <p>Finally, we must remember to close our connection to the database:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre>#remove the database file when we are finished with it.
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>#remove the database file when we are finished with it.
 !rm example.db
 </pre></div>
 </div>

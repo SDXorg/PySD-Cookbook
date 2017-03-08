@@ -1,0 +1,528 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting Started with Python &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Getting Started with Python</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/getting_started/Python_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="getting-started-with-python">
+<h1>Getting Started with Python<a class="headerlink" href="#getting-started-with-python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-should-system-dynamicists-learn-to-code">
+<h2>Why should system dynamicists learn to code?<a class="headerlink" href="#why-should-system-dynamicists-learn-to-code" title="Permalink to this headline">¶</a></h2>
+<p>There is a whole world of computational and analysis tools being
+developed in the larger data science community. If system dynamicists
+want to take advantage of these tools, we have two options:</p>
+<ol class="arabic simple">
+<li>we can <strong>replicate each of them within one of the system dynamics
+modeling tools we are familiar with</strong></li>
+<li>we can <strong>bring system dynamics models to the environment where these
+tools already exist</strong>.</li>
+</ol>
+<p>PySD and this cookbook are an outgrowth of the belief that this second
+path is the best use of our time. Bringing the tools of system dynamics
+to the wider world of data science allows us to operate within our core
+competency as model builders, and avoids doubled effort. It allows those
+who are familiar with programming to explore using system dynamics in
+their own projects, and ensures that the learning system dynamicists do
+to use these external tools will have application in the wider world.</p>
+<div class="section" id="why-python">
+<h3>Why Python?<a class="headerlink" href="#why-python" title="Permalink to this headline">¶</a></h3>
+<p>Python is a high-level programming language that allows users to write
+code quickly and spend less time mucking about with the boring bits of
+programming. As a result, it is <a class="reference external" href="http://pypl.github.io/PYPL.html">becoming increasingly
+popular</a> and is the focus for
+development of a wealth of <a class="reference external" href="http://pydata.org/downloads/">data science
+tools</a>.</p>
+<p>In the pen-strokes of xkcd: <img alt="xkcd python" src="http://imgs.xkcd.com/comics/python.png" /></p>
+</div>
+</div>
+<div class="section" id="a-very-brief-intro-to-programming-in-python">
+<h2>A (very) brief intro to programming in python<a class="headerlink" href="#a-very-brief-intro-to-programming-in-python" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-python-data-structures">
+<h3>Basic Python Data Structures<a class="headerlink" href="#basic-python-data-structures" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Everything in python is an object.</li>
+<li>Objects have different &#8216;types&#8217;.</li>
+<li>Objects can be made up of other objects.</li>
+<li>Variable names are just labels assigned to point to specific objects.</li>
+</ul>
+<div class="section" id="variables">
+<h4>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h4>
+<p>Variables are created by assigning a value to a label.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">&lt;&lt;...&gt;&gt;</span>  <span class="c1"># add an integer</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">&lt;&lt;...&gt;&gt;</span>  <span class="c1"># add a string</span>
+<span class="n">c</span> <span class="o">=</span> <span class="o">&lt;&lt;...&gt;&gt;</span>  <span class="c1"># add a float number</span>
+
+<span class="nb">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="n">bob</span> <span class="mf">23.987</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lists">
+<h4>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h4>
+<p>Lists are ordered collections of objects (and are objects themselves).</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">]</span>  <span class="c1"># add a comma-separated list of numbers</span>
+<span class="nb">print</span> <span class="n">my_list</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Elements of the list can be accessed or modified by position, with the
+first element having the index <code class="docutils literal"><span class="pre">0</span></code>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">my_list</span><span class="p">[</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">]</span> <span class="c1"># add an index between 0 and 2</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;&lt;...&gt;&gt;</span>  <span class="c1"># assign a value</span>
+<span class="nb">print</span> <span class="n">my_list</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tuples">
+<h4>Tuples<a class="headerlink" href="#tuples" title="Permalink to this headline">¶</a></h4>
+<p>A tuple is an ordered list of python objects that is <em>immutable</em>,
+meaning that once defined they can&#8217;t be added to or changed. They are
+useful for things like sets of coordinates, where it doesn&#8217;t make sense
+to &#8216;add another dimension&#8217;.</p>
+<p>From a pragmatic point of view, its mostly important to understand that
+they are created with <code class="docutils literal"><span class="pre">(parentheses)</span></code> and are often used in function
+calls and returns.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">hi</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bye&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">5</span><span class="n">f5c7c118dde</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bye&#39;</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dictionaries">
+<h4>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h4>
+<p>Dictionaries are named collections of objects which can be accessed by
+their label:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key 1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">}</span> <span class="c1"># add another dictionary element named `key 2` with a numerical value</span>
+<span class="nb">print</span> <span class="n">my_dictionary</span><span class="p">[</span><span class="s1">&#39;key 2&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bob</span>
+</pre></div>
+</div>
+<p>You can add elements to a dictionary by assigning to an undefined
+element</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_dictionary</span><span class="p">[</span><span class="s1">&#39;key 3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">27</span>
+<span class="nb">print</span> <span class="n">my_dictionary</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;key 1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;key 2&#39;</span><span class="p">:</span> <span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;key 3&#39;</span><span class="p">:</span> <span class="mi">27</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="python-control-flow">
+<h3>Python Control Flow<a class="headerlink" href="#python-control-flow" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="if-statements">
+<h4><code class="docutils literal"><span class="pre">if</span></code> statements<a class="headerlink" href="#if-statements" title="Permalink to this headline">¶</a></h4>
+<p>The body of an <code class="docutils literal"><span class="pre">if</span></code> statement must be indented - standard practice is
+4 spaces.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;Inside the if statement&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Inside</span> <span class="n">the</span> <span class="k">if</span> <span class="n">statement</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;This block will not be run&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;This block will be run&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="n">block</span> <span class="n">will</span> <span class="n">be</span> <span class="n">run</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;This block will not be run&#39;</span>
+<span class="k">elif</span> <span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="o">&lt;&lt;...&gt;&gt;</span> <span class="c1"># add a string</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;Not this&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="n">runs</span> <span class="n">instead</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="for-loops">
+<h4><code class="docutils literal"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h4>
+<p>For loops allow you to iterate over lists.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">]</span>  <span class="c1"># add some elements to the list</span>
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">value</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">4</span>
+</pre></div>
+</div>
+<p>If we want to iterate over a list of numbers, as is often the case with
+a for loop, we can use the <code class="docutils literal"><span class="pre">range</span></code> function to construct the list for
+us:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">):</span> <span class="c1">#add an integer between 1 and 10</span>
+    <span class="nb">print</span> <span class="n">i</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="python-functions">
+<h3>Python Functions<a class="headerlink" href="#python-functions" title="Permalink to this headline">¶</a></h3>
+<p>Functions are <strong>def</strong>ined using the syntax below. As with <code class="docutils literal"><span class="pre">if</span></code> and
+<code class="docutils literal"><span class="pre">for</span></code>, indentation specifies the scope of the function.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span>def &lt;&lt;...&gt;&gt;(param1, param2): # name your function
+    result = param1 + param2
+    return result
+
+&lt;&lt;...&gt;&gt;(3, 4) # call your function
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+<p>Functions can have default arguments, making them optional to use in the
+function call:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_other_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">param1</span> <span class="o">*</span> <span class="n">param2</span>
+
+<span class="nb">print</span> <span class="n">my_other_function</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># here we don&#39;t supply the optional argument</span>
+<span class="nb">print</span> <span class="n">my_other_function</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">)</span>  <span class="c1"># here we do. Add your own integer or float value</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">150</span>
+<span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="methods-and-attributes-of-objects">
+<h3>Methods and Attributes of Objects<a class="headerlink" href="#methods-and-attributes-of-objects" title="Permalink to this headline">¶</a></h3>
+<p>Many python objects have their own methods, which are functions that
+apply specifically to the object, as in the string manipulation
+functions below:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s1">&#39;How about a beer?&#39;</span>
+<span class="nb">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># chained call to method</span>
+<span class="nb">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>how about a beer?
+             HOW ABOUT A BEER?
+How about a beer!
+</pre></div>
+</div>
+<p>Some objects have attributes which are not functions that act upon the
+object, but components of the object&#8217;s internal representation.</p>
+<p>In the example below, we define a complex number, which has both a real
+part and a complex part, which we can access as an attribute.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_variable</span> <span class="o">=</span> <span class="mf">12.3</span> <span class="o">+</span> <span class="mi">4</span><span class="n">j</span>
+<span class="nb">print</span> <span class="n">my_variable</span>
+<span class="nb">print</span> <span class="n">my_variable</span><span class="o">.</span><span class="n">real</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">12.3</span><span class="o">+</span><span class="mi">4</span><span class="n">j</span><span class="p">)</span>
+<span class="mf">12.3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="resources-for-learning-to-program-using-python">
+<h3>Resources for learning to program using Python.<a class="headerlink" href="#resources-for-learning-to-program-using-python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>To get started learning python, an excellent collection of resources
+is available in <a class="reference external" href="http://docs.python-guide.org/en/latest/intro/learning/">The Hitchhiker&#8217;s Guide to
+Python</a>.</li>
+<li>To try Python in the browser visit
+<a class="reference external" href="http://www.learnpython.org/">learnpython.org</a>.</li>
+<li>Check out this <a class="reference external" href="https://people.duke.edu/~ccc14/sta-663/IntroductionToPythonSolutions.html">overview of Python for computational
+statistics</a></li>
+<li>Online course on <a class="reference external" href="https://www.datacamp.com/courses/intro-to-python-for-data-science">python for data
+science</a></li>
+</ul>
+<p>and finally...</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">this</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than <em>right</em> now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

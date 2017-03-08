@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Getting Started" href="index_getting_started.html"/>
         <link rel="next" title="Data Handling" href="../data_handling/index_data_handling.html"/>
@@ -71,7 +74,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Python.html">Getting Started with Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Notebook.html">Using the Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Hello World: The Teacup Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Hello World: The Teacup Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -173,23 +188,23 @@ which follows the functional form:</p>
 <p>This model has all of the canonical components of a system dynamics
 model: a stock, a flow, a feedback loop, a control parameter, and
 exhibits dynamic behavior. The model equations are:</p>
-<div class="highlight-python"><div class="highlight"><pre>Characteristic Time=
-        10
-Units: Minutes
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Characteristic</span> <span class="n">Time</span><span class="o">=</span>
+        <span class="mi">10</span>
+<span class="n">Units</span><span class="p">:</span> <span class="n">Minutes</span>
 
-Heat Loss to Room=
-    (Teacup Temperature - Room Temperature) / Characteristic Time
-Units: Degrees/Minute
-This is the rate at which heat flows from the cup into the room.
+<span class="n">Heat</span> <span class="n">Loss</span> <span class="n">to</span> <span class="n">Room</span><span class="o">=</span>
+    <span class="p">(</span><span class="n">Teacup</span> <span class="n">Temperature</span> <span class="o">-</span> <span class="n">Room</span> <span class="n">Temperature</span><span class="p">)</span> <span class="o">/</span> <span class="n">Characteristic</span> <span class="n">Time</span>
+<span class="n">Units</span><span class="p">:</span> <span class="n">Degrees</span><span class="o">/</span><span class="n">Minute</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">rate</span> <span class="n">at</span> <span class="n">which</span> <span class="n">heat</span> <span class="n">flows</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">cup</span> <span class="n">into</span> <span class="n">the</span> <span class="n">room</span><span class="o">.</span>
 
-Room Temperature=
-    70
-Units: Degrees
+<span class="n">Room</span> <span class="n">Temperature</span><span class="o">=</span>
+    <span class="mi">70</span>
+<span class="n">Units</span><span class="p">:</span> <span class="n">Degrees</span>
 
-Teacup Temperature= INTEG (
-    -Heat Loss to Room,
-        180)
-Units: Degrees
+<span class="n">Teacup</span> <span class="n">Temperature</span><span class="o">=</span> <span class="n">INTEG</span> <span class="p">(</span>
+    <span class="o">-</span><span class="n">Heat</span> <span class="n">Loss</span> <span class="n">to</span> <span class="n">Room</span><span class="p">,</span>
+        <span class="mi">180</span><span class="p">)</span>
+<span class="n">Units</span><span class="p">:</span> <span class="n">Degrees</span>
 </pre></div>
 </div>
 <div class="section" id="load-the-model">
@@ -199,12 +214,12 @@ commands. We then use PySD&#8217;s Vensim model translator to import the model
 from the Vensim model file and create a model object. We see that PySD
 translates the vensim component names into acceptable python
 identifiers.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import pysd
-model = pysd.read_vensim(&#39;../../models/Teacup/Teacup.mdl&#39;)
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Teacup/Teacup.mdl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">read_vensim</span></code> command we have just run does two things. First it
@@ -220,10 +235,10 @@ into a PySD object and return it for use.</p>
 <h2>Run with default parameters<a class="headerlink" href="#run-with-default-parameters" title="Permalink to this headline">¶</a></h2>
 <p>To understand the general behavior of the model, we can run a simulation
 using the default parameters specified by the Vensim model file. The
-default behavior of the run function is to return the value of the
-stocks as a <a class="reference external" href="http://pandas.pydata.org/">pandas</a> dataframe:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="n">stocks</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+default behavior of the run function is to return the value of all
+variables as a <a class="reference external" href="http://pandas.pydata.org/">pandas</a> dataframe:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">values</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 <div>
@@ -231,56 +246,107 @@ stocks as a <a class="reference external" href="http://pandas.pydata.org/">panda
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>teacup_temperature</th>
+      <th>Characteristic Time</th>
+      <th>FINAL TIME</th>
+      <th>Heat Loss to Room</th>
+      <th>INITIAL TIME</th>
+      <th>Room Temperature</th>
+      <th>SAVEPER</th>
+      <th>TIME</th>
+      <th>TIME STEP</th>
+      <th>Teacup Temperature</th>
+      <th>Time</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0.000</th>
+      <td>10</td>
+      <td>30</td>
+      <td>11.000000</td>
+      <td>0</td>
+      <td>70</td>
+      <td>0.125</td>
+      <td>0.000</td>
+      <td>0.125</td>
       <td>180.000000</td>
+      <td>0.000</td>
     </tr>
     <tr>
       <th>0.125</th>
-      <td>178.633556</td>
+      <td>10</td>
+      <td>30</td>
+      <td>10.862500</td>
+      <td>0</td>
+      <td>70</td>
+      <td>0.125</td>
+      <td>0.125</td>
+      <td>0.125</td>
+      <td>178.625000</td>
+      <td>0.125</td>
     </tr>
     <tr>
       <th>0.250</th>
-      <td>177.284092</td>
+      <td>10</td>
+      <td>30</td>
+      <td>10.726719</td>
+      <td>0</td>
+      <td>70</td>
+      <td>0.125</td>
+      <td>0.250</td>
+      <td>0.125</td>
+      <td>177.267188</td>
+      <td>0.250</td>
     </tr>
     <tr>
       <th>0.375</th>
-      <td>175.951388</td>
+      <td>10</td>
+      <td>30</td>
+      <td>10.592635</td>
+      <td>0</td>
+      <td>70</td>
+      <td>0.125</td>
+      <td>0.375</td>
+      <td>0.125</td>
+      <td>175.926348</td>
+      <td>0.375</td>
     </tr>
     <tr>
       <th>0.500</th>
-      <td>174.635239</td>
+      <td>10</td>
+      <td>30</td>
+      <td>10.460227</td>
+      <td>0</td>
+      <td>70</td>
+      <td>0.125</td>
+      <td>0.500</td>
+      <td>0.125</td>
+      <td>174.602268</td>
+      <td>0.500</td>
     </tr>
   </tbody>
 </table>
 </div><p>Pandas has some simple plotting utility built in which allows us to
 easily visualize the results.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">stocks</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">.</span><span class="mi">5</span><span class="p">));</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.figure.Figure at 0x1011c7910&gt;
-</pre></div>
+<img alt="../../_images/Hello_World_Teacup_8_0.png" src="../../_images/Hello_World_Teacup_8_0.png" />
 </div>
-<img alt="../../_images/Hello_World_Teacup_8_1.png" src="../../_images/Hello_World_Teacup_8_1.png" />
-</div>
-<div class="section" id="return-additional-model-components">
-<h2>Return additional model components<a class="headerlink" href="#return-additional-model-components" title="Permalink to this headline">¶</a></h2>
-<p>If we wish to see the values of model components other than the stocks,
-we can pass a list of component names with the keyword argument
-<code class="docutils literal"><span class="pre">return_columns</span></code>. This will change the columns of the returned
-dataframe such that they contain samples of the requested model
-components:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;teacup_temperature&#39;</span><span class="p">,</span> <span class="s">&#39;room_temperature&#39;</span><span class="p">])</span>
+<div class="section" id="return-specific-model-components">
+<h2>Return specific model components<a class="headerlink" href="#return-specific-model-components" title="Permalink to this headline">¶</a></h2>
+<p>If we wish to see values of only certain variables, we can pass a list
+of component names with the keyword argument <code class="docutils literal"><span class="pre">return_columns</span></code>. This
+will change the columns of the returned dataframe such that they contain
+samples of the requested model components. This is (very) slightly
+faster, but often cleaner:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Teacup Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Room Temperature&#39;</span><span class="p">])</span>
 <span class="n">values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">)</span>
 <span class="n">values</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -289,8 +355,8 @@ components:</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>room_temperature</th>
-      <th>teacup_temperature</th>
+      <th>Room Temperature</th>
+      <th>Teacup Temperature</th>
     </tr>
   </thead>
   <tbody>
@@ -302,22 +368,22 @@ components:</p>
     <tr>
       <th>0.125</th>
       <td>70</td>
-      <td>178.633556</td>
+      <td>178.625000</td>
     </tr>
     <tr>
       <th>0.250</th>
       <td>70</td>
-      <td>177.284092</td>
+      <td>177.267188</td>
     </tr>
     <tr>
       <th>0.375</th>
       <td>70</td>
-      <td>175.951388</td>
+      <td>175.926348</td>
     </tr>
     <tr>
       <th>0.500</th>
       <td>70</td>
-      <td>174.635239</td>
+      <td>174.602268</td>
     </tr>
   </tbody>
 </table>
@@ -330,10 +396,11 @@ return values. For instance, if we are comparing the result of our model
 with data that arrives at irregular time intervals. We can do so using
 the <code class="docutils literal"><span class="pre">return_timestamps</span></code> keyword argument. This argument expects a list
 of timestamps, and will return values at those timestamps.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_timestamps</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">13.178</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
-<span class="n">stocks</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_timestamps</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">13.178</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+                   <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Teacup Temperature&#39;</span><span class="p">])</span>
+<span class="n">stocks</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">)</span>
 <span class="n">stocks</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -342,7 +409,7 @@ of timestamps, and will return values at those timestamps.</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>teacup_temperature</th>
+      <th>Teacup Temperature</th>
     </tr>
   </thead>
   <tbody>
@@ -352,19 +419,19 @@ of timestamps, and will return values at those timestamps.</p>
     </tr>
     <tr>
       <th>1.0</th>
-      <td>169.532119</td>
+      <td>169.469405</td>
     </tr>
     <tr>
       <th>3.0</th>
-      <td>151.490002</td>
+      <td>151.336071</td>
     </tr>
     <tr>
       <th>7.0</th>
-      <td>124.624385</td>
+      <td>124.383922</td>
     </tr>
     <tr>
       <th>9.5</th>
-      <td>112.541515</td>
+      <td>112.287559</td>
     </tr>
   </tbody>
 </table>
@@ -375,10 +442,11 @@ of timestamps, and will return values at those timestamps.</p>
 <p>We can specify changes to the parameters of the model in the call to the
 run function. Here we set the room temperature to the constant value of
 20 degrees before running the simulation.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room_temperature&#39;</span><span class="p">:</span><span class="mi">20</span><span class="p">})</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Room Temperature&#39;</span><span class="p">:</span><span class="mi">50</span><span class="p">},</span>
+                   <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Teacup Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Room Temperature&#39;</span><span class="p">])</span>
 <span class="n">values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <img alt="../../_images/Hello_World_Teacup_14_0.png" src="../../_images/Hello_World_Teacup_14_0.png" />
@@ -386,15 +454,23 @@ run function. Here we set the room temperature to the constant value of
 In this case, we raise the room temperature from 20 to 80 degrees over
 the course of the 30 minutes. We can see that once the room temperature
 rises above that of the tea, the tea begins to warm up again.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">temp_timeseries</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room_temperature&#39;</span><span class="p">:</span><span class="n">temp_timeseries</span><span class="p">},</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;teacup_temperature&#39;</span><span class="p">,</span> <span class="s">&#39;room_temperature&#39;</span><span class="p">])</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Room Temperature&#39;</span><span class="p">:</span><span class="n">temp_timeseries</span><span class="p">},</span>
+                   <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Teacup Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Room Temperature&#39;</span><span class="p">])</span>
 <span class="n">values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <img alt="../../_images/Hello_World_Teacup_16_0.png" src="../../_images/Hello_World_Teacup_16_0.png" />
+<p>Note that when you set a variable equal to a value, you overwrite the
+existing formula for that variable. This means that if you assign a
+value to a variable which is computed based upon other variable values,
+you will break those links in the causal structure. This can be helpful
+when you wish to isolate part of a model structure, or perform
+loop-knockout analysis, but can also lead to mistakes. To return to the
+original model structure, you&#8217;ll need to reload the model.</p>
 </div>
 <div class="section" id="specifying-model-initial-conditions">
 <h2>Specifying model initial conditions<a class="headerlink" href="#specifying-model-initial-conditions" title="Permalink to this headline">¶</a></h2>
@@ -403,52 +479,33 @@ model, by passing a tuple to the argument <code class="docutils literal"><span c
 case, the first element of the tuple is the time at which the model
 should begin its execution, and the second element of the tuple is a
 dictionary containing the values of the stocks at that particular time.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room_temperature&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">},</span>
-                   <span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;teacup_temperature&#39;</span><span class="p">:</span><span class="mi">33</span><span class="p">}))</span>
+<p>Note again that this is a different syntax from merely sending a new
+value to the stock using the <code class="docutils literal"><span class="pre">params</span></code> syntax, which could cause
+unintended behavior as previously described.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;room_temperature&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">},</span>
+                   <span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;teacup_temperature&#39;</span><span class="p">:</span><span class="mi">33</span><span class="p">}),</span>
+                   <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Teacup Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Room Temperature&#39;</span><span class="p">])</span>
 <span class="n">stocks</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="../../_images/Hello_World_Teacup_18_0.png" src="../../_images/Hello_World_Teacup_18_0.png" />
+<img alt="../../_images/Hello_World_Teacup_19_0.png" src="../../_images/Hello_World_Teacup_19_0.png" />
 <p>Once a model has been run, we can choose to run it forwards again from
 its current state. To do this we specify a new set of timestamps over
 which we would like the model to run, and pass the
 <code class="docutils literal"><span class="pre">intitial_condition</span></code> argument the string <code class="docutils literal"><span class="pre">&quot;current&quot;</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="s">&#39;current&#39;</span><span class="p">,</span> <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="mi">45</span><span class="p">))</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="s1">&#39;current&#39;</span><span class="p">,</span>
+                   <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Teacup Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;Room Temperature&#39;</span><span class="p">],</span>
+                   <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">31</span><span class="p">,</span><span class="mi">45</span><span class="p">)))</span>
 <span class="n">values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Degrees F&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="../../_images/Hello_World_Teacup_20_0.png" src="../../_images/Hello_World_Teacup_20_0.png" />
-</div>
-<div class="section" id="collecting-results">
-<h2>Collecting Results<a class="headerlink" href="#collecting-results" title="Permalink to this headline">¶</a></h2>
-<p>To collect all output from a series of run commands into a record, set
-the <code class="docutils literal"><span class="pre">collect</span></code> flag to <code class="docutils literal"><span class="pre">True</span></code>. We can then access an aggregation of
-all runs via the <code class="docutils literal"><span class="pre">.get_record()</span></code> method.</p>
-<p>This can be helpful when running the model forwards for a period of
-time, then returning control to the user, who will specify changes to
-the model, and continue the integration forwards. In this case, we
-change the room temperature at 30 minutes, perhaps by taking the tea out
-into the cold.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">stocks0</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room_temperature&#39;</span><span class="p">:</span><span class="mi">75</span><span class="p">},</span>
-                    <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span> <span class="n">collect</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">stocks1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;room_temperature&#39;</span><span class="p">:</span><span class="mi">25</span><span class="p">},</span> <span class="n">initial_condition</span><span class="o">=</span><span class="s">&#39;current&#39;</span><span class="p">,</span>
-                    <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">),</span> <span class="n">collect</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_record</span><span class="p">()</span>
-
-<span class="n">stocks</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Degrees F&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Minutes&#39;</span><span class="p">);</span>
-</pre></div>
-</div>
-<img alt="../../_images/Hello_World_Teacup_22_0.png" src="../../_images/Hello_World_Teacup_22_0.png" />
-<p>To reset the record, use the method <code class="docutils literal"><span class="pre">.clear_record()</span></code> :</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span><span class="o">.</span><span class="n">clear_record</span><span class="p">()</span>
-</pre></div>
-</div>
+<img alt="../../_images/Hello_World_Teacup_21_0.png" src="../../_images/Hello_World_Teacup_21_0.png" />
 </div>
 </div>
 

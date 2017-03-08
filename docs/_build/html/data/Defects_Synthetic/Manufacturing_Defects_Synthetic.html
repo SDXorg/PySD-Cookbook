@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Data Used in this Cookbook" href="../index_data.html"/>
         <link rel="next" title="Ebola Data Loader" href="../Ebola/Ebola_Data_Loader.html"/>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../analyses/surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -113,7 +128,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Climate/sources.html">Carbon Data Sources</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Manufacturing Defects Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
 </ul>
@@ -164,23 +179,23 @@
 <h1>Manufacturing Defects Synthetic Data<a class="headerlink" href="#manufacturing-defects-synthetic-data" title="Permalink to this headline">¶</a></h1>
 <p>In this notebook we generate some data that will represent measurements
 of defects in a manufacturing setting.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#generate synthetic data</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#generate synthetic data</span>
 <span class="n">Factors</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">Outcome</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">numpoints</span> <span class="o">=</span> <span class="mi">2000</span>
-<span class="k">for</span> <span class="n">workday</span><span class="p">,</span> <span class="n">time_per_task</span>  <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=.</span><span class="mo">05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">numpoints</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=.</span><span class="mo">05</span><span class="p">,</span> <span class="n">scale</span><span class="o">=.</span><span class="mo">01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">numpoints</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">workday</span><span class="p">,</span> <span class="n">time_per_task</span>  <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">numpoints</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=.</span><span class="mi">05</span><span class="p">,</span> <span class="n">scale</span><span class="o">=.</span><span class="mi">01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">numpoints</span><span class="p">)):</span>
     <span class="n">Factors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">workday</span><span class="p">,</span> <span class="n">time_per_task</span><span class="p">])</span>
     <span class="n">Outcome</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mi">0</span><span class="o">*</span><span class="n">workday</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">time_per_task</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">time_per_task</span><span class="o">**</span><span class="mf">1.5</span> <span class="o">+</span> <span class="mi">1000</span><span class="o">*</span><span class="n">workday</span><span class="o">**</span><span class="mf">1.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Factors</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Workday&#39;</span><span class="p">,</span> <span class="s">&#39;Time per Task&#39;</span><span class="p">])</span>
-<span class="n">data</span><span class="p">[</span><span class="s">&#39;Defect Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Outcome</span>
-<span class="n">data</span><span class="p">[</span><span class="s">&#39;Defect Rate&#39;</span><span class="p">]</span><span class="o">/=</span> <span class="n">data</span><span class="p">[</span><span class="s">&#39;Defect Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span>
-<span class="n">data</span><span class="p">[</span><span class="s">&#39;Defect Rate&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=.</span><span class="mo">003</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">&#39;Defect Rate&#39;</span><span class="p">]))</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Factors</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Workday&#39;</span><span class="p">,</span> <span class="s1">&#39;Time per Task&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Defect Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Outcome</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Defect Rate&#39;</span><span class="p">]</span><span class="o">/=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Defect Rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mi">10</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Defect Rate&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=.</span><span class="mi">003</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Defect Rate&#39;</span><span class="p">]))</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -227,7 +242,7 @@ of defects in a manufacturing setting.</p>
     </tr>
   </tbody>
 </table>
-</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">&#39;Manufacturing_Defects_Synthetic_Data.csv&#39;</span><span class="p">)</span>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Manufacturing_Defects_Synthetic_Data.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

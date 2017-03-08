@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
 
   
@@ -90,11 +93,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -193,16 +208,16 @@ possibility.</p>
 python
 <a class="reference external" href="https://www.codementor.io/python/tutorial/python-path-virtualenv-import-for-beginners">import</a>
 <a class="reference external" href="https://docs.python.org/2/tutorial/modules.html#modules">syntax</a>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import pysd
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span> <span class="ne">UserWarning</span><span class="p">:</span> <span class="n">The</span> <span class="n">installed</span> <span class="n">version</span> <span class="n">of</span> <span class="n">numexpr</span> <span class="mf">2.4</span><span class="o">.</span><span class="mi">4</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span> <span class="ow">in</span> <span class="n">pandas</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">used</span>
 
-  UserWarning)
+  <span class="ne">UserWarning</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -213,7 +228,7 @@ import pysd
 to read the SIR model found at relative location:
 &#8216;<code class="docutils literal"><span class="pre">../../models/Epidemic/SIR.mdl</span></code>&#8216;, and name the resulting object
 &#8216;<code class="docutils literal"><span class="pre">model</span></code>&#8216;.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Epidemic/SIR.mdl&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Epidemic/SIR.mdl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Just to practice, <a class="reference external" href="http://pysd.readthedocs.io/en/master/functions.html#pysd.PySD.run">run the
@@ -221,14 +236,14 @@ model</a>,
 using the <code class="docutils literal"><span class="pre">.run()</span></code> function&#8217;s <code class="docutils literal"><span class="pre">params</span></code> argument to set the value of
 <code class="docutils literal"><span class="pre">Infectivity</span></code> to <code class="docutils literal"><span class="pre">0.02</span></code>.</p>
 <p>Save the result in a variable named <code class="docutils literal"><span class="pre">res</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Infectivity&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">})</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Infectivity&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">})</span>
 </pre></div>
 </div>
 <p>The cell below contains code to plot the result of your simulation.
 Execute it and ensure that everything is working properly.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">res</span><span class="p">[</span><span class="s">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Days&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Number of Individuals Infected&#39;</span><span class="p">);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Days&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Individuals Infected&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <img alt="../../_images/PySD_Challenge_1_10_0.png" src="../../_images/PySD_Challenge_1_10_0.png" />
@@ -240,12 +255,12 @@ the <a class="reference external" href="find%20ref%20to%20pandas%20max">maximum<
 who are infected at any one time. You&#8217;ll need to use Pandas syntax to
 select the column named &#8216;Infected&#8217; and then use the Pandas functions
 referenced above.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">peak_value</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">peak_value</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
-<span class="k">print</span> <span class="s">&#39;Up to&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak_value</span><span class="p">),</span> <span class="s">&#39;individuals are infected at one time.&#39;</span>
+<span class="nb">print</span> <span class="s1">&#39;Up to&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">peak_value</span><span class="p">),</span> <span class="s1">&#39;individuals are infected at one time.&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Up to 481 individuals are infected at one time.
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Up</span> <span class="n">to</span> <span class="mi">481</span> <span class="n">individuals</span> <span class="n">are</span> <span class="n">infected</span> <span class="n">at</span> <span class="n">one</span> <span class="n">time</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -262,18 +277,18 @@ extends the python standard <code class="docutils literal"><span class="pre">ran
 values. Consult the <a href="#id1"><span class="problematic" id="id3">`numpy documentation &lt;&gt;`__</span></a> to determine the
 arguments you&#8217;ll want to pass in to this function to generate an array
 that looks like:</p>
-<div class="highlight-python"><div class="highlight"><pre>[0.005, 0.01, 0.015, ... 0.095, 0.1]
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.015</span><span class="p">,</span> <span class="o">...</span> <span class="mf">0.095</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>You may have to be creative to ensure that the last value in the array
 is actually <code class="docutils literal"><span class="pre">0.1</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="n">infectivity_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">.</span><span class="mo">005</span><span class="p">,</span> <span class="o">.</span><span class="mi">105</span><span class="p">,</span> <span class="o">.</span><span class="mo">005</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">infectivity_values</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">infectivity_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">.</span><span class="mi">005</span><span class="p">,</span> <span class="o">.</span><span class="mi">105</span><span class="p">,</span> <span class="o">.</span><span class="mi">005</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">infectivity_values</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>[ 0.005  0.01   0.015  0.02   0.025  0.03   0.035  0.04   0.045  0.05
-  0.055  0.06   0.065  0.07   0.075  0.08   0.085  0.09   0.095  0.1  ]
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mf">0.005</span>  <span class="mf">0.01</span>   <span class="mf">0.015</span>  <span class="mf">0.02</span>   <span class="mf">0.025</span>  <span class="mf">0.03</span>   <span class="mf">0.035</span>  <span class="mf">0.04</span>   <span class="mf">0.045</span>  <span class="mf">0.05</span>
+  <span class="mf">0.055</span>  <span class="mf">0.06</span>   <span class="mf">0.065</span>  <span class="mf">0.07</span>   <span class="mf">0.075</span>  <span class="mf">0.08</span>   <span class="mf">0.085</span>  <span class="mf">0.09</span>   <span class="mf">0.095</span>  <span class="mf">0.1</span>  <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -287,16 +302,16 @@ I&#8217;ve started this off for you below.</p>
 infectivity, saving the result to a variable named res. Then use
 python&#8217;s <a href="#id1"><span class="problematic" id="id4">`list append &lt;&gt;`__</span></a> syntax to add the appropriate values to the
 end of the <code class="docutils literal"><span class="pre">peak_value_list</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">peak_value_list</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">peak_value_list</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">inf</span> <span class="ow">in</span> <span class="n">infectivity_values</span><span class="p">:</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Infectivity&#39;</span><span class="p">:</span> <span class="n">inf</span><span class="p">})</span>
-    <span class="n">peak_value_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Infectivity&#39;</span><span class="p">:</span> <span class="n">inf</span><span class="p">})</span>
+    <span class="n">peak_value_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;Infected&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 
 <span class="n">peak_value_list</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mf">24.920470547371014</span><span class="p">,</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">24.920470547371014</span><span class="p">,</span>
  <span class="mf">237.97922024327414</span><span class="p">,</span>
  <span class="mf">384.66967921830297</span><span class="p">,</span>
  <span class="mf">481.85895379444457</span><span class="p">,</span>
@@ -325,11 +340,11 @@ end of the <code class="docutils literal"><span class="pre">peak_value_list</spa
 x-axis, and the peak value of the infections on the y axis. Label each
 axis, and give the plot a title. From this plot we can eyeball the value
 of infectivity beyond which the peak level of infections rises over 500.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infectivity_values</span><span class="p">,</span> <span class="n">peak_value_list</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">infectivity_values</span><span class="p">,</span> <span class="n">peak_value_list</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Infectivity&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Peak Value of Infections&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Peak level of infection as a function of infectivity.&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Infectivity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Peak Value of Infections&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Peak level of infection as a function of infectivity.&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <img alt="../../_images/PySD_Challenge_1_18_0.png" src="../../_images/PySD_Challenge_1_18_0.png" />

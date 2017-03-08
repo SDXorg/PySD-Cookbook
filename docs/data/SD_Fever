@@ -1,0 +1,610 @@
+
+Prepare georeferenced data for artificial disease outbreak in Europe
+====================================================================
+
+In this notebook geospatial data from a shapefile is loaded, relevant
+attributes extracte and
+
+.. code:: python
+
+    % matplotlib inline
+    import geopandas as gp
+    import pandas as pd
+
+The geospatial vector dataset shapefile was downloaded from open access
+NaturalEarthData, which provides free vector and raster map data.
+
+Download:
+http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne\_110m\_admin\_0\_countries.zip
+
+.. code:: python
+
+    shp = 'Shapefile/ne_110m_admin_0_countries.shp'
+    geo_df = gp.GeoDataFrame.from_file(shp)
+    geo_df.head(1)
+
+
+
+
+.. raw:: html
+
+    <div>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>abbrev</th>
+          <th>abbrev_len</th>
+          <th>adm0_a3</th>
+          <th>adm0_a3_is</th>
+          <th>adm0_a3_un</th>
+          <th>adm0_a3_us</th>
+          <th>adm0_a3_wb</th>
+          <th>adm0_dif</th>
+          <th>admin</th>
+          <th>brk_a3</th>
+          <th>...</th>
+          <th>su_dif</th>
+          <th>subregion</th>
+          <th>subunit</th>
+          <th>tiny</th>
+          <th>type</th>
+          <th>un_a3</th>
+          <th>wb_a2</th>
+          <th>wb_a3</th>
+          <th>wikipedia</th>
+          <th>woe_id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>Afg.</td>
+          <td>4.0</td>
+          <td>AFG</td>
+          <td>AFG</td>
+          <td>-99.0</td>
+          <td>AFG</td>
+          <td>-99.0</td>
+          <td>0.0</td>
+          <td>Afghanistan</td>
+          <td>AFG</td>
+          <td>...</td>
+          <td>0.0</td>
+          <td>Southern Asia</td>
+          <td>Afghanistan</td>
+          <td>-99.0</td>
+          <td>Sovereign country</td>
+          <td>004</td>
+          <td>AF</td>
+          <td>AFG</td>
+          <td>-99.0</td>
+          <td>-99.0</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>1 rows × 64 columns</p>
+    </div>
+
+
+
+Attributes in shapefile
+'''''''''''''''''''''''
+
+.. code:: python
+
+    geo_df.columns
+
+
+
+
+.. parsed-literal::
+
+    Index([    u'abbrev', u'abbrev_len',    u'adm0_a3', u'adm0_a3_is',
+           u'adm0_a3_un', u'adm0_a3_us', u'adm0_a3_wb',   u'adm0_dif',
+                u'admin',     u'brk_a3',   u'brk_diff',  u'brk_group',
+             u'brk_name',  u'continent',    u'economy', u'featurecla',
+              u'fips_10',  u'formal_en',  u'formal_fr', u'gdp_md_est',
+             u'gdp_year',   u'geometry',   u'geou_dif',    u'geounit',
+                u'gu_a3',   u'homepart', u'income_grp',     u'iso_a2',
+               u'iso_a3',     u'iso_n3',  u'labelrank', u'lastcensus',
+                u'level',   u'long_len', u'mapcolor13',  u'mapcolor7',
+            u'mapcolor8',  u'mapcolor9',       u'name',   u'name_alt',
+             u'name_len',  u'name_long',  u'name_sort',  u'note_adm0',
+             u'note_brk',    u'pop_est',   u'pop_year',     u'postal',
+            u'region_un',  u'region_wb',  u'scalerank',     u'sov_a3',
+           u'sovereignt',      u'su_a3',     u'su_dif',  u'subregion',
+              u'subunit',       u'tiny',       u'type',      u'un_a3',
+                u'wb_a2',      u'wb_a3',  u'wikipedia',     u'woe_id'],
+          dtype='object')
+
+
+
+Take only European countries and exclude Russia
+'''''''''''''''''''''''''''''''''''''''''''''''
+
+.. code:: python
+
+    geo_df_EU = geo_df[geo_df["region_un"] == "Europe"]
+    
+    geo_df_EU.set_index("admin", inplace=True)
+    geo_df_EU.drop('Russia', axis=0, inplace=True)
+    geo_df_EU.reset_index(inplace=True)
+
+
+.. parsed-literal::
+
+    /usr/local/lib/python2.7/dist-packages/ipykernel/__main__.py:4: SettingWithCopyWarning: 
+    A value is trying to be set on a copy of a slice from a DataFrame
+    
+    See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+
+
+Retrieve relevant data
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    geo_df_EU = geo_df_EU[['geometry', 'pop_est', 'admin']]
+    geo_df_EU.head()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>geometry</th>
+          <th>pop_est</th>
+          <th>admin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
+          <td>3639453.0</td>
+          <td>Albania</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
+          <td>8210281.0</td>
+          <td>Austria</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>POLYGON ((3.314971144228537 51.34578095153609,...</td>
+          <td>10414336.0</td>
+          <td>Belgium</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>POLYGON ((22.65714969248299 44.23492300066128,...</td>
+          <td>7204687.0</td>
+          <td>Bulgaria</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>POLYGON ((19.00548628101012 44.86023366960916,...</td>
+          <td>4613414.0</td>
+          <td>Bosnia and Herzegovina</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+Compute population density based on Population density the number of
+people per unit of area,
+
+.. code:: python
+
+    geo_df_EU['pop_density'] = geo_df_EU['pop_est']/(geo_df_EU['geometry'].area)
+
+Normalization of pop density into a contact rate between 10 and 100
+
+.. code:: python
+
+    from sklearn import preprocessing
+    min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
+    x_scaled = min_max_scaler.fit_transform(geo_df_EU['pop_density'])
+    geo_df_EU['inf_rate'] = pd.Series(x_scaled)
+
+
+.. parsed-literal::
+
+    /usr/local/lib/python2.7/dist-packages/sklearn/preprocessing/data.py:324: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and will raise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
+      warnings.warn(DEPRECATION_MSG_1D, DeprecationWarning)
+    /usr/local/lib/python2.7/dist-packages/sklearn/preprocessing/data.py:359: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and will raise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
+      warnings.warn(DEPRECATION_MSG_1D, DeprecationWarning)
+
+
+.. code:: python
+
+    geo_df_EU.head()
+
+
+
+
+.. raw:: html
+
+    <div>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>geometry</th>
+          <th>pop_est</th>
+          <th>admin</th>
+          <th>pop_density</th>
+          <th>inf_rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
+          <td>3639453.0</td>
+          <td>Albania</td>
+          <td>1.142627e+06</td>
+          <td>0.356814</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
+          <td>8210281.0</td>
+          <td>Austria</td>
+          <td>8.065423e+05</td>
+          <td>0.250476</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>POLYGON ((3.314971144228537 51.34578095153609,...</td>
+          <td>10414336.0</td>
+          <td>Belgium</td>
+          <td>2.719143e+06</td>
+          <td>0.855631</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>POLYGON ((22.65714969248299 44.23492300066128,...</td>
+          <td>7204687.0</td>
+          <td>Bulgaria</td>
+          <td>5.944683e+05</td>
+          <td>0.183375</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>POLYGON ((19.00548628101012 44.86023366960916,...</td>
+          <td>4613414.0</td>
+          <td>Bosnia and Herzegovina</td>
+          <td>8.098445e+05</td>
+          <td>0.251521</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: python
+
+    geo_df_EU.plot();
+
+
+
+.. image:: Prepare%20Data_files/Prepare%20Data_15_0.png
+
+
+Give columns easy understandable names and remove unncessary columns
+
+.. code:: python
+
+    geo_df_EU.rename(columns={'admin': 'country', 'pop_est': 'population'},inplace=True )
+    geo_df_EU.drop(['pop_density' ], axis=1, inplace=True)
+
+Save results into new shapefle
+
+.. code:: python
+
+    geo_df_EU.to_file('Shapefile/geo_df_EU.shp', driver="ESRI Shapefile")
+
+.. code:: python
+
+    geo_df_EU
+
+
+
+
+.. raw:: html
+
+    <div>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>geometry</th>
+          <th>population</th>
+          <th>country</th>
+          <th>inf_rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
+          <td>3639453.0</td>
+          <td>Albania</td>
+          <td>0.356814</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
+          <td>8210281.0</td>
+          <td>Austria</td>
+          <td>0.250476</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>POLYGON ((3.314971144228537 51.34578095153609,...</td>
+          <td>10414336.0</td>
+          <td>Belgium</td>
+          <td>0.855631</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>POLYGON ((22.65714969248299 44.23492300066128,...</td>
+          <td>7204687.0</td>
+          <td>Bulgaria</td>
+          <td>0.183375</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>POLYGON ((19.00548628101012 44.86023366960916,...</td>
+          <td>4613414.0</td>
+          <td>Bosnia and Herzegovina</td>
+          <td>0.251521</td>
+        </tr>
+        <tr>
+          <th>5</th>
+          <td>POLYGON ((23.48412763844985 53.91249766704114,...</td>
+          <td>9648533.0</td>
+          <td>Belarus</td>
+          <td>0.103152</td>
+        </tr>
+        <tr>
+          <th>6</th>
+          <td>POLYGON ((9.59422610844635 47.52505809182027, ...</td>
+          <td>7604467.0</td>
+          <td>Switzerland</td>
+          <td>0.437561</td>
+        </tr>
+        <tr>
+          <th>7</th>
+          <td>POLYGON ((16.96028812019458 48.5969823268506, ...</td>
+          <td>10211904.0</td>
+          <td>Czech Republic</td>
+          <td>0.314026</td>
+        </tr>
+        <tr>
+          <th>8</th>
+          <td>POLYGON ((9.921906365609232 54.98310415304803,...</td>
+          <td>82329758.0</td>
+          <td>Germany</td>
+          <td>0.562518</td>
+        </tr>
+        <tr>
+          <th>9</th>
+          <td>(POLYGON ((12.69000613775563 55.60999095318078...</td>
+          <td>5500510.0</td>
+          <td>Denmark</td>
+          <td>0.277425</td>
+        </tr>
+        <tr>
+          <th>10</th>
+          <td>POLYGON ((-9.034817674180246 41.88057058365968...</td>
+          <td>40525002.0</td>
+          <td>Spain</td>
+          <td>0.235993</td>
+        </tr>
+        <tr>
+          <th>11</th>
+          <td>POLYGON ((24.31286258311462 57.79342357037697,...</td>
+          <td>1299371.0</td>
+          <td>Estonia</td>
+          <td>0.054815</td>
+        </tr>
+        <tr>
+          <th>12</th>
+          <td>POLYGON ((28.59192955904319 69.06477692328666,...</td>
+          <td>5250275.0</td>
+          <td>Finland</td>
+          <td>0.021327</td>
+        </tr>
+        <tr>
+          <th>13</th>
+          <td>(POLYGON ((-52.55642473001839 2.50470530843705...</td>
+          <td>64057792.0</td>
+          <td>France</td>
+          <td>0.274377</td>
+        </tr>
+        <tr>
+          <th>14</th>
+          <td>(POLYGON ((-5.661948614921897 54.5546031764838...</td>
+          <td>62262000.0</td>
+          <td>United Kingdom</td>
+          <td>0.571255</td>
+        </tr>
+        <tr>
+          <th>15</th>
+          <td>(POLYGON ((23.699980096133 35.70500438083553, ...</td>
+          <td>10737428.0</td>
+          <td>Greece</td>
+          <td>0.242472</td>
+        </tr>
+        <tr>
+          <th>16</th>
+          <td>POLYGON ((18.82983808765005 45.90887767189184,...</td>
+          <td>4489409.0</td>
+          <td>Croatia</td>
+          <td>0.211485</td>
+        </tr>
+        <tr>
+          <th>17</th>
+          <td>POLYGON ((16.20229821133736 46.85238597267696,...</td>
+          <td>9905596.0</td>
+          <td>Hungary</td>
+          <td>0.280725</td>
+        </tr>
+        <tr>
+          <th>18</th>
+          <td>POLYGON ((-6.197884894220991 53.86756500916336...</td>
+          <td>4203200.0</td>
+          <td>Ireland</td>
+          <td>0.164476</td>
+        </tr>
+        <tr>
+          <th>19</th>
+          <td>POLYGON ((-14.50869544112923 66.45589223903143...</td>
+          <td>306694.0</td>
+          <td>Iceland</td>
+          <td>0.000000</td>
+        </tr>
+        <tr>
+          <th>20</th>
+          <td>(POLYGON ((15.52037601081383 38.23115509699147...</td>
+          <td>58126212.0</td>
+          <td>Italy</td>
+          <td>0.525513</td>
+        </tr>
+        <tr>
+          <th>21</th>
+          <td>POLYGON ((20.76215999999999 42.05186000000003,...</td>
+          <td>1804838.0</td>
+          <td>Kosovo</td>
+          <td>0.458936</td>
+        </tr>
+        <tr>
+          <th>22</th>
+          <td>POLYGON ((22.73109866709265 54.32753693299333,...</td>
+          <td>3555179.0</td>
+          <td>Lithuania</td>
+          <td>0.119962</td>
+        </tr>
+        <tr>
+          <th>23</th>
+          <td>POLYGON ((6.043073357781111 50.12805166279423,...</td>
+          <td>491775.0</td>
+          <td>Luxembourg</td>
+          <td>0.511341</td>
+        </tr>
+        <tr>
+          <th>24</th>
+          <td>POLYGON ((21.05580040862242 56.03107636171107,...</td>
+          <td>2231503.0</td>
+          <td>Latvia</td>
+          <td>0.070405</td>
+        </tr>
+        <tr>
+          <th>25</th>
+          <td>POLYGON ((26.6193367855978 48.22072622333347, ...</td>
+          <td>4320748.0</td>
+          <td>Moldova</td>
+          <td>0.351516</td>
+        </tr>
+        <tr>
+          <th>26</th>
+          <td>POLYGON ((20.59023000000008 41.85541000000006,...</td>
+          <td>2066718.0</td>
+          <td>Macedonia</td>
+          <td>0.236847</td>
+        </tr>
+        <tr>
+          <th>27</th>
+          <td>POLYGON ((19.80161339689869 42.50009349219084,...</td>
+          <td>672180.0</td>
+          <td>Montenegro</td>
+          <td>0.139051</td>
+        </tr>
+        <tr>
+          <th>28</th>
+          <td>POLYGON ((6.074182570020923 53.51040334737814,...</td>
+          <td>16715999.0</td>
+          <td>Netherlands</td>
+          <td>1.000000</td>
+        </tr>
+        <tr>
+          <th>29</th>
+          <td>(POLYGON ((28.16554731620292 71.18547435168051...</td>
+          <td>4676305.0</td>
+          <td>Norway</td>
+          <td>0.011632</td>
+        </tr>
+        <tr>
+          <th>30</th>
+          <td>POLYGON ((15.01699588385867 51.10667409932158,...</td>
+          <td>38482919.0</td>
+          <td>Poland</td>
+          <td>0.294016</td>
+        </tr>
+        <tr>
+          <th>31</th>
+          <td>POLYGON ((-9.034817674180246 41.88057058365968...</td>
+          <td>10707924.0</td>
+          <td>Portugal</td>
+          <td>0.340913</td>
+        </tr>
+        <tr>
+          <th>32</th>
+          <td>POLYGON ((22.71053144704049 47.88219391538941,...</td>
+          <td>22215421.0</td>
+          <td>Romania</td>
+          <td>0.249763</td>
+        </tr>
+        <tr>
+          <th>33</th>
+          <td>POLYGON ((20.87431277841341 45.41637543393432,...</td>
+          <td>7379339.0</td>
+          <td>Republic of Serbia</td>
+          <td>0.266628</td>
+        </tr>
+        <tr>
+          <th>34</th>
+          <td>POLYGON ((18.85314415861362 49.49622976337764,...</td>
+          <td>5463046.0</td>
+          <td>Slovakia</td>
+          <td>0.295718</td>
+        </tr>
+        <tr>
+          <th>35</th>
+          <td>POLYGON ((13.80647545742153 46.50930613869122,...</td>
+          <td>2005692.0</td>
+          <td>Slovenia</td>
+          <td>0.280460</td>
+        </tr>
+        <tr>
+          <th>36</th>
+          <td>POLYGON ((22.18317345550193 65.72374054632017,...</td>
+          <td>9059651.0</td>
+          <td>Sweden</td>
+          <td>0.031363</td>
+        </tr>
+        <tr>
+          <th>37</th>
+          <td>POLYGON ((31.78599816257159 52.10167796488545,...</td>
+          <td>45700395.0</td>
+          <td>Ukraine</td>
+          <td>0.190777</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+

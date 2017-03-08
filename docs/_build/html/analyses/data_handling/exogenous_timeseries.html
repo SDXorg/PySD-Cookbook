@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
 
   
@@ -90,11 +93,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -162,28 +177,28 @@ values into a model. We&#8217;ll use the carbon emissions dataset, and feed
 total emissions into a stock of excess atmospheric carbon:</p>
 <p>We&#8217;ll begin as usual by importing PySD and the machinery we need in
 order to deal with data manipulation and plotting.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import pysd
-import pandas as pd
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span> <span class="ne">UserWarning</span><span class="p">:</span> <span class="n">The</span> <span class="n">installed</span> <span class="n">version</span> <span class="n">of</span> <span class="n">numexpr</span> <span class="mf">2.4</span><span class="o">.</span><span class="mi">4</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span> <span class="ow">in</span> <span class="n">pandas</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">used</span>
 
-  UserWarning)
+  <span class="ne">UserWarning</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>We use <a href="#id1"><span class="problematic" id="id2">`Pandas &lt;&gt;`__</span></a> library to import emissions data from a <code class="docutils literal"><span class="pre">.csv</span></code>
 file. In this command, we both rename the columns of the dataset, and
 set the index to the &#8216;Year&#8217; column.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;../../data/Climate/global_emissions.csv&#39;</span><span class="p">,</span>
-                        <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s">&#39;Year&#39;</span><span class="p">,</span>
-                        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Year&#39;</span><span class="p">,</span> <span class="s">&#39;Total Emissions&#39;</span><span class="p">,</span>
-                               <span class="s">&#39;Gas Emissions&#39;</span><span class="p">,</span> <span class="s">&#39;Liquid Emissions&#39;</span><span class="p">,</span>
-                               <span class="s">&#39;Solid Emissions&#39;</span><span class="p">,</span> <span class="s">&#39;Cement Emissions&#39;</span><span class="p">,</span>
-                               <span class="s">&#39;Flare Emissions&#39;</span><span class="p">,</span> <span class="s">&#39;Per Capita Emissions&#39;</span><span class="p">])</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Climate/global_emissions.csv&#39;</span><span class="p">,</span>
+                        <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Total Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Gas Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Solid Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Cement Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Flare Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Per Capita Emissions&#39;</span><span class="p">])</span>
 <span class="n">emissions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -264,24 +279,24 @@ set the index to the &#8216;Year&#8217; column.</p>
     </tr>
   </tbody>
 </table>
-</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Climate/Atmospheric_Bathtub.mdl&#39;</span><span class="p">)</span>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Climate/Atmospheric_Bathtub.mdl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In our vensim model file, the value of the inflow to the carbon bathtub,
 the <code class="docutils literal"><span class="pre">Emissions</span></code> parameter, is set to zero. We want to instead have
 this track our exogenous data.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>Emissions=
-    0
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">Emissions</span><span class="o">=</span>
+    <span class="mi">0</span>
 
-Excess Atmospheric Carbon= INTEG (
-    Emissions - Natural Removal,
-    0)
+<span class="n">Excess</span> <span class="n">Atmospheric</span> <span class="n">Carbon</span><span class="o">=</span> <span class="n">INTEG</span> <span class="p">(</span>
+    <span class="n">Emissions</span> <span class="o">-</span> <span class="n">Natural</span> <span class="n">Removal</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">)</span>
 
-Natural Removal=
-    Excess Atmospheric Carbon * Removal Constant
+<span class="n">Natural</span> <span class="n">Removal</span><span class="o">=</span>
+    <span class="n">Excess</span> <span class="n">Atmospheric</span> <span class="n">Carbon</span> <span class="o">*</span> <span class="n">Removal</span> <span class="n">Constant</span>
 
-Removal Constant=
-    0.01
+<span class="n">Removal</span> <span class="n">Constant</span><span class="o">=</span>
+    <span class="mf">0.01</span>
 </pre></div>
 </div>
 <div class="section" id="aligning-the-model-time-bounds-with-that-of-the-dataset">
@@ -290,30 +305,30 @@ Removal Constant=
 ensure that the model will execute over the proper timeseries. The
 initial and final times of the simulation are specified in the model
 file as:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;initial:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">initial_time</span><span class="p">()</span>
-<span class="k">print</span> <span class="s">&#39;final:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">final_time</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s1">&#39;initial:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">initial_time</span><span class="p">()</span>
+<span class="nb">print</span> <span class="s1">&#39;final:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">final_time</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>initial: 0
-final: 100
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">initial</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">final</span><span class="p">:</span> <span class="mi">100</span>
 </pre></div>
 </div>
 <p>However, the time frame of the dataset runs:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="s">&#39;initial:&#39;</span><span class="p">,</span> <span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">print</span> <span class="s">&#39;final:&#39;</span><span class="p">,</span> <span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s1">&#39;initial:&#39;</span><span class="p">,</span> <span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span> <span class="s1">&#39;final:&#39;</span><span class="p">,</span> <span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>initial: 1751
-final: 2011
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">initial</span><span class="p">:</span> <span class="mi">1751</span>
+<span class="n">final</span><span class="p">:</span> <span class="mi">2011</span>
 </pre></div>
 </div>
 <p>In order to run the model over a time series equal to that of the data
 set, we need to specify the appropriate initial conditions, and ask the
 run function to return to us timestamps equal to that of our dataset:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                   <span class="p">{</span><span class="s">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}),</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">{</span><span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}),</span>
                 <span class="n">return_timestamps</span><span class="o">=</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Emissions&#39;</span><span class="p">,</span> <span class="s">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">])</span>
+                <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">])</span>
 <span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -361,58 +376,17 @@ run function to return to us timestamps equal to that of our dataset:</p>
 our dataset. We can do this in a very straightforward way by passing the
 Pandas <code class="docutils literal"><span class="pre">Series</span></code> corresponding to the dataset in a dictionary to the
 <code class="docutils literal"><span class="pre">params</span></code> argument of the run function.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-                                   <span class="p">{</span><span class="s">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}),</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">{</span><span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}),</span>
                 <span class="n">return_timestamps</span><span class="o">=</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;Emissions&#39;</span><span class="p">,</span> <span class="s">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">],</span>
-                <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Emissions&#39;</span><span class="p">:</span> <span class="n">emissions</span><span class="p">[</span><span class="s">&#39;Total Emissions&#39;</span><span class="p">]})</span>
-<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+                <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">],</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Emissions&#39;</span><span class="p">:</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">]})</span>
 </pre></div>
 </div>
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Emissions</th>
-      <th>Excess Atmospheric Carbon</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1751</th>
-      <td>3.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>1752</th>
-      <td>3.0</td>
-      <td>3.000000</td>
-    </tr>
-    <tr>
-      <th>1753</th>
-      <td>3.0</td>
-      <td>5.970000</td>
-    </tr>
-    <tr>
-      <th>1754</th>
-      <td>3.0</td>
-      <td>8.910300</td>
-    </tr>
-    <tr>
-      <th>1755</th>
-      <td>3.0</td>
-      <td>11.821197</td>
-    </tr>
-  </tbody>
-</table>
-</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10fa14550&gt;
-</pre></div>
-</div>
-<img alt="../../_images/exogenous_timeseries_15_1.png" src="../../_images/exogenous_timeseries_15_1.png" />
+<img alt="../../_images/exogenous_timeseries_15_0.png" src="../../_images/exogenous_timeseries_15_0.png" />
 </div>
 </div>
 

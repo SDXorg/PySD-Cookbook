@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Data handling with Pandas &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Data handling with Pandas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/data_handling/pandas_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="data-handling-with-pandas">
+<h1>Data handling with Pandas<a class="headerlink" href="#data-handling-with-pandas" title="Permalink to this headline">¶</a></h1>
+<p>Pandas is a library optimized for handling one or two dimensional data
+sources [1]. One dimensional data is stored in a <code class="docutils literal"><span class="pre">Series</span></code> object, and
+two dimensional data is stored in a <code class="docutils literal"><span class="pre">DataFrame</span></code> object.</p>
+<div class="section" id="loading-the-library">
+<h2>Loading the library<a class="headerlink" href="#loading-the-library" title="Permalink to this headline">¶</a></h2>
+<p>It is customary to give the library a short handle &#8216;<code class="docutils literal"><span class="pre">pd</span></code>&#8216; at import
+time:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#this line aids in displaying the data concisely</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-data-from-csv-files">
+<h2>Loading data from CSV files<a class="headerlink" href="#loading-data-from-csv-files" title="Permalink to this headline">¶</a></h2>
+<p>Pandas gives us a comprehensive set of tools for loading data from <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.18.1/io.html">a
+variety of
+sources</a>,
+including CSV, Excel, SQL, JSON, and Stata, amongst others. In this
+demonstration, we&#8217;ll read a comma separated value file of global
+emissions data from the year 1751 until 2011.</p>
+<p>The <code class="docutils literal"><span class="pre">.read_csv</span></code> <a href="#id1"><span class="problematic" id="id2">`method &lt;&gt;`__</span></a> gives us options for how we want to
+format the data as we read it in. In reading in our data file, we want
+to skip the second row (indexed as <code class="docutils literal"><span class="pre">1</span></code>!) and use the column <code class="docutils literal"><span class="pre">Time</span></code>
+as the index of our resulting <code class="docutils literal"><span class="pre">DataFrame</span></code>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.&lt;&lt;...&gt;&gt;</span><span class="p">(</span><span class="s1">&#39;../../data/Climate/global_emissions.csv&#39;</span><span class="p">,</span>  <span class="c1"># add the call to `read_csv`</span>
+                        <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">emissions</span>  <span class="c1"># Display the resulting DataFrame in the notebook</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selecting-rows-of-data-by-name">
+<h2>Selecting rows of data by name<a class="headerlink" href="#selecting-rows-of-data-by-name" title="Permalink to this headline">¶</a></h2>
+<p>Both <code class="docutils literal"><span class="pre">DataFrame</span></code> and <code class="docutils literal"><span class="pre">Series</span></code> objects have an <code class="docutils literal"><span class="pre">index</span></code> attribute
+which is used to identify their rows. We can access rows of data
+according to this index, using the <code class="docutils literal"><span class="pre">.loc[...]</span></code> syntax.</p>
+<p>Between the brackets, we can select individual rows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1875</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>or ranges of dates:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1908</span><span class="p">:</span><span class="mi">1920</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>or ranges beginning or ending at a specific point:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1967</span><span class="p">:]</span>
+<span class="n">emissions</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">1805</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Give these a try and become comfortable selecting index ranges.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">]</span> <span class="c1"># try some of the values above, or some of your own</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selecting-rows-of-data-by-position">
+<h2>Selecting rows of data by position<a class="headerlink" href="#selecting-rows-of-data-by-position" title="Permalink to this headline">¶</a></h2>
+<p>In addition to selecting by row names, we can select by the row position
+using the <code class="docutils literal"><span class="pre">.iloc</span></code> syntax.</p>
+<p>This syntax lets us select the first n rows: &gt;<code class="docutils literal"><span class="pre">emissions.iloc[:5]</span></code></p>
+<p>or, if we wish, the last n, using a minus sign to indicate counting from
+the end of the <code class="docutils literal"><span class="pre">DataFrame</span></code>:</p>
+<blockquote>
+<div>``` emissions.iloc[-5:]</div></blockquote>
+<div class="highlight-default"><div class="highlight"><pre><span></span>or rows in the middle:
+&gt;```
+emissions.iloc[10:20]
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">]</span>  <span class="c1"># Try some of the values above</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="renaming-columns">
+<h2>Renaming columns<a class="headerlink" href="#renaming-columns" title="Permalink to this headline">¶</a></h2>
+<p>The column names given in the CSV file are too long to use conveniently
+in dealing with data. We can assign new column names from a list of
+strings, that will be applied in order as the new column names:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Solid Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Cement Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Flare Emissions&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Per Capita Emissions&#39;</span><span class="p">]</span>
+<span class="n">emissions</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-specific-columns">
+<h2>Accessing specific columns<a class="headerlink" href="#accessing-specific-columns" title="Permalink to this headline">¶</a></h2>
+<p>Each of the columns in the <code class="docutils literal"><span class="pre">DataFrame</span></code> can be accessed as its own
+<code class="docutils literal"><span class="pre">Series</span></code> object, using the same syntax we would use to access members
+of a python dictionary:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;&lt;&lt;...&gt;&gt;&#39;</span><span class="p">]</span>  <span class="c1"># Choose one of the columns using its name</span>
+</pre></div>
+</div>
+<p>Passing a list of column names into this syntax returns a subset of the
+dataframe:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="p">[[</span><span class="s1">&#39;Gas Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="element-wise-arithmetic">
+<h2>Element-wise Arithmetic<a class="headerlink" href="#element-wise-arithmetic" title="Permalink to this headline">¶</a></h2>
+<p>We can perform <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.18.1/dsintro.html#dataframe-interoperability-with-numpy-functions">element-wise
+arithmetic</a>
+on <code class="docutils literal"><span class="pre">DataFrame</span></code> columns using natural syntax.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Gas Emissions&#39;</span><span class="p">]</span> <span class="o">&lt;&lt;...&gt;&gt;</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">]</span> <span class="c1"># try using a &#39;+&#39; or &#39;-&#39; operator</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="array-operations">
+<h2>Array Operations<a class="headerlink" href="#array-operations" title="Permalink to this headline">¶</a></h2>
+<p>A number of simple operations are built into Pandas to facilitate
+working with the data. For example, we can show <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.18.1/basics.html#descriptive-statistics">descriptive
+statistics</a>
+such as the maximum value of each column:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The year <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.18.1/basics.html#index-of-min-max-values">in which this maximum value
+occurred</a>:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Or the sum of each column:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.&lt;&lt;...&gt;&gt;</span><span class="p">()</span> <span class="c1"># substitute the function name &#39;sum&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="merging-datasets">
+<h2>Merging Datasets<a class="headerlink" href="#merging-datasets" title="Permalink to this headline">¶</a></h2>
+<p>The dataset we have currently is missing data for per capita consumption
+before 1950. We have another dataset which gives us estimates of the
+world population which we can use to try and fill in some missing data.
+It too, however, has some missing values: before 1900, the data comes at
+50 year intervals.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Climate/world_population.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>What we need to do is first merge the two datasets together. Pandas
+gives us a merge function which allows us to align the datasets on their
+index values.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># substitute &#39;outer&#39; for the value of how</span>
+<span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">emissions</span><span class="p">,</span> <span class="n">population</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;&lt;&lt;...&gt;&gt;&#39;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">merged</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1750</span><span class="p">:</span><span class="mi">2011</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="interpolating-missing-values">
+<h2>Interpolating missing values<a class="headerlink" href="#interpolating-missing-values" title="Permalink to this headline">¶</a></h2>
+<p>The merge operation creates <code class="docutils literal"><span class="pre">NaN</span></code> values in the rows where data is
+missing from the world population column. We can fill these using a
+cubic spline interpolation from the surrounding points:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">interpolated</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+<span class="n">interpolated</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1750</span><span class="p">:</span><span class="mi">2011</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="calculating-per-capita-emissions">
+<h3>Calculating per capita emissions<a class="headerlink" href="#calculating-per-capita-emissions" title="Permalink to this headline">¶</a></h3>
+<p>Now we can calculate a new value for per capita emissions. We multiply
+by <code class="docutils literal"><span class="pre">1,000,000</span></code> to convert from units of &#8216;Million Metric Tons&#8217; as the
+Total Emissions are expressed, to merely &#8216;Metric Tons&#8217;, as the existing,
+incomplete estimate of per capita emissions is expressed.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">interpolated</span><span class="p">[</span><span class="s1">&#39;Per Capita Emissions 2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interpolated</span><span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">interpolated</span><span class="p">[</span><span class="s1">&#39;World Population&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000000</span>
+<span class="n">interpolated</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1751</span><span class="p">:</span><span class="mi">2011</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="pandas-and-pysd">
+<h4>Pandas and PySD<a class="headerlink" href="#pandas-and-pysd" title="Permalink to this headline">¶</a></h4>
+<p>By default, PySD will return the results of model simulation as a Pandas
+<code class="docutils literal"><span class="pre">DataFrame</span></code>, with the column names representing elements of the model,
+and the index (row names) as timestamps in the model.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pysd</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Predator_Prey/Predator_Prey.mdl&#39;</span><span class="p">)</span>
+<span class="n">sim_result_df</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">sim_result_df</span>
+</pre></div>
+</div>
+<p>In this case, may want to downsample the returned data to make it more
+manageable:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">sim_result_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>[1]: While pandas can handle dimensions larger than two, it is clunky.
+<a class="reference external" href="http://xarray.pydata.org/en/stable/">Xarray</a> is a package for
+handling multidimensional data that interfaces well with Pandas.</p>
+</div>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/10min.html">Basic
+introduction</a>
+to Pandas constructs</li>
+<li><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/cookbook.html#cookbook">More
+advanced</a>
+usage of Pandas syntax</li>
+<li><a class="reference external" href="https://github.com/jvns/pandas-cookbook">Cookbook of Pandas
+Applications</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

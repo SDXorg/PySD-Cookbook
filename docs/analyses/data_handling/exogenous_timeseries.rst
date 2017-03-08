@@ -258,68 +258,13 @@ Pandas ``Series`` corresponding to the dataset in a dictionary to the
                     return_timestamps=emissions.index.values,
                     return_columns=['Emissions', 'Excess Atmospheric Carbon'],
                     params={'Emissions': emissions['Total Emissions']})
-    res.head()
-
-
-
-
-.. raw:: html
-
-    <div>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>Emissions</th>
-          <th>Excess Atmospheric Carbon</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>1751</th>
-          <td>3.0</td>
-          <td>0.000000</td>
-        </tr>
-        <tr>
-          <th>1752</th>
-          <td>3.0</td>
-          <td>3.000000</td>
-        </tr>
-        <tr>
-          <th>1753</th>
-          <td>3.0</td>
-          <td>5.970000</td>
-        </tr>
-        <tr>
-          <th>1754</th>
-          <td>3.0</td>
-          <td>8.910300</td>
-        </tr>
-        <tr>
-          <th>1755</th>
-          <td>3.0</td>
-          <td>11.821197</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-
-
 
 .. code:: python
 
-    res.plot()
+    res.plot();
 
 
 
-
-.. parsed-literal::
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x10fa14550>
-
-
-
-
-.. image:: exogenous_timeseries_files/exogenous_timeseries_15_1.png
+.. image:: exogenous_timeseries_files/exogenous_timeseries_15_0.png
 
 

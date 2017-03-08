@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exogenous model input from a file &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Exogenous model input from a file</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/data_handling/exogenous_timeseries_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="exogenous-model-input-from-a-file">
+<h1>Exogenous model input from a file<a class="headerlink" href="#exogenous-model-input-from-a-file" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we&#8217;ll demonstrate using an external data source to feed
+values into a model. We&#8217;ll use the carbon emissions dataset, and feed
+total emissions into a stock of excess atmospheric carbon:</p>
+<p>We&#8217;ll begin as usual by importing PySD and the machinery we need in
+order to deal with data manipulation and plotting.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span> <span class="ne">UserWarning</span><span class="p">:</span> <span class="n">The</span> <span class="n">installed</span> <span class="n">version</span> <span class="n">of</span> <span class="n">numexpr</span> <span class="mf">2.4</span><span class="o">.</span><span class="mi">4</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span> <span class="ow">in</span> <span class="n">pandas</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">used</span>
+
+  <span class="ne">UserWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We use <a href="#id1"><span class="problematic" id="id2">`Pandas &lt;&gt;`__</span></a> library to import emissions data from a <code class="docutils literal"><span class="pre">.csv</span></code>
+file. In this command, we both rename the columns of the dataset, and
+set the index to the &#8216;Year&#8217; column.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Climate/global_emissions.csv&#39;</span><span class="p">,</span>
+                        <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Total Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Gas Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Solid Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Cement Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Flare Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Per Capita Emissions&#39;</span><span class="p">])</span>
+<span class="n">emissions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Total Emissions</th>
+      <th>Gas Emissions</th>
+      <th>Liquid Emissions</th>
+      <th>Solid Emissions</th>
+      <th>Cement Emissions</th>
+      <th>Flare Emissions</th>
+      <th>Per Capita Emissions</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1751</th>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1752</th>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1753</th>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1754</th>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1755</th>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Climate/Atmospheric_Bathtub.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In our vensim model file, the value of the inflow to the carbon bathtub,
+the <code class="docutils literal"><span class="pre">Emissions</span></code> parameter, is set to zero. We want to instead have
+this track our exogenous data.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">Emissions</span><span class="o">=</span>
+    <span class="mi">0</span>
+
+<span class="n">Excess</span> <span class="n">Atmospheric</span> <span class="n">Carbon</span><span class="o">=</span> <span class="n">INTEG</span> <span class="p">(</span>
+    <span class="n">Emissions</span> <span class="o">-</span> <span class="n">Natural</span> <span class="n">Removal</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">Natural</span> <span class="n">Removal</span><span class="o">=</span>
+    <span class="n">Excess</span> <span class="n">Atmospheric</span> <span class="n">Carbon</span> <span class="o">*</span> <span class="n">Removal</span> <span class="n">Constant</span>
+
+<span class="n">Removal</span> <span class="n">Constant</span><span class="o">=</span>
+    <span class="mf">0.01</span>
+</pre></div>
+</div>
+<div class="section" id="aligning-the-model-time-bounds-with-that-of-the-dataset">
+<h2>Aligning the model time bounds with that of the dataset<a class="headerlink" href="#aligning-the-model-time-bounds-with-that-of-the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Before we can substitute in our exogenous data, however, we need to
+ensure that the model will execute over the proper timeseries. The
+initial and final times of the simulation are specified in the model
+file as:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s1">&#39;initial:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.&lt;&lt;...&gt;&gt;</span>
+<span class="nb">print</span> <span class="s1">&#39;final:&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.&lt;&lt;...&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">initial</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">final</span><span class="p">:</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>However, the time frame of the dataset runs:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s1">&#39;initial:&#39;</span><span class="p">,</span> <span class="n">emissions</span><span class="o">.&lt;&lt;...&gt;&gt;</span>
+<span class="nb">print</span> <span class="s1">&#39;final:&#39;</span><span class="p">,</span> <span class="n">emissions</span><span class="o">.&lt;&lt;...&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">initial</span><span class="p">:</span> <span class="mi">1751</span>
+<span class="n">final</span><span class="p">:</span> <span class="mi">2011</span>
+</pre></div>
+</div>
+<p>In order to run the model over a time series equal to that of the data
+set, we need to specify the appropriate initial conditions, and ask the
+run function to return to us timestamps equal to that of our dataset:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">{</span><span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">:</span> <span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">}),</span>
+                <span class="n">return_timestamps</span><span class="o">=&lt;&lt;...&gt;&gt;.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">])</span>
+<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Emissions</th>
+      <th>Excess Atmospheric Carbon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1751</th>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1752</th>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1753</th>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1754</th>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1755</th>
+      <td>0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="pass-in-our-timeseries-data">
+<h2>Pass in our timeseries data<a class="headerlink" href="#pass-in-our-timeseries-data" title="Permalink to this headline">¶</a></h2>
+<p>In place of the constant value of <code class="docutils literal"><span class="pre">emissions</span></code>, we want to substitute
+our dataset. We can do this in a very straightforward way by passing the
+Pandas <code class="docutils literal"><span class="pre">Series</span></code> corresponding to the dataset in a dictionary to the
+<code class="docutils literal"><span class="pre">params</span></code> argument of the run function.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                   <span class="p">{</span><span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}),</span>
+                <span class="n">return_timestamps</span><span class="o">=</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">],</span>
+                <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Emissions&#39;</span><span class="p">:</span> <span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">})</span>
+<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Emissions</th>
+      <th>Excess Atmospheric Carbon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1751</th>
+      <td>3.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1752</th>
+      <td>3.0</td>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>1753</th>
+      <td>3.0</td>
+      <td>5.970000</td>
+    </tr>
+    <tr>
+      <th>1754</th>
+      <td>3.0</td>
+      <td>8.910300</td>
+    </tr>
+    <tr>
+      <th>1755</th>
+      <td>3.0</td>
+      <td>11.821197</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x10fa14550</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/exogenous_timeseries_Workbook_15_1.png" src="../../_images/exogenous_timeseries_Workbook_15_1.png" />
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

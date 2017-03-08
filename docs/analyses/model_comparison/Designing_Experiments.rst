@@ -102,7 +102,6 @@ that result from various policies as a fraction of the base case.
 
 .. code:: python
 
-    # base case
     base = runner({'Startup Subsidy': 0,
                   'Startup Subsidy Length': 0})
     base
@@ -125,7 +124,7 @@ startup subsidy for a fixed duration:
 
     subsidy = pd.DataFrame(np.arange(0,1,.05), columns=['Startup Subsidy'])
     subsidy['Startup Subsidy Length'] = 3
-    subsidy.plot(subplots=True);
+    subsidy.plot(subplots=True, kind='bar');
 
 
 
@@ -147,7 +146,7 @@ to distinguish between the two options.
 .. code:: python
 
     subsidy_res.index = subsidy['Startup Subsidy']
-    subsidy_res.plot()
+    subsidy_res.plot(style='o-')
     plt.ylabel('Improvement in Average Tenure over baseline')
     plt.title('Changing the subsidy gives little discernment between theories');
 
@@ -171,6 +170,20 @@ subsidy, but vary the length of time over which it is offered.
 .. image:: Designing_Experiments_files/Designing_Experiments_20_0.png
 
 
+.. code:: python
+
+    l_subsidy = pd.DataFrame(index=range(20), 
+                             data=0.5,
+                             columns=['Startup Subsidy'])
+    l_subsidy['Startup Subsidy Length'] = range(20)
+    l_subsidy.plot(subplots=True, kind='bar')
+    plt.xlabel('Experiment Number');
+
+
+
+.. image:: Designing_Experiments_files/Designing_Experiments_21_0.png
+
+
 This intervention gives us more clear distinction between the two
 models, with the market based model responding more strongly to the
 intervention with longer subsidy lengths. In this case, we could use
@@ -184,13 +197,13 @@ in the slope of the response curve or not.
 .. code:: python
 
     l_subsidy_res.index = l_subsidy['Startup Subsidy Length']
-    l_subsidy_res.plot()
+    l_subsidy_res.plot(style='o-')
     plt.ylabel('Improvement in Average Tenure over baseline');
     plt.title('Changing the subsidy length gives more discernment at longer subsidization');
 
 
 
-.. image:: Designing_Experiments_files/Designing_Experiments_23_0.png
+.. image:: Designing_Experiments_files/Designing_Experiments_24_0.png
 
 
 A third intervention we could try would be to hold the total dollar
@@ -202,11 +215,11 @@ whether we give it out quickly or slowly.
     total_subsidy = pd.DataFrame(np.arange(0.05,1,.05), 
                            columns=['Startup Subsidy'])
     total_subsidy['Startup Subsidy Length'] = 10/total_subsidy['Startup Subsidy']
-    total_subsidy.plot(subplots=True);
+    total_subsidy.plot(subplots=True, kind='bar');
 
 
 
-.. image:: Designing_Experiments_files/Designing_Experiments_25_0.png
+.. image:: Designing_Experiments_files/Designing_Experiments_26_0.png
 
 
 This third option turns out to be quite interesting. As we vary the rate
@@ -227,16 +240,15 @@ whatever threshold they have for dropping out.
 .. code:: python
 
     total_subsidy_res.index = total_subsidy['Startup Subsidy']
-    total_subsidy_res.plot()
+    total_subsidy_res.plot(style='o-')
     plt.ylabel('Improvement in Average Tenure over baseline');
 
 
 
-.. image:: Designing_Experiments_files/Designing_Experiments_28_0.png
+.. image:: Designing_Experiments_files/Designing_Experiments_29_0.png
 
 
 We can conduct this experiment giving subsidies at slower rates to some
 individuals, and faster rates to other individuals, and assess the
 relative change in their behaviors, to assess which of our two models is
 more representative of reality.
-

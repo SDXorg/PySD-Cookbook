@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Getting Started" href="index_getting_started.html"/>
         <link rel="next" title="Using the Jupyter Notebook" href="Notebook.html"/>
@@ -68,7 +71,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index_getting_started.html">Getting Started</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction to the PySD Cookbook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Installing.html">Installation and Setup of Python and PySD</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Getting Started with Python</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Getting Started with Python</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Notebook.html">Using the Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -204,40 +219,40 @@ tools</a>.</p>
 <div class="section" id="variables">
 <h4>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h4>
 <p>Variables are created by assigning a value to a label.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c"># this will be an integer</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s">&#39;bob&#39;</span>  <span class="c"># this will be a string</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mf">23.987</span>  <span class="c"># this will be a float</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># this will be an integer</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;bob&quot;</span>  <span class="c1"># this will be a string</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">23.987</span>  <span class="c1"># this will be a float</span>
 
-<span class="k">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+<span class="nb">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>3 bob 23.987
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="n">bob</span> <span class="mf">23.987</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="lists">
 <h4>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h4>
 <p>Lists are ordered collections of objects (and are objects themselves).</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="p">]</span>
-<span class="k">print</span> <span class="n">my_list</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">a</span><span class="p">]</span>
+<span class="nb">print</span> <span class="n">my_list</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Elements of the list can be accessed or modified by position, with the
 first element having the index <code class="docutils literal"><span class="pre">0</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">3</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">3</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="k">print</span> <span class="n">my_list</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="nb">print</span> <span class="n">my_list</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -250,25 +265,26 @@ to &#8216;add another dimension&#8217;.</p>
 <p>From a pragmatic point of view, its mostly important to understand that
 they are created with <code class="docutils literal"><span class="pre">(parentheses)</span></code> and are often used in function
 calls and returns.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&#39;hi&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">)</span>
+<span class="n">my_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">hi</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">6</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;bye&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bye&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>---------------------------------------------------------------------------
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
 
-TypeError                                 Traceback (most recent call last)
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 
-&lt;ipython-input-17-5f5c7c118dde&gt; in &lt;module&gt;()
-----&gt; 1 my_tuple[2] = &#39;bye&#39;
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">17</span><span class="o">-</span><span class="mi">5</span><span class="n">f5c7c118dde</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">my_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;bye&#39;</span>
 
 
-TypeError: &#39;tuple&#39; object does not support item assignment
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
 </pre></div>
 </div>
 </div>
@@ -276,20 +292,20 @@ TypeError: &#39;tuple&#39; object does not support item assignment
 <h4>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h4>
 <p>Dictionaries are named collections of objects which can be accessed by
 their label:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;key 1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;key 2&#39;</span><span class="p">:</span> <span class="n">b</span><span class="p">}</span>
-<span class="k">print</span> <span class="n">my_dictionary</span><span class="p">[</span><span class="s">&#39;key 2&#39;</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;key 1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;key 2&#39;</span><span class="p">:</span> <span class="n">b</span><span class="p">}</span>
+<span class="nb">print</span> <span class="n">my_dictionary</span><span class="p">[</span><span class="s1">&#39;key 2&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">bob</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bob</span>
 </pre></div>
 </div>
 <p>You can add elements to a dictionary by assigning to an undefined
 element</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_dictionary</span><span class="p">[</span><span class="s">&#39;key 3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">27</span>
-<span class="k">print</span> <span class="n">my_dictionary</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_dictionary</span><span class="p">[</span><span class="s1">&#39;key 3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">27</span>
+<span class="nb">print</span> <span class="n">my_dictionary</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&#39;key 1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;key 2&#39;</span><span class="p">:</span> <span class="s">&#39;bob&#39;</span><span class="p">,</span> <span class="s">&#39;key 3&#39;</span><span class="p">:</span> <span class="mi">27</span><span class="p">}</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;key 1&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;key 2&#39;</span><span class="p">:</span> <span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;key 3&#39;</span><span class="p">:</span> <span class="mi">27</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -300,56 +316,62 @@ element</p>
 <h4><code class="docutils literal"><span class="pre">if</span></code> statements<a class="headerlink" href="#if-statements" title="Permalink to this headline">¶</a></h4>
 <p>The body of an <code class="docutils literal"><span class="pre">if</span></code> statement must be indented - standard practice is
 4 spaces.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;Inside the if statement&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;Inside the if statement&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Inside the if statement
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Inside</span> <span class="n">the</span> <span class="k">if</span> <span class="n">statement</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;This block will not be run&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;In the if&#39;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;This block will be run&#39;</span>
+    <span class="k">if</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;in the elif&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;In the else&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>This block will be run
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ow">in</span> <span class="n">the</span> <span class="k">elif</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;This block will not be run&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s1">&#39;In the if&#39;</span>
 <span class="k">elif</span> <span class="mi">5</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;This runs instead&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;in the elif&#39;</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s">&#39;Not this&#39;</span>
+    <span class="nb">print</span> <span class="s1">&#39;in the else&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>This runs instead
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">This</span> <span class="n">runs</span> <span class="n">instead</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="for-loops">
 <h4><code class="docutils literal"><span class="pre">for</span></code> loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h4>
 <p>For loops allow you to iterate over lists.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">value</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;bob&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">emile</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">emile</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">1</span>
-<span class="mi">2</span>
-<span class="mi">4</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">2</span>
+<span class="mi">3</span>
+<span class="n">bob</span>
 </pre></div>
 </div>
 <p>If we want to iterate over a list of numbers, as is often the case with
 a for loop, we can use the <code class="docutils literal"><span class="pre">range</span></code> function to construct the list for
 us:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">i</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="s1">&#39;bob&#39;</span><span class="p">,</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">0</span>
-<span class="mi">1</span>
-<span class="mi">2</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">bob</span> <span class="n">bob</span> <span class="n">bob</span> <span class="n">bob</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>
 </pre></div>
 </div>
 </div>
@@ -358,27 +380,38 @@ us:</p>
 <h3>Python Functions<a class="headerlink" href="#python-functions" title="Permalink to this headline">¶</a></h3>
 <p>Functions are <strong>def</strong>ined using the syntax below. As with <code class="docutils literal"><span class="pre">if</span></code> and
 <code class="docutils literal"><span class="pre">for</span></code>, indentation specifies the scope of the function.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">):</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">param1</span> <span class="o">+</span> <span class="n">param2</span>
     <span class="k">return</span> <span class="n">result</span>
 
-<span class="n">my_function</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">my_function</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">7</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">7</span>
 </pre></div>
 </div>
 <p>Functions can have default arguments, making them optional to use in the
 function call:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">my_other_function</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_other_function</span><span class="p">(</span><span class="n">param1</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">param1</span> <span class="o">*</span> <span class="n">param2</span>
 
-<span class="k">print</span> <span class="n">my_other_function</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>  <span class="c"># here we don&#39;t supply the optional argument</span>
-<span class="k">print</span> <span class="n">my_other_function</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c"># here we do</span>
+<span class="nb">print</span> <span class="n">my_other_function</span><span class="p">(</span><span class="n">param2</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="mi">150</span>
-<span class="mi">6</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">20</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">NameError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">35</span><span class="o">-</span><span class="mi">1</span><span class="n">b17a9a8d97e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">4</span> <span class="nb">print</span> <span class="n">my_other_function</span><span class="p">(</span><span class="n">param2</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+      <span class="mi">5</span>
+<span class="o">----&gt;</span> <span class="mi">6</span> <span class="nb">print</span> <span class="n">param2</span>
+
+
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;param2&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
 </pre></div>
 </div>
 </div>
@@ -387,13 +420,13 @@ function call:</p>
 <p>Many python objects have their own methods, which are functions that
 apply specifically to the object, as in the string manipulation
 functions below:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_string</span> <span class="o">=</span> <span class="s">&#39;How about a beer?&#39;</span>
-<span class="k">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-<span class="k">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>  <span class="c"># chained call to method</span>
-<span class="k">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;?&#39;</span><span class="p">,</span> <span class="s">&#39;!&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s1">&#39;How about a beer?&#39;</span>
+<span class="nb">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># chained call to method</span>
+<span class="nb">print</span> <span class="n">my_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>how about a beer?
+<div class="highlight-default"><div class="highlight"><pre><span></span>how about a beer?
              HOW ABOUT A BEER?
 How about a beer!
 </pre></div>
@@ -402,13 +435,15 @@ How about a beer!
 object, but components of the object&#8217;s internal representation.</p>
 <p>In the example below, we define a complex number, which has both a real
 part and a complex part, which we can access as an attribute.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_variable</span> <span class="o">=</span> <span class="mf">12.3</span> <span class="o">+</span> <span class="mi">4j</span>
-<span class="k">print</span> <span class="n">my_variable</span>
-<span class="k">print</span> <span class="n">my_variable</span><span class="o">.</span><span class="n">real</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_variable</span> <span class="o">=</span> <span class="mf">12.3</span> <span class="o">+</span> <span class="mi">4</span><span class="n">j</span>
+<span class="nb">print</span> <span class="n">my_variable</span>
+<span class="nb">print</span> <span class="n">my_variable</span><span class="o">.</span><span class="n">real</span>
+<span class="nb">print</span> <span class="n">my_variable</span><span class="o">.</span><span class="n">imag</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mf">12.3</span><span class="o">+</span><span class="mi">4j</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">12.3</span><span class="o">+</span><span class="mi">4</span><span class="n">j</span><span class="p">)</span>
 <span class="mf">12.3</span>
+<span class="mf">4.0</span>
 </pre></div>
 </div>
 </div>
@@ -426,7 +461,7 @@ statistics</a></li>
 science</a></li>
 </ul>
 <p>and finally...</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">this</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">this</span>
 </pre></div>
 </div>
 <pre class="literal-block">

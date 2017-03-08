@@ -1,0 +1,375 @@
+{UTF-8}
+Regime Survival=
+	IF THEN ELSE(Total cost < Regime capability , 1 , 0 )
+	~	
+	~		|
+
+Regime capability=
+	10
+	~	
+	~		|
+
+Total cost=
+	Concessions * Concession unit cost + Repressive threat Tr * Repression unit cost
+	~	
+	~		|
+
+Adjusting concession expectation=
+	IF THEN ELSE( Protest > 0 , Concessions * Concession fractional adjustment - Expectation of concessions needed\
+		 , 0 )
+	~	
+	~		|
+
+Adjusting repression expectation=
+	IF THEN ELSE(Protest > 0 , Repressive threat Tr * Repression fractional adjustment -\
+		 Expectation of repression needed , 0 )
+	~	
+	~		|
+
+Concession fractional adjustment=
+	1
+	~	
+	~		|
+
+Concession rate=
+	1
+	~	
+	~		|
+
+Concession unit cost=
+	1
+	~	
+	~		|
+
+Concessions= INTEG (
+	Making concessions,
+		0)
+	~	
+	~		|
+
+Expectation of concessions needed= INTEG (
+	Adjusting concession expectation,
+		1)
+	~	
+	~		|
+
+Expectation of repression needed= INTEG (
+	Adjusting repression expectation,
+		1)
+	~	
+	~		|
+
+Initial level of current threat=
+	1
+	~	 [0,5,0.125]
+	~		|
+
+Making concessions=
+	IF THEN ELSE(Protest > 0 , IF THEN ELSE(Preference for Repression < 0, Concession rate\
+		 , 0 ) , 0 )
+	~	
+	~		|
+
+Making threats=
+	IF THEN ELSE(Protest > 0, IF THEN ELSE(Preference for Repression >=0 , Threat rate ,\
+		 0 ) , 0 )
+	~	
+	~		|
+
+Preference for Repression=
+	(Expectation of concessions needed * Concession unit cost - Expectation of repression needed\
+		 * Repression unit cost) / (Expectation of repression needed * Repression unit cost\
+		)
+	~	
+	~		|
+
+Protest=
+	IF THEN ELSE(Expected net gain from protest G > 0, 1 , 0 )
+	~	
+	~		|
+
+Repression fractional adjustment=
+	1
+	~	
+	~		|
+
+Repression unit cost=
+	1
+	~	
+	~		|
+
+Repressive threat Tr= INTEG (
+	Making threats,
+		1)
+	~	
+	~		|
+
+Threat rate=
+	1
+	~	
+	~		|
+
+********************************************************
+	.Goldstone Tilly 2001 02b detail
+********************************************************~
+		This file is essentially the mental model of an unsophisticated regime, which \
+		considers only the direct impact of their policy.
+		
+		
+		Model Assumptions:
+		---------------------------
+		- Individuals are rational actiors making cost/benefit decisions
+	|
+
+Cost of protest C=
+	Repressive threat Tr
+	~	
+	~		|
+
+Current threat Tc=
+	Initial level of current threat - Concessions
+	~	
+	~		|
+
+Gains that would result from success V=
+	New advantages A + Current threat Tc
+	~	
+	~	pg 184
+		new advantages obtained or current or prospective harms avoided
+	|
+
+New advantages A=
+	1
+	~	 [0,5,0.125]
+	~		|
+
+Popular support k2=
+	0.1667
+	~	
+	~		|
+
+Probability of success O=
+	State weakness k1 + Popular support k2 + Strength of nonstate allies k3
+	~	
+	~		|
+
+Strength of nonstate allies k3=
+	0.1667
+	~	
+	~		|
+
+State weakness k1=
+	0.1666
+	~	
+	~	'The probability of success depends on state weakness (for example, fiscal problems, \
+		elite divisions, military defeat)' pg 184
+		'In the short run, the group and the state probably can do little about state \
+		weakness, which depends on structural conditions or events, such as \
+		financial weakness, elite divisions, or military defeat.' pg 185
+		
+		'Weak repression or concessions can increase perceptions of state \
+		weakness.' pg 189
+	|
+
+Expected net gain from protest G=
+	(Gains that would result from success V * Probability of success O) - Cost of protest C
+	~	
+	~	Pg 184:
+		This fonnula involves yet another simplification - that the costs of \
+		repression do not depend on the chances for success. In some cases, this \
+		is clearly false - those leading a rebellion are likely to suffer far \
+		greater costs if the rebellion fails than if it succeeds. However, if we \
+		focus on the ordinary protestor, say the person who helped defend the \
+		Russian Parliament in 1991, or the civil rights protestor who risks a \
+		beating or arrest, for them the eventual result days or weeks later will \
+		not change whether a bullet finds them on the barricade, or lighten the \
+		beating, or avoid the arrest. For them, the immediate risks involved with \
+		the act of protest itself are what counts - which is to say that leaders \
+		and followers may have a separate calculus of prospective gains and risks, \
+		with both being much greater for those in charge.
+	|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 10
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.03125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,5,0
+10,1,Expected net gain from protest G,357,398,53,18,8,3,0,0,0,0,0,0
+10,2,Probability of success O,310,332,41,12,8,3,0,0,0,0,0,0
+10,3,Gains that would result from success V,413,331,52,18,8,3,0,0,0,0,0,0
+1,4,2,1,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(322,353)|
+1,5,3,1,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(395,362)|
+10,6,Cost of protest C,495,395,33,13,8,131,0,0,0,0,0,0
+1,7,6,1,0,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(442,395)|
+10,8,State weakness k1,210,268,40,14,8,131,0,0,0,0,0,0
+10,9,Popular support k2,293,268,32,13,8,131,0,0,0,0,0,0
+10,10,Strength of nonstate allies k3,373,268,34,18,8,131,0,0,0,0,0,0
+10,11,New advantages A,457,268,41,13,8,131,0,0,0,0,0,0
+10,12,Current threat Tc,536,266,28,14,8,131,0,0,0,0,0,0
+1,13,8,2,0,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(255,297)|
+1,14,9,2,0,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(299,293)|
+1,15,10,2,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(346,303)|
+1,16,11,3,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(436,297)|
+1,17,12,3,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(484,293)|
+10,18,Protest,357,455,23,7,8,3,0,0,0,0,0,0
+1,19,1,18,0,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(357,425)|
+10,20,Initial level of current threat,543,206,42,12,8,3,0,0,0,0,0,0
+1,21,20,12,0,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(540,228)|
+10,22,Concessions,656,265,40,20,3,3,0,0,0,0,0,0
+1,23,22,12,0,0,45,0,2,192,0,-1--1--1,|12||0-0-0,1|(597,265)|
+12,24,48,779,265,10,8,0,3,0,0,-1,0,0,0
+1,25,27,22,4,0,0,22,0,0,0,-1--1--1,,1|(717,265)|
+1,26,27,24,100,0,0,22,0,0,0,-1--1--1,,1|(760,265)|
+11,27,48,745,265,6,8,34,3,0,0,1,0,0,0
+10,28,Making concessions,745,285,39,12,40,3,0,0,-1,0,0,0
+10,29,Repressive threat Tr,657,408,40,20,3,3,0,0,0,0,0,0
+1,30,29,6,0,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(579,401)|
+12,31,48,784,408,10,8,0,3,0,0,-1,0,0,0
+1,32,34,29,4,0,0,22,0,0,0,-1--1--1,,1|(720,409)|
+1,33,34,31,100,0,0,22,0,0,0,-1--1--1,,1|(765,409)|
+11,34,48,750,409,6,8,34,3,0,0,1,0,0,0
+10,35,Making threats,750,424,45,7,40,131,0,0,-1,0,0,0
+10,36,Preference for Repression,880,331,43,12,8,3,0,0,0,0,0,0
+10,37,Concession rate,655,319,49,7,8,3,0,0,0,0,0,0
+10,38,Threat rate,658,365,33,7,8,3,0,0,0,0,0,0
+1,39,37,28,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(700,313)|
+1,40,38,34,1,0,43,0,2,192,0,-1--1--1,|12||0-0-0,1|(705,386)|
+1,41,36,34,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(785,360)|
+1,42,36,28,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(788,320)|
+10,43,Expectation of concessions needed,786,173,50,18,3,131,0,0,0,0,0,0
+10,44,Expectation of repression needed,789,487,48,19,3,131,0,0,0,0,0,0
+1,45,43,36,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(888,237)|
+1,46,44,36,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(876,454)|
+12,47,48,639,172,10,8,0,3,0,0,-1,0,0,0
+1,48,50,43,4,0,0,22,0,0,0,-1--1--1,,1|(714,174)|
+1,49,50,47,100,0,0,22,0,0,0,-1--1--1,,1|(664,174)|
+11,50,48,686,174,6,8,34,3,0,0,1,0,0,0
+10,51,Adjusting concession expectation,686,200,36,18,40,3,0,0,-1,0,0,0
+12,52,48,641,484,10,8,0,3,0,0,-1,0,0,0
+1,53,55,44,4,0,0,22,0,0,0,-1--1--1,,1|(717,486)|
+1,54,55,52,100,0,0,22,0,0,0,-1--1--1,,1|(666,486)|
+11,55,48,687,486,6,8,34,3,0,0,1,0,0,0
+10,56,Adjusting repression expectation,687,512,36,18,40,3,0,0,-1,0,0,0
+10,57,Repression unit cost,942,383,35,12,8,3,0,0,0,0,0,0
+10,58,Concession unit cost,940,279,36,12,8,3,0,0,0,0,0,0
+1,59,58,36,0,0,0,0,0,128,0,-1--1--1,,1|(915,300)|
+1,60,57,36,0,0,0,0,0,128,0,-1--1--1,,1|(916,361)|
+1,61,29,55,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(653,441)|
+1,62,22,51,1,0,43,0,2,0,0,-1--1--1,|12||0-0-0,1|(638,227)|
+10,63,Concession fractional adjustment,605,127,36,18,8,3,0,0,0,0,0,0
+1,64,63,50,0,0,0,0,0,128,0,-1--1--1,,1|(651,154)|
+1,65,44,55,1,0,0,0,0,128,0,-1--1--1,,1|(733,458)|
+1,66,43,50,1,0,0,0,0,128,0,-1--1--1,,1|(742,144)|
+10,67,Repression fractional adjustment,578,525,35,18,8,3,0,0,0,0,0,0
+1,68,67,56,0,0,0,0,0,128,0,-1--1--1,,1|(625,519)|
+10,69,Protest,682,565,30,7,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,70,Protest,741,229,30,7,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,71,Protest,746,357,30,7,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,72,Protest,681,124,30,7,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,73,72,50,0,0,0,0,0,128,0,-1--1--1,,1|(682,142)|
+1,74,70,27,0,0,0,0,0,128,0,-1--1--1,,1|(741,240)|
+1,75,71,34,0,0,0,0,0,128,0,-1--1--1,,1|(746,376)|
+1,76,69,56,0,0,0,0,0,128,0,-1--1--1,,1|(682,550)|
+12,77,0,837,232,20,20,4,7,0,3,-1,0,0,0,255-0-0,0-0-0,|12||255-0-0
+B1
+12,78,0,846,381,20,20,5,7,0,3,-1,0,0,0,255-0-0,0-0-0,|12||255-0-0
+B2
+12,79,0,839,272,40,12,8,7,0,2,-1,0,0,0,-1--1--1,0-0-0,|12||255-0-0
+Lets Try Concessions
+12,80,0,847,419,39,15,8,135,0,2,-1,0,0,0,-1--1--1,0-0-0,|12||255-0-0
+Lets Try Repression
+12,81,0,464,544,31,16,8,131,0,0,-1,0,0,0
+1,82,18,81,1,0,0,2,2,64,0,-1--1--1,|12||0-0-0,1|(369,499)|
+12,83,0,487,482,31,16,8,131,0,0,-1,0,0,0
+1,84,18,83,1,0,0,2,2,64,0,-1--1--1,|12||0-0-0,1|(411,504)|
+12,85,0,430,444,20,20,5,7,0,3,-1,0,0,0,255-0-0,0-0-0,|12||255-0-0
+B3
+12,86,0,434,482,33,12,8,7,0,3,-1,0,0,0,255-0-0,0-0-0,|12||255-0-0
+Gotta Do Something
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 2
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,5,0
+12,1,0,308,195,150,150,3,44,0,0,1,0,0,0
+Threat_Concessions
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 3
+$192-192-192,0,Helvetica|12|B|0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,5,0
+10,1,Concessions,413,176,40,7,8,3,0,0,-1,0,0,0
+10,2,Concession unit cost,417,228,36,12,8,3,0,0,-1,0,0,0
+10,3,Repressive threat Tr,393,280,60,7,8,3,0,0,-1,0,0,0
+10,4,Repression unit cost,418,333,35,12,8,3,0,0,-1,0,0,0
+10,5,Making concessions,475,180,42,12,8,2,1,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,6,5,1,0,1,0,0,0,64,0,-1--1--1,,1|(449,178)|
+10,7,Making threats,497,328,52,7,8,2,1,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,8,7,3,0,1,0,0,0,64,0,-1--1--1,,1|(451,306)|
+10,9,Total cost,533,251,30,7,8,3,0,0,0,0,0,0
+1,10,2,9,0,0,43,0,2,192,0,-1--1--1,|0||-1--1--1,1|(471,238)|
+1,11,3,9,0,0,43,0,2,64,0,-1--1--1,|0||-1--1--1,1|(457,266)|
+1,12,1,9,1,0,43,0,2,192,0,-1--1--1,|0||-1--1--1,1|(475,204)|
+1,13,4,9,1,0,43,0,2,192,0,-1--1--1,|0||-1--1--1,1|(478,297)|
+10,14,Regime capability,533,325,53,7,8,131,0,0,0,0,0,0
+10,15,Regime Survival,641,283,49,7,8,3,0,0,0,0,0,0
+1,16,9,15,1,0,45,0,2,192,0,-1--1--1,|0||-1--1--1,1|(592,259)|
+1,17,14,15,1,0,43,0,2,192,0,-1--1--1,|0||-1--1--1,1|(590,310)|
+///---\\\
+:GRAPH Threat_Concessions
+:TITLE Threat_Concessions
+:X-AXIS Repressive threat Tr
+:SCALE
+:VAR Concessions
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+23:0
+15:0,0,0,0,0,0
+19:5,0
+27:2,
+34:0,
+4:Time
+5:Concession unit cost
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:0
+24:0
+25:10
+26:10

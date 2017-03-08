@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Step-at-a-time optimization &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Step-at-a-time optimization</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/fitting/Step_at_a_time_optimization_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="step-at-a-time-optimization">
+<h1>Step-at-a-time optimization<a class="headerlink" href="#step-at-a-time-optimization" title="Permalink to this headline">¶</a></h1>
+<p>One of the consequences of forcing our models to obey the markov
+property is that the dynamic behavior of the model can be represented
+entirely in the transition from one state of the system to the next.
+This means that if we have full measurement of the state of the system,
+we can separate the model&#8217;s timeseries behavior into a series of
+independent timesteps. Now we can fit the model parameters to each
+timestep independently, without worrying about errors compounding
+thoughout the simulation.</p>
+<p>We&#8217;ll demonstrate this fitting of a model to data using PySD to manage
+our model, pandas to manage our data, and scipy to provide the
+optimization.</p>
+<div class="section" id="about-this-technique">
+<h2>About this technique<a class="headerlink" href="#about-this-technique" title="Permalink to this headline">¶</a></h2>
+<p>We can use this technique when we have full state information
+measurements in the dataset. It is particularly helpful for addressing
+oscillatory behavior.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span> <span class="ne">UserWarning</span><span class="p">:</span> <span class="n">The</span> <span class="n">installed</span> <span class="n">version</span> <span class="n">of</span> <span class="n">numexpr</span> <span class="mf">2.4</span><span class="o">.</span><span class="mi">4</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span> <span class="ow">in</span> <span class="n">pandas</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">used</span>
+
+  <span class="ne">UserWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ingredients">
+<h2>Ingredients<a class="headerlink" href="#ingredients" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
+<p>In this demonstration we&#8217;ll fit the <a class="reference external" href="http://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equation">Lotka–Volterra
+Model</a>
+model:</p>
+<a class="reference internal image-reference" href="../../_images/Predator_Prey.png"><img alt="../../_images/Predator_Prey.png" src="../../_images/Predator_Prey.png" style="width: 300px;" /></a>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Predator_Prey/Predator_Prey.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We will apply this model to a predator/prey system consisting of
+Didinium and Paramecium, that was described in:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Veilleux</span> <span class="p">(</span><span class="mi">1976</span><span class="p">)</span> <span class="s2">&quot;The analysis of a predatory interaction between Didinium and Paramecium&quot;</span><span class="p">,</span> <span class="n">Masters</span> <span class="n">thesis</span><span class="p">,</span> <span class="n">University</span> <span class="n">of</span> <span class="n">Alberta</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>There are four parameters in this model that it will be our task to set,
+with the goal of minimizing the sum of squared errors between the
+model&#8217;s step-at-a-time prediction and the measured data.</p>
+</div>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<p>The data we&#8217;ll use was compiled from this work by <a class="reference external" href="http://robjhyndman.com/tsdldata/data/veilleux.dat">Christian
+Jost</a>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Predator_Prey/Veilleux_CC_0.5_Pretator_Prey.txt&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[[</span><span class="s1">&#39;prey(#ind/ml)&#39;</span><span class="p">,</span><span class="s1">&#39;predator(#ind/ml)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time(d)</th>
+      <th>prey(#ind/ml)</th>
+      <th>predator(#ind/ml)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>15.65</td>
+      <td>5.76</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.5</td>
+      <td>53.57</td>
+      <td>9.05</td>
+    </tr>
+  </tbody>
+</table>
+</div><img alt="../../_images/Step_at_a_time_optimization_Workbook_10_1.png" src="../../_images/Step_at_a_time_optimization_Workbook_10_1.png" />
+</div>
+</div>
+<div class="section" id="the-recipe">
+<h2>The Recipe<a class="headerlink" href="#the-recipe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-shape-the-dataset-such-that-each-row-contains-the-start-and-end-of-a-step">
+<h3>Step 1: Shape the dataset such that each row contains the start and end of a &#8216;step&#8217;<a class="headerlink" href="#step-1-shape-the-dataset-such-that-each-row-contains-the-start-and-end-of-a-step" title="Permalink to this headline">¶</a></h3>
+<p>As we are analyzing the model a step at a time, it makes sense to
+restructure our dataframe so that each row contains both the starting
+and final state of each step. We can do this by merging the dataset with
+itself, offset by one row. We&#8217;ll add suffixes to the columns to
+differentiate between the start and end of each step.</p>
+<p>While this method increases the burden of data that we have to carry, it
+allows us to use pandas&#8217;s <code class="docutils literal"><span class="pre">apply</span></code> functionality to increase
+computational speed over a <code class="docutils literal"><span class="pre">for</span></code> loop.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">data_steps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=&lt;&lt;...&gt;&gt;</span><span class="p">),</span>
+                      <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">&lt;&lt;...&gt;&gt;=</span><span class="p">(</span><span class="s1">&#39;_s&#39;</span><span class="p">,</span><span class="s1">&#39;_f&#39;</span><span class="p">))</span>
+<span class="n">data_steps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time(d)_s</th>
+      <th>prey(#ind/ml)_s</th>
+      <th>predator(#ind/ml)_s</th>
+      <th>time(d)_f</th>
+      <th>prey(#ind/ml)_f</th>
+      <th>predator(#ind/ml)_f</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>15.65</td>
+      <td>5.76</td>
+      <td>0.5</td>
+      <td>53.57</td>
+      <td>9.05</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.5</td>
+      <td>53.57</td>
+      <td>9.05</td>
+      <td>1.0</td>
+      <td>73.34</td>
+      <td>17.26</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>73.34</td>
+      <td>17.26</td>
+      <td>1.5</td>
+      <td>93.93</td>
+      <td>41.97</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.5</td>
+      <td>93.93</td>
+      <td>41.97</td>
+      <td>2.0</td>
+      <td>115.40</td>
+      <td>55.97</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.0</td>
+      <td>115.40</td>
+      <td>55.97</td>
+      <td>2.5</td>
+      <td>76.57</td>
+      <td>74.91</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="step-2-define-a-single-step-error-function">
+<h3>Step 2: Define a single-step error function<a class="headerlink" href="#step-2-define-a-single-step-error-function" title="Permalink to this headline">¶</a></h3>
+<p>We define a function that takes a single step and calculates the sum
+squared error between the model&#8217;s prediction of the final datapoint and
+the actual measured value. The most complicated parts of this function
+are making sure that the data columns line up properly with the model
+components.</p>
+<p>Note that in this function we don&#8217;t set the parameters of the model - we
+can do that just once in the next function.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_step_error</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_timestamps</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;time(d)_f&#39;</span><span class="p">]],</span>
+                       <span class="n">initial_condition</span><span class="o">=</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;time(d)_s&#39;</span><span class="p">],</span>
+                                          <span class="p">{</span><span class="s1">&#39;predator_population&#39;</span><span class="p">:</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;predator(#ind/ml)_s&#39;</span><span class="p">],</span>
+                                           <span class="s1">&#39;prey_population&#39;</span><span class="p">:</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;prey(#ind/ml)_s&#39;</span><span class="p">]}))</span>
+    <span class="o">&lt;&lt;...&gt;&gt;</span> <span class="o">=</span> <span class="p">((</span><span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;time(d)_f&#39;</span><span class="p">]][</span><span class="s1">&#39;predator_population&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;predator(#ind/ml)_f&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+           <span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;time(d)_f&#39;</span><span class="p">]][</span><span class="s1">&#39;prey_population&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;prey(#ind/ml)_f&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">sse</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-define-an-error-function-for-the-full-dataset">
+<h3>Step 3: Define an error function for the full dataset<a class="headerlink" href="#step-3-define-an-error-function-for-the-full-dataset" title="Permalink to this headline">¶</a></h3>
+<p>Now we define a function that sets the parameters of the model based
+upon the optimizer&#8217;s suggestion, and computes the sum squared error for
+all steps.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="n">parameter_list</span><span class="p">):</span>
+    <span class="n">parameter_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;predation_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;prey_fertility&#39;</span><span class="p">,</span> <span class="s1">&#39;predator_mortality&#39;</span><span class="p">,</span> <span class="s1">&#39;predator_food_driven_fertility&#39;</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">set_components</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">parameter_names</span><span class="p">,</span> <span class="n">parameter_list</span><span class="p">)))</span>
+
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">data_steps</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">one_step_error</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">errors</span><span class="o">.&lt;&lt;...&gt;&gt;</span>
+
+<span class="n">error</span><span class="p">([</span><span class="o">.</span><span class="mi">005</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">002</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">545152.61053738836</span>
+</pre></div>
+</div>
+<p>Now we&#8217;re ready to use scipy&#8217;s built-in optimizer.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="p">[</span><span class="o">.</span><span class="mi">005</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">002</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span>
+                              <span class="n">bounds</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="result">
+<h3>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h3>
+<p>We can plot the behavior of the system with our fit parameters over
+time:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">predation_rate</span><span class="p">,</span> <span class="n">prey_fertility</span><span class="p">,</span> <span class="n">predator_mortality</span><span class="p">,</span> <span class="n">predator_food_driven_fertility</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;predation_rate&#39;</span><span class="p">:</span><span class="n">predation_rate</span><span class="p">,</span>
+                           <span class="s1">&#39;prey_fertility&#39;</span><span class="p">:</span><span class="n">prey_fertility</span><span class="p">,</span>
+                           <span class="s1">&#39;predator_mortality&#39;</span><span class="p">:</span><span class="n">predator_mortality</span><span class="p">,</span>
+                           <span class="s1">&#39;predator_food_driven_fertility&#39;</span><span class="p">:</span><span class="n">predator_food_driven_fertility</span><span class="p">})</span>
+
+<span class="n">values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x1075e7c10</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/Step_at_a_time_optimization_Workbook_21_1.png" src="../../_images/Step_at_a_time_optimization_Workbook_21_1.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

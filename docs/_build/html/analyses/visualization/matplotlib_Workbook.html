@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Visualization with matplotlib &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/visualization/matplotlib_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="basic-visualization-with-matplotlib">
+<h1>Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code><a class="headerlink" href="#basic-visualization-with-matplotlib" title="Permalink to this headline">¶</a></h1>
+<p>Python&#8217;s most commonly used plotting library is
+<a class="reference external" href="http://matplotlib.org/">matplotlib</a>. The library has an interface
+which mirrors that of Mathworks&#8217;
+<a class="reference external" href="http://www.mathworks.com/help/matlab/2-and-3d-plots.html">Matlab</a>
+software, and so those with matlab familiarity will find themselves
+already high up on the learning curve.</p>
+<div class="section" id="loading-matplotlib-and-setting-up-the-notebook-environment">
+<h2>Loading <code class="docutils literal"><span class="pre">matplotlib</span></code> and setting up the notebook environment<a class="headerlink" href="#loading-matplotlib-and-setting-up-the-notebook-environment" title="Permalink to this headline">¶</a></h2>
+<p>The matplotlib plotting library has a
+<a class="reference external" href="https://ipython.org/ipython-doc/3/interactive/magics.html#magic-pylab">magic</a>
+connection with the iPython shell and the notebook environment that
+allows static images of plots to be rendered in the notebook. Instead of
+using the normal <code class="docutils literal"><span class="pre">import</span> <span class="pre">...</span></code> syntax, we&#8217;ll use this iPython &#8216;magic&#8217;
+to not only import the library, but set up the environment we&#8217;ll need to
+create plots.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-data-to-plot">
+<h2>Load data to plot<a class="headerlink" href="#load-data-to-plot" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ll use the emissions data we saw before in the Pandas tutorial, as
+it&#8217;s familiar:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">emissions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Climate/global_emissions.csv&#39;</span><span class="p">,</span>
+                        <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span>
+                        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Total Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Gas Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Solid Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Cement Emissions&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Flare Emissions&#39;</span><span class="p">,</span> <span class="s1">&#39;Per Capita Emissions&#39;</span><span class="p">])</span>
+
+<span class="n">emissions</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-plotting">
+<h2>Basic plotting<a class="headerlink" href="#basic-plotting" title="Permalink to this headline">¶</a></h2>
+<p>The basic plot command takes as its first two arguments the x and y
+values of the points which we wish to plot:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;&lt;&lt;..&gt;&gt;&#39;</span><span class="p">]);</span>  <span class="c1"># choose a column to plot by substituting its name</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="labeling-axes-and-title">
+<h2>Labeling axes and title<a class="headerlink" href="#labeling-axes-and-title" title="Permalink to this headline">¶</a></h2>
+<p>Following out plot command we can submit commands to <a class="reference external" href="http://matplotlib.org/users/pyplot_tutorial.html#working-with-text">add text to the
+figure</a>,
+such as adding labels to the x and y axes, and a title to the figure.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Million Metric Tons CO2/Year&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;..&gt;&gt;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>  <span class="c1"># Title your plot</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-line-properties">
+<h2>Changing line properties<a class="headerlink" href="#changing-line-properties" title="Permalink to this headline">¶</a></h2>
+<p>We can include various elements into the plot command to <a class="reference external" href="http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties">specify how
+the line will
+look</a>:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">],</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=&lt;&lt;..&gt;&gt;</span><span class="p">);</span>  <span class="c1"># choose a value for opacity from 0..1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifying-axis-bounds">
+<h2>Specifying axis bounds<a class="headerlink" href="#specifying-axis-bounds" title="Permalink to this headline">¶</a></h2>
+<p>We can specify that we want our plot to be bounded by various x and y
+values:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">&lt;&lt;..&gt;&gt;</span><span class="p">,</span><span class="o">&lt;&lt;..&gt;&gt;</span><span class="p">)</span>  <span class="c1"># substitute start and end dates</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span><span class="mi">7500</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiple-lines">
+<h2>Multiple lines<a class="headerlink" href="#multiple-lines" title="Permalink to this headline">¶</a></h2>
+<p>We can add lines to our plot simply by adding additional calls to the
+plot function. Passing the plot function an argument called &#8216;label&#8217;
+allows us to format a
+<a class="reference external" href="http://matplotlib.org/users/legend_guide.html">legend</a> with
+appropriate references to each line:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">],</span> <span class="s1">&#39;&lt;&lt;..&gt;&gt;&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Liquid&#39;</span><span class="p">)</span>  <span class="c1"># chose a color (r,g,b,c,y,m,k)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Solid Emissions&#39;</span><span class="p">],</span> <span class="s1">&#39;&lt;&lt;..&gt;&gt;&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Solid&#39;</span><span class="p">)</span>  <span class="c1"># chose a color (r,g,b,c,y,m,k)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Gas Emissions&#39;</span><span class="p">],</span> <span class="s1">&#39;&lt;&lt;..&gt;&gt;&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gas&#39;</span><span class="p">)</span>  <span class="c1"># chose a color (r,g,b,c,y,m,k)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-plot-types">
+<h2>Other plot types<a class="headerlink" href="#other-plot-types" title="Permalink to this headline">¶</a></h2>
+<p>There are a number of other plot types available, such as histograms,
+radial plots, plots with logarithmic axes, or stackplots:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">stackplot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">[</span><span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Liquid Emissions&#39;</span><span class="p">],</span>
+                                <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Gas Emissions&#39;</span><span class="p">],</span>
+                                <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Solid Emissions&#39;</span><span class="p">]],</span>
+             <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Liquid&#39;</span><span class="p">,</span> <span class="s1">&#39;Gas&#39;</span><span class="p">,</span> <span class="s1">&#39;Solid&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="saving-figures">
+<h2>Saving figures<a class="headerlink" href="#saving-figures" title="Permalink to this headline">¶</a></h2>
+<p>We can save a figure to the disk by calling matplotlib&#8217;s <code class="docutils literal"><span class="pre">savefig</span></code>
+function:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">emissions</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">emissions</span><span class="p">[</span><span class="s1">&#39;Total Emissions&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;&lt;&lt;...&gt;&gt;.png&#39;</span><span class="p">)</span>  <span class="c1"># Name your file</span>
+</pre></div>
+</div>
+<div class="section" id="matplotlib-and-pandas">
+<h3>Matplotlib and Pandas<a class="headerlink" href="#matplotlib-and-pandas" title="Permalink to this headline">¶</a></h3>
+<p>Pandas uses matplot lib to provide a basic plotting interface of its
+own. The dataframe we have been working with has a convenience method
+called <code class="docutils literal"><span class="pre">.plot()</span></code>, which assumes some basic format for how you would
+like your data presented, and tries to do so for you.</p>
+<p>This is handy when you are just interested in having a quick look at
+your data, without going to the trouble to create finished plots.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The Dataframe&#8217;s wrapper of matplotlib gives us a number of basic options
+for how our plots are shown:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">emissions</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="matplotlib-and-pysd">
+<h3>Matplotlib and PySD<a class="headerlink" href="#matplotlib-and-pysd" title="Permalink to this headline">¶</a></h3>
+<p>As PySD returns a Pandas Dataframe, we can either use the plotting
+interface directly, or Pandas&#8217;s convenience wrapper. Here we&#8217;ll load a
+model which produces a chaotic output in three dimensions to use in our
+demonstration.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pysd</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Roessler_Chaos/roessler_chaos.mdl&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Plotting vs. time.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Plotting variables against one another</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+<p>While so far I have shown mostly basic, 2d plots, we can also call on
+<a class="reference external" href="http://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html#line-plots">matplotlib&#8217;s 3d plotting
+engine</a></p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="k">import</span> <span class="n">Axes3D</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="resources">
+<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="http://matplotlib.org/gallery.html">Gallery</a> of different
+matplotlib graphics, showing what types of plots are possible.</li>
+<li>Getting started with matplotlib <a class="reference external" href="https://www.youtube.com/watch?v=q7Bo_J8x_dw&amp;list=PLQVvvaa0QuDfefDfXb9Yf0la1fPDKluPF">video
+series</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -55,7 +55,7 @@ Variables are created by assigning a value to a label.
 .. code:: python
 
     a = 3  # this will be an integer
-    b = 'bob'  # this will be a string
+    b = "bob"  # this will be a string
     c = 23.987  # this will be a float
     
     print a, b, c
@@ -121,12 +121,13 @@ calls and returns.
 .. code:: python
 
     my_tuple = (3, 4, 'hi')
+    my_tuple = (2,4,6)
     print my_tuple[2]
 
 
 .. parsed-literal::
 
-    hi
+    6
 
 
 .. code:: python
@@ -202,25 +203,27 @@ The body of an ``if`` statement must be indented - standard practice is
 .. code:: python
 
     if 5 < 3:
-        print 'This block will not be run'
+        print 'In the if'
     else:
-        print 'This block will be run'
+        if 5 > 3:
+            print 'in the elif'
+        else:
+            print 'In the else'    
 
 
 .. parsed-literal::
 
-    This block will be run
+    in the elif
 
 
 .. code:: python
 
     if 5 < 3:
-        print 'This block will not be run'
+        print 'In the if'
     elif 5 >= 3:
-        print 'This runs instead'
+        print 'in the elif'
     else:
-        print 'Not this'
-
+        print 'in the else'
 
 
 .. parsed-literal::
@@ -235,15 +238,17 @@ For loops allow you to iterate over lists.
 
 .. code:: python
 
-    for value in my_list:
-        print value
+    my_list = [1, 2, 3, 'bob']
+    
+    for emile in my_list:
+        print emile
 
 
 .. parsed-literal::
 
-    1
     2
-    4
+    3
+    bob
 
 
 If we want to iterate over a list of numbers, as is often the case with
@@ -252,15 +257,16 @@ us:
 
 .. code:: python
 
-    for i in range(3):
-        print i
+    for i in range(0, 10):
+        if i > 3:
+            print i,
+        else:
+            print 'bob',
 
 
 .. parsed-literal::
 
-    0
-    1
-    2
+    bob bob bob bob 4 5 6 7 8 9
 
 
 Python Functions
@@ -275,9 +281,7 @@ Functions are **def**\ ined using the syntax below. As with ``if`` and
         result = param1 + param2
         return result
     
-    my_function(3, 4)
-
-
+    print my_function(3, 4)
 
 
 .. parsed-literal::
@@ -285,23 +289,36 @@ Functions are **def**\ ined using the syntax below. As with ``if`` and
     7
 
 
-
 Functions can have default arguments, making them optional to use in the
 function call:
 
 .. code:: python
 
-    def my_other_function(param1, param2=10):
+    def my_other_function(param1=5, param2=10):
         return param1 * param2
     
-    print my_other_function(15)  # here we don't supply the optional argument
-    print my_other_function(3, 2)  # here we do
+    print my_other_function(param2=4)
 
 
 .. parsed-literal::
 
-    150
-    6
+    20
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-35-1b17a9a8d97e> in <module>()
+          4 print my_other_function(param2=4)
+          5 
+    ----> 6 print param2
+    
+
+    NameError: name 'param2' is not defined
 
 
 Methods and Attributes of Objects
@@ -337,12 +354,14 @@ part and a complex part, which we can access as an attribute.
     my_variable = 12.3 + 4j
     print my_variable
     print my_variable.real
+    print my_variable.imag
 
 
 .. parsed-literal::
 
     (12.3+4j)
     12.3
+    4.0
 
 
 Resources for learning to program using Python.

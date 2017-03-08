@@ -1,0 +1,35 @@
+
+.. code:: python
+
+    import pysd
+
+.. code:: python
+
+    model = pysd.read_vensim('../../models/Epidemic/SIR.mdl')
+
+.. code:: python
+
+    print model.doc()
+
+
+.. parsed-literal::
+
+    |    | name                | modelName           | unit                | comment                                    |
+    |----+---------------------+---------------------+---------------------+--------------------------------------------|
+    |  0 | Contact Rate        | contact_rate        | Contacts/Person/Day | nan                                        |
+    |  1 | FINAL TIME          | final_time          | Day                 | The final time for the simulation.         |
+    |  2 | Infected            | infected            | Persons             | nan                                        |
+    |  3 | Infection           | infection           | Persons/Day         | nan                                        |
+    |  4 | Infectivity         | infectivity         | Persons/Contact     | nan                                        |
+    |  5 | Initial Infected    | initial_infected    |                     | nan                                        |
+    |  6 | Initial Susceptible | initial_susceptible |                     | nan                                        |
+    |  7 | INITIAL TIME        | initial_time        | Day                 | The initial time for the simulation.       |
+    |  8 | Period of Infection | period_of_infection | Days                | nan                                        |
+    |  9 | Recovered           | recovered           | Persons             | nan                                        |
+    | 10 | Recovery            | recovery            | Persons/Day         | nan                                        |
+    | 11 | SAVEPER             | saveper             | Day [0,?]           | The frequency with which output is stored. |
+    | 12 | Susceptible         | susceptible         | Persons             | nan                                        |
+    | 13 | TIME STEP           | time_step           | Day [0,?]           | The time step for the simulation.          |
+    | 14 | Total Population    | total_population    | Persons             | nan                                        |
+
+

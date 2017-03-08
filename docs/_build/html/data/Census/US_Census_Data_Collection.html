@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Data Used in this Cookbook" href="../index_data.html"/>
         <link rel="next" title="Carbon Data Sources" href="../Climate/sources.html"/>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../analyses/surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -111,7 +126,7 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index_data.html">Data Used in this Cookbook</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Collecting US decennial census data</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Collecting US decennial census data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Climate/sources.html">Carbon Data Sources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
@@ -170,12 +185,12 @@ here:
 <a class="reference external" href="http://www.census.gov/data/developers/data-sets/decennial-census-data.html">http://www.census.gov/data/developers/data-sets/decennial-census-data.html</a></p>
 <p>As a quick demonstration, we can use the API to get population data for
 every county in the US:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s">&#39;http://api.census.gov/data/2010/sf1?get=P0120001&amp;for=county:*&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;http://api.census.gov/data/2010/sf1?get=P0120001&amp;for=county:*&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -225,13 +240,13 @@ every county in the US:</p>
 </div><p>The census code descriptions can also be accessed via the API. A listing
 of the field names is available here:
 <a class="reference external" href="http://api.census.gov/data/2010/sf1/variables.html">http://api.census.gov/data/2010/sf1/variables.html</a></p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s">&#39;http://api.census.gov/data/2010/sf1/variables/P0120001.json&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s">&#39;ser&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;http://api.census.gov/data/2010/sf1/variables/P0120001.json&#39;</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s1">&#39;ser&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>concept    P12. Sex By Age [49]
-label          Total population
-name                   P0120001
-dtype: object
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">concept</span>    <span class="n">P12</span><span class="o">.</span> <span class="n">Sex</span> <span class="n">By</span> <span class="n">Age</span> <span class="p">[</span><span class="mi">49</span><span class="p">]</span>
+<span class="n">label</span>          <span class="n">Total</span> <span class="n">population</span>
+<span class="n">name</span>                   <span class="n">P0120001</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <div class="section" id="collect-data-on-male-population-by-age-county">
@@ -245,18 +260,18 @@ each with its own name. We want all of the fields between <code class="docutils 
 and <code class="docutils literal"><span class="pre">P0120025</span></code>.</p>
 <p>We&#8217;ll do some data munging to get it in numeric format, and to take care
 of the labels and indicies.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;P01200</span><span class="si">%02i</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">26</span><span class="p">)]</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://api.census.gov/data/2010/sf1?get=</span><span class="si">%s</span><span class="s">&amp;for=county:*&#39;</span><span class="o">%</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">url</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;P01200</span><span class="si">%02i</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">26</span><span class="p">)]</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://api.census.gov/data/2010/sf1?get=</span><span class="si">%s</span><span class="s1">&amp;for=county:*&#39;</span><span class="o">%</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">url</span>
 <span class="n">pops2010</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">pops2010</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pops2010</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">pops2010</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">pops2010</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pops2010</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">pops2010</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pops2010</span> <span class="o">=</span> <span class="n">pops2010</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">pops2010</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">&#39;state&#39;</span><span class="p">,</span> <span class="s">&#39;county&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">pops2010</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;county&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pops2010</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>http://api.census.gov/data/2010/sf1?get=P0120003,P0120004,P0120005,P0120006,P0120007,P0120008,P0120009,P0120010,P0120011,P0120012,P0120013,P0120014,P0120015,P0120016,P0120017,P0120018,P0120019,P0120020,P0120021,P0120022,P0120023,P0120024,P0120025&amp;for=county:*
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.census.gov/data/2010/sf1?get=P0120003,P0120004,P0120005,P0120006,P0120007,P0120008,P0120009,P0120010,P0120011,P0120012,P0120013,P0120014,P0120015,P0120016,P0120017,P0120018,P0120019,P0120020,P0120021,P0120022,P0120023,P0120024,P0120025&amp;for=county:*
 </pre></div>
 </div>
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
@@ -446,19 +461,19 @@ more logically) breaks the cohorts down differently. In this case, we
 can get data for each age year with codes <code class="docutils literal"><span class="pre">PCT012003</span></code> through
 <code class="docutils literal"><span class="pre">PCT012104</span></code>. The api limits us to only 50 columns at a time, so we&#8217;ll
 do it in chunks and stitch them together.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;PCT012</span><span class="si">%03i</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">105</span><span class="p">)]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;PCT012</span><span class="si">%03i</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">105</span><span class="p">)]</span>
 
 <span class="n">dflist</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">chunkSize</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">fields</span><span class="p">),</span> <span class="n">chunkSize</span><span class="p">):</span>
     <span class="n">chunk</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">chunkSize</span><span class="p">]</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="s">&#39;http://api.census.gov/data/2000/sf1?get=</span><span class="si">%s</span><span class="s">&amp;for=county:*&#39;</span><span class="o">%</span><span class="s">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">url</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://api.census.gov/data/2000/sf1?get=</span><span class="si">%s</span><span class="s1">&amp;for=county:*&#39;</span><span class="o">%</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="n">url</span>
     <span class="n">df_chunk</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">df_chunk</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">df_chunk</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_chunk</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">df_chunk</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df_chunk</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">df_chunk</span> <span class="o">=</span> <span class="n">df_chunk</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">df_chunk</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s">&#39;state&#39;</span><span class="p">,</span> <span class="s">&#39;county&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">df_chunk</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;county&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">dflist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_chunk</span><span class="p">)</span>
 
 <span class="n">pops2000</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dflist</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -466,7 +481,7 @@ do it in chunks and stitch them together.</p>
 <span class="n">pops2000</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>http://api.census.gov/data/2000/sf1?get=PCT012003,PCT012004,PCT012005,PCT012006,PCT012007,PCT012008,PCT012009,PCT012010,PCT012011,PCT012012,PCT012013,PCT012014,PCT012015,PCT012016,PCT012017,PCT012018,PCT012019,PCT012020,PCT012021,PCT012022,PCT012023,PCT012024,PCT012025,PCT012026,PCT012027,PCT012028,PCT012029,PCT012030,PCT012031,PCT012032,PCT012033,PCT012034,PCT012035,PCT012036,PCT012037,PCT012038,PCT012039,PCT012040,PCT012041,PCT012042&amp;for=county:*
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api.census.gov/data/2000/sf1?get=PCT012003,PCT012004,PCT012005,PCT012006,PCT012007,PCT012008,PCT012009,PCT012010,PCT012011,PCT012012,PCT012013,PCT012014,PCT012015,PCT012016,PCT012017,PCT012018,PCT012019,PCT012020,PCT012021,PCT012022,PCT012023,PCT012024,PCT012025,PCT012026,PCT012027,PCT012028,PCT012029,PCT012030,PCT012031,PCT012032,PCT012033,PCT012034,PCT012035,PCT012036,PCT012037,PCT012038,PCT012039,PCT012040,PCT012041,PCT012042&amp;for=county:*
 http://api.census.gov/data/2000/sf1?get=PCT012043,PCT012044,PCT012045,PCT012046,PCT012047,PCT012048,PCT012049,PCT012050,PCT012051,PCT012052,PCT012053,PCT012054,PCT012055,PCT012056,PCT012057,PCT012058,PCT012059,PCT012060,PCT012061,PCT012062,PCT012063,PCT012064,PCT012065,PCT012066,PCT012067,PCT012068,PCT012069,PCT012070,PCT012071,PCT012072,PCT012073,PCT012074,PCT012075,PCT012076,PCT012077,PCT012078,PCT012079,PCT012080,PCT012081,PCT012082&amp;for=county:*
 http://api.census.gov/data/2000/sf1?get=PCT012083,PCT012084,PCT012085,PCT012086,PCT012087,PCT012088,PCT012089,PCT012090,PCT012091,PCT012092,PCT012093,PCT012094,PCT012095,PCT012096,PCT012097,PCT012098,PCT012099,PCT012100,PCT012101,PCT012102,PCT012103,PCT012104&amp;for=county:*
 </pre></div>
@@ -660,12 +675,12 @@ down into 10-year cohorts by selecting columns to stitch together. We&#8217;ll
 set breakpoints by the last few digits of the field name, and label our
 new cohorts according to which decade of your life they are. We&#8217;re using
 1-based indexing here for the cohort names.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pops2010d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pops2010</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pops2010d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pops2010</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
-<span class="n">decades</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;dec_</span><span class="si">%i</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
+<span class="n">decades</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dec_</span><span class="si">%i</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">breakpoints_2010</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">dec</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">decades</span><span class="p">,</span> <span class="n">breakpoints_2010</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">breakpoints_2010</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
-    <span class="n">pops2010d</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span> <span class="o">=</span> <span class="n">pops2010</span><span class="p">[[</span><span class="s">&#39;P0120</span><span class="si">%03i</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">f</span><span class="p">)]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pops2010d</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span> <span class="o">=</span> <span class="n">pops2010</span><span class="p">[[</span><span class="s1">&#39;P0120</span><span class="si">%03i</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">f</span><span class="p">)]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">pops2010d</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -764,12 +779,12 @@ new cohorts according to which decade of your life they are. We&#8217;re using
     </tr>
   </tbody>
 </table>
-</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">pops2000d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pops2000</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pops2000d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pops2000</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 
-<span class="n">decades</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;dec_</span><span class="si">%i</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
+<span class="n">decades</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dec_</span><span class="si">%i</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">breakpoints_2000</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">104</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">dec</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">decades</span><span class="p">,</span> <span class="n">breakpoints_2000</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">breakpoints_2000</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
-    <span class="n">pops2000d</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span> <span class="o">=</span> <span class="n">pops2000</span><span class="p">[[</span><span class="s">&#39;PCT012</span><span class="si">%03i</span><span class="s">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">f</span><span class="p">)]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">pops2000d</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span> <span class="o">=</span> <span class="n">pops2000</span><span class="p">[[</span><span class="s1">&#39;PCT012</span><span class="si">%03i</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">f</span><span class="p">)]]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">pops2000d</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -870,8 +885,8 @@ new cohorts according to which decade of your life they are. We&#8217;re using
 </table>
 </div><p>Now that the data have been formatted in the same way, we&#8217;ll concatenate
 them. We also drop any rows that don&#8217;t show up in both datasets.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pops2000d</span><span class="p">,</span> <span class="n">pops2010d</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">frame</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pops2000d</span><span class="p">,</span> <span class="n">pops2010d</span><span class="p">],</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2010</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">frame</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">frame</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1039,14 +1054,14 @@ them. We also drop any rows that don&#8217;t show up in both datasets.</p>
   </tbody>
 </table>
 </div><p>I&#8217;m happy with this format, so we&#8217;ll save it to csv:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">frame</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">&#39;Males by decade and county.csv&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">frame</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;Males by decade and county.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As our dataframe has a
 <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/advanced.html">MultiIndex</a>
 we have to take care when re-importing from the csv to get the index and
 header columns correct.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">&#39;Males by decade and county.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Males by decade and county.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">

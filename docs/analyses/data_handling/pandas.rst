@@ -313,7 +313,7 @@ the end of the ``DataFrame``:
 
 .. code:: python
 
-    emissions.iloc[-3:]
+    emissions.iloc[1:30]
 
 
 
@@ -346,37 +346,118 @@ the end of the ``DataFrame``:
       </thead>
       <tbody>
         <tr>
-          <th>2009</th>
-          <td>8700</td>
-          <td>1582</td>
-          <td>3039</td>
-          <td>3604</td>
-          <td>412</td>
-          <td>63</td>
-          <td>1.27</td>
+          <th>1752</th>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
         </tr>
         <tr>
-          <th>2010</th>
-          <td>9140</td>
-          <td>1698</td>
-          <td>3100</td>
-          <td>3832</td>
-          <td>445</td>
-          <td>65</td>
-          <td>1.32</td>
+          <th>1754</th>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
         </tr>
         <tr>
-          <th>2011</th>
-          <td>9449</td>
-          <td>1760</td>
-          <td>3137</td>
-          <td>3997</td>
-          <td>491</td>
-          <td>63</td>
-          <td>1.35</td>
+          <th>1756</th>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>1758</th>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>1760</th>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>...</th>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+        <tr>
+          <th>1772</th>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>1774</th>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>1776</th>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>1778</th>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
+        </tr>
+        <tr>
+          <th>1780</th>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>NaN</td>
         </tr>
       </tbody>
     </table>
+    <p>15 rows × 7 columns</p>
     </div>
 
 
@@ -473,24 +554,42 @@ of a python dictionary:
     emissions['Total Emissions']
 
 
+::
 
 
-.. parsed-literal::
+    ---------------------------------------------------------------------------
 
-    Year
-    1751       3
-    1752       3
-    1753       3
-    1754       3
-    1755       3
-            ... 
-    2007    8532
-    2008    8740
-    2009    8700
-    2010    9140
-    2011    9449
-    Name: Total Emissions, dtype: int64
+    KeyError                                  Traceback (most recent call last)
 
+    <ipython-input-9-dc76c55d0847> in <module>()
+    ----> 1 emissions[['Total Emissions']]
+    
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/core/frame.pyc in __getitem__(self, key)
+       1984         if isinstance(key, (Series, np.ndarray, Index, list)):
+       1985             # either boolean or fancy integer index
+    -> 1986             return self._getitem_array(key)
+       1987         elif isinstance(key, DataFrame):
+       1988             return self._getitem_frame(key)
+
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/core/frame.pyc in _getitem_array(self, key)
+       2028             return self.take(indexer, axis=0, convert=False)
+       2029         else:
+    -> 2030             indexer = self.ix._convert_to_indexer(key, axis=1)
+       2031             return self.take(indexer, axis=1, convert=True)
+       2032 
+
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/core/indexing.pyc in _convert_to_indexer(self, obj, axis, is_setter)
+       1208                 mask = check == -1
+       1209                 if mask.any():
+    -> 1210                     raise KeyError('%s not in index' % objarr[mask])
+       1211 
+       1212                 return _values_from_object(indexer)
+
+
+    KeyError: "['Total Emissions'] not in index"
 
 
 Passing a list of column names into this syntax returns a subset of the
@@ -624,14 +723,19 @@ such as the maximum value of each column:
 
 .. code:: python
 
-    emissions.max()
-
-
+    print emissions.idxmax(), emissions.max()
 
 
 .. parsed-literal::
 
-    Total Emissions         9449.00
+    Total Emissions         2011
+    Gas Emissions           2011
+    Liquid Emissions        2011
+    Solid Emissions         2011
+    Cement Emissions        2011
+    Flare Emissions         1973
+    Per Capita Emissions    2011
+    dtype: int64 Total Emissions         9449.00
     Gas Emissions           1760.00
     Liquid Emissions        3137.00
     Solid Emissions         3997.00
@@ -639,7 +743,6 @@ such as the maximum value of each column:
     Flare Emissions          110.00
     Per Capita Emissions       1.35
     dtype: float64
-
 
 
 The year `in which this maximum value

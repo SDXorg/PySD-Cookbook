@@ -1,0 +1,1454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
+        <link rel="up" title="Geographic Analyses" href="index_geo.html"/>
+        <link rel="next" title="Using SD models to understand the differences between population measures at varying levels of geographic disagregation" href="Exploring_models_across_geographic_scales.html"/>
+        <link rel="prev" title="Geographic Analyses" href="index_geo.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_geo.html">Geographic Analyses</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index_geo.html">Geographic Analyses</a> &raquo;</li>
+      
+    <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conda-install-c-ioos-geopandas-0-2-0-dev0">
+<h2>conda install -c ioos geopandas=0.2.0.dev0<a class="headerlink" href="#conda-install-c-ioos-geopandas-0-2-0-dev0" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="using-sd-to-understand-the-sd-fever">
+<h1>Using SD to understand the SD Fever<a class="headerlink" href="#using-sd-to-understand-the-sd-fever" title="Permalink to this headline">¶</a></h1>
+<p>In this script, we will use georeferenced data at a national level to
+simulate a multiregional infectious disease model. We’ll then present
+the advantages to project spatial data produced by our simulation back
+on a map.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">computation</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span> <span class="ne">UserWarning</span><span class="p">:</span> <span class="n">The</span> <span class="n">installed</span> <span class="n">version</span> <span class="n">of</span> <span class="n">numexpr</span> <span class="mf">2.4</span><span class="o">.</span><span class="mi">4</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">supported</span> <span class="ow">in</span> <span class="n">pandas</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">be</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">used</span>
+
+  <span class="ne">UserWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The model we’ll use to represent the dynamics of the disease is a simple
+SIR model, with individuals aggregated into stocks by their health
+condition S-Susceptible, I-Infectious, R-Recovered. We assume that the
+complete population is susceptible, therefore the initial value of
+susceptible stock is equal to the total population. In addition, we
+built on the hypothesis that from now all infected person are reported.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;../../models/SD_Fever/SIR_model.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_4_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_4_0.png" />
+<p>In Vensim our model was parameterized with 1000 suceptible, 5 infectious
+and 0 recovered individuals, a recovery period of 5 days and a contact
+infectivity of 70%.</p>
+<p>When we do not specificy anything else, the parameters and setting (e.g.
+timestep, simulation time) from the Vensim model are used.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/SD_Fever/SIR_Simple.mdl&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_6_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_6_0.png" />
+</div>
+<div class="section" id="modify-parameter-values">
+<h1>Modify parameter values<a class="headerlink" href="#modify-parameter-values" title="Permalink to this headline">¶</a></h1>
+<p>As we have seen before, we can specify changes to the parameters of the
+model in the call to the run function. Here we set the contact
+infectivity to 30% before running the simulation again. If you like, try
+what happens when you change some of the other parameters.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span> <span class="s1">&#39;total_population&#39;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span>
+                            <span class="s1">&#39;contact_infectivity&#39;</span><span class="p">:</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span>
+                            <span class="s1">&#39;recovery_period&#39;</span><span class="p">:</span> <span class="mi">5</span>
+                          <span class="p">})</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_9_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_9_0.png" />
+</div>
+<div class="section" id="change-model-settings">
+<h1>Change Model settings<a class="headerlink" href="#change-model-settings" title="Permalink to this headline">¶</a></h1>
+<p>We can also change in a very simpe manner the simulation time and
+timestep of the model. An easy way to do it is to use numpy linspace
+which returns evenly spaced numbers over a specified interval.</p>
+<p>np.linspace(Start, Stop, Number of timestamps)</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">sim_time</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">sim_time</span><span class="o">*</span><span class="mi">4</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span>  <span class="mf">0.</span>  <span class="p">,</span>   <span class="mf">0.25</span><span class="p">,</span>   <span class="mf">0.5</span> <span class="p">,</span>   <span class="mf">0.75</span><span class="p">,</span>   <span class="mf">1.</span>  <span class="p">,</span>   <span class="mf">1.25</span><span class="p">,</span>   <span class="mf">1.5</span> <span class="p">,</span>   <span class="mf">1.75</span><span class="p">,</span>
+         <span class="mf">2.</span>  <span class="p">,</span>   <span class="mf">2.25</span><span class="p">,</span>   <span class="mf">2.5</span> <span class="p">,</span>   <span class="mf">2.75</span><span class="p">,</span>   <span class="mf">3.</span>  <span class="p">,</span>   <span class="mf">3.25</span><span class="p">,</span>   <span class="mf">3.5</span> <span class="p">,</span>   <span class="mf">3.75</span><span class="p">,</span>
+         <span class="mf">4.</span>  <span class="p">,</span>   <span class="mf">4.25</span><span class="p">,</span>   <span class="mf">4.5</span> <span class="p">,</span>   <span class="mf">4.75</span><span class="p">,</span>   <span class="mf">5.</span>  <span class="p">,</span>   <span class="mf">5.25</span><span class="p">,</span>   <span class="mf">5.5</span> <span class="p">,</span>   <span class="mf">5.75</span><span class="p">,</span>
+         <span class="mf">6.</span>  <span class="p">,</span>   <span class="mf">6.25</span><span class="p">,</span>   <span class="mf">6.5</span> <span class="p">,</span>   <span class="mf">6.75</span><span class="p">,</span>   <span class="mf">7.</span>  <span class="p">,</span>   <span class="mf">7.25</span><span class="p">,</span>   <span class="mf">7.5</span> <span class="p">,</span>   <span class="mf">7.75</span><span class="p">,</span>
+         <span class="mf">8.</span>  <span class="p">,</span>   <span class="mf">8.25</span><span class="p">,</span>   <span class="mf">8.5</span> <span class="p">,</span>   <span class="mf">8.75</span><span class="p">,</span>   <span class="mf">9.</span>  <span class="p">,</span>   <span class="mf">9.25</span><span class="p">,</span>   <span class="mf">9.5</span> <span class="p">,</span>   <span class="mf">9.75</span><span class="p">,</span>  <span class="mf">10.</span>  <span class="p">])</span>
+</pre></div>
+</div>
+<p>We can use the return_timestamps keyword argument in PySD. This
+argument expects a list of timestamps, and will return simulation
+results at those timestamps.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_timestamps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">sim_time</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cumulative cases</th>
+      <th>infectious</th>
+      <th>recovered</th>
+      <th>susceptible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.000000</td>
+      <td>5.000000</td>
+      <td>0.000000</td>
+      <td>1000.000000</td>
+    </tr>
+    <tr>
+      <th>0.5</th>
+      <td>0.750000</td>
+      <td>5.250000</td>
+      <td>0.500000</td>
+      <td>999.250000</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>1.536909</td>
+      <td>5.511909</td>
+      <td>1.025000</td>
+      <td>998.463091</td>
+    </tr>
+    <tr>
+      <th>1.5</th>
+      <td>2.362425</td>
+      <td>5.786234</td>
+      <td>1.576191</td>
+      <td>997.637575</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>3.228310</td>
+      <td>6.073495</td>
+      <td>2.154814</td>
+      <td>996.771690</td>
+    </tr>
+    <tr>
+      <th>2.5</th>
+      <td>4.136393</td>
+      <td>6.374229</td>
+      <td>2.762164</td>
+      <td>995.863607</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>5.088572</td>
+      <td>6.688986</td>
+      <td>3.399587</td>
+      <td>994.911428</td>
+    </tr>
+    <tr>
+      <th>3.5</th>
+      <td>6.086815</td>
+      <td>7.018329</td>
+      <td>4.068485</td>
+      <td>993.913185</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>7.133156</td>
+      <td>7.362838</td>
+      <td>4.770318</td>
+      <td>992.866844</td>
+    </tr>
+    <tr>
+      <th>4.5</th>
+      <td>8.229704</td>
+      <td>7.723102</td>
+      <td>5.506602</td>
+      <td>991.770296</td>
+    </tr>
+    <tr>
+      <th>5.0</th>
+      <td>9.378635</td>
+      <td>8.099723</td>
+      <td>6.278912</td>
+      <td>990.621365</td>
+    </tr>
+    <tr>
+      <th>5.5</th>
+      <td>10.582199</td>
+      <td>8.493314</td>
+      <td>7.088885</td>
+      <td>989.417801</td>
+    </tr>
+    <tr>
+      <th>6.0</th>
+      <td>11.842715</td>
+      <td>8.904499</td>
+      <td>7.938216</td>
+      <td>988.157285</td>
+    </tr>
+    <tr>
+      <th>6.5</th>
+      <td>13.162571</td>
+      <td>9.333905</td>
+      <td>8.828666</td>
+      <td>986.837429</td>
+    </tr>
+    <tr>
+      <th>7.0</th>
+      <td>14.544228</td>
+      <td>9.782172</td>
+      <td>9.762056</td>
+      <td>985.455772</td>
+    </tr>
+    <tr>
+      <th>7.5</th>
+      <td>15.990213</td>
+      <td>10.249939</td>
+      <td>10.740274</td>
+      <td>984.009787</td>
+    </tr>
+    <tr>
+      <th>8.0</th>
+      <td>17.503119</td>
+      <td>10.737852</td>
+      <td>11.765268</td>
+      <td>982.496881</td>
+    </tr>
+    <tr>
+      <th>8.5</th>
+      <td>19.085605</td>
+      <td>11.246552</td>
+      <td>12.839053</td>
+      <td>980.914395</td>
+    </tr>
+    <tr>
+      <th>9.0</th>
+      <td>20.740391</td>
+      <td>11.776683</td>
+      <td>13.963708</td>
+      <td>979.259609</td>
+    </tr>
+    <tr>
+      <th>9.5</th>
+      <td>22.470255</td>
+      <td>12.328879</td>
+      <td>15.141376</td>
+      <td>977.529745</td>
+    </tr>
+    <tr>
+      <th>10.0</th>
+      <td>24.278032</td>
+      <td>12.903768</td>
+      <td>16.374264</td>
+      <td>975.721968</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="geographical-information">
+<h1>Geographical Information<a class="headerlink" href="#geographical-information" title="Permalink to this headline">¶</a></h1>
+<p>Geospatial information as area on a map linked to several properties are
+typically stored into shapefiles.</p>
+<p>For this script, we will use geopandas library to manage the shapefiles,
+and utilize its inherent plotting functionality.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gp</span>
+
+<span class="n">shapefile</span> <span class="o">=</span> <span class="s1">&#39;../../data/SD_Fever/geo_df_EU.shp&#39;</span>
+<span class="n">geo_data</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">shapefile</span><span class="p">)</span>
+<span class="n">geo_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">ImportError</span>                               <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">7</span><span class="o">-</span><span class="mi">17</span><span class="n">f6f8f07da0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gp</span>
+      <span class="mi">2</span>
+      <span class="mi">3</span> <span class="n">shapefile</span> <span class="o">=</span> <span class="s1">&#39;../../data/SD_Fever/geo_df_EU.shp&#39;</span>
+      <span class="mi">4</span> <span class="n">geo_data</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">shapefile</span><span class="p">)</span>
+      <span class="mi">5</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">pyc</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">2</span> <span class="kn">from</span> <span class="nn">geopandas.geodataframe</span> <span class="k">import</span> <span class="n">GeoDataFrame</span>
+      <span class="mi">3</span>
+<span class="o">----&gt;</span> <span class="mi">4</span> <span class="kn">from</span> <span class="nn">geopandas.io.file</span> <span class="k">import</span> <span class="n">read_file</span>
+      <span class="mi">5</span> <span class="kn">from</span> <span class="nn">geopandas.io.sql</span> <span class="k">import</span> <span class="n">read_postgis</span>
+      <span class="mi">6</span> <span class="kn">from</span> <span class="nn">geopandas.tools</span> <span class="k">import</span> <span class="n">sjoin</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">file</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">1</span> <span class="kn">import</span> <span class="nn">os</span>
+      <span class="mi">2</span>
+<span class="o">----&gt;</span> <span class="mi">3</span> <span class="kn">import</span> <span class="nn">fiona</span>
+      <span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+      <span class="mi">5</span> <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="k">import</span> <span class="n">mapping</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">fiona</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+     <span class="mi">70</span> <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">string_types</span>
+     <span class="mi">71</span>
+<span class="o">---&gt;</span> <span class="mi">72</span> <span class="kn">from</span> <span class="nn">fiona.collection</span> <span class="k">import</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">BytesCollection</span><span class="p">,</span> <span class="n">vsi_path</span>
+     <span class="mi">73</span> <span class="kn">from</span> <span class="nn">fiona._drivers</span> <span class="k">import</span> <span class="n">driver_count</span><span class="p">,</span> <span class="n">GDALEnv</span><span class="p">,</span> <span class="n">supported_drivers</span>
+     <span class="mi">74</span> <span class="kn">from</span> <span class="nn">fiona.odict</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">fiona</span><span class="o">/</span><span class="n">collection</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">5</span> <span class="kn">import</span> <span class="nn">sys</span>
+      <span class="mi">6</span>
+<span class="o">----&gt;</span> <span class="mi">7</span> <span class="kn">from</span> <span class="nn">fiona.ogrext</span> <span class="k">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">ItemsIterator</span><span class="p">,</span> <span class="n">KeysIterator</span>
+      <span class="mi">8</span> <span class="kn">from</span> <span class="nn">fiona.ogrext</span> <span class="k">import</span> <span class="n">Session</span><span class="p">,</span> <span class="n">WritingSession</span>
+      <span class="mi">9</span> <span class="kn">from</span> <span class="nn">fiona.ogrext</span> <span class="k">import</span> <span class="p">(</span>
+
+
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">dlopen</span><span class="p">(</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">fiona</span><span class="o">/</span><span class="n">ogrext</span><span class="o">.</span><span class="n">so</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span> <span class="n">Library</span> <span class="ow">not</span> <span class="n">loaded</span><span class="p">:</span> <span class="nd">@rpath</span><span class="o">/</span><span class="n">libtiff</span><span class="o">.</span><span class="mf">5.</span><span class="n">dylib</span>
+  <span class="n">Referenced</span> <span class="n">from</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libgdal</span><span class="o">.</span><span class="mf">1.</span><span class="n">dylib</span>
+  <span class="n">Reason</span><span class="p">:</span> <span class="n">Incompatible</span> <span class="n">library</span> <span class="n">version</span><span class="p">:</span> <span class="n">libgdal</span><span class="o">.</span><span class="mf">1.</span><span class="n">dylib</span> <span class="n">requires</span> <span class="n">version</span> <span class="mf">8.0</span><span class="o">.</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">later</span><span class="p">,</span> <span class="n">but</span> <span class="n">libtiff</span><span class="o">.</span><span class="mf">5.</span><span class="n">dylib</span> <span class="n">provides</span> <span class="n">version</span> <span class="mf">7.0</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Then we can project the geographic shape of the elements on a map.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">geo_data</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_17_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_17_0.png" />
+<p>And plot on of the georeferenced property (e.g. population)</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">geo_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;fisher_jenks&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">YlOrRd</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">9</span><span class="o">-</span><span class="n">c9605dc38e75</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">1</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;fisher_jenks&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="o">----&gt;</span> <span class="mi">2</span>              <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">YlOrRd</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+      <span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+      <span class="mi">4</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+      <span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">geodataframe</span><span class="o">.</span><span class="n">pyc</span> <span class="ow">in</span> <span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="mi">379</span>
+    <span class="mi">380</span>     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="o">--&gt;</span> <span class="mi">381</span>         <span class="k">return</span> <span class="n">plot_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="mi">382</span>
+    <span class="mi">383</span> <span class="k">def</span> <span class="nf">_dataframe_set_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">plot_dataframe</span><span class="p">()</span> <span class="n">got</span> <span class="n">an</span> <span class="n">unexpected</span> <span class="n">keyword</span> <span class="n">argument</span> <span class="s1">&#39;linewidth&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-model-for-each-country">
+<h1>Run the model for each country<a class="headerlink" href="#run-the-model-for-each-country" title="Permalink to this headline">¶</a></h1>
+<p>We want to run the core SD model for each country, with country specific
+paramterization.</p>
+<p>Thus, we formulate a function that based on each row parameterizes the
+model with the value from geodata, performs the simulation and finally
+returns the number of infectious individuals over time.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">runner</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">sim_time</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">params</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;total_population&#39;</span><span class="p">:</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">],</span>
+             <span class="s1">&#39;contact_infectivity&#39;</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;inf_rate&#39;</span><span class="p">]}</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                    <span class="n">return_timestamps</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">sim_time</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">sim_time</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;infectious&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="apply-function-along-rows-of-the-dataframe">
+<h2>Apply function along rows of the Dataframe.<a class="headerlink" href="#apply-function-along-rows-of-the-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>We want to apply the function row-wise (by country) therefore we set
+axis to 1 (row) instead of default 0 (column). The result is a new
+dataframe with the produced simulation for each country.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0.0</th>
+      <th>0.5</th>
+      <th>1.0</th>
+      <th>1.5</th>
+      <th>2.0</th>
+      <th>2.5</th>
+      <th>3.0</th>
+      <th>3.5</th>
+      <th>4.0</th>
+      <th>4.5</th>
+      <th>...</th>
+      <th>195.5</th>
+      <th>196.0</th>
+      <th>196.5</th>
+      <th>197.0</th>
+      <th>197.5</th>
+      <th>198.0</th>
+      <th>198.5</th>
+      <th>199.0</th>
+      <th>199.5</th>
+      <th>200.0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.0</td>
+      <td>5.407815</td>
+      <td>5.848892</td>
+      <td>6.325945</td>
+      <td>6.841907</td>
+      <td>7.399952</td>
+      <td>8.003512</td>
+      <td>8.656299</td>
+      <td>9.362329</td>
+      <td>10.125943</td>
+      <td>...</td>
+      <td>1.235898e+01</td>
+      <td>1.174243e+01</td>
+      <td>1.115664e+01</td>
+      <td>1.060006e+01</td>
+      <td>1.007126e+01</td>
+      <td>9.568833e+00</td>
+      <td>9.091472e+00</td>
+      <td>8.637925e+00</td>
+      <td>8.207004e+00</td>
+      <td>7.797580e+00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.0</td>
+      <td>5.127795</td>
+      <td>5.258857</td>
+      <td>5.393268</td>
+      <td>5.531115</td>
+      <td>5.672485</td>
+      <td>5.817468</td>
+      <td>5.966157</td>
+      <td>6.118646</td>
+      <td>6.275032</td>
+      <td>...</td>
+      <td>7.391140e+04</td>
+      <td>7.532471e+04</td>
+      <td>7.675456e+04</td>
+      <td>7.820069e+04</td>
+      <td>7.966278e+04</td>
+      <td>8.114054e+04</td>
+      <td>8.263360e+04</td>
+      <td>8.414161e+04</td>
+      <td>8.566416e+04</td>
+      <td>8.720083e+04</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.0</td>
+      <td>6.939664</td>
+      <td>9.631786</td>
+      <td>13.368267</td>
+      <td>18.554246</td>
+      <td>25.752025</td>
+      <td>35.742032</td>
+      <td>49.607441</td>
+      <td>68.851599</td>
+      <td>95.561003</td>
+      <td>...</td>
+      <td>8.710440e-08</td>
+      <td>7.927009e-08</td>
+      <td>7.216718e-08</td>
+      <td>6.579565e-08</td>
+      <td>6.015551e-08</td>
+      <td>5.514593e-08</td>
+      <td>5.050006e-08</td>
+      <td>4.620362e-08</td>
+      <td>4.225663e-08</td>
+      <td>3.865907e-08</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.0</td>
+      <td>4.958609</td>
+      <td>4.917560</td>
+      <td>4.876852</td>
+      <td>4.836480</td>
+      <td>4.796443</td>
+      <td>4.756736</td>
+      <td>4.717359</td>
+      <td>4.678307</td>
+      <td>4.639579</td>
+      <td>...</td>
+      <td>1.937845e-01</td>
+      <td>1.921802e-01</td>
+      <td>1.905892e-01</td>
+      <td>1.890113e-01</td>
+      <td>1.874465e-01</td>
+      <td>1.858947e-01</td>
+      <td>1.843557e-01</td>
+      <td>1.828294e-01</td>
+      <td>1.813158e-01</td>
+      <td>1.798147e-01</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>5.130475</td>
+      <td>5.264354</td>
+      <td>5.401727</td>
+      <td>5.542685</td>
+      <td>5.687321</td>
+      <td>5.835731</td>
+      <td>5.988013</td>
+      <td>6.144269</td>
+      <td>6.304603</td>
+      <td>...</td>
+      <td>7.030861e+04</td>
+      <td>7.130697e+04</td>
+      <td>7.230348e+04</td>
+      <td>7.329749e+04</td>
+      <td>7.428830e+04</td>
+      <td>7.527523e+04</td>
+      <td>7.625757e+04</td>
+      <td>7.723462e+04</td>
+      <td>7.820564e+04</td>
+      <td>7.916990e+04</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 401 columns</p>
+</div></div>
+</div>
+<div class="section" id="transpose-simulation-results-for-plotting">
+<h1>Transpose simulation results for plotting<a class="headerlink" href="#transpose-simulation-results-for-plotting" title="Permalink to this headline">¶</a></h1>
+<p>The pandas line plot assumes that rows represent the timeseries and
+columns the different objects. Since our data is not yet in this form,
+we have to transpose the data. In pandas all we have to do is add an .T
+at the end.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+      <th>32</th>
+      <th>33</th>
+      <th>34</th>
+      <th>35</th>
+      <th>36</th>
+      <th>37</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>...</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>0.5</th>
+      <td>5.407815</td>
+      <td>5.127795</td>
+      <td>6.939664</td>
+      <td>4.958609</td>
+      <td>5.130475</td>
+      <td>4.763649</td>
+      <td>5.630614</td>
+      <td>5.293347</td>
+      <td>5.993628</td>
+      <td>5.197358</td>
+      <td>...</td>
+      <td>7.459123</td>
+      <td>4.550577</td>
+      <td>5.240652</td>
+      <td>5.364989</td>
+      <td>5.125969</td>
+      <td>5.169376</td>
+      <td>5.245112</td>
+      <td>5.205252</td>
+      <td>4.595693</td>
+      <td>4.976995</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 38 columns</p>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_27_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_27_0.png" />
+</div>
+<div class="section" id="comparative-analysis">
+<h1>Comparative Analysis<a class="headerlink" href="#comparative-analysis" title="Permalink to this headline">¶</a></h1>
+<p>Next lets try to compare how severe a country is hit by the SD fever.</p>
+<p>Rather than looking at the number of infectious persons over time, a
+better indicator for comparative analysis are the cumulative cases as
+percentage of population in each country.</p>
+<p>We can reuse our code from before but instead of returning the number of
+infecious we return the cumulative cases.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">runner</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">sim_time</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">params</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;total_population&#39;</span><span class="p">:</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">],</span>
+             <span class="s1">&#39;contact_infectivity&#39;</span> <span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;inf_rate&#39;</span><span class="p">]}</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+                    <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">sim_time</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;cumulative_cases&#39;</span><span class="p">]</span>
+
+<span class="c1">#TIP: Ensure you are using lower case letters and the character _  not space</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>190</th>
+      <th>191</th>
+      <th>192</th>
+      <th>193</th>
+      <th>194</th>
+      <th>195</th>
+      <th>196</th>
+      <th>197</th>
+      <th>198</th>
+      <th>199</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>1.931564</td>
+      <td>4.191064</td>
+      <td>6.834176</td>
+      <td>9.926028</td>
+      <td>13.542802</td>
+      <td>17.773617</td>
+      <td>22.722719</td>
+      <td>28.512051</td>
+      <td>35.284257</td>
+      <td>...</td>
+      <td>2.643414e+06</td>
+      <td>2.643416e+06</td>
+      <td>2.643418e+06</td>
+      <td>2.643420e+06</td>
+      <td>2.643421e+06</td>
+      <td>2.643423e+06</td>
+      <td>2.643424e+06</td>
+      <td>2.643425e+06</td>
+      <td>2.643426e+06</td>
+      <td>2.643427e+06</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>1.284525</td>
+      <td>2.635551</td>
+      <td>4.056522</td>
+      <td>5.551057</td>
+      <td>7.122967</td>
+      <td>8.776255</td>
+      <td>10.515136</td>
+      <td>12.344040</td>
+      <td>14.267628</td>
+      <td>...</td>
+      <td>3.207868e+05</td>
+      <td>3.353914e+05</td>
+      <td>3.505670e+05</td>
+      <td>3.663273e+05</td>
+      <td>3.826858e+05</td>
+      <td>3.996553e+05</td>
+      <td>4.172479e+05</td>
+      <td>4.354754e+05</td>
+      <td>4.543483e+05</td>
+      <td>4.738766e+05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>6.044711</td>
+      <td>17.688969</td>
+      <td>40.119902</td>
+      <td>83.329609</td>
+      <td>166.565835</td>
+      <td>326.904336</td>
+      <td>635.757752</td>
+      <td>1230.660685</td>
+      <td>2376.436306</td>
+      <td>...</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+      <td>1.026049e+07</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.909294</td>
+      <td>1.803595</td>
+      <td>2.683151</td>
+      <td>3.548204</td>
+      <td>4.398995</td>
+      <td>5.235758</td>
+      <td>6.058724</td>
+      <td>6.868121</td>
+      <td>7.664172</td>
+      <td>...</td>
+      <td>5.280475e+01</td>
+      <td>5.284336e+01</td>
+      <td>5.288134e+01</td>
+      <td>5.291870e+01</td>
+      <td>5.295543e+01</td>
+      <td>5.299156e+01</td>
+      <td>5.302710e+01</td>
+      <td>5.306205e+01</td>
+      <td>5.309642e+01</td>
+      <td>5.313023e+01</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.290563</td>
+      <td>2.649358</td>
+      <td>4.079994</td>
+      <td>5.586268</td>
+      <td>7.172179</td>
+      <td>8.841937</td>
+      <td>10.599976</td>
+      <td>12.450961</td>
+      <td>14.399808</td>
+      <td>...</td>
+      <td>3.414903e+05</td>
+      <td>3.555252e+05</td>
+      <td>3.699699e+05</td>
+      <td>3.848232e+05</td>
+      <td>4.000827e+05</td>
+      <td>4.157447e+05</td>
+      <td>4.318042e+05</td>
+      <td>4.482554e+05</td>
+      <td>4.650906e+05</td>
+      <td>4.823014e+05</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 200 columns</p>
+</div><p>The answer is a simple matrix operation: divide row-wise the elements of
+our computed values by the column of the original geo data set where we
+had the population in each country.</p>
+<p>Let&#8217;s try to perform this type of operation on a minimal example.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Create arbitrary column</span>
+<span class="n">column</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">column</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>    <span class="mi">10</span>
+<span class="mi">1</span>     <span class="mi">0</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Create arbitrary pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABC&#39;</span><span class="p">))</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">column</span><span class="o">*</span><span class="n">df</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div><p>Now we can translate this operation on our actual problem.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">T</span><span class="o">/</span><span class="n">geo_data</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_37_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_37_0.png" />
+</div>
+<div class="section" id="analysis-of-results">
+<h1>Analysis of results<a class="headerlink" href="#analysis-of-results" title="Permalink to this headline">¶</a></h1>
+<p>For example, we could study the impact of contact infectivity on the
+cumulative cases at the end of the simulation</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">geo_data</span><span class="p">[</span><span class="s1">&#39;totalcases%pop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">199</span><span class="p">]</span> <span class="c1"># Slice the final value at the end of the simulation</span>
+<span class="n">df_scatter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">geo_data</span><span class="p">)</span> <span class="c1"># Geopandas dataframe to pandas Dataframe (geopandas tries to perform spatial analysis)</span>
+<span class="n">df_scatter</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;inf_rate&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;totalcases%pop&#39;</span><span class="p">);</span> <span class="c1"># Plot infectivity versus cumulative cases at the end of the simulation</span>
+</pre></div>
+</div>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_39_0.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_39_0.png" />
+</div>
+<div class="section" id="how-spatial-analysis-leads-to-insight">
+<h1>How Spatial Analysis Leads to Insight<a class="headerlink" href="#how-spatial-analysis-leads-to-insight" title="Permalink to this headline">¶</a></h1>
+<p>Finally, we present slighltly advanced Python scripts to get our
+simulation results projected on the map.</p>
+<p>We merge the complete simulation results with our original georeferenced
+information just as we did in the step before.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">geo_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>geometry</th>
+      <th>inf_rate</th>
+      <th>population</th>
+      <th>totalcases%pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Albania</td>
+      <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
+      <td>0.356814</td>
+      <td>3639453.0</td>
+      <td>0.726325</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Austria</td>
+      <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
+      <td>0.250476</td>
+      <td>8210281.0</td>
+      <td>0.057717</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">res</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+      <th>31</th>
+      <th>32</th>
+      <th>33</th>
+      <th>34</th>
+      <th>35</th>
+      <th>36</th>
+      <th>37</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>...</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.307292e-07</td>
+      <td>1.564532e-07</td>
+      <td>5.804221e-07</td>
+      <td>1.262086e-07</td>
+      <td>2.797414e-07</td>
+      <td>5.094781e-08</td>
+      <td>3.247481e-07</td>
+      <td>1.628636e-07</td>
+      <td>4.117605e-08</td>
+      <td>2.622006e-07</td>
+      <td>...</td>
+      <td>4.582214e-07</td>
+      <td>1.133618e-08</td>
+      <td>4.005424e-08</td>
+      <td>1.709489e-07</td>
+      <td>5.763613e-08</td>
+      <td>1.868129e-07</td>
+      <td>2.840291e-07</td>
+      <td>7.280583e-07</td>
+      <td>1.592863e-08</td>
+      <td>2.077661e-08</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 38 columns</p>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">geo_data_merged</span> <span class="o">=</span> <span class="n">geo_data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">geo_data_merged</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>geometry</th>
+      <th>inf_rate</th>
+      <th>population</th>
+      <th>totalcases%pop</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>...</th>
+      <th>190</th>
+      <th>191</th>
+      <th>192</th>
+      <th>193</th>
+      <th>194</th>
+      <th>195</th>
+      <th>196</th>
+      <th>197</th>
+      <th>198</th>
+      <th>199</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Albania</td>
+      <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
+      <td>0.356814</td>
+      <td>3639453.0</td>
+      <td>0.726325</td>
+      <td>0.0</td>
+      <td>5.307292e-07</td>
+      <td>1.151564e-06</td>
+      <td>1.877803e-06</td>
+      <td>2.727341e-06</td>
+      <td>...</td>
+      <td>0.726322</td>
+      <td>0.726322</td>
+      <td>0.726323</td>
+      <td>0.726323</td>
+      <td>0.726324</td>
+      <td>0.726324</td>
+      <td>0.726324</td>
+      <td>0.726325</td>
+      <td>0.726325</td>
+      <td>0.726325</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Austria</td>
+      <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
+      <td>0.250476</td>
+      <td>8210281.0</td>
+      <td>0.057717</td>
+      <td>0.0</td>
+      <td>1.564532e-07</td>
+      <td>3.210062e-07</td>
+      <td>4.940783e-07</td>
+      <td>6.761105e-07</td>
+      <td>...</td>
+      <td>0.039071</td>
+      <td>0.040850</td>
+      <td>0.042699</td>
+      <td>0.044618</td>
+      <td>0.046611</td>
+      <td>0.048677</td>
+      <td>0.050820</td>
+      <td>0.053040</td>
+      <td>0.055339</td>
+      <td>0.057717</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Belgium</td>
+      <td>POLYGON ((3.314971144228537 51.34578095153609,...</td>
+      <td>0.855631</td>
+      <td>10414336.0</td>
+      <td>0.985227</td>
+      <td>0.0</td>
+      <td>5.804221e-07</td>
+      <td>1.698521e-06</td>
+      <td>3.852373e-06</td>
+      <td>8.001433e-06</td>
+      <td>...</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+      <td>0.985227</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bulgaria</td>
+      <td>POLYGON ((22.65714969248299 44.23492300066128,...</td>
+      <td>0.183375</td>
+      <td>7204687.0</td>
+      <td>0.000007</td>
+      <td>0.0</td>
+      <td>1.262086e-07</td>
+      <td>2.503363e-07</td>
+      <td>3.724174e-07</td>
+      <td>4.924856e-07</td>
+      <td>...</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+      <td>0.000007</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bosnia and Herzegovina</td>
+      <td>POLYGON ((19.00548628101012 44.86023366960916,...</td>
+      <td>0.251521</td>
+      <td>4613414.0</td>
+      <td>0.104543</td>
+      <td>0.0</td>
+      <td>2.797414e-07</td>
+      <td>5.742728e-07</td>
+      <td>8.843763e-07</td>
+      <td>1.210875e-06</td>
+      <td>...</td>
+      <td>0.074021</td>
+      <td>0.077063</td>
+      <td>0.080194</td>
+      <td>0.083414</td>
+      <td>0.086722</td>
+      <td>0.090116</td>
+      <td>0.093598</td>
+      <td>0.097163</td>
+      <td>0.100813</td>
+      <td>0.104543</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 205 columns</p>
+</div></div>
+<div class="section" id="plotting-simulation-results-on-map-with-ipywidgets">
+<h1>Plotting simulation results on map with Ipywidgets<a class="headerlink" href="#plotting-simulation-results-on-map-with-ipywidgets" title="Permalink to this headline">¶</a></h1>
+<p>Ipywidgets are interactive HTML widgets for IPython notebooks. Users
+gain control of their data and can visualize changes in the data.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">IntSlider</span><span class="p">,</span><span class="n">RadioButtons</span><span class="p">,</span> <span class="n">Dropdown</span>
+<span class="n">sim_time</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">slider_time</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Time Select&#39;</span><span class="p">,</span>
+                        <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">sim_time</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span> <span class="n">time</span> <span class="o">=</span> <span class="n">slider_time</span><span class="p">)</span> <span class="c1"># Scenario = select_scenario,</span>
+<span class="k">def</span> <span class="nf">update_map</span><span class="p">(</span><span class="n">time</span><span class="p">):</span> <span class="c1"># Scenario</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">geo_data_merged</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="s1">&#39;fisher-jenks&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Reds</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+</pre></div>
+</div>
+<pre class="literal-block">
+C:UsersSchwarzAppDataLocalEnthoughtCanopy32Userlibsite-packagesgeopandasgeodataframe.py:447: UserWarning: Unrecognized scheme &quot;fisher-jenks&quot;. Using &quot;Quantiles&quot; instead
+  return plot_dataframe(self, <a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs)
+</pre>
+<img alt="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_46_1.png" src="../../_images/Doing_more_with_spatialdata_multi_regional_SIR_Model_46_1.png" />
+<p>...</p>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Exploring_models_across_geographic_scales.html" class="btn btn-neutral float-right" title="Using SD models to understand the differences between population measures at varying levels of geographic disagregation">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index_geo.html" class="btn btn-neutral" title="Geographic Analyses"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

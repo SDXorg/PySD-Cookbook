@@ -30,8 +30,11 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
-        <link rel="next" title="Using SD models to understand the differences between population measures at varying levels of geographic disagregation" href="Exploring_models_across_geographic_scales.html"/>
+        <link rel="next" title="Installation" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html"/>
         <link rel="prev" title="Fitting a model with Markov Chain Monte Carlo" href="../fitting/MCMC_for_fitting_models.html"/> 
 
   
@@ -91,12 +94,24 @@
 <li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Geographic Analyses</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -161,6 +176,23 @@
 <h1>Geographic Analyses<a class="headerlink" href="#geographic-analyses" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#conda-install-c-ioos-geopandas-0-2-0-dev0">conda install -c ioos geopandas=0.2.0.dev0</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#apply-function-along-rows-of-the-dataframe">Apply function along rows of the Dataframe.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Exploring_models_across_geographic_scales.html#about-this-technique">About this technique</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Exploring_models_across_geographic_scales.html#ingredients">Ingredients</a></li>
@@ -178,7 +210,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Exploring_models_across_geographic_scales.html" class="btn btn-neutral float-right" title="Using SD models to understand the differences between population measures at varying levels of geographic disagregation">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Doing_more_with_spatialdata_multi_regional_SIR_Model.html" class="btn btn-neutral float-right" title="Installation">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../fitting/MCMC_for_fitting_models.html" class="btn btn-neutral" title="Fitting a model with Markov Chain Monte Carlo"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -35,13 +35,6 @@ introduce the optimization functionality provided by ``scipy.optimize``.
     Populating the interactive namespace from numpy and matplotlib
 
 
-.. parsed-literal::
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
-    
-      UserWarning)
-
-
 The model that we'll try to fit is simple 'Susceptible-Infectious'
 model. This model assumes that everyone is either susceptible, or
 infectious. It assumes that there is no recovery, or death; and doesn't
@@ -57,7 +50,7 @@ We'll hold **infectivity** constant, and try to infer values for the
 
 .. code:: python
 
-    model = pysd.read_vensim('../../models/SI Model/SI Model.mdl')
+    model = pysd.read_vensim('../../models/Epidemic/SI Model.mdl')
 
 We'll fit our model to data from the WHO patient database for Sierra
 Leone. We see the standard *S-Shaped* growth in the cumulative
@@ -113,7 +106,7 @@ interested in, at the timestamps that match our data.
 
 .. parsed-literal::
 
-    157979297.36259085
+    157977495.47574666
 
 
 
@@ -163,15 +156,15 @@ values the optimizer will try.
 
 .. parsed-literal::
 
-          fun: 22180775.88110314
+          fun: 22200247.95370693
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
-          jac: array([   0.37252903,  343.47176552])
+          jac: array([    0.       , -1666.3223505])
       message: 'CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH'
-         nfev: 90
+         nfev: 66
           nit: 10
        status: 0
       success: True
-            x: array([  8.82037219e+03,   8.20434113e+00])
+            x: array([  8.82129606e+03,   8.20459019e+00])
 
 
 
@@ -190,10 +183,58 @@ too simple to truly capture the correct shape of the curve.
                        return_columns=['population_infected_with_ebola'],
                        return_timestamps=list(data.index.values))
     
-    plt.plot(result.index, result['population_infected_with_ebola'])
-    plt.plot(data.index, data['Cumulative Cases']);
+    plt.plot(result.index, result['population_infected_with_ebola'], label='Simulated')
+    plt.plot(data.index, data['Cumulative Cases'], label='Historical');
+    plt.xlabel('Time [Days]')
+    plt.ylabel('Cumulative Infections')
+    plt.title('Model fit to Sierra Leone Ebola historical infections data')
+    plt.legend(loc='lower right')
+    plt.text(2,9000, 'RMSE: 7.5% of Max', color='r', fontsize=12)
 
 
 
-.. image:: Fitting_with_Optimization_files/Fitting_with_Optimization_16_0.png
+
+.. parsed-literal::
+
+    <matplotlib.text.Text at 0x118352f50>
+
+
+
+
+.. image:: Fitting_with_Optimization_files/Fitting_with_Optimization_16_1.png
+
+
+.. code:: python
+
+    res
+
+
+
+
+.. parsed-literal::
+
+          fun: 22200247.95370693
+     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+          jac: array([    0.       , -1666.3223505])
+      message: 'CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH'
+         nfev: 66
+          nit: 10
+       status: 0
+      success: True
+            x: array([  8.82129606e+03,   8.20459019e+00])
+
+
+
+.. code:: python
+
+    sqrt(res.fun/len(data))/data['Cumulative Cases'].max()
+
+
+
+
+.. parsed-literal::
+
+    0.075054691238299831
+
+
 

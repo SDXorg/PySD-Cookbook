@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Data Used in this Cookbook" href="../index_data.html"/>
         <link rel="next" title="&lt;no title&gt;" href="../MA_Towns/Town_Formatter.html"/>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analyses/geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../analyses/surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analyses/surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../analyses/realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -115,7 +130,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Climate/sources.html">Carbon Data Sources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
@@ -172,15 +187,15 @@ is valid as of Feb 2016 - however this may not always be the case!)</p>
 <a class="reference external" href="http://www.ietf.org/rfc/rfc2076.txt">http://www.ietf.org/rfc/rfc2076.txt</a></p>
 <p>The python standard library has a module for dealing with this type of
 file, which we&#8217;ll draw on extensively, along with pandas.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import mailbox
-import pandas as pd
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">mailbox</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">mb</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">mbox</span><span class="p">(</span><span class="s">&#39;All mail Including Spam and Trash.mbox&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">mb</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="n">mbox</span><span class="p">(</span><span class="s1">&#39;All mail Including Spam and Trash.mbox&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="step-1-extract-relevant-information-from-mbox-file">
@@ -196,15 +211,15 @@ messages that were recieved by the account holder. Lastly, we want the
 date and time that the message was sent: <code class="docutils literal"><span class="pre">Date</span></code>.</p>
 <p>We don&#8217;t need any information about the content of the message, or even
 who it was to or from.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">,</span> <span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">,</span> <span class="s">&#39;X-GM-THRID&#39;</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">,</span> <span class="s1">&#39;X-GM-THRID&#39;</span><span class="p">]</span>
 <span class="n">message_list</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">mb</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
     <span class="n">dmessage</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
-    <span class="n">message_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">key</span><span class="p">:</span><span class="n">dmessage</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dmessage</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="s">&#39;&#39;</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">})</span>
+    <span class="n">message_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">key</span><span class="p">:</span><span class="n">dmessage</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dmessage</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">})</span>
 
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">message_list</span><span class="p">),</span> <span class="s">&#39;messages&#39;</span>
-<span class="k">print</span> <span class="s">&#39;**&#39;</span><span class="o">*</span><span class="mi">50</span>
+<span class="nb">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">message_list</span><span class="p">),</span> <span class="s1">&#39;messages&#39;</span>
+<span class="nb">print</span> <span class="s1">&#39;**&#39;</span><span class="o">*</span><span class="mi">50</span>
 <span class="n">message_list</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -212,25 +227,25 @@ who it was to or from.</p>
 127005 messages
 <strong>************************************************************************************************</strong>
 </pre>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">[{</span><span class="s">&#39;Date&#39;</span><span class="p">:</span> <span class="s">&#39;Mon, 07 Sep 2015 23:45:16 +0000&#39;</span><span class="p">,</span>
-  <span class="s">&#39;X-GM-THRID&#39;</span><span class="p">:</span> <span class="s">&#39;1511700066770539101&#39;</span><span class="p">,</span>
-  <span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">:</span> <span class="s">&#39;Important&#39;</span><span class="p">},</span>
- <span class="p">{</span><span class="s">&#39;Date&#39;</span><span class="p">:</span> <span class="s">&#39;Wed, 9 Sep 2015 08:56:18 -0400&#39;</span><span class="p">,</span>
-  <span class="s">&#39;X-GM-THRID&#39;</span><span class="p">:</span> <span class="s">&#39;1511700066770539101&#39;</span><span class="p">,</span>
-  <span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">:</span> <span class="s">&#39;Important&#39;</span><span class="p">},</span>
- <span class="p">{</span><span class="s">&#39;Date&#39;</span><span class="p">:</span> <span class="s">&#39;Wed, 9 Sep 2015 09:53:19 +0000&#39;</span><span class="p">,</span>
-  <span class="s">&#39;X-GM-THRID&#39;</span><span class="p">:</span> <span class="s">&#39;1511828916942046097&#39;</span><span class="p">,</span>
-  <span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">:</span> <span class="s">&#39;Important&#39;</span><span class="p">}]</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Mon, 07 Sep 2015 23:45:16 +0000&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;X-GM-THRID&#39;</span><span class="p">:</span> <span class="s1">&#39;1511700066770539101&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">:</span> <span class="s1">&#39;Important&#39;</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Wed, 9 Sep 2015 08:56:18 -0400&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;X-GM-THRID&#39;</span><span class="p">:</span> <span class="s1">&#39;1511700066770539101&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">:</span> <span class="s1">&#39;Important&#39;</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="p">:</span> <span class="s1">&#39;Wed, 9 Sep 2015 09:53:19 +0000&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;X-GM-THRID&#39;</span><span class="p">:</span> <span class="s1">&#39;1511828916942046097&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">:</span> <span class="s1">&#39;Important&#39;</span><span class="p">}]</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">messages</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">message_list</span><span class="p">)</span>
-<span class="n">messages</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">messages</span><span class="p">[</span><span class="s">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s">&#39;coerce&#39;</span><span class="p">))</span>
-<span class="n">messages</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s">&#39;Date&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">messages</span><span class="o">.</span><span class="n">shape</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">messages</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">message_list</span><span class="p">)</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">messages</span><span class="p">[</span><span class="s1">&#39;Date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">))</span>
+<span class="n">messages</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Date&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">messages</span><span class="o">.</span><span class="n">shape</span>
 <span class="n">messages</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mi">127005</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">127005</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <div>
@@ -279,20 +294,20 @@ who it was to or from.</p>
 <div class="section" id="step-2-group-the-messages-by-thread">
 <h2>Step 2: group the messages by thread<a class="headerlink" href="#step-2-group-the-messages-by-thread" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;ll begin by grouping the messages into their various threads.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">conversation_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">threads</span> <span class="o">=</span> <span class="n">messages</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">&#39;X-GM-THRID&#39;</span><span class="p">)</span>
-<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">),</span> <span class="s">&#39;threads total&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">conversation_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">threads</span> <span class="o">=</span> <span class="n">messages</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;X-GM-THRID&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">threads</span><span class="p">),</span> <span class="s1">&#39;threads total&#39;</span>
 
-<span class="n">counts</span> <span class="o">=</span> <span class="n">threads</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="s">&#39;count&#39;</span><span class="p">)[</span><span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="n">counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Number of Threads&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Length of Thread&#39;</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">threads</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)[</span><span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Number of Threads&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Length of Thread&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>32966 threads total
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">32966</span> <span class="n">threads</span> <span class="n">total</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x10ca707d0&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">Text</span> <span class="n">at</span> <span class="mh">0x10ca707d0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <img alt="../../_images/Email_Data_Formatter_7_2.png" src="../../_images/Email_Data_Formatter_7_2.png" />
@@ -306,26 +321,26 @@ times, we sort the thread on its index, and take the first message time
 as the start of the conversation.</p>
 <p>Then we filter to just the messages labeled <em>Sent</em>, and (as they are
 still sorted) take the first of these.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s">&#39;Sent&#39;</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
-            <span class="n">group</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;Sent&#39;</span> <span class="ow">in</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">tstart</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">tjoin</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">group</span><span class="p">[</span><span class="s">&#39;X-Gmail-Labels&#39;</span><span class="p">]</span><span class="o">==</span><span class="s">&#39;Sent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">conversation_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s">&#39;tstart&#39;</span><span class="p">:</span><span class="n">tstart</span><span class="p">,</span> <span class="s">&#39;tjoin&#39;</span><span class="p">:</span><span class="n">tjoin</span><span class="p">})</span>
+            <span class="n">tjoin</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;X-Gmail-Labels&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Sent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">conversation_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;tstart&#39;</span><span class="p">:</span><span class="n">tstart</span><span class="p">,</span> <span class="s1">&#39;tjoin&#39;</span><span class="p">:</span><span class="n">tjoin</span><span class="p">})</span>
 
 <span class="n">conversations</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">conversation_list</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">conversations</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span> <span class="n">conversations</span><span class="o">.</span><span class="n">shape</span>
 <span class="n">conversations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mi">1873</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1873</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>/Users/houghton/anaconda/lib/python2.7/site-packages/ipykernel/__main__.py:4: SettingWithCopyWarning:
-A value is trying to be set on a copy of a slice from a DataFrame
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">ipykernel</span><span class="o">/</span><span class="n">__main__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span> <span class="n">SettingWithCopyWarning</span><span class="p">:</span>
+<span class="n">A</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">trying</span> <span class="n">to</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">on</span> <span class="n">a</span> <span class="n">copy</span> <span class="n">of</span> <span class="n">a</span> <span class="nb">slice</span> <span class="kn">from</span> <span class="nn">a</span> <span class="n">DataFrame</span>
 
-See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+<span class="n">See</span> <span class="n">the</span> <span class="n">caveats</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">documentation</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">pandas</span><span class="o">.</span><span class="n">pydata</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">docs</span><span class="o">/</span><span class="n">stable</span><span class="o">/</span><span class="n">indexing</span><span class="o">.</span><span class="n">html</span><span class="c1">#indexing-view-versus-copy</span>
 </pre></div>
 </div>
 <div>
@@ -370,17 +385,17 @@ See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stabl
 <h2>Step 4: Calculate the time delta<a class="headerlink" href="#step-4-calculate-the-time-delta" title="Permalink to this headline">¶</a></h2>
 <p>We now can subtract the one from the other, and convert the result into
 units of days.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">delta</span> <span class="o">=</span> <span class="n">conversations</span><span class="p">[</span><span class="s">&#39;tjoin&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">conversations</span><span class="p">[</span><span class="s">&#39;tstart&#39;</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="n">conversations</span><span class="p">[</span><span class="s1">&#39;tjoin&#39;</span><span class="p">]</span><span class="o">-</span><span class="n">conversations</span><span class="p">[</span><span class="s1">&#39;tstart&#39;</span><span class="p">]</span>
 <span class="n">days</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">*</span> <span class="n">delta</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3600</span> <span class="o">/</span> <span class="mi">24</span>
 <span class="n">days</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>0    0.000000
-1    0.196354
-2    0.000000
-3    0.000000
-4    0.000000
-dtype: float64
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>    <span class="mf">0.000000</span>
+<span class="mi">1</span>    <span class="mf">0.196354</span>
+<span class="mi">2</span>    <span class="mf">0.000000</span>
+<span class="mi">3</span>    <span class="mf">0.000000</span>
+<span class="mi">4</span>    <span class="mf">0.000000</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
 </div>
@@ -391,23 +406,23 @@ first message sent by the account holder is zero, then we assume that
 the account holder initiated the thread. As we are interested in seeing
 how the account holder deals with emails they recieve, we filter these
 out.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">days</span> <span class="o">=</span> <span class="n">days</span><span class="p">[</span><span class="n">days</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">days</span> <span class="o">=</span> <span class="n">days</span><span class="p">[</span><span class="n">days</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">days</span> <span class="o">=</span> <span class="n">days</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">days</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>0    0.196354
-1    0.076539
-2    0.352731
-3    0.321343
-4    0.720741
-Name: 0, dtype: float64
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span>    <span class="mf">0.196354</span>
+<span class="mi">1</span>    <span class="mf">0.076539</span>
+<span class="mi">2</span>    <span class="mf">0.352731</span>
+<span class="mi">3</span>    <span class="mf">0.321343</span>
+<span class="mi">4</span>    <span class="mf">0.720741</span>
+<span class="n">Name</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="step-6-save-to-csv">
 <h2>Step 6: Save to csv<a class="headerlink" href="#step-6-save-to-csv" title="Permalink to this headline">¶</a></h2>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">days</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">&#39;days_to_join_conversation.csv&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">days</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;days_to_join_conversation.csv&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

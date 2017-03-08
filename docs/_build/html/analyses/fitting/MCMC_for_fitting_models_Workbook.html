@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fitting a model with Markov Chain Monte Carlo &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../visualization/phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Fitting a model with Markov Chain Monte Carlo</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/fitting/MCMC_for_fitting_models_Workbook.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="fitting-a-model-with-markov-chain-monte-carlo">
+<h1>Fitting a model with Markov Chain Monte Carlo<a class="headerlink" href="#fitting-a-model-with-markov-chain-monte-carlo" title="Permalink to this headline">¶</a></h1>
+<p>Markov Chain Monte Carlo (MCMC) is a way to infer a distribution of
+model parameters, given that the measurements of the output of the model
+are influenced by some tractable random process. In this case, performs
+something akin to the opposite of what a standard Monte Carlo simultion
+will do. Instead of starting with distributions for the parameters of a
+model and using them to calculate a distribution (usually related to
+uncertainty) in the output of the simulation, we start with a
+distribution of that output and look for input distributions.</p>
+<div class="section" id="ingredients">
+<h2>Ingredients<a class="headerlink" href="#ingredients" title="Permalink to this headline">¶</a></h2>
+<p>For this analysis we&#8217;ll introduce the python package
+<a class="reference external" href="https://pymc-devs.github.io/pymc/README.html">PyMC</a> which implements
+MCMC algorithms for us. Another project which performs similar
+calculations is <a class="reference external" href="https://pystan.readthedocs.org/en/latest/">PyStan</a>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="o">&lt;&lt;...&gt;&gt;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<p>For this example, we&#8217;ll revisit the ebola case, only assuming that our
+data has some noise, and we&#8217;ll use MCMC to estimate distributions for
+the parameters for the model. For a more detailed description of this
+model and the dataset see the recipe <a class="reference external" href="http://pysd-cookbook.readthedocs.org/en/latest/analyses/fitting/Fitting_with_Optimization.html">Fitting with
+Optimization</a>.</p>
+<p>We&#8217;ll assume that the model simulates an underlying process of disease
+propagation, but that the data is noisy - perhaps it represents
+admittance rates at a hospital, and so will be missing some cases, and
+may include some false positives through misdiagnosis.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/SI Model/SI Model.mdl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/Ebola/Ebola_in_SL_Data.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Weeks&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_Workbook_4_0.png" src="../../_images/MCMC_for_fitting_models_Workbook_4_0.png" />
+</div>
+<div class="section" id="recipe">
+<h2>Recipe<a class="headerlink" href="#recipe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-1-establish-prior-distributions-for-the-input-parameters">
+<h3>Step 1: Establish prior distributions for the input parameters<a class="headerlink" href="#step-1-establish-prior-distributions-for-the-input-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Our first step is to establish prior distributions for the parameters
+for which we will be trying to infer posterior distributions. As in the
+optimization case, we&#8217;ll modify the effective population and the contact
+frequency. In real epidemiological modeling, we&#8217;d have a more complex
+model, and we&#8217;d have some information about the population, etc. but
+this makes for a relatively tight example.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.&lt;&lt;...&gt;&gt;</span><span class="p">(</span><span class="s1">&#39;total_population&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">contact_frequency</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.&lt;&lt;..&gt;&gt;</span><span class="p">(</span><span class="s1">&#39;contact_frequency&#39;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-perform-the-simulation">
+<h3>Step 2: Perform the simulation<a class="headerlink" href="#step-2-perform-the-simulation" title="Permalink to this headline">¶</a></h3>
+<p>We now need to define a function that will run the model given a draw
+from the input distributions, and return the values that we will take as
+those of the fundamental underlying phenomena, before measurement noise
+is included.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@pymc</span><span class="o">.&lt;&lt;...&gt;&gt;</span>
+<span class="k">def</span> <span class="nf">sim</span><span class="p">(</span><span class="n">population</span><span class="o">=</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="o">=</span><span class="n">contact_frequency</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;total_population&#39;</span><span class="p">:</span><span class="n">population</span><span class="p">,</span>
+                               <span class="s1">&#39;contact_frequency&#39;</span><span class="p">:</span><span class="n">contact_frequency</span><span class="p">},</span>
+                       <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;infection_rate&#39;</span><span class="p">],</span>
+                       <span class="n">return_timestamps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;infection_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-include-noise-terms">
+<h3>Step 3: Include noise terms<a class="headerlink" href="#step-3-include-noise-terms" title="Permalink to this headline">¶</a></h3>
+<p>There are several ways we could include noise. If we expected no false
+positives, we could use a Binomial distribution, such that of <code class="docutils literal"><span class="pre">n</span></code>
+possible cases that could be reported, only a fraction <code class="docutils literal"><span class="pre">p</span></code> would be
+reported, and other cases missed. If we only want to model false
+positives, we could assume that there was an average rate of false
+positives, with the data following a poisson distribution. The full rate
+would be the sum of these two processes.</p>
+<p>For now, however, we&#8217;ll simplify the analysis by only looking at the
+Poisson noise component. The mean of the poisson process will be the
+results of our simulation.</p>
+<p>This is where we include our measured data into the model. PyMC will
+know how to calculate the log likelihood of seeing the observed data
+given the assumption that the simulation result represents the
+underlying process, subject to Poisson noise.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">admittances</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;admittances&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=&lt;&lt;...&gt;&gt;</span><span class="p">,</span>
+                           <span class="n">value</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;New Reported Cases&#39;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=&lt;&lt;...&gt;&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-4-perform-the-mcmc-sampling">
+<h3>Step 4: Perform the MCMC Sampling<a class="headerlink" href="#step-4-perform-the-mcmc-sampling" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have set up the problem for PyMC, we need only to run the
+MCMC sampler. What this will do, essentially, is take a trial set of
+points from our prior distribution, simulate the model, and evaluate the
+likelihood of the data given those input parameters, the simulation
+model, and the noise distribution. It will then use bayes law to decide
+whether to keep the trial points or throw them away. It will then choose
+a new set of points and start over. (There is a lot more cleverness
+happening than this, of course. If you want to know how it works, I
+recommend <a class="reference external" href="http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">Bayesian Methods for
+Hackers</a>.</p>
+<p>First we assemble the various pieces of the data flow that we built up
+into a model that pymc can recognize, and instantiate a sampler <code class="docutils literal"><span class="pre">MCMC</span></code>
+to run the algorithm for us.</p>
+<p>Then we&#8217;ll ask the MCMC algorithm to run until it has kept 20000 points.
+We&#8217;ll throw out the first 1000 of these, as they are likely to be biased
+towards the initial values we set up and not representative of the
+overall distribution.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">mcmdl</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">Model</span><span class="p">([</span><span class="n">population</span><span class="p">,</span> <span class="n">contact_frequency</span><span class="p">,</span> <span class="n">sim</span><span class="p">,</span> <span class="n">admittances</span><span class="p">])</span>
+<span class="n">mcmc</span> <span class="o">=</span> <span class="n">pymc</span><span class="o">.</span><span class="n">MCMC</span><span class="p">(</span><span class="o">&lt;&lt;...&gt;&gt;</span><span class="p">)</span>
+<span class="n">mcmc</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">20000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="o">-----------------</span><span class="mi">100</span><span class="o">%-----------------</span><span class="p">]</span> <span class="mi">20000</span> <span class="n">of</span> <span class="mi">20000</span> <span class="n">complete</span> <span class="ow">in</span> <span class="mf">67.1</span> <span class="n">sec</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-5-look-at-the-distribution">
+<h3>Step 5: Look at the distribution<a class="headerlink" href="#step-5-look-at-the-distribution" title="Permalink to this headline">¶</a></h3>
+<p>We can now evaluate the results by looking at the series of points we
+&#8216;kept&#8217;. These are stored as traces within the population and contact
+frequency objects we built earlier.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">population</span><span class="o">.&lt;&lt;...&gt;&gt;</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fit distribution for the population parameter&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_Workbook_14_0.png" src="../../_images/MCMC_for_fitting_models_Workbook_14_0.png" />
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fit distribution for the contact frequency parameter&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_Workbook_15_0.png" src="../../_images/MCMC_for_fitting_models_Workbook_15_0.png" />
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">normed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Fit distribution for the characteristic time parameter&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Minutes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">Text</span> <span class="n">at</span> <span class="mh">0x10cf40350</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_Workbook_16_1.png" src="../../_images/MCMC_for_fitting_models_Workbook_16_1.png" />
+</div>
+<div class="section" id="step-6-understand-the-correlation-between-our-parameter-distributions">
+<h3>Step 6: Understand the correlation between our parameter distributions<a class="headerlink" href="#step-6-understand-the-correlation-between-our-parameter-distributions" title="Permalink to this headline">¶</a></h3>
+<p>PyMC has calculated for us the input distributions for the parameters we
+have based upon our data. This isn&#8217;t the whole story, however, as these
+values are not independent of one another. We can see by plotting them
+against one another that there is correlation:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="n">contact_frequency</span><span class="o">.</span><span class="n">trace</span><span class="p">[:],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Effective Population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Contact Frequency&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/MCMC_for_fitting_models_Workbook_18_0.png" src="../../_images/MCMC_for_fitting_models_Workbook_18_0.png" />
+<p>If we use these distributions in the future to propagate uncertainty
+through the model (say in doing a policy test) we should make sure that
+we&#8217;re including this correlation. The simplest way to do this is just to
+use the traces themselves as inputs into a normal Monte Carlo error
+propagation calculation, making sure that we use the same index in each
+trace for any given run. This will automatically include the correlation
+for us. Clever!</p>
+</div>
+</div>
+<div class="section" id="resources">
+<h2>Resources:<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<p>The analysis in this notebook is inspired by blogt posts by Abraham
+Flaxman: -
+<a class="reference external" href="http://healthyalgorithms.com/2010/11/29/mcmc-in-python-statistical-model-stuck-on-a-stochastic-system-dynamics-model-in-pymc/">http://healthyalgorithms.com/2010/11/29/mcmc-in-python-statistical-model-stuck-on-a-stochastic-system-dynamics-model-in-pymc/</a></p>
+<ul class="simple">
+<li><a class="reference external" href="http://healthyalgorithms.com/2010/10/19/mcmc-in-python-how-to-stick-a-statistical-model-on-a-system-dynamics-model-in-pymc/">http://healthyalgorithms.com/2010/10/19/mcmc-in-python-how-to-stick-a-statistical-model-on-a-system-dynamics-model-in-pymc/</a></li>
+</ul>
+<p>A great resource for learning about MCMC is <a class="reference external" href="http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">Bayesian Methods for
+Hackers</a></p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

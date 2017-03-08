@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Visualization" href="index_visualization.html"/>
         <link rel="next" title="Model Fitting" href="../fitting/index_fitting.html"/>
@@ -82,7 +85,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index_visualization.html">Visualization</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Phase Portraits</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Phase Portraits</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -178,12 +193,12 @@ stocks.</p>
 <li><strong>numpy</strong> to create the grid of points that we&#8217;ll sample over</li>
 <li><strong>matplotlib</strong> via ipython&#8217;s pylab magic to construct the quiver plot</li>
 </ul>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab inline
-import pysd
-import numpy as np
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
 </div>
@@ -196,7 +211,7 @@ cartesian coordinates. In this model, the two state elements are the
 angle of the pendulum and the derivative of that angle, its angular
 velocity.</p>
 <a class="reference internal image-reference" href="../../_images/Single_Pendulum.png"><img alt="../../_images/Single_Pendulum.png" src="../../_images/Single_Pendulum.png" style="width: 400px;" /></a>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Pendulum/Single_Pendulum.mdl&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Pendulum/Single_Pendulum.mdl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -211,13 +226,13 @@ ragning from <span class="math">\(-1.5\pi\)</span> to <span class="math">\(+1.5\
 see the the points of stable and unstable equilibrium.</p>
 <p>We also want to sample over a range of angular velocities that are
 reasonable for our system, for the given values of length and weight.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">angular_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">angular_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">1.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
 <span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Numpy&#8217;s <code class="docutils literal"><span class="pre">meshgrid</span></code> lets us construct a 2d sample space based upon our
 arrays</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">angular_position</span><span class="p">,</span> <span class="n">angular_velocity</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">angular_position</span><span class="p">,</span> <span class="n">angular_velocity</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -231,19 +246,19 @@ inflow/outflow, so this is the derivative value.</p>
 <p>As the derivative of the angular position is just the angular velocity,
 whatever we pass in for the <code class="docutils literal"><span class="pre">av</span></code> parameter should be returned to us as
 the derivative of <code class="docutils literal"><span class="pre">ap</span></code>.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">av</span><span class="p">):</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;angular_position&#39;</span><span class="p">:</span><span class="n">ap</span><span class="p">,</span>
-                            <span class="s">&#39;angular_velocity&#39;</span><span class="p">:</span><span class="n">av</span><span class="p">},</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">derivatives</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">av</span><span class="p">):</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;angular_position&#39;</span><span class="p">:</span><span class="n">ap</span><span class="p">,</span>
+                            <span class="s1">&#39;angular_velocity&#39;</span><span class="p">:</span><span class="n">av</span><span class="p">},</span>
                     <span class="n">return_timestamps</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;change_in_angular_position&#39;</span><span class="p">,</span>
-                                    <span class="s">&#39;change_in_angular_velocity&#39;</span><span class="p">])</span>
+                    <span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;change_in_angular_position&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;change_in_angular_velocity&#39;</span><span class="p">])</span>
 
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
 <span class="n">derivatives</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -254,13 +269,13 @@ sample space we have just created. Now we can generate the derivative of
 angular position vector <code class="docutils literal"><span class="pre">dapv</span></code> and that of the angular velocity vector
 <code class="docutils literal"><span class="pre">davv</span></code>. As before, the derivative of the angular posiiton should be
 equal to the angular velocity. We check that the vectors are equal.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">vderivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">derivatives</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">vderivatives</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">derivatives</span><span class="p">)</span>
 
 <span class="n">dapv</span><span class="p">,</span> <span class="n">davv</span> <span class="o">=</span> <span class="n">vderivatives</span><span class="p">(</span><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span><span class="p">)</span>
 <span class="p">(</span><span class="n">dapv</span> <span class="o">==</span> <span class="n">avv</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="bp">True</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kc">True</span>
 </pre></div>
 </div>
 </div>
@@ -272,13 +287,13 @@ and y coordinates, and the derivatives of these coordinates.</p>
 <p>In the plot we see the locations of stable and unstable equilibria, and
 can eyeball the trajectories that the system will take through the state
 space by following the arrows.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span><span class="p">,</span> <span class="n">dapv</span><span class="p">,</span> <span class="n">davv</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">75</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="s">&#39;off&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">apv</span><span class="p">,</span> <span class="n">avv</span><span class="p">,</span> <span class="n">dapv</span><span class="p">,</span> <span class="n">davv</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">1.6</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Radians&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Radians/Second&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Phase portrait for a simple pendulum&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Radians&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Radians/Second&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Phase portrait for a simple pendulum&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
 </pre></div>
 </div>
 <img alt="../../_images/phase_portraits_15_0.png" src="../../_images/phase_portraits_15_0.png" />

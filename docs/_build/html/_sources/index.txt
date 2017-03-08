@@ -9,7 +9,7 @@ Simple recipes for powerful analysis of system dynamics models
 
 Quickstart
 ----------
-1. Download and install `Anaconda Python 2.7 <https://www.continuum.io/downloads>`_
+1. Download and install `Anaconda Python 3.6+ <https://www.continuum.io/downloads>`_
 2. Install PySD with pip using the command :code:`pip install pysd` at your command prompt
 3. `Download this cookbook <https://github.com/JamesPHoughton/PySD-Cookbook/archive/master.zip>`_
    and unzip it to a working directory

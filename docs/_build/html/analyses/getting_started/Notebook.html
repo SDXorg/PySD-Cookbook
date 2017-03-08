@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Getting Started" href="index_getting_started.html"/>
         <link rel="next" title="Working with git and github" href="Git_and_Github.html"/>
@@ -69,7 +72,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Introduction.html">Introduction to the PySD Cookbook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Installing.html">Installation and Setup of Python and PySD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Python.html">Getting Started with Python</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using the Jupyter Notebook</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
 </ul>
@@ -93,11 +96,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
@@ -166,11 +181,11 @@
 coding environment that allows cells of text (such as this one) to be
 interspersed with cells of code (such as the next cell), and the output
 of that code (immediately following)</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">string</span> <span class="o">=</span> <span class="s">&#39;Hello, World!&#39;</span>
-<span class="k">print</span> <span class="n">string</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span>
+<span class="nb">print</span> <span class="n">string</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Hello, World!
+<div class="highlight-default"><div class="highlight"><pre><span></span>Hello, World!
 </pre></div>
 </div>
 <div class="section" id="code-cells">
@@ -183,10 +198,10 @@ play <strong>[&gt;|]</strong> button in the tool pane, or press <code class="doc
 results of the cell&#8217;s computation will be displaced below.</p>
 <p>Once a cell has been run, the variables declared in that cell are
 available to any other cell in the notebook:</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">string</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39; Programmer!&#39;</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">string</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; Programmer!&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Hello, Programmer!
+<div class="highlight-default"><div class="highlight"><pre><span></span>Hello, Programmer!
 </pre></div>
 </div>
 </div>
@@ -198,17 +213,17 @@ dropdown in the tool pane showing the word <code class="docutils literal"><span 
 <p><a class="reference external" href="https://daringfireball.net/projects/markdown/">Markdown</a> is a simple
 syntax for formatting text. Headings are indicated with pound signs
 <code class="docutils literal"><span class="pre">#</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre>### Heading
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">### Heading</span>
 
-Heading
-~~~~~~~
+<span class="n">Heading</span>
+<span class="o">~~~~~~~</span>
 </pre></div>
 </div>
 <p><em>Italics</em> and <strong>bold</strong> are indicated with one and two preceeding and
 following asterisks respectively: <code class="docutils literal"><span class="pre">*Italics*</span></code> : <em>Italics</em>,
 <code class="docutils literal"><span class="pre">**Bold**</span></code> : <strong>Bold</strong></p>
 <p>Code is blocked with tick fences (same key as tilde, not single quotes):</p>
-<div class="highlight-python"><div class="highlight"><pre>```
+<div class="highlight-default"><div class="highlight"><pre><span></span>```
 Code goes here
 ```
 </pre></div>
@@ -223,7 +238,7 @@ suggestions for how to complete that term.</p>
 <p>For example, in the box below, if you place the cursor after <code class="docutils literal"><span class="pre">my</span></code>,
 ipython will show the above two variable names as options, which you can
 select and enter.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">my_very_long_variable_name</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">my_very_long_variable_name</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">my_fairly_long_variable_name</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">my</span>
 </pre></div>
@@ -236,7 +251,7 @@ what order they come in).</p>
 <p>If you type the name of the function and the open parenthesis, and then
 press <code class="docutils literal"><span class="pre">&lt;shift&gt;&lt;tab&gt;</span></code>, a tooltip will come up showing you what
 arguments the function expects.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>sum(
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span>
 </pre></div>
 </div>
 <div class="section" id="references">

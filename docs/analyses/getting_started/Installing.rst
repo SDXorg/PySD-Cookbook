@@ -8,52 +8,9 @@ Using Anaconda
 The simplest way to get started with Python is to use a prepackaged
 version such as Anaconda from Continuum analytics.
 
-Download and install version 2.7 from the following link:
+PySD works with Python 2.7+ or 3.5+. I recommend using the latest
+version of python 3 from the following link:
 https://www.continuum.io/downloads
-
-Installing Python on its own
-----------------------------
-
-If you have an existing python installation, or you've worked
-extensively with python in the past, you might prefer to just use basic
-unpackaged python. This will give you some more control, but you'll have
-to do more of your own dependency resolution.
-
-To check if you have python already, at a command prompt, type:
-
-::
-
-    python -V
-
-If python is installed, you should see some information about the
-version you are running. For example:
-
-::
-
-    Python 2.7.6
-
-If you get an error, you probably need to install python from scratch.
-To do so, visit https://www.python.org/downloads/ and download the
-latest version beginning with ``2.``. Some of the python utilities we
-will be using are not yet available in Python 3.
-
-Installing pip
-^^^^^^^^^^^^^^
-
-Pip is the primary python package distribution utility. Depending on how
-you set up python, you may have Pip already installed. To test this, at
-your command prompt, type:
-
-::
-
-    pip list
-
-If pip is installed, you will see a list of installed packages managed
-by pip.
-
-If you get an error, you will need to install pip from scratch. To do
-this, follow the instructions here:
-https://pip.pypa.io/en/latest/installing.html
 
 Installing PySD
 ---------------
@@ -91,6 +48,12 @@ computing stack. They are:
 5. ipython - an environment for interacting with python and writing
    clever text/documentation documents, such as this one.
 
+PySD also requires a few additional package beyond the basic data
+science stack:
+
+1. parsimonious - a text parsing library
+2. yapf - a python code formatting library
+
 To install these packages, use the syntax:
 
 ::
@@ -98,23 +61,21 @@ To install these packages, use the syntax:
     pip install numpy
 
 Run the command once for each package, replacing ``numpy`` with
-``scipy`` etc.
+``scipy``, ``matplotlib``, etc.
 
-PySD also requires one additional package beyond the basic data science
-stack, called ``parsimonious``. Use pip to install it:
-
-::
-
-    pip install parsimonious
-
-Launch iPython Notebook, and get started
+Launch Jupyter Notebook, and get started
 ----------------------------------------
 
-Now at your command line type:
+If you used the anaconda graphical installer, you should have a
+'Anaconda Launcher' user interface installed. Opening this program and
+clicking the 'Jupyter Notebook' will fire up the notebook explorer in
+your browser.
+
+Alternately, at your command line type:
 
 ::
 
-    ipython notebook
+    jupyter notebook
 
 Your browser should start, and give you a document much like this one
 that you can play with.

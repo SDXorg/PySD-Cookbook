@@ -1,0 +1,41 @@
+
+.. code:: python
+
+    %pylab inline
+    import ema_workbench as ema
+    import ema_workbench.analysis.plotting as eplt
+
+
+.. parsed-literal::
+
+    Populating the interactive namespace from numpy and matplotlib
+
+
+.. parsed-literal::
+
+    /Users/houghton/anaconda/lib/python2.7/site-packages/matplotlib/__init__.py:872: UserWarning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
+      warnings.warn(self.msg_depr % (key, alt_key))
+    /Users/houghton/anaconda/lib/python2.7/site-packages/matplotlib/__init__.py:892: UserWarning: axes.color_cycle is deprecated and replaced with axes.prop_cycle; please use the latter.
+      warnings.warn(self.msg_depr % (key, alt_key))
+
+
+.. code:: python
+
+    model = ema.connectors.PySDConnector(mdl_file='../../models/Climate/Atmospheric_Bathtub.mdl',
+                                         uncertainties_dict={'Emissions': (10000, 50000)},
+                                         outcomes_list=['Excess Atmospheric Carbon'])
+    ensemble = ema.em_framework.ModelEnsemble()  # instantiate an ensemble
+    ensemble.model_structure = model  # set the model on the ensemble
+    ensemble.parallel = True
+    experiments, outcomes = ensemble.perform_experiments(cases=200)
+
+.. code:: python
+
+    from ema_workbench.analysis.plotting_util import KDE
+    eplt.lines(results, density=KDE);
+
+
+
+.. image:: PySD%20EMA%20Connector%20Demo_files/PySD%20EMA%20Connector%20Demo_2_0.png
+
+

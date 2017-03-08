@@ -171,7 +171,7 @@ frequency objects we built earlier.
 
 
 
-.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_15_0.png
+.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_18_0.png
 
 
 .. code:: python
@@ -182,7 +182,7 @@ frequency objects we built earlier.
 
 
 
-.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_16_0.png
+.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_19_0.png
 
 
 .. code:: python
@@ -203,12 +203,8 @@ frequency objects we built earlier.
 
 
 
-.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_17_1.png
+.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_20_1.png
 
-
-.. code:: python
-
-    pymc.Normal()
 
 Step 6: Understand the correlation between our parameter distributions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -226,7 +222,7 @@ against one another that there is correlation:
 
 
 
-.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_20_0.png
+.. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_22_0.png
 
 
 If we use these distributions in the future to propagate uncertainty

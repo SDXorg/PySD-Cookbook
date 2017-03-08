@@ -1,0 +1,650 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Demo of a KDE plot beside timeseries set &mdash; PySD-Cookbook 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> PySD-Cookbook</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Introduction.html">Introduction to the PySD Cookbook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Installing.html">Installation and Setup of Python and PySD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Python.html">Getting Started with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Notebook.html">Using the Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Git_and_Github.html">Working with <code class="docutils literal"><span class="pre">git</span></code> and github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/Hello_World_Teacup.html">Hello World: The Teacup Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_handling/index_data_handling.html">Data Handling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/pandas.html">Data handling with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_handling/Writing_to_Database.html">Saving Simulation Results to a Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index_visualization.html">Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html">Basic Visualization with <code class="docutils literal"><span class="pre">matplotlib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_visualization_libraries.html">Other Visualization Packages in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="phase_portraits.html">Phase Portraits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fitting/index_fitting.html">Model Fitting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Fitting_with_Optimization.html">Fitting a model&#8217;s parameters with run-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Step_at_a_time_optimization.html">Step-at-a-time optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/Massively_Parallel_Fitting.html">Parallel Model Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fitting/MCMC_for_fitting_models.html">Fitting a model with Markov Chain Monte Carlo</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../realtime/index_realtime.html">Realtime Data Incorporation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Nth_Order_Delay_Demo.html">Nth Order Delay Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../realtime/Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index_workflow.html">Model Development Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../workflow/Unit_Testing.html">Unit Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data/index_data.html">Data Used in this Cookbook</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Baby_Names/Baby_Name_Data.html">Baby Name Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Census/US_Census_Data_Collection.html">Collecting US decennial census data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Climate/sources.html">Carbon Data Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic.html">Manufacturing Defects Synthetic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Ebola/Ebola_Data_Loader.html">Ebola Data Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data/Emails/Email_Data_Formatter.html">Parse gmail <code class="docutils literal"><span class="pre">.mbox</span></code> file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../future.html">Chapters to be Written</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endnotes.html">End Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../endnotes.html#for-instruction">For instruction</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PySD-Cookbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Demo of a KDE plot beside timeseries set</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../../_sources/analyses/visualization/Marginal Density Plot - Interactive.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="demo-of-a-kde-plot-beside-timeseries-set">
+<h1>Demo of a KDE plot beside timeseries set<a class="headerlink" href="#demo-of-a-kde-plot-beside-timeseries-set" title="Permalink to this headline">¶</a></h1>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span> <span class="n">inline</span>
+<span class="c1">#%matplotlib inline</span>
+<span class="c1">#import matplotlib.pyplot as plt</span>
+<span class="kn">import</span> <span class="nn">mpld3</span>
+<span class="c1">#mpld3.enable_notebook()</span>
+<span class="c1">#%matplotlib notebook</span>
+<span class="c1">#</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">NameError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">aa729ffbe7f3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">6</span> <span class="c1">#%matplotlib notebook</span>
+      <span class="mi">7</span> <span class="c1">#</span>
+<span class="o">----&gt;</span> <span class="mi">8</span> <span class="kn">import</span> <span class="nn">pysd</span>
+      <span class="mi">9</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+     <span class="mi">10</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">Google_Drive</span><span class="o">/</span><span class="n">Academic</span> <span class="n">Projects</span><span class="o">/</span><span class="n">PYSD</span><span class="o">/</span><span class="n">pysd</span><span class="o">/</span><span class="n">pysd</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">1</span> <span class="kn">from</span> <span class="nn">.pysd</span> <span class="k">import</span> <span class="n">read_vensim</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> <span class="n">PySD</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">functions</span>
+      <span class="mi">3</span> <span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">utils</span>
+      <span class="mi">4</span> <span class="kn">from</span> <span class="nn">._version</span> <span class="k">import</span> <span class="n">__version__</span>
+      <span class="mi">5</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">Google_Drive</span><span class="o">/</span><span class="n">Academic</span> <span class="n">Projects</span><span class="o">/</span><span class="n">PYSD</span><span class="o">/</span><span class="n">pysd</span><span class="o">/</span><span class="n">pysd</span><span class="o">/</span><span class="n">functions</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+    <span class="mi">270</span>         <span class="k">return</span> <span class="n">expr</span>
+    <span class="mi">271</span>
+<span class="o">--&gt;</span> <span class="mi">272</span> <span class="k">class</span> <span class="nc">Delay</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="mi">273</span>     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="mi">274</span>         <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">()</span>
+
+
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">Google_Drive</span><span class="o">/</span><span class="n">Academic</span> <span class="n">Projects</span><span class="o">/</span><span class="n">PYSD</span><span class="o">/</span><span class="n">pysd</span><span class="o">/</span><span class="n">pysd</span><span class="o">/</span><span class="n">functions</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">Delay</span><span class="p">()</span>
+    <span class="mi">278</span>
+    <span class="mi">279</span>
+<span class="o">--&gt;</span> <span class="mi">280</span>     <span class="n">state</span>
+    <span class="mi">281</span>
+    <span class="mi">282</span> <span class="n">delay123</span> <span class="o">=</span> <span class="n">Delay</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;state&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre></div>
+</div>
+<div class="section" id="load-the-model-using-pysd">
+<h2>Load the model using PySD<a class="headerlink" href="#load-the-model-using-pysd" title="Permalink to this headline">¶</a></h2>
+<p>The model is a basic, 1-stock carbon bathtub model</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Climate/Atmospheric_Bathtub.mdl&#39;</span><span class="p">)</span>
+<span class="nb">print</span> <span class="n">model</span><span class="o">.</span><span class="n">doc</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span>|    | name                      | modelName                 | unit        | comment                                    |
+|----+---------------------------+---------------------------+-------------+--------------------------------------------|
+|  0 | Emissions                 | emissions                 |             | nan                                        |
+|  1 | Excess Atmospheric Carbon | excess_atmospheric_carbon |             | nan                                        |
+|  2 | FINAL TIME                | final_time                | Month       | The final time for the simulation.         |
+|  3 | INITIAL TIME              | initial_time              | Month       | The initial time for the simulation.       |
+|  4 | Natural Removal           | natural_removal           |             | nan                                        |
+|  5 | Removal Constant          | removal_constant          |             | nan                                        |
+|  6 | SAVEPER                   | saveper                   | Month [0,?] | The frequency with which output is stored. |
+|  7 | TIME STEP                 | time_step                 | Month [0,?] | The time step for the simulation.          |
+</pre></div>
+</div>
+</div>
+<div class="section" id="generate-a-set-of-parameters-to-use-as-input">
+<h2>Generate a set of parameters to use as input<a class="headerlink" href="#generate-a-set-of-parameters-to-use-as-input" title="Permalink to this headline">¶</a></h2>
+<p>Here, drawing 1000 constant values for the <code class="docutils literal"><span class="pre">Emissions</span></code> parameter from
+an exponential distribution</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">n_runs</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">runs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Emissions&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_runs</span><span class="p">)})</span>
+<span class="n">runs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Emissions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2862.573249</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>23208.933671</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30256.409702</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10339.757007</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2843.203204</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+<div class="section" id="run-the-model-with-the-various-parameters">
+<h2>Run the model with the various parameters<a class="headerlink" href="#run-the-model-with-the-various-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">runs</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">p</span><span class="p">))[</span><span class="s1">&#39;Excess Atmospheric Carbon&#39;</span><span class="p">],</span>
+                    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">result</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>990</th>
+      <th>991</th>
+      <th>992</th>
+      <th>993</th>
+      <th>994</th>
+      <th>995</th>
+      <th>996</th>
+      <th>997</th>
+      <th>998</th>
+      <th>999</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>2862.573249</td>
+      <td>23208.933671</td>
+      <td>30256.409702</td>
+      <td>10339.757007</td>
+      <td>2843.203204</td>
+      <td>5347.545999</td>
+      <td>47284.180637</td>
+      <td>10923.619315</td>
+      <td>5636.865090</td>
+      <td>22313.016387</td>
+      <td>...</td>
+      <td>4371.735736</td>
+      <td>7190.321753</td>
+      <td>1640.460139</td>
+      <td>19084.475809</td>
+      <td>6220.337224</td>
+      <td>7377.659406</td>
+      <td>770.703843</td>
+      <td>18197.870295</td>
+      <td>17326.924760</td>
+      <td>4827.955762</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>5696.520766</td>
+      <td>46185.778005</td>
+      <td>60210.255307</td>
+      <td>20576.116444</td>
+      <td>5657.974376</td>
+      <td>10641.616537</td>
+      <td>94095.519468</td>
+      <td>21738.002436</td>
+      <td>11217.361530</td>
+      <td>44402.902611</td>
+      <td>...</td>
+      <td>8699.754114</td>
+      <td>14308.740289</td>
+      <td>3264.515676</td>
+      <td>37978.106859</td>
+      <td>12378.471076</td>
+      <td>14681.542218</td>
+      <td>1533.700647</td>
+      <td>36213.761886</td>
+      <td>34480.580271</td>
+      <td>9607.631966</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>8502.128807</td>
+      <td>68932.853896</td>
+      <td>89864.562456</td>
+      <td>30710.112286</td>
+      <td>8444.597837</td>
+      <td>15882.746370</td>
+      <td>140438.744910</td>
+      <td>32444.241727</td>
+      <td>16742.053004</td>
+      <td>66271.889972</td>
+      <td>...</td>
+      <td>12984.492309</td>
+      <td>21355.974640</td>
+      <td>4872.330659</td>
+      <td>56682.801600</td>
+      <td>18475.023589</td>
+      <td>21912.386202</td>
+      <td>2289.067483</td>
+      <td>54049.494562</td>
+      <td>51462.699228</td>
+      <td>14339.511408</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>11279.680768</td>
+      <td>91452.459027</td>
+      <td>119222.326534</td>
+      <td>40742.768171</td>
+      <td>11203.355062</td>
+      <td>21071.464905</td>
+      <td>186318.538098</td>
+      <td>43043.418625</td>
+      <td>22211.497565</td>
+      <td>87922.187460</td>
+      <td>...</td>
+      <td>17226.383122</td>
+      <td>28332.736647</td>
+      <td>6464.067491</td>
+      <td>75200.449392</td>
+      <td>24510.610577</td>
+      <td>29070.921746</td>
+      <td>3036.880651</td>
+      <td>71706.869911</td>
+      <td>68274.996996</td>
+      <td>19024.072056</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1000 columns</p>
+</div></div>
+<div class="section" id="draw-a-static-plot-showing-the-results-and-a-marginal-density-plot">
+<h2>Draw a static plot showing the results, and a marginal density plot<a class="headerlink" href="#draw-a-static-plot-showing-the-results-and-a-marginal-density-plot" title="Permalink to this headline">¶</a></h2>
+<p>This would be for making graphics for a publication, where you don&#8217;t
+want an interactive view, but you want fine control over what the figure
+looks like.</p>
+<p>This is relatively simple, because we rely on the plotting library
+<code class="docutils literal"><span class="pre">seaborn</span></code> to generate the KDE plot, instead of working out the
+densities ourselves.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># define when to show the density</span>
+<span class="n">density_time</span> <span class="o">=</span> <span class="mi">85</span>
+
+<span class="c1"># left side: plot all traces, slightly transparent</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">02</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+
+<span class="c1"># left side: add marker of density location</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">density_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">density_time</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="s1">&#39;Density Calculation&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+<span class="c1"># right side: gaussian KDE on selected timestamp</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">density_time</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Emissions scenarios under uncertainty&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="analyses/visualization/Marginal%20Density%20Plot%20-%20Interactive_files/Marginal%20Density%20Plot%20-%20Interactive_9_0.png" src="analyses/visualization/Marginal%20Density%20Plot%20-%20Interactive_files/Marginal%20Density%20Plot%20-%20Interactive_9_0.png" />
+</div>
+<div class="section" id="interactive-plot-using-python-backend">
+<h2>Interactive plot using python backend<a class="headerlink" href="#interactive-plot-using-python-backend" title="Permalink to this headline">¶</a></h2>
+<p>The following would be for lightweight exploration</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">IntSlider</span>
+<span class="n">sim_time</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">slider_time</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;Select Time for plotting Density&#39;</span><span class="p">,</span>
+                        <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nd">@interact</span><span class="p">(</span><span class="n">density_time</span><span class="o">=</span><span class="n">slider_time</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">density_time</span><span class="p">):</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">02</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">ymax</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+
+    <span class="c1"># left side: add marker of density location</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">density_time</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">density_time</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="s1">&#39;Density Calculation&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+
+    <span class="c1"># right side: gaussian KDE on selected timestamp</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot2grid</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">seaborn</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">density_time</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Emissions scenarios under uncertainty&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="analyses/visualization/Marginal%20Density%20Plot%20-%20Interactive_files/Marginal%20Density%20Plot%20-%20Interactive_12_0.png" src="analyses/visualization/Marginal%20Density%20Plot%20-%20Interactive_files/Marginal%20Density%20Plot%20-%20Interactive_12_0.png" />
+</div>
+<div class="section" id="interactive-figure-with-javascript-background">
+<h2>Interactive figure with javascript background<a class="headerlink" href="#interactive-figure-with-javascript-background" title="Permalink to this headline">¶</a></h2>
+<p>This script would prepare interactive graphics to share on a webpage,
+independent of the python backend.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mpld3</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpld3</span> <span class="k">import</span> <span class="n">plugins</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plugins</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">plugins</span><span class="o">.</span><span class="n">LinkedBrush</span><span class="p">(</span><span class="n">points</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">IPython</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">formatters</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">92</span><span class="p">:</span> <span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="n">DisplayFormatter</span><span class="o">.</span><span class="n">_ipython_display_formatter_default</span> <span class="ow">is</span> <span class="n">deprecated</span><span class="p">:</span> <span class="n">use</span> <span class="nd">@default</span> <span class="n">decorator</span> <span class="n">instead</span><span class="o">.</span>
+  <span class="k">def</span> <span class="nf">_ipython_display_formatter_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">houghton</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">IPython</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">formatters</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">669</span><span class="p">:</span> <span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="n">PlainTextFormatter</span><span class="o">.</span><span class="n">_singleton_printers_default</span> <span class="ow">is</span> <span class="n">deprecated</span><span class="p">:</span> <span class="n">use</span> <span class="nd">@default</span> <span class="n">decorator</span> <span class="n">instead</span><span class="o">.</span>
+  <span class="k">def</span> <span class="nf">_singleton_printers_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</pre></div>
+</div>
+<style>
+
+</style>
+
+<div id="fig_el9000145509147684824814976"></div>
+<script>
+function mpld3_load_lib(url, callback){
+  var s = document.createElement('script');
+  s.src = url;
+  s.async = true;
+  s.onreadystatechange = s.onload = callback;
+  s.onerror = function(){console.warn("failed to load library " + url);};
+  document.getElementsByTagName("head")[0].appendChild(s);
+}
+
+if(typeof(mpld3) !== "undefined" && mpld3._mpld3IsLoaded){
+   // already loaded: just create the figure
+   !function(mpld3){
+
+       mpld3.draw_figure("fig_el9000145509147684824814976", {"axes": [{"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014550916624", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014599707536", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.65781250000000002, 0.2421875, 0.2421875]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014588475472", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014599709520", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.65781250000000002, 0.24218749999999994, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014589019664", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014594845648", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.65781250000000002, 0.2421875, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014590673040", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014594847632", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.39140625000000007, 0.2421875, 0.24218749999999989]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014591252880", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014599658192", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.39140625000000007, 0.24218749999999994, 0.24218749999999989]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014591562704", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014599660368", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.39140625000000007, 0.2421875, 0.24218749999999989]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014592197968", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014373148816", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.12500000000000011, 0.2421875, 0.2421875]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014592734416", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014594761552", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.12500000000000011, 0.24218749999999994, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014594230032", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014594845584", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.12500000000000011, 0.2421875, 0.2421875]}], "height": 480.0, "width": 480.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"enabled": true, "button": true, "type": "linkedbrush", "id": "el900014594845648"}], "data": {"data01": [[0.72627725515196, -0.609617514020416, -0.5085678480094306], [0.45470011425609647, 0.5648926982935867, -0.07229420027544038], [-0.9124990804111092, 0.7810756401052897, 1.2812488443811665], [-0.7158326645558005, 0.25439416295376643, 0.31434136860601114], [-1.3243474989055997, -1.2952343469304026, 0.4754065777451255], [0.20679789169204818, 0.282404609880748, 1.3642822338969176], [-0.4557509822065865, -0.057390405349647504, 0.5354643397144171], [-0.6854256925510113, 1.2669241576729566, -0.481565174156881], [1.814654931930241, 0.18661309228043924, 0.9229610589958064], [0.052483512450695616, 0.3238070594522619, 1.4667236272430229], [0.13314946262202526, 0.32535765075875456, 0.39387343338897307], [0.44802397824046003, -0.3758686066043297, 0.792726218774311], [0.28838791256798113, -2.2127470505539173, 0.5951887985405865], [-0.04808559803838435, -0.012104520906811323, 1.050956950183763], [-0.8470614355031485, -1.1711151292027087, 1.4669946395869475], [0.5368092151501439, -0.7792166458718895, 0.07544892431309147], [1.4161306966828309, -1.7180110153349744, -0.4588268802293387], [-0.9318793884307652, 0.7125841349165489, 0.8655704499664272], [-0.10829885867639287, -0.9008733078048662, -1.3043377768214877], [-2.1120564133627213, -0.16195075185942912, 0.39739069661276416], [2.214811099602801, 0.9768731725614395, -0.6102095163636395], [1.4116382962479617, 1.2360207312265725, -0.9343642775454202], [0.09260686157586422, -1.1632633936028205, -0.2894947669214405], [1.0949929335337916, 0.4185271557657954, -0.8567939512184845], [-1.7348293757022026, -1.4919933255930191, -0.8381261398554098], [-1.1300231659030309, -0.027364650893653423, 0.11456105611135182], [0.04296811728542167, -0.2456817790822539, 0.23363478641727034], [-0.32799259057129415, 0.3451424424062806, 0.5700060750629162], [0.9255284017346328, -0.5670591322601339, 0.7750870513296308], [-0.08832214489077245, 0.29983404037903044, -1.0716826480772965], [-1.638834965530711, -0.38194204616313165, -1.136711044707441], [-0.5575665292820112, -0.08091792457355151, 0.6573602203284092], [0.37365684565744034, 0.3529559632748866, 0.2809258881984997], [0.4887378570322217, 0.1883181271903021, 0.48329021125635835], [0.17081981009178976, -0.3994384119083303, -2.898107886636492], [-0.41481003832437413, -0.15884641897830631, -0.7175629996855155], [0.5340501366272006, -0.32906501874691946, -0.4505594267519602], [-1.021849510491513, 1.1377134720591533, 0.4156376240675203], [-0.15542352142667828, 0.1466651626712377, 1.2817642340791557], [0.784914393549551, 0.0313394406364746, 1.4950548951738316], [-1.5481709714447207, -0.12901799786419965, -0.5330996829018881], [0.4369056050718823, 1.002751646087784, -2.4920690075337713], [1.5701115864102244, -1.6475363688431865, 0.6315677804318997], [1.0554867653362938, -0.2358060348147957, -3.266959888778148], [0.8404585908023985, 1.1581514499158168, 0.1663250543938972], [-0.7845963269487475, 0.33130543902850673, -0.3639803139134531], [0.45996385016833113, 1.4865079106239818, 1.886434068659524], [-0.5976399047987899, -0.4463228319216556, -0.5677397974228435], [-0.3103394440557323, 0.37498315078071864, 1.161281462047915], [1.436493430865783, -0.096681352504951, -1.2382134966592364], [-0.1277445046996717, -0.5040636724904181, -0.9672570417099028], [0.12646602176983848, 0.06999745869739371, 1.5593223284636468], [0.7238563827651077, -0.2582349724261488, 1.0803461260857055], [0.9627315040032325, 0.057620906905957496, 0.06964478084401315], [-0.24632853741784336, -0.3997498441462584, -1.3203974836871593], [-0.7920288712805237, -0.7140809170006572, 0.02088634706964818], [0.1805000557004198, -0.9420378333697007, 0.23586064317623523], [0.554405100440566, -0.28142207029323535, -1.0413287177771662], [0.853192500378185, 0.07035084063503451, 0.4816412277403756], [-0.4122852655096991, -0.6275094466917257, 0.6388292164357494], [-1.7916503324032693, 1.0611842309772412, 0.8043506198561388], [1.499128304380035, -0.22923354435393606, -0.6127739253326915], [0.5877440920038117, -0.09679831519842488, 0.7037686833116943], [0.9312481573556909, 1.2110140339067053, 1.1927568803146646], [0.3004882137247224, 0.20363007936894034, 0.14669002943773124], [-0.7252537272467792, 0.22320786239446536, 0.2687705443151357], [0.008929357633260495, 0.03930191858514528, -1.845114002105977], [0.8346320381668927, -0.3592331298055962, -0.28177403784654914], [-0.2029845612271129, 0.2963894804237323, 1.1564913912014636], [-0.24213933965518933, -1.9853205551530253, 1.1241320679288065], [1.2078111484101128, -0.04451501963175593, -0.33755740650598054], [0.02596642493816797, 0.5896365768471749, 1.7389086851206426], [-0.27272592823462677, -0.34694502323692084, -0.7267491032493013], [0.8705064224086991, 0.46208961203073134, -0.5412201434173727], [0.7858377646861028, 0.023582517005452063, 1.287438045339133], [1.1186765160237864, -1.5721953179179307, 0.89044155895576], [0.848459364855634, -0.0020518836814035343, -0.24644926739502987], [-1.4851792817789338, 0.025858139746513104, -0.009846715062858537], [0.22552813360915355, -0.38899731417893607, 0.2124520593062608], [1.868463602643709, -1.7619530684258848, 0.21475370107315214], [1.0982756880470732, 0.1452010110903084, 0.959355656855051], [0.2469251659721454, -0.29950036079570996, 0.3866760347184457], [0.5550636636168365, -0.07615493442218282, -1.3578999695134073], [-1.1511075167215055, 2.0130702386861214, 1.279947838742059], [-1.230231563968042, 0.5001903412542189, -1.0675891820283898], [-0.48506000456981535, 1.265567266053854, 2.082812115181861], [0.11879725907101205, 0.037140537822488516, -0.3114435839006701], [1.4902779255597118, 2.1297700734265836, 3.400046164356916], [-0.24172607361743356, 0.4004615150134686, -1.242510123566507], [1.6010966219497424, -0.6358910636344438, -0.6031516122144578], [1.386781576515262, -0.48026285883108716, 0.4795284854474212], [2.11299658582516, 0.986205002091192, -0.6816854976351491], [0.7709267112876348, 0.05610026154512464, 0.09272792278109766], [-0.14758532866242421, 1.0385928872415382, -0.46868766931818967], [1.8795447180644578, 0.17071962626703338, 0.012511656685759506], [1.0897120893968824, -0.9756555432684259, -2.429807661934103], [1.5166904646735573, 0.2132197913199486, 0.12465716254859609], [-0.7788432764438152, 1.1472826421052982, -1.0814674209098705], [0.2916684245546782, -0.19838535621231929, -0.7555625626768224], [-0.40415989019521464, 0.6620745944507938, -0.13301100501957958]]}, "id": "el900014550914768"});
+   }(mpld3);
+}else if(typeof define === "function" && define.amd){
+   // require.js is available: use it to load d3/mpld3
+   require.config({paths: {d3: "https://mpld3.github.io/js/d3.v3.min"}});
+   require(["d3"], function(d3){
+      window.d3 = d3;
+      mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.2.js", function(){
+
+         mpld3.draw_figure("fig_el9000145509147684824814976", {"axes": [{"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014550916624", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014599707536", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.65781250000000002, 0.2421875, 0.2421875]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014588475472", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014599709520", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.65781250000000002, 0.24218749999999994, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014589019664", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014594845648", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.65781250000000002, 0.2421875, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014590673040", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014594847632", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.39140625000000007, 0.2421875, 0.24218749999999989]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014591252880", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014599658192", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.39140625000000007, 0.24218749999999994, 0.24218749999999989]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014591562704", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014599660368", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.39140625000000007, 0.2421875, 0.24218749999999989]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014592197968", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014373148816", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.12500000000000011, 0.2421875, 0.2421875]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014592734416", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014594761552", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.12500000000000011, 0.24218749999999994, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014594230032", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014594845584", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.12500000000000011, 0.2421875, 0.2421875]}], "height": 480.0, "width": 480.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"enabled": true, "button": true, "type": "linkedbrush", "id": "el900014594845648"}], "data": {"data01": [[0.72627725515196, -0.609617514020416, -0.5085678480094306], [0.45470011425609647, 0.5648926982935867, -0.07229420027544038], [-0.9124990804111092, 0.7810756401052897, 1.2812488443811665], [-0.7158326645558005, 0.25439416295376643, 0.31434136860601114], [-1.3243474989055997, -1.2952343469304026, 0.4754065777451255], [0.20679789169204818, 0.282404609880748, 1.3642822338969176], [-0.4557509822065865, -0.057390405349647504, 0.5354643397144171], [-0.6854256925510113, 1.2669241576729566, -0.481565174156881], [1.814654931930241, 0.18661309228043924, 0.9229610589958064], [0.052483512450695616, 0.3238070594522619, 1.4667236272430229], [0.13314946262202526, 0.32535765075875456, 0.39387343338897307], [0.44802397824046003, -0.3758686066043297, 0.792726218774311], [0.28838791256798113, -2.2127470505539173, 0.5951887985405865], [-0.04808559803838435, -0.012104520906811323, 1.050956950183763], [-0.8470614355031485, -1.1711151292027087, 1.4669946395869475], [0.5368092151501439, -0.7792166458718895, 0.07544892431309147], [1.4161306966828309, -1.7180110153349744, -0.4588268802293387], [-0.9318793884307652, 0.7125841349165489, 0.8655704499664272], [-0.10829885867639287, -0.9008733078048662, -1.3043377768214877], [-2.1120564133627213, -0.16195075185942912, 0.39739069661276416], [2.214811099602801, 0.9768731725614395, -0.6102095163636395], [1.4116382962479617, 1.2360207312265725, -0.9343642775454202], [0.09260686157586422, -1.1632633936028205, -0.2894947669214405], [1.0949929335337916, 0.4185271557657954, -0.8567939512184845], [-1.7348293757022026, -1.4919933255930191, -0.8381261398554098], [-1.1300231659030309, -0.027364650893653423, 0.11456105611135182], [0.04296811728542167, -0.2456817790822539, 0.23363478641727034], [-0.32799259057129415, 0.3451424424062806, 0.5700060750629162], [0.9255284017346328, -0.5670591322601339, 0.7750870513296308], [-0.08832214489077245, 0.29983404037903044, -1.0716826480772965], [-1.638834965530711, -0.38194204616313165, -1.136711044707441], [-0.5575665292820112, -0.08091792457355151, 0.6573602203284092], [0.37365684565744034, 0.3529559632748866, 0.2809258881984997], [0.4887378570322217, 0.1883181271903021, 0.48329021125635835], [0.17081981009178976, -0.3994384119083303, -2.898107886636492], [-0.41481003832437413, -0.15884641897830631, -0.7175629996855155], [0.5340501366272006, -0.32906501874691946, -0.4505594267519602], [-1.021849510491513, 1.1377134720591533, 0.4156376240675203], [-0.15542352142667828, 0.1466651626712377, 1.2817642340791557], [0.784914393549551, 0.0313394406364746, 1.4950548951738316], [-1.5481709714447207, -0.12901799786419965, -0.5330996829018881], [0.4369056050718823, 1.002751646087784, -2.4920690075337713], [1.5701115864102244, -1.6475363688431865, 0.6315677804318997], [1.0554867653362938, -0.2358060348147957, -3.266959888778148], [0.8404585908023985, 1.1581514499158168, 0.1663250543938972], [-0.7845963269487475, 0.33130543902850673, -0.3639803139134531], [0.45996385016833113, 1.4865079106239818, 1.886434068659524], [-0.5976399047987899, -0.4463228319216556, -0.5677397974228435], [-0.3103394440557323, 0.37498315078071864, 1.161281462047915], [1.436493430865783, -0.096681352504951, -1.2382134966592364], [-0.1277445046996717, -0.5040636724904181, -0.9672570417099028], [0.12646602176983848, 0.06999745869739371, 1.5593223284636468], [0.7238563827651077, -0.2582349724261488, 1.0803461260857055], [0.9627315040032325, 0.057620906905957496, 0.06964478084401315], [-0.24632853741784336, -0.3997498441462584, -1.3203974836871593], [-0.7920288712805237, -0.7140809170006572, 0.02088634706964818], [0.1805000557004198, -0.9420378333697007, 0.23586064317623523], [0.554405100440566, -0.28142207029323535, -1.0413287177771662], [0.853192500378185, 0.07035084063503451, 0.4816412277403756], [-0.4122852655096991, -0.6275094466917257, 0.6388292164357494], [-1.7916503324032693, 1.0611842309772412, 0.8043506198561388], [1.499128304380035, -0.22923354435393606, -0.6127739253326915], [0.5877440920038117, -0.09679831519842488, 0.7037686833116943], [0.9312481573556909, 1.2110140339067053, 1.1927568803146646], [0.3004882137247224, 0.20363007936894034, 0.14669002943773124], [-0.7252537272467792, 0.22320786239446536, 0.2687705443151357], [0.008929357633260495, 0.03930191858514528, -1.845114002105977], [0.8346320381668927, -0.3592331298055962, -0.28177403784654914], [-0.2029845612271129, 0.2963894804237323, 1.1564913912014636], [-0.24213933965518933, -1.9853205551530253, 1.1241320679288065], [1.2078111484101128, -0.04451501963175593, -0.33755740650598054], [0.02596642493816797, 0.5896365768471749, 1.7389086851206426], [-0.27272592823462677, -0.34694502323692084, -0.7267491032493013], [0.8705064224086991, 0.46208961203073134, -0.5412201434173727], [0.7858377646861028, 0.023582517005452063, 1.287438045339133], [1.1186765160237864, -1.5721953179179307, 0.89044155895576], [0.848459364855634, -0.0020518836814035343, -0.24644926739502987], [-1.4851792817789338, 0.025858139746513104, -0.009846715062858537], [0.22552813360915355, -0.38899731417893607, 0.2124520593062608], [1.868463602643709, -1.7619530684258848, 0.21475370107315214], [1.0982756880470732, 0.1452010110903084, 0.959355656855051], [0.2469251659721454, -0.29950036079570996, 0.3866760347184457], [0.5550636636168365, -0.07615493442218282, -1.3578999695134073], [-1.1511075167215055, 2.0130702386861214, 1.279947838742059], [-1.230231563968042, 0.5001903412542189, -1.0675891820283898], [-0.48506000456981535, 1.265567266053854, 2.082812115181861], [0.11879725907101205, 0.037140537822488516, -0.3114435839006701], [1.4902779255597118, 2.1297700734265836, 3.400046164356916], [-0.24172607361743356, 0.4004615150134686, -1.242510123566507], [1.6010966219497424, -0.6358910636344438, -0.6031516122144578], [1.386781576515262, -0.48026285883108716, 0.4795284854474212], [2.11299658582516, 0.986205002091192, -0.6816854976351491], [0.7709267112876348, 0.05610026154512464, 0.09272792278109766], [-0.14758532866242421, 1.0385928872415382, -0.46868766931818967], [1.8795447180644578, 0.17071962626703338, 0.012511656685759506], [1.0897120893968824, -0.9756555432684259, -2.429807661934103], [1.5166904646735573, 0.2132197913199486, 0.12465716254859609], [-0.7788432764438152, 1.1472826421052982, -1.0814674209098705], [0.2916684245546782, -0.19838535621231929, -0.7555625626768224], [-0.40415989019521464, 0.6620745944507938, -0.13301100501957958]]}, "id": "el900014550914768"});
+      });
+    });
+}else{
+    // require.js not available: dynamically load d3 & mpld3
+    mpld3_load_lib("https://mpld3.github.io/js/d3.v3.min.js", function(){
+         mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.2.js", function(){
+
+                 mpld3.draw_figure("fig_el9000145509147684824814976", {"axes": [{"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014550916624", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014599707536", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.65781250000000002, 0.2421875, 0.2421875]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014588475472", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014599709520", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.65781250000000002, 0.24218749999999994, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014589019664", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 1, "id": "el900014594845648", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.65781250000000002, 0.2421875, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014590673040", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014594847632", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.39140625000000007, 0.2421875, 0.24218749999999989]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014591252880", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014599658192", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.39140625000000007, 0.24218749999999994, 0.24218749999999989]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-4.0, 4.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014591562704", "ydomain": [-4.0, 4.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 2, "id": "el900014599660368", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.39140625000000007, 0.2421875, 0.24218749999999989]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014592197968", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014373148816", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 0, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.125, 0.12500000000000011, 0.2421875, 0.2421875]}, {"xlim": [-4.0, 4.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-4.0, 4.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014592734416", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014594761552", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 2, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.39140625000000001, 0.12500000000000011, 0.24218749999999994, 0.2421875]}, {"xlim": [-3.0, 3.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [], "zoomable": true, "images": [], "xdomain": [-3.0, 3.0], "ylim": [-3.0, 3.0], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 7, "tickvalues": null}, {"scale": "linear", "tickformat": "", "grid": {"color": "#FFFFFF", "alpha": 1.0, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 7, "tickvalues": null}], "lines": [], "markers": [], "id": "el900014594230032", "ydomain": [-3.0, 3.0], "collections": [{"paths": [[[[0.0, -0.5], [0.13260155, -0.5], [0.25978993539242673, -0.44731684579412084], [0.3535533905932738, -0.3535533905932738], [0.44731684579412084, -0.25978993539242673], [0.5, -0.13260155], [0.5, 0.0], [0.5, 0.13260155], [0.44731684579412084, 0.25978993539242673], [0.3535533905932738, 0.3535533905932738], [0.25978993539242673, 0.44731684579412084], [0.13260155, 0.5], [0.0, 0.5], [-0.13260155, 0.5], [-0.25978993539242673, 0.44731684579412084], [-0.3535533905932738, 0.3535533905932738], [-0.44731684579412084, 0.25978993539242673], [-0.5, 0.13260155], [-0.5, 0.0], [-0.5, -0.13260155], [-0.44731684579412084, -0.25978993539242673], [-0.3535533905932738, -0.3535533905932738], [-0.25978993539242673, -0.44731684579412084], [-0.13260155, -0.5], [0.0, -0.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]]], "edgecolors": ["#000000"], "edgewidths": [0.3], "offsets": "data01", "yindex": 0, "id": "el900014594845584", "pathtransforms": [[4.969039949999533, 0.0, 0.0, 4.969039949999533, 0.0, 0.0]], "pathcoordinates": "display", "offsetcoordinates": "data", "zorder": 1, "xindex": 1, "alphas": [null], "facecolors": ["#0000FF"]}], "xscale": "linear", "bbox": [0.65781249999999991, 0.12500000000000011, 0.2421875, 0.2421875]}], "height": 480.0, "width": 480.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"enabled": true, "button": true, "type": "linkedbrush", "id": "el900014594845648"}], "data": {"data01": [[0.72627725515196, -0.609617514020416, -0.5085678480094306], [0.45470011425609647, 0.5648926982935867, -0.07229420027544038], [-0.9124990804111092, 0.7810756401052897, 1.2812488443811665], [-0.7158326645558005, 0.25439416295376643, 0.31434136860601114], [-1.3243474989055997, -1.2952343469304026, 0.4754065777451255], [0.20679789169204818, 0.282404609880748, 1.3642822338969176], [-0.4557509822065865, -0.057390405349647504, 0.5354643397144171], [-0.6854256925510113, 1.2669241576729566, -0.481565174156881], [1.814654931930241, 0.18661309228043924, 0.9229610589958064], [0.052483512450695616, 0.3238070594522619, 1.4667236272430229], [0.13314946262202526, 0.32535765075875456, 0.39387343338897307], [0.44802397824046003, -0.3758686066043297, 0.792726218774311], [0.28838791256798113, -2.2127470505539173, 0.5951887985405865], [-0.04808559803838435, -0.012104520906811323, 1.050956950183763], [-0.8470614355031485, -1.1711151292027087, 1.4669946395869475], [0.5368092151501439, -0.7792166458718895, 0.07544892431309147], [1.4161306966828309, -1.7180110153349744, -0.4588268802293387], [-0.9318793884307652, 0.7125841349165489, 0.8655704499664272], [-0.10829885867639287, -0.9008733078048662, -1.3043377768214877], [-2.1120564133627213, -0.16195075185942912, 0.39739069661276416], [2.214811099602801, 0.9768731725614395, -0.6102095163636395], [1.4116382962479617, 1.2360207312265725, -0.9343642775454202], [0.09260686157586422, -1.1632633936028205, -0.2894947669214405], [1.0949929335337916, 0.4185271557657954, -0.8567939512184845], [-1.7348293757022026, -1.4919933255930191, -0.8381261398554098], [-1.1300231659030309, -0.027364650893653423, 0.11456105611135182], [0.04296811728542167, -0.2456817790822539, 0.23363478641727034], [-0.32799259057129415, 0.3451424424062806, 0.5700060750629162], [0.9255284017346328, -0.5670591322601339, 0.7750870513296308], [-0.08832214489077245, 0.29983404037903044, -1.0716826480772965], [-1.638834965530711, -0.38194204616313165, -1.136711044707441], [-0.5575665292820112, -0.08091792457355151, 0.6573602203284092], [0.37365684565744034, 0.3529559632748866, 0.2809258881984997], [0.4887378570322217, 0.1883181271903021, 0.48329021125635835], [0.17081981009178976, -0.3994384119083303, -2.898107886636492], [-0.41481003832437413, -0.15884641897830631, -0.7175629996855155], [0.5340501366272006, -0.32906501874691946, -0.4505594267519602], [-1.021849510491513, 1.1377134720591533, 0.4156376240675203], [-0.15542352142667828, 0.1466651626712377, 1.2817642340791557], [0.784914393549551, 0.0313394406364746, 1.4950548951738316], [-1.5481709714447207, -0.12901799786419965, -0.5330996829018881], [0.4369056050718823, 1.002751646087784, -2.4920690075337713], [1.5701115864102244, -1.6475363688431865, 0.6315677804318997], [1.0554867653362938, -0.2358060348147957, -3.266959888778148], [0.8404585908023985, 1.1581514499158168, 0.1663250543938972], [-0.7845963269487475, 0.33130543902850673, -0.3639803139134531], [0.45996385016833113, 1.4865079106239818, 1.886434068659524], [-0.5976399047987899, -0.4463228319216556, -0.5677397974228435], [-0.3103394440557323, 0.37498315078071864, 1.161281462047915], [1.436493430865783, -0.096681352504951, -1.2382134966592364], [-0.1277445046996717, -0.5040636724904181, -0.9672570417099028], [0.12646602176983848, 0.06999745869739371, 1.5593223284636468], [0.7238563827651077, -0.2582349724261488, 1.0803461260857055], [0.9627315040032325, 0.057620906905957496, 0.06964478084401315], [-0.24632853741784336, -0.3997498441462584, -1.3203974836871593], [-0.7920288712805237, -0.7140809170006572, 0.02088634706964818], [0.1805000557004198, -0.9420378333697007, 0.23586064317623523], [0.554405100440566, -0.28142207029323535, -1.0413287177771662], [0.853192500378185, 0.07035084063503451, 0.4816412277403756], [-0.4122852655096991, -0.6275094466917257, 0.6388292164357494], [-1.7916503324032693, 1.0611842309772412, 0.8043506198561388], [1.499128304380035, -0.22923354435393606, -0.6127739253326915], [0.5877440920038117, -0.09679831519842488, 0.7037686833116943], [0.9312481573556909, 1.2110140339067053, 1.1927568803146646], [0.3004882137247224, 0.20363007936894034, 0.14669002943773124], [-0.7252537272467792, 0.22320786239446536, 0.2687705443151357], [0.008929357633260495, 0.03930191858514528, -1.845114002105977], [0.8346320381668927, -0.3592331298055962, -0.28177403784654914], [-0.2029845612271129, 0.2963894804237323, 1.1564913912014636], [-0.24213933965518933, -1.9853205551530253, 1.1241320679288065], [1.2078111484101128, -0.04451501963175593, -0.33755740650598054], [0.02596642493816797, 0.5896365768471749, 1.7389086851206426], [-0.27272592823462677, -0.34694502323692084, -0.7267491032493013], [0.8705064224086991, 0.46208961203073134, -0.5412201434173727], [0.7858377646861028, 0.023582517005452063, 1.287438045339133], [1.1186765160237864, -1.5721953179179307, 0.89044155895576], [0.848459364855634, -0.0020518836814035343, -0.24644926739502987], [-1.4851792817789338, 0.025858139746513104, -0.009846715062858537], [0.22552813360915355, -0.38899731417893607, 0.2124520593062608], [1.868463602643709, -1.7619530684258848, 0.21475370107315214], [1.0982756880470732, 0.1452010110903084, 0.959355656855051], [0.2469251659721454, -0.29950036079570996, 0.3866760347184457], [0.5550636636168365, -0.07615493442218282, -1.3578999695134073], [-1.1511075167215055, 2.0130702386861214, 1.279947838742059], [-1.230231563968042, 0.5001903412542189, -1.0675891820283898], [-0.48506000456981535, 1.265567266053854, 2.082812115181861], [0.11879725907101205, 0.037140537822488516, -0.3114435839006701], [1.4902779255597118, 2.1297700734265836, 3.400046164356916], [-0.24172607361743356, 0.4004615150134686, -1.242510123566507], [1.6010966219497424, -0.6358910636344438, -0.6031516122144578], [1.386781576515262, -0.48026285883108716, 0.4795284854474212], [2.11299658582516, 0.986205002091192, -0.6816854976351491], [0.7709267112876348, 0.05610026154512464, 0.09272792278109766], [-0.14758532866242421, 1.0385928872415382, -0.46868766931818967], [1.8795447180644578, 0.17071962626703338, 0.012511656685759506], [1.0897120893968824, -0.9756555432684259, -2.429807661934103], [1.5166904646735573, 0.2132197913199486, 0.12465716254859609], [-0.7788432764438152, 1.1472826421052982, -1.0814674209098705], [0.2916684245546782, -0.19838535621231929, -0.7555625626768224], [-0.40415989019521464, 0.6620745944507938, -0.13301100501957958]]}, "id": "el900014550914768"});
+            })
+         });
+}
+</script></div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, James Houghton.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

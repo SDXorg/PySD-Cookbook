@@ -30,6 +30,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="PySD-Cookbook 0.1.0 documentation" href="../../index.html"/>
         <link rel="up" title="Realtime Data Incorporation" href="index_realtime.html"/>
         <link rel="next" title="Feeding models with realtime streaming data" href="Twitter_Stream.html"/>
@@ -93,15 +96,27 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../geo/index_geo.html">Geographic Analyses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#using-sd-to-understand-the-sd-fever">Using SD to understand the SD Fever</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#modify-parameter-values">Modify parameter values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#change-model-settings">Change Model settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#geographical-information">Geographical Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#run-the-model-for-each-country">Run the model for each country</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#transpose-simulation-results-for-plotting">Transpose simulation results for plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#comparative-analysis">Comparative Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#analysis-of-results">Analysis of results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#how-spatial-analysis-leads-to-insight">How Spatial Analysis Leads to Insight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.html#plotting-simulation-results-on-map-with-ipywidgets">Plotting simulation results on map with Ipywidgets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../geo/Exploring_models_across_geographic_scales.html">Using SD models to understand the differences between population measures at varying levels of geographic disagregation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../surrogating_functions/index_surrogate.html">Surrogating Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression.html">Surrogating a function with a machine learning estimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../surrogating_functions/Surrogating_with_regression_Workbook.html">Surrogating a function with a machine learning estimator</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index_realtime.html">Realtime Data Incorporation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">Nth Order Delay Demo</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nth Order Delay Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Twitter_Stream.html">Feeding models with realtime streaming data</a></li>
 </ul>
 </li>
@@ -183,77 +198,77 @@ process (here using either the &#8216;first order delay&#8217; model, or the &#8
 order delay&#8217; model).</p>
 <p>When we run this cell, the student will have 60 seconds to bring the
 blue line to the level of the red line.</p>
-<div class="code python highlight-python"><div class="highlight"><pre>%pylab
-import pysd
-from matplotlib import animation
-import numpy as np
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pylab</span>
+<span class="kn">import</span> <span class="nn">pysd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">animation</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>Using matplotlib backend: MacOSX
-Populating the interactive namespace from numpy and matplotlib
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">matplotlib</span> <span class="n">backend</span><span class="p">:</span> <span class="n">MacOSX</span>
+<span class="n">Populating</span> <span class="n">the</span> <span class="n">interactive</span> <span class="n">namespace</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="ow">and</span> <span class="n">matplotlib</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="c">#import the model (need to import each time to reinitialize)</span>
-<span class="c">#choose one of the following lines:</span>
-<span class="c">#model = pysd.read_vensim(&#39;../../models/Basic_Structures/First_Order_Delay.mdl&#39;)</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s">&#39;../../models/Basic_Structures/Third_Order_Delay.mdl&#39;</span><span class="p">)</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1">#import the model (need to import each time to reinitialize)</span>
+<span class="c1">#choose one of the following lines:</span>
+<span class="c1">#model = pysd.read_vensim(&#39;../../models/Basic_Structures/First_Order_Delay.mdl&#39;)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">pysd</span><span class="o">.</span><span class="n">read_vensim</span><span class="p">(</span><span class="s1">&#39;../../models/Basic_Structures/Third_Order_Delay.mdl&#39;</span><span class="p">)</span>
 
-<span class="c">#set the delay time in the model</span>
-<span class="n">model</span><span class="o">.</span><span class="n">set_components</span><span class="p">({</span><span class="s">&#39;delay&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">})</span>
+<span class="c1">#set the delay time in the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_components</span><span class="p">({</span><span class="s1">&#39;delay&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">})</span>
 
-<span class="c">#set the animation parameters</span>
+<span class="c1">#set the animation parameters</span>
 <span class="n">fps</span><span class="o">=</span><span class="mi">4</span>
 <span class="n">seconds</span><span class="o">=</span><span class="mi">60</span>
 <span class="n">dt</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">fps</span>
 
-<span class="c">#set up the figure axes</span>
+<span class="c1">#set up the figure axes</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
-<span class="n">title</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Time </span><span class="si">%.02f</span><span class="s">&#39;</span><span class="o">%</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time </span><span class="si">%.02f</span><span class="s1">&#39;</span><span class="o">%</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="c">#draw the target line</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="s">&#39;r--&#39;</span><span class="p">)</span>
+<span class="c1">#draw the target line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="s1">&#39;r--&#39;</span><span class="p">)</span>
 
-<span class="c">#draw the moving line, just for now. We&#39;ll change it later</span>
+<span class="c1">#draw the moving line, just for now. We&#39;ll change it later</span>
 <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="c">#set up variables for simulation</span>
+<span class="c1">#set up variables for simulation</span>
 <span class="n">input_val</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">input_val</span>
 
-<span class="c">#capture keyboard input</span>
+<span class="c1">#capture keyboard input</span>
 <span class="k">def</span> <span class="nf">on_key_press</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">input_val</span>
-    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s">&#39;up&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;up&#39;</span><span class="p">:</span>
         <span class="n">input_val</span> <span class="o">+=</span> <span class="o">.</span><span class="mi">25</span>
-    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s">&#39;down&#39;</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;down&#39;</span><span class="p">:</span>
         <span class="n">input_val</span> <span class="o">-=</span> <span class="o">.</span><span class="mi">25</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s">&#39;key_press_event&#39;</span><span class="p">,</span> <span class="n">on_key_press</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;key_press_event&#39;</span><span class="p">,</span> <span class="n">on_key_press</span><span class="p">)</span>
 
-<span class="c">#make the animation</span>
+<span class="c1">#make the animation</span>
 <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-    <span class="c">#run the simulation forward</span>
+    <span class="c1">#run the simulation forward</span>
     <span class="n">time</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
-    <span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;input&#39;</span><span class="p">,</span> <span class="s">&#39;delay_buffer_1&#39;</span><span class="p">,</span> <span class="s">&#39;delay_buffer_2&#39;</span><span class="p">,</span> <span class="s">&#39;delay_buffer_3&#39;</span><span class="p">,</span> <span class="s">&#39;output&#39;</span><span class="p">],</span>
+    <span class="n">stocks</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">return_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="s1">&#39;delay_buffer_1&#39;</span><span class="p">,</span> <span class="s1">&#39;delay_buffer_2&#39;</span><span class="p">,</span> <span class="s1">&#39;delay_buffer_3&#39;</span><span class="p">,</span> <span class="s1">&#39;output&#39;</span><span class="p">],</span>
                        <span class="n">return_timestamps</span><span class="o">=</span><span class="p">[</span><span class="n">time</span><span class="p">],</span>
-                       <span class="n">initial_condition</span><span class="o">=</span><span class="s">&#39;current&#39;</span><span class="p">,</span> <span class="n">collect</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                       <span class="n">initial_condition</span><span class="o">=</span><span class="s1">&#39;current&#39;</span><span class="p">,</span> <span class="n">collect</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="c">#make changes to the display</span>
-    <span class="n">level</span> <span class="o">=</span> <span class="n">stocks</span><span class="p">[</span><span class="s">&#39;output&#39;</span><span class="p">]</span>
+    <span class="c1">#make changes to the display</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">stocks</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span>
     <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">level</span><span class="p">,</span> <span class="n">level</span><span class="p">])</span>
-    <span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s">&#39;Time </span><span class="si">%.02f</span><span class="s">&#39;</span><span class="o">%</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">title</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;Time </span><span class="si">%.02f</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">time</span><span class="p">)</span>
 
-<span class="c"># call the animator.</span>
-<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="c1"># call the animator.</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                <span class="n">frames</span><span class="o">=</span><span class="n">seconds</span><span class="o">*</span><span class="n">fps</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mf">1000.</span><span class="o">/</span><span class="n">fps</span><span class="p">,</span>
-                               <span class="n">blit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                               <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">record</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_record</span><span class="p">()</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">record</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_record</span><span class="p">()</span>
 <span class="n">record</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -312,10 +327,10 @@ Populating the interactive namespace from numpy and matplotlib
     </tr>
   </tbody>
 </table>
-</div><div class="code python highlight-python"><div class="highlight"><pre><span class="n">record</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</div><div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">record</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10f08a250&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x10f08a250</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="section" id="display-student-input-vs-model-output">
@@ -323,14 +338,14 @@ Populating the interactive namespace from numpy and matplotlib
 <p>To show how we did, we can plot the input and output over time. Here we
 start to see the oscillatory behavior (for higher order and longer
 delays)</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">input_collector</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Your Input&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;Model Response&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;lower right&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [Seconds]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Value&#39;</span><span class="p">);</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">input_collector</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Your Input&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Model Response&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [Seconds]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Value&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x108ab4bd0&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">Text</span> <span class="n">at</span> <span class="mh">0x108ab4bd0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -338,14 +353,14 @@ delays)</p>
 <h4>Display the value of each of the buffer stocks over time<a class="headerlink" href="#display-the-value-of-each-of-the-buffer-stocks-over-time" title="Permalink to this headline">¶</a></h4>
 <p>If we plot the stock levels over time, we can see (especially for the
 third order case) how the delay works to smooth out the input values.</p>
-<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">delay_stock_values</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">stocks_collector</span><span class="p">)</span>
 <span class="n">delay_stock_values</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time [Seconds]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Stock Level&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time [Seconds]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Stock Level&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>&lt;matplotlib.text.Text at 0x108c7c590&gt;
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">Text</span> <span class="n">at</span> <span class="mh">0x108c7c590</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
