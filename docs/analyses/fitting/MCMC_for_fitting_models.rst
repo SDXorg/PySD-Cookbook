@@ -5,7 +5,7 @@ Fitting a model with Markov Chain Monte Carlo
 Markov Chain Monte Carlo (MCMC) is a way to infer a distribution of
 model parameters, given that the measurements of the output of the model
 are influenced by some tractable random process. In this case, performs
-something akin to the opposite of what a standard Monte Carlo simultion
+something akin to the opposite of what a standard Monte Carlo simulation
 will do. Instead of starting with distributions for the parameters of a
 model and using them to calculate a distribution (usually related to
 uncertainty) in the output of the simulation, we start with a
