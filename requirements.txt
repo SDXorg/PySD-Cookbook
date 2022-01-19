@@ -1,3 +1,4 @@
 pysd
 pyDOE
 scipy
+matplotlib
