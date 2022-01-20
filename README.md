@@ -3,6 +3,9 @@
 ## Simple recipes for powerful analysis of system dynamics models
 *by James Houghton*
 
+### Try out in Binder
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JamesPHoughton/PySD-Cookbook/HEAD)
+
 This cookbook is intended as a resource for system dynamics practitioners working to use big data to 
 improve their modeling practice. I strive to make each recipe short, simple to understand, and transferable, 
 so that the script can be copied and adapted to the desired problem.
