@@ -7,7 +7,6 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    python-version: '3.7'
 
     steps:
       - uses: actions/checkout@v3
@@ -16,7 +15,7 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.7'
       - name: Install dependencies
         run: |
           pip install pysd
