@@ -19,9 +19,11 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install -y texlive texlive-latex-extra pandoc
-          pip install pysd
-          pip install -r requirements.txt
-          pip install coveralls
-      - name: Test and coverage
+          pip install -r docs/requirements.txt
+      - name: Test build rst
         run: |
-          python build_docs.py
+          python build_rst.py
+      - name: Test build html
+        run: |
+          cd docs
+          make html SPHINXOPTS="-W"

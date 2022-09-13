@@ -10,3 +10,8 @@ __pycache__
 .*.swp
 docs/_build
 source/analyses/data_handling/example.db
+.vscode
+# exclude all rst files from notebooks except the index files
+docs/analyses
+docs/data
+!*index*.rst
