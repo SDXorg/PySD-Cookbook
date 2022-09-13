@@ -1,0 +1,52 @@
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/data_handling/exogenous_timeseries.rst:: WARNING: Anonymous hyperlink mismatch: 1 references but 0 targets.
+See "backrefs" attribute for IDs.[39;49;00m
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/data_handling/pandas.rst:: WARNING: Anonymous hyperlink mismatch: 1 references but 0 targets.
+See "backrefs" attribute for IDs.[39;49;00m
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/fitting/Fitting_with_Optimization.rst:: WARNING: Anonymous hyperlink mismatch: 1 references but 0 targets.
+See "backrefs" attribute for IDs.[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/fitting/Fitting_with_Optimization.rst:: WARNING: image file not readable: ../source/models/SIModel/SIModel.png[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/fitting/MCMC_for_fitting_models.rst:: WARNING: image file not readable: ../source/models/SIModel/SIModel.png[39;49;00m
+/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:10: WARNING: Title level inconsistent:
+
+A new emerging infectious disease in Europe, which does not spread to neighboring countries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:32: WARNING: Title level inconsistent:
+
+A simple SIR model
+~~~~~~~~~~~~~~~~~~
+/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:72: WARNING: Title level inconsistent:
+
+Recap
+=====
+/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:302: WARNING: Title level inconsistent:
+
+Multi-regional SIR Model
+========================
+/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:926: WARNING: Title level inconsistent:
+
+Now, how do we get from the cumulative cases to the cumulative cases as % of the population?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:1406: WARNING: Inline emphasis start-string without end-string.[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/geo/Doing_more_with_spatialdata_multi_regional_SIR_Model.rst:1406: WARNING: Inline strong start-string without end-string.[39;49;00m
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/getting_started/PySD_Challenge_1.rst:: WARNING: Anonymous hyperlink mismatch: 3 references but 0 targets.
+See "backrefs" attribute for IDs.[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/model_comparison/Comparing_Models.rst:33: WARNING: image file not readable: models/Emails/full_model.png[39;49;00m
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot.rst:32: WARNING: Undefined substitution referenced: "----+---------------------------+---------------------------+-------------+--------------------------------------------".[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot.rst:288: WARNING: image file not readable: analyses/visualization/Marginal%20Density%20Plot_files/Marginal%20Density%20Plot_9_0.png[39;49;00m
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot - Interactive.rst:38: WARNING: Undefined substitution referenced: "----+---------------------------+---------------------------+-------------+--------------------------------------------".[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot - Interactive.rst:313: WARNING: image file not readable: analyses/visualization/Marginal%20Density%20Plot%20-%20Interactive_files/Marginal%20Density%20Plot%20-%20Interactive_9_0.png[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot - Interactive.rst:355: WARNING: image file not readable: analyses/visualization/Marginal%20Density%20Plot%20-%20Interactive_files/Marginal%20Density%20Plot%20-%20Interactive_12_0.png[39;49;00m
+[31m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/plotting_suite_of_simulations.rst:: WARNING: Anonymous hyperlink mismatch: 2 references but 0 targets.
+See "backrefs" attribute for IDs.[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/plotting_suite_of_simulations.rst:44: WARNING: image file not readable: models/Climate/Atmospheric_Bathtub.png[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/plotting_suite_of_simulations.rst:44: WARNING: image file not readable: models/Climate/Atmospheric_Bathtub.png[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/data_handling/exogenous_timeseries.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/data_handling/numpy.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/fitting/Penny_Jar.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/getting_started/PySD_Challenge_1.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/model_comparison/Comparing_Models.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/model_comparison/Designing_Experiments.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/sensitivity/Latin_Hypercube_Sampling.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/Marginal Density Plot - Interactive.rst: WARNING: document isn't included in any toctree[39;49;00m
+[91m/home/emarti1/dev/PySD-Cookbook/docs/analyses/visualization/plotting_suite_of_simulations.rst: WARNING: document isn't included in any toctree[39;49;00m

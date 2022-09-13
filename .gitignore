@@ -5,4 +5,5 @@
 _*.py
 *.pyc
 *.vdf
+.*.swp
 docs/_build
