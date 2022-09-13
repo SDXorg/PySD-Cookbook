@@ -3,6 +3,8 @@
 *.3vm
 *-checkpoint.ipynb
 _*.py
+source/models/**/*.py
+__pycache__
 *.pyc
 *.vdf
 .*.swp
