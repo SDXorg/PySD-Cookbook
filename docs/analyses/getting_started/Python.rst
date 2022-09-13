@@ -1,4 +1,3 @@
-
 Getting Started with Python
 ===========================
 
@@ -43,7 +42,7 @@ Basic Python Data Structures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  Everything in python is an object.
--  Objects have different 'types'.
+-  Objects have different ‘types’.
 -  Objects can be made up of other objects.
 -  Variable names are just labels assigned to point to specific objects.
 
@@ -52,13 +51,13 @@ Variables
 
 Variables are created by assigning a value to a label.
 
-.. code:: python
+.. code:: ipython3
 
     a = 3  # this will be an integer
     b = "bob"  # this will be a string
     c = 23.987  # this will be a float
     
-    print a, b, c
+    print(a, b, c)
 
 
 .. parsed-literal::
@@ -71,10 +70,10 @@ Lists
 
 Lists are ordered collections of objects (and are objects themselves).
 
-.. code:: python
+.. code:: ipython3
 
     my_list = [1, 2, a]
-    print my_list
+    print(my_list)
 
 
 .. parsed-literal::
@@ -85,9 +84,9 @@ Lists are ordered collections of objects (and are objects themselves).
 Elements of the list can be accessed or modified by position, with the
 first element having the index ``0``.
 
-.. code:: python
+.. code:: ipython3
 
-    print my_list[2]
+    print(my_list[2])
 
 
 .. parsed-literal::
@@ -95,10 +94,10 @@ first element having the index ``0``.
     3
 
 
-.. code:: python
+.. code:: ipython3
 
     my_list[2] = 4
-    print my_list
+    print(my_list)
 
 
 .. parsed-literal::
@@ -110,19 +109,19 @@ Tuples
 ^^^^^^
 
 A tuple is an ordered list of python objects that is *immutable*,
-meaning that once defined they can't be added to or changed. They are
-useful for things like sets of coordinates, where it doesn't make sense
-to 'add another dimension'.
+meaning that once defined they can’t be added to or changed. They are
+useful for things like sets of coordinates, where it doesn’t make sense
+to ‘add another dimension’.
 
 From a pragmatic point of view, its mostly important to understand that
 they are created with ``(parentheses)`` and are often used in function
 calls and returns.
 
-.. code:: python
+.. code:: ipython3
 
     my_tuple = (3, 4, 'hi')
     my_tuple = (2,4,6)
-    print my_tuple[2]
+    print(my_tuple[2])
 
 
 .. parsed-literal::
@@ -130,7 +129,7 @@ calls and returns.
     6
 
 
-.. code:: python
+.. code:: ipython3
 
     my_tuple[2] = 'bye'
 
@@ -142,7 +141,7 @@ calls and returns.
 
     TypeError                                 Traceback (most recent call last)
 
-    <ipython-input-17-5f5c7c118dde> in <module>()
+    /tmp/ipykernel_33250/2217069091.py in <module>
     ----> 1 my_tuple[2] = 'bye'
     
 
@@ -155,10 +154,10 @@ Dictionaries
 Dictionaries are named collections of objects which can be accessed by
 their label:
 
-.. code:: python
+.. code:: ipython3
 
     my_dictionary = {'key 1': 1, 'key 2': b}
-    print my_dictionary['key 2']
+    print(my_dictionary['key 2'])
 
 
 .. parsed-literal::
@@ -169,10 +168,10 @@ their label:
 You can add elements to a dictionary by assigning to an undefined
 element
 
-.. code:: python
+.. code:: ipython3
 
     my_dictionary['key 3'] = 27
-    print my_dictionary
+    print(my_dictionary)
 
 
 .. parsed-literal::
@@ -189,10 +188,10 @@ Python Control Flow
 The body of an ``if`` statement must be indented - standard practice is
 4 spaces.
 
-.. code:: python
+.. code:: ipython3
 
     if True:
-        print 'Inside the if statement'
+        print('Inside the if statement')
 
 
 .. parsed-literal::
@@ -200,15 +199,15 @@ The body of an ``if`` statement must be indented - standard practice is
     Inside the if statement
 
 
-.. code:: python
+.. code:: ipython3
 
     if 5 < 3:
-        print 'In the if'
+        print('In the if')
     else:
         if 5 > 3:
-            print 'in the elif'
+            print('in the elif')
         else:
-            print 'In the else'    
+            print('In the else' )   
 
 
 .. parsed-literal::
@@ -216,14 +215,14 @@ The body of an ``if`` statement must be indented - standard practice is
     in the elif
 
 
-.. code:: python
+.. code:: ipython3
 
     if 5 < 3:
-        print 'In the if'
+        print('In the if')
     elif 5 >= 3:
-        print 'in the elif'
+        print('in the elif')
     else:
-        print 'in the else'
+        print('in the else')
 
 
 .. parsed-literal::
@@ -236,12 +235,12 @@ The body of an ``if`` statement must be indented - standard practice is
 
 For loops allow you to iterate over lists.
 
-.. code:: python
+.. code:: ipython3
 
     my_list = [1, 2, 3, 'bob']
     
     for emile in my_list:
-        print emile
+        print(emile)
 
 
 .. parsed-literal::
@@ -255,18 +254,27 @@ If we want to iterate over a list of numbers, as is often the case with
 a for loop, we can use the ``range`` function to construct the list for
 us:
 
-.. code:: python
+.. code:: ipython3
 
     for i in range(0, 10):
         if i > 3:
-            print i,
+            print(i)
         else:
-            print 'bob',
+            print('bob')
 
 
 .. parsed-literal::
 
-    bob bob bob bob 4 5 6 7 8 9
+    bob
+    bob
+    bob
+    bob
+    4
+    5
+    6
+    7
+    8
+    9
 
 
 Python Functions
@@ -275,13 +283,13 @@ Python Functions
 Functions are **def**\ ined using the syntax below. As with ``if`` and
 ``for``, indentation specifies the scope of the function.
 
-.. code:: python
+.. code:: ipython3
 
     def my_function(param1, param2):
         result = param1 + param2
         return result
     
-    print my_function(3, 4)
+    print(my_function(3, 4))
 
 
 .. parsed-literal::
@@ -292,33 +300,17 @@ Functions are **def**\ ined using the syntax below. As with ``if`` and
 Functions can have default arguments, making them optional to use in the
 function call:
 
-.. code:: python
+.. code:: ipython3
 
     def my_other_function(param1=5, param2=10):
         return param1 * param2
     
-    print my_other_function(param2=4)
+    print(my_other_function(param2=4))
 
 
 .. parsed-literal::
 
     20
-
-
-::
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-35-1b17a9a8d97e> in <module>()
-          4 print my_other_function(param2=4)
-          5 
-    ----> 6 print param2
-    
-
-    NameError: name 'param2' is not defined
 
 
 Methods and Attributes of Objects
@@ -328,12 +320,12 @@ Many python objects have their own methods, which are functions that
 apply specifically to the object, as in the string manipulation
 functions below:
 
-.. code:: python
+.. code:: ipython3
 
     my_string = 'How about a beer?'
-    print my_string.lower()
-    print my_string.upper().rjust(30)  # chained call to method
-    print my_string.replace('?', '!')
+    print(my_string.lower())
+    print(my_string.upper().rjust(30))  # chained call to method
+    print(my_string.replace('?', '!'))
 
 
 .. parsed-literal::
@@ -344,17 +336,17 @@ functions below:
 
 
 Some objects have attributes which are not functions that act upon the
-object, but components of the object's internal representation.
+object, but components of the object’s internal representation.
 
 In the example below, we define a complex number, which has both a real
 part and a complex part, which we can access as an attribute.
 
-.. code:: python
+.. code:: ipython3
 
     my_variable = 12.3 + 4j
-    print my_variable
-    print my_variable.real
-    print my_variable.imag
+    print(my_variable)
+    print(my_variable.real)
+    print(my_variable.imag)
 
 
 .. parsed-literal::
@@ -368,7 +360,7 @@ Resources for learning to program using Python.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  To get started learning python, an excellent collection of resources
-   is available in `The Hitchhiker's Guide to
+   is available in `The Hitchhiker’s Guide to
    Python <http://docs.python-guide.org/en/latest/intro/learning/>`__.
 -  To try Python in the browser visit
    `learnpython.org <http://www.learnpython.org/>`__.
@@ -377,9 +369,9 @@ Resources for learning to program using Python.
 -  Online course on `python for data
    science <https://www.datacamp.com/courses/intro-to-python-for-data-science>`__
 
-and finally...
+and finally…
 
-.. code:: python
+.. code:: ipython3
 
     import this
 

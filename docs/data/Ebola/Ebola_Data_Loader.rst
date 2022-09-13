@@ -1,12 +1,11 @@
-
 Ebola Data Loader
 =================
 
-In this notebook, we'll format data from `The World Health
+In this notebook, we’ll format data from `The World Health
 Organization <http://apps.who.int/gho/data/view.ebola-sitrep.ebola-country-SLE-20150422-graph?lang=en>`__
 for future analysis
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pandas as pd
@@ -18,7 +17,7 @@ for future analysis
     Populating the interactive namespace from numpy and matplotlib
 
 
-.. code:: python
+.. code:: ipython2
 
     #read in the raw data
     rawdata = pd.read_csv('Ebola_in_SL_Raw_WHO_Data.csv')
@@ -59,7 +58,7 @@ for future analysis
 
 
 
-.. code:: python
+.. code:: ipython2
 
     #parse the dates column
     import dateutil
@@ -232,7 +231,7 @@ for future analysis
 
 
 
-.. code:: python
+.. code:: ipython2
 
     data = rawdata[rawdata['EBOLA_DATA_SOURCE (CODE)']=='PATIENTDB']
     data = data[['End Date','Numeric']]
@@ -245,7 +244,7 @@ for future analysis
     data.columns=['New Reported Cases']
     data['Cumulative Cases'] = data['New Reported Cases'].cumsum()
 
-.. code:: python
+.. code:: ipython2
 
     data.plot()
 
@@ -262,7 +261,7 @@ for future analysis
 .. image:: Ebola_Data_Loader_files/Ebola_Data_Loader_5_1.png
 
 
-.. code:: python
+.. code:: ipython2
 
     data.to_csv('Ebola_in_SL_Data.csv')
 

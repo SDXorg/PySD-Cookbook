@@ -24,7 +24,7 @@ The model is a basic, 1-stock carbon bathtub model
 .. code:: python
 
     model = pysd.read_vensim('../../models/Climate/Atmospheric_Bathtub.mdl')
-    print model.doc()
+    print(model.doc())
 
 
 .. parsed-literal::
@@ -272,14 +272,14 @@ Draw a plot showing the results, and a marginal density plot
     plt.subplot2grid((1,4), loc=(0,0), colspan=3)
     [plt.plot(result.index, result[i], 'b', alpha=.02) for i in result.columns]
     plt.ylim(0, max(result.iloc[-1]))
-    
+
     # right side has gaussian KDE on last timestamp
     plt.subplot2grid((1,4), loc=(0,3))
-    seaborn.kdeplot(result.iloc[-1], vertical=True)
+    seaborn.kdeplot(y=result.iloc[-1])
     plt.ylim(0, max(result.iloc[-1]));
     plt.yticks([])
     plt.xticks([])
-    
+
     plt.suptitle('Emissions scenarios under uncertainty', fontsize=16);
 
 

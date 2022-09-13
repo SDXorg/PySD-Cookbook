@@ -1,8 +1,7 @@
-
 Collecting US decennial census data
 ===================================
 
-In this notebook, we'll collect demographic data from the US decennial
+In this notebook, we’ll collect demographic data from the US decennial
 census, by county.
 
 The census website has an API, which is good, because everything else
@@ -13,11 +12,11 @@ http://www.census.gov/data/developers/data-sets/decennial-census-data.html
 As a quick demonstration, we can use the API to get population data for
 every county in the US:
 
-.. code:: python
+.. code:: ipython2
 
     import pandas as pd
 
-.. code:: python
+.. code:: ipython2
 
     df = pd.read_json('http://api.census.gov/data/2010/sf1?get=P0120001&for=county:*')
     df.columns = df.iloc[0]
@@ -80,7 +79,7 @@ The census code descriptions can also be accessed via the API. A listing
 of the field names is available here:
 http://api.census.gov/data/2010/sf1/variables.html
 
-.. code:: python
+.. code:: ipython2
 
     pd.read_json('http://api.census.gov/data/2010/sf1/variables/P0120001.json', typ='ser')
 
@@ -99,7 +98,7 @@ http://api.census.gov/data/2010/sf1/variables.html
 Collect data on male population by age, county
 ----------------------------------------------
 
-For now I'm only going to look at males. This is probably a bad idea in
+For now I’m only going to look at males. This is probably a bad idea in
 general.
 
 Start with the 2010 census
@@ -109,14 +108,14 @@ The male population is broken down into some somewhat arbitrary cohorts,
 each with its own name. We want all of the fields between ``P0120003``
 and ``P0120025``.
 
-We'll do some data munging to get it in numeric format, and to take care
+We’ll do some data munging to get it in numeric format, and to take care
 of the labels and indicies.
 
-.. code:: python
+.. code:: ipython2
 
     fields = ['P01200%02i'%i for i in range(3,26)]
     url = 'http://api.census.gov/data/2010/sf1?get=%s&for=county:*'%','.join(fields)
-    print url
+    print(url)
     pops2010 = pd.read_json(url)
     pops2010.columns = pops2010.iloc[0]
     pops2010.drop(pops2010.index[0], inplace=True)
@@ -323,10 +322,10 @@ Get data from 2000
 The 2000 census (logically) has different codes for its data, and (even
 more logically) breaks the cohorts down differently. In this case, we
 can get data for each age year with codes ``PCT012003`` through
-``PCT012104``. The api limits us to only 50 columns at a time, so we'll
+``PCT012104``. The api limits us to only 50 columns at a time, so we’ll
 do it in chunks and stitch them together.
 
-.. code:: python
+.. code:: ipython2
 
     fields = ['PCT012%03i'%i for i in range(3,105)]
     
@@ -335,7 +334,7 @@ do it in chunks and stitch them together.
     for i in range(0, len(fields), chunkSize):
         chunk = fields[i:i+chunkSize]
         url = 'http://api.census.gov/data/2000/sf1?get=%s&for=county:*'%','.join(chunk)
-        print url
+        print(url)
         df_chunk = pd.read_json(url)
         df_chunk.columns = df_chunk.iloc[0]
         df_chunk.drop(df_chunk.index[0], inplace=True)
@@ -546,13 +545,13 @@ Align the datasets
 ------------------
 
 As they have different cohorts, we need to do some summation before we
-can merge the two census years into a single table. I'll break the data
-down into 10-year cohorts by selecting columns to stitch together. We'll
+can merge the two census years into a single table. I’ll break the data
+down into 10-year cohorts by selecting columns to stitch together. We’ll
 set breakpoints by the last few digits of the field name, and label our
-new cohorts according to which decade of your life they are. We're using
+new cohorts according to which decade of your life they are. We’re using
 1-based indexing here for the cohort names.
 
-.. code:: python
+.. code:: ipython2
 
     pops2010d = pd.DataFrame(index=pops2010.index)
     
@@ -666,7 +665,7 @@ new cohorts according to which decade of your life they are. We're using
 
 
 
-.. code:: python
+.. code:: ipython2
 
     pops2000d = pd.DataFrame(index=pops2000.index)
     
@@ -780,10 +779,10 @@ new cohorts according to which decade of your life they are. We're using
 
 
 
-Now that the data have been formatted in the same way, we'll concatenate
-them. We also drop any rows that don't show up in both datasets.
+Now that the data have been formatted in the same way, we’ll concatenate
+them. We also drop any rows that don’t show up in both datasets.
 
-.. code:: python
+.. code:: ipython2
 
     frame = pd.concat([pops2000d, pops2010d], keys=[2000, 2010], axis=1)
     frame.dropna(inplace=True)
@@ -961,9 +960,9 @@ them. We also drop any rows that don't show up in both datasets.
 
 
 
-I'm happy with this format, so we'll save it to csv:
+I’m happy with this format, so we’ll save it to csv:
 
-.. code:: python
+.. code:: ipython2
 
     frame.to_csv('Males by decade and county.csv')
 
@@ -972,7 +971,7 @@ As our dataframe has a
 we have to take care when re-importing from the csv to get the index and
 header columns correct.
 
-.. code:: python
+.. code:: ipython2
 
     pd.read_csv('Males by decade and county.csv', header=[0,1], index_col=[0,1])
 

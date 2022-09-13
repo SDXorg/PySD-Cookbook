@@ -1,4 +1,3 @@
-
 Installation and Setup of Python and PySD
 =========================================
 
@@ -19,19 +18,19 @@ With a python environment set up, at the command prompt you can type:
 
 ::
 
-    pip install pysd
+   pip install pysd
 
 this should install PySD and all of its dependencies. In some cases you
-may need to prepend the command with 'sudo' to give it administrative
+may need to prepend the command with ‘sudo’ to give it administrative
 priveledges:
 
 ::
 
-    sudo pip install pysd
+   sudo pip install pysd
 
-You'll be prompted for your administrator password.
+You’ll be prompted for your administrator password.
 
-Manually installing PySD's dependencies
+Manually installing PySD’s dependencies
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On the off chance that pip fails to install the dependencies, you can do
@@ -58,7 +57,7 @@ To install these packages, use the syntax:
 
 ::
 
-    pip install numpy
+   pip install numpy
 
 Run the command once for each package, replacing ``numpy`` with
 ``scipy``, ``matplotlib``, etc.
@@ -67,15 +66,15 @@ Launch Jupyter Notebook, and get started
 ----------------------------------------
 
 If you used the anaconda graphical installer, you should have a
-'Anaconda Launcher' user interface installed. Opening this program and
-clicking the 'Jupyter Notebook' will fire up the notebook explorer in
+‘Anaconda Launcher’ user interface installed. Opening this program and
+clicking the ‘Jupyter Notebook’ will fire up the notebook explorer in
 your browser.
 
 Alternately, at your command line type:
 
 ::
 
-    jupyter notebook
+   jupyter notebook
 
 Your browser should start, and give you a document much like this one
 that you can play with.
@@ -83,10 +82,10 @@ that you can play with.
 Upgrading PySD
 --------------
 
-PySD is a work in progress, and from time to time, we'll ipgrade its
+PySD is a work in progress, and from time to time, we’ll ipgrade its
 features. To upgrade to the latest version of PySD (or any of the other
 packages, for that matter) use the syntax:
 
 ::
 
-    pip install pysd --upgrade
+   pip install pysd --upgrade

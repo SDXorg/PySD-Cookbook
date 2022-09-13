@@ -1,4 +1,3 @@
-
 Surrogating a function with a machine learning estimator
 ========================================================
 
@@ -11,7 +10,7 @@ a single output. When confrontied with this situation, other paradigms
 .. image:: ../../../source/models/Manufacturing_Defects/Defects.png
    :width: 400 px
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -31,11 +30,11 @@ a single output. When confrontied with this situation, other paradigms
       UserWarning)
 
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Manufacturing_Defects/Defects.mdl')
 
-.. code:: python
+.. code:: ipython2
 
     data = pd.read_csv('../../data/Defects_Synthetic/Manufacturing_Defects_Synthetic_Data.csv')
     data.head()
@@ -98,7 +97,7 @@ a single output. When confrontied with this situation, other paradigms
 
 
 
-.. code:: python
+.. code:: ipython2
 
     plt.scatter(data['Workday'], data['Time per Task'], c=data['Defect Rate'], linewidth=0, alpha=.6)
     plt.ylabel('Time per Task')
@@ -115,7 +114,7 @@ a single output. When confrontied with this situation, other paradigms
 .. image:: Surrogating_with_regression_files/Surrogating_with_regression_5_0.png
 
 
-.. code:: python
+.. code:: ipython2
 
     from sklearn.svm import SVR
     
@@ -134,7 +133,7 @@ a single output. When confrontied with this situation, other paradigms
 
 
 
-.. code:: python
+.. code:: ipython2
 
     def new_defect_function():
         """ Replaces the original defects equation with a regression model"""
@@ -144,7 +143,7 @@ a single output. When confrontied with this situation, other paradigms
     
     model.components.defect_rate = new_defect_function
 
-.. code:: python
+.. code:: ipython2
 
     model.components.defect_rate()
 
@@ -157,7 +156,7 @@ a single output. When confrontied with this situation, other paradigms
 
 
 
-.. code:: python
+.. code:: ipython2
 
     model.run().plot();
 

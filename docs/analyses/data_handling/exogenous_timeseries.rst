@@ -1,15 +1,14 @@
-
 Exogenous model input from a file
 =================================
 
-In this notebook we'll demonstrate using an external data source to feed
-values into a model. We'll use the carbon emissions dataset, and feed
+In this notebook we’ll demonstrate using an external data source to feed
+values into a model. We’ll use the carbon emissions dataset, and feed
 total emissions into a stock of excess atmospheric carbon:
 
-We'll begin as usual by importing PySD and the machinery we need in
+We’ll begin as usual by importing PySD and the machinery we need in
 order to deal with data manipulation and plotting.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -30,9 +29,9 @@ order to deal with data manipulation and plotting.
 
 We use `Pandas <>`__ library to import emissions data from a ``.csv``
 file. In this command, we both rename the columns of the dataset, and
-set the index to the 'Year' column.
+set the index to the ‘Year’ column.
 
-.. code:: python
+.. code:: ipython2
 
     emissions = pd.read_csv('../../data/Climate/global_emissions.csv', 
                             skiprows=2, index_col='Year',
@@ -128,7 +127,7 @@ set the index to the 'Year' column.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Climate/Atmospheric_Bathtub.mdl')
 
@@ -138,18 +137,18 @@ this track our exogenous data.
 
 .. code:: python
 
-    Emissions=
-        0
+   Emissions=
+       0
 
-    Excess Atmospheric Carbon= INTEG (
-        Emissions - Natural Removal,
-        0)
+   Excess Atmospheric Carbon= INTEG (
+       Emissions - Natural Removal,
+       0)
 
-    Natural Removal=
-        Excess Atmospheric Carbon * Removal Constant
+   Natural Removal=
+       Excess Atmospheric Carbon * Removal Constant
 
-    Removal Constant=
-        0.01
+   Removal Constant=
+       0.01
 
 Aligning the model time bounds with that of the dataset
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -159,10 +158,10 @@ ensure that the model will execute over the proper timeseries. The
 initial and final times of the simulation are specified in the model
 file as:
 
-.. code:: python
+.. code:: ipython2
 
-    print 'initial:', model.components.initial_time() 
-    print 'final:', model.components.final_time()
+    print('initial:', model.components.initial_time()) 
+    print('final:', model.components.final_time())
 
 
 .. parsed-literal::
@@ -173,10 +172,10 @@ file as:
 
 However, the time frame of the dataset runs:
 
-.. code:: python
+.. code:: ipython2
 
-    print 'initial:', emissions.index[0]
-    print 'final:', emissions.index[-1] 
+    print('initial:', emissions.index[0])
+    print('final:', emissions.index[-1])
 
 
 .. parsed-literal::
@@ -189,7 +188,7 @@ In order to run the model over a time series equal to that of the data
 set, we need to specify the appropriate initial conditions, and ask the
 run function to return to us timestamps equal to that of our dataset:
 
-.. code:: python
+.. code:: ipython2
 
     res = model.run(initial_condition=(emissions.index[0], 
                                        {'Excess Atmospheric Carbon': 0}),
@@ -251,7 +250,7 @@ our dataset. We can do this in a very straightforward way by passing the
 Pandas ``Series`` corresponding to the dataset in a dictionary to the
 ``params`` argument of the run function.
 
-.. code:: python
+.. code:: ipython2
 
     res = model.run(initial_condition=(emissions.index[0], 
                                        {'Excess Atmospheric Carbon': 0}),
@@ -259,7 +258,7 @@ Pandas ``Series`` corresponding to the dataset in a dictionary to the
                     return_columns=['Emissions', 'Excess Atmospheric Carbon'],
                     params={'Emissions': emissions['Total Emissions']})
 
-.. code:: python
+.. code:: ipython2
 
     res.plot();
 

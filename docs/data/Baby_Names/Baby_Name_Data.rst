@@ -1,22 +1,20 @@
-
-Baby Name Data
-==============
+#Baby Name Data
 
 This notebook formats data from the social security administration `baby
 names database <http://www.ssa.gov/oact/babynames/limits.html>`__ into a
 format that is easy for the cookbook to deal with. It expects the zip
-file to be unpacked into a subfolder called 'names'.
+file to be unpacked into a subfolder called ‘names’.
 
-.. code:: python
+.. code:: ipython2
 
     import pandas as pd
     import glob
 
-.. code:: python
+.. code:: ipython2
 
     filenames = glob.glob('names/yob*')
 
-.. code:: python
+.. code:: ipython2
 
     females = pd.DataFrame()
     males = pd.DataFrame()

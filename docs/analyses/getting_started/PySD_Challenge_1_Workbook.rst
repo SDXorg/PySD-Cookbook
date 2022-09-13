@@ -97,8 +97,8 @@ referenced above.
 .. code:: python
 
     peak_value = <<...>>
-    
-    print 'Up to', int(peak_value), 'individuals are infected at one time.'
+
+    print('Up to', int(peak_value), 'individuals are infected at one time.')
 
 Define the range of infectivities we want to sweep over
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,7 +127,7 @@ is actually ``0.1``.
 
     import numpy as np
     infectivity_values = np.arange(<<...>>)
-    print infectivity_values
+    print(infectivity_values)
 
 Evaluate the peak of infections for each value of infectivity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -145,9 +145,9 @@ end of the ``peak_value_list``.
 .. code:: python
 
     peak_value_list = []
-    
+
     for <<...>>
-    
+
     peak_value_list
 
 Plot the result

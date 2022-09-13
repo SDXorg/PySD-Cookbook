@@ -24,7 +24,7 @@ order to deal with data manipulation and plotting.
 .. parsed-literal::
 
     /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
-    
+
       UserWarning)
 
 
@@ -34,11 +34,11 @@ set the index to the 'Year' column.
 
 .. code:: python
 
-    emissions = pd.read_csv('../../data/Climate/global_emissions.csv', 
+    emissions = pd.read_csv('../../data/Climate/global_emissions.csv',
                             skiprows=2, index_col='Year',
-                            names=['Year', 'Total Emissions', 
-                                   'Gas Emissions', 'Liquid Emissions', 
-                                   'Solid Emissions', 'Cement Emissions', 
+                            names=['Year', 'Total Emissions',
+                                   'Gas Emissions', 'Liquid Emissions',
+                                   'Solid Emissions', 'Cement Emissions',
                                    'Flare Emissions', 'Per Capita Emissions'])
     emissions.head()
 
@@ -161,8 +161,8 @@ file as:
 
 .. code:: python
 
-    print 'initial:', model.components.<<...>> 
-    print 'final:', model.components.<<...>>
+    print('initial:', model.components.<<...>>)
+    print('final:', model.components.<<...>>)
 
 
 .. parsed-literal::
@@ -175,8 +175,8 @@ However, the time frame of the dataset runs:
 
 .. code:: python
 
-    print 'initial:', emissions.<<...>>
-    print 'final:', emissions.<<...>> 
+    print('initial:', emissions.<<...>>)
+    print('final:', emissions.<<...>>)
 
 
 .. parsed-literal::
@@ -191,7 +191,7 @@ run function to return to us timestamps equal to that of our dataset:
 
 .. code:: python
 
-    res = model.run(initial_condition=(emissions.index[0], 
+    res = model.run(initial_condition=(emissions.index[0],
                                        {'Excess Atmospheric Carbon': <<...>>}),
                     return_timestamps=<<...>>.index.values,
                     return_columns=['Emissions', 'Excess Atmospheric Carbon'])
@@ -253,7 +253,7 @@ Pandas ``Series`` corresponding to the dataset in a dictionary to the
 
 .. code:: python
 
-    res = model.run(initial_condition=(emissions.index[0], 
+    res = model.run(initial_condition=(emissions.index[0],
                                        {'Excess Atmospheric Carbon': 0}),
                     return_timestamps=emissions.index.values,
                     return_columns=['Emissions', 'Excess Atmospheric Carbon'],

@@ -1,0 +1,33 @@
+# Run CI tests with pytest and update coverage to coveralls
+
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    python-version: '3.7'
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install pysd
+          pip install -r requirements.txt
+          pip install coveralls
+      - name: Test and coverage
+        run: |
+          python build_docs.py
+          cd tests
+          nosetests --with-coverage --cover-package=pysd
+      - name: Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: coveralls --service=github

@@ -1,10 +1,9 @@
-
 Parallel Model Fitting
 ======================
 
-In this notebook, we'll fit a simple ageing model to all of the counties
-in the United States. As before, we'll use ``scipy.optimize`` to perform
-the fitting, but we'll use python's ``multiprocessing`` library to
+In this notebook, we’ll fit a simple ageing model to all of the counties
+in the United States. As before, we’ll use ``scipy.optimize`` to perform
+the fitting, but we’ll use python’s ``multiprocessing`` library to
 perform these optimizations in parallel.
 
 When to use this technique
@@ -12,14 +11,14 @@ When to use this technique
 
 This technique is appropriate when we are modeling a large number of
 entirely independent but structurally identical systems. In this
-example, we're conceptualizing the population of counties to be
+example, we’re conceptualizing the population of counties to be
 influenced by aging and exogenous migration patterns. If we were to
 attempt to link the models together, for instance by specifying that the
 outmigration from one county needed to be accounted for as the
 inmigration to another county, we would need to perform a single
 large-scale optimization, or some form of hybrid.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pandas as pd
@@ -41,10 +40,10 @@ Ingredients
 Data
 ^^^^
 
-The first ingredient theat we'll use is census data from the 2000 and
+The first ingredient theat we’ll use is census data from the 2000 and
 2010 census:
 
-.. code:: python
+.. code:: ipython2
 
     data = pd.read_csv('../../data/Census/Males by decade and county.csv', header=[0,1], skiprows=[2])
     data.head()
@@ -216,20 +215,20 @@ Model
 The model will be a simple ageing chain that groups individuals into 10
 year cohorts.
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Aging_Chain/Aging_Chain.mdl')
 
 The Recipe
 ----------
 
-As in our other optimization problems, we'll construct an error function
+As in our other optimization problems, we’ll construct an error function
 that calculates the sum of squared errors between our model prediction
 and the measured data. We also construct a helper function called
 ``fit`` which basically makes the call to the optimizer and formats the
 result in something that we can aggregate into a Pandas DataFrame.
 
-.. code:: python
+.. code:: ipython2
 
     param_names = ['dec_%i_loss_rate'%i for i in range(1,10)]
     
@@ -251,7 +250,7 @@ result in something that we can aggregate into a Pandas DataFrame.
 At this point, fitting the model is a simple matter of applying the fit
 function to the data:
 
-.. code:: python
+.. code:: ipython2
 
     %%capture
     county_params = data.apply(fit, axis=1)
@@ -259,11 +258,11 @@ function to the data:
 On my 2014 era machine, this optimization takes about half an hour.
 
 We can plot the distributions of the fit parameters for each of the
-counties in a histogram, to get a sense of the result. (Here we're
+counties in a histogram, to get a sense of the result. (Here we’re
 ignoring the first decade, which will not have reasonable parameters, as
 we have no information about births to the system.)
 
-.. code:: python
+.. code:: ipython2
 
     df2 = county_params.drop('dec_1_loss_rate',1)
     df2.plot(kind='hist', bins=np.arange(-.15,.4,.01), alpha=.4, histtype='stepfilled')
@@ -283,7 +282,7 @@ Executing the optimization in parallel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We can take advantage of the multicore nature of most modern machines by
-using python's ``multiprocessing`` module to distribute the various
+using python’s ``multiprocessing`` module to distribute the various
 counties between each of the cores we have available for the
 calculation. The basic structure for this piece of code comes from `this
 gist <https://gist.github.com/yong27/7869662>`__. We are essentially
@@ -291,7 +290,7 @@ creating a helper function that will apply the fit function to a subset
 of the census DataFrame, and calling this function once on each of our
 worker nodes.
 
-.. code:: python
+.. code:: ipython2
 
     %%capture
     

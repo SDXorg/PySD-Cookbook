@@ -1,4 +1,3 @@
-
 Plotting a Suite of Simulations
 ===============================
 
@@ -11,10 +10,10 @@ Libraries
 ~~~~~~~~~
 
 In addition to the standard plotting, simulation and data handling
-libraries, we'll use the ``seaborn`` plotting library to handle density
+libraries, we’ll use the ``seaborn`` plotting library to handle density
 plots.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -37,24 +36,24 @@ plots.
 Loading Model
 ~~~~~~~~~~~~~
 
-The model we'll use in this example is a basic, 1-stock carbon bathtub
+The model we’ll use in this example is a basic, 1-stock carbon bathtub
 model, in which ``Emissions`` contribute to a stock of
 ``Excess Atmospheric Carbon``, which is slowly depleted through a
 process of ``Natural Removal``. |Atmospheric Bathtub|.
 
 .. |Atmospheric Bathtub| image:: ../../models/Climate/Atmospheric_Bathtub.png
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Climate/Atmospheric_Bathtub.mdl')
 
 Creating a suite of run parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We'll generate a suite of simulations by drawing 1000 constant values
+We’ll generate a suite of simulations by drawing 1000 constant values
 for the ``Emissions`` parameter from an exponential distribution.
 
-.. code:: python
+.. code:: ipython2
 
     n_runs = 1000
     runs = pd.DataFrame({'Emissions': np.random.exponential(scale=10000, size=n_runs)})
@@ -103,14 +102,14 @@ for the ``Emissions`` parameter from an exponential distribution.
 Run the model with the various parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next we'll run the model with our various values for emissions, and
+Next we’ll run the model with our various values for emissions, and
 collect the resulting timeseries values of the stock of
 ``Excess Atmospheric Carbon``.
 
 The resulting dataframe ``result`` contains a column for each value
 simulation run, and these will form the traces for our plot.
 
-.. code:: python
+.. code:: ipython2
 
     result = runs.apply(lambda p: model.run(params=dict(p))['Excess Atmospheric Carbon'],
                         axis=1).T
@@ -297,10 +296,10 @@ specific time point in the simulation, which we refer to here as
 ``density_time``.
 
 To indicate the simulation time for which we are displaying a density
-estimate, we'll add a vertical line at the point on the lefthand plot at
+estimate, we’ll add a vertical line at the point on the lefthand plot at
 which the density curve is calculated.
 
-.. code:: python
+.. code:: ipython2
 
     # define when to show the density
     density_time = 85
@@ -317,7 +316,7 @@ which the density curve is calculated.
     
     # right side: gaussian KDE on selected timestamp
     plt.subplot2grid((1,4), loc=(0,3))
-    seaborn.kdeplot(result.loc[density_time], vertical=True)
+    seaborn.kdeplot(y=result.loc[density_time])
     plt.ylim(0, ymax)
     plt.yticks([])
     plt.xticks([])
@@ -338,7 +337,7 @@ chart. In this case, whenever the slider is moved, the figure is
 regenerated, making this a suitable method for exploring results before
 feeding in to print graphics.
 
-.. code:: python
+.. code:: ipython2
 
     import matplotlib as mpl
     from ipywidgets import interact, IntSlider
@@ -346,7 +345,7 @@ feeding in to print graphics.
     slider_time = IntSlider(description = 'Select Time for plotting Density',
                             min=0, max=result.index[-1], value=1)
 
-.. code:: python
+.. code:: ipython2
 
     @interact(density_time=slider_time)
     def update(density_time): 
@@ -361,7 +360,7 @@ feeding in to print graphics.
     
         # right side: gaussian KDE on selected timestamp
         ax2 = plt.subplot2grid((1,4), loc=(0,3))
-        seaborn.kdeplot(result.loc[density_time], vertical=True, ax=ax2)
+        seaborn.kdeplot(y=result.loc[density_time], ax=ax2)
         ax2.set_ylim(0, ymax)
         ax2.set_yticks([])
         ax2.set_xticks([])

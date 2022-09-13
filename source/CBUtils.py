@@ -5,7 +5,9 @@ def _apply_df(args):
     df, func, kwargs = args
     return df.apply(func, **kwargs)
 
-def apply_by_multiprocessing(df, func, workers=multiprocessing.cpu_count(), **kwargs):
+
+def apply_by_multiprocessing(df, func, workers=multiprocessing.cpu_count(),
+                             **kwargs):
     """
 
     Parameters
@@ -25,6 +27,9 @@ def apply_by_multiprocessing(df, func, workers=multiprocessing.cpu_count(), **kw
 
     """
     pool = multiprocessing.Pool(processes=workers)
-    result = pool.map(_apply_df, [(d, func, kwargs) for d in np.array_split(df, workers)])
+    result = pool.map(
+        _apply_df,
+        [(d, func, kwargs) for d in np.array_split(df, workers)]
+    )
     pool.close()
     return pd.concat(list(result))

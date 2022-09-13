@@ -1,4 +1,3 @@
-
 Step-at-a-time optimization
 ===========================
 
@@ -6,12 +5,12 @@ One of the consequences of forcing our models to obey the markov
 property is that the dynamic behavior of the model can be represented
 entirely in the transition from one state of the system to the next.
 This means that if we have full measurement of the state of the system,
-we can separate the model's timeseries behavior into a series of
+we can separate the model’s timeseries behavior into a series of
 independent timesteps. Now we can fit the model parameters to each
 timestep independently, without worrying about errors compounding
 thoughout the simulation.
 
-We'll demonstrate this fitting of a model to data using PySD to manage
+We’ll demonstrate this fitting of a model to data using PySD to manage
 our model, pandas to manage our data, and scipy to provide the
 optimization.
 
@@ -22,7 +21,7 @@ We can use this technique when we have full state information
 measurements in the dataset. It is particularly helpful for addressing
 oscillatory behavior.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pandas as pd
@@ -48,14 +47,14 @@ Ingredients
 Model
 ~~~~~
 
-In this demonstration we'll fit the `Lotka–Volterra
+In this demonstration we’ll fit the `Lotka–Volterra
 Model <http://en.wikipedia.org/wiki/Lotka%E2%80%93Volterra_equation>`__
 model:
 
 .. image:: ../../../source/models/Predator_Prey/Predator_Prey.png
    :width: 300 px
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Predator_Prey/Predator_Prey.mdl')
 
@@ -64,19 +63,19 @@ Didinium and Paramecium, that was described in:
 
 ::
 
-    Veilleux (1976) "The analysis of a predatory interaction between Didinium and Paramecium", Masters thesis, University of Alberta.
+   Veilleux (1976) "The analysis of a predatory interaction between Didinium and Paramecium", Masters thesis, University of Alberta.
 
 There are four parameters in this model that it will be our task to set,
 with the goal of minimizing the sum of squared errors between the
-model's step-at-a-time prediction and the measured data.
+model’s step-at-a-time prediction and the measured data.
 
 Data
 ~~~~
 
-The data we'll use was compiled from this work by `Christian
+The data we’ll use was compiled from this work by `Christian
 Jost <http://robjhyndman.com/tsdldata/data/veilleux.dat>`__.
 
-.. code:: python
+.. code:: ipython2
 
     data = pd.read_csv('../../data/Predator_Prey/Veilleux_CC_0.5_Pretator_Prey.txt', sep='\s+', header=4)
     data[['prey(#ind/ml)','predator(#ind/ml)']].plot();
@@ -123,20 +122,20 @@ Jost <http://robjhyndman.com/tsdldata/data/veilleux.dat>`__.
 The Recipe
 ----------
 
-Step 1: Shape the dataset such that each row contains the start and end of a 'step'
+Step 1: Shape the dataset such that each row contains the start and end of a ‘step’
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 As we are analyzing the model a step at a time, it makes sense to
 restructure our dataframe so that each row contains both the starting
 and final state of each step. We can do this by merging the dataset with
-itself, offset by one row. We'll add suffixes to the columns to
+itself, offset by one row. We’ll add suffixes to the columns to
 differentiate between the start and end of each step.
 
 While this method increases the burden of data that we have to carry, it
-allows us to use pandas's ``apply`` functionality to increase
+allows us to use pandas’s ``apply`` functionality to increase
 computational speed over a ``for`` loop.
 
-.. code:: python
+.. code:: ipython2
 
     data_steps = pd.merge(data.iloc[:-1], data.iloc[1:].reset_index(drop=True), 
                           left_index=True, right_index=True, suffixes=('_s','_f'))
@@ -216,15 +215,15 @@ Step 2: Define a single-step error function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We define a function that takes a single step and calculates the sum
-squared error between the model's prediction of the final datapoint and
+squared error between the model’s prediction of the final datapoint and
 the actual measured value. The most complicated parts of this function
 are making sure that the data columns line up properly with the model
 components.
 
-Note that in this function we don't set the parameters of the model - we
+Note that in this function we don’t set the parameters of the model - we
 can do that just once in the next function.
 
-.. code:: python
+.. code:: ipython2
 
     def one_step_error(row):
         result = model.run(return_timestamps=[row['time(d)_f']],
@@ -239,10 +238,10 @@ Step 3: Define an error function for the full dataset
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now we define a function that sets the parameters of the model based
-upon the optimizer's suggestion, and computes the sum squared error for
+upon the optimizer’s suggestion, and computes the sum squared error for
 all steps.
 
-.. code:: python
+.. code:: ipython2
 
     def error(parameter_list):
         parameter_names = ['predation_rate', 'prey_fertility', 'predator_mortality', 'predator_food_driven_fertility']
@@ -262,9 +261,9 @@ all steps.
 
 
 
-Now we're ready to use scipy's built-in optimizer.
+Now we’re ready to use scipy’s built-in optimizer.
 
-.. code:: python
+.. code:: ipython2
 
     res = scipy.optimize.minimize(error, x0=[.005, 1, 1, .002], method='L-BFGS-B', 
                                   bounds=[(0,10), (0,None), (0,10), (0,None)])
@@ -275,7 +274,7 @@ Result
 We can plot the behavior of the system with our fit parameters over
 time:
 
-.. code:: python
+.. code:: ipython2
 
     predation_rate, prey_fertility, predator_mortality, predator_food_driven_fertility = res.x
     values = model.run(params={'predation_rate':predation_rate,

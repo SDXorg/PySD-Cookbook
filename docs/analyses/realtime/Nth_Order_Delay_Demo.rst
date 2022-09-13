@@ -1,15 +1,12 @@
-
-Nth Order Delay Demo
-====================
+#Nth Order Delay Demo
 
 This is a fun demonstration designed to build intuition around the idea
 that balancing feedback loops with delays lead to oscillation. It uses a
-vensim model as the 'system' but provides a way for a user to interact
+vensim model as the ‘system’ but provides a way for a user to interact
 with the simulation in realtime - essentially acting as the controller -
 a balancing feedback loop around the model output.
 
-About this Technique
---------------------
+##About this Technique
 
 This is a way to interact with the models in realtime using your
 keyboard.
@@ -20,16 +17,16 @@ Ingredients
 The Game
 ^^^^^^^^
 
-The student is asked to use the 'up' and 'down' arrow keys to bring a
+The student is asked to use the ‘up’ and ‘down’ arrow keys to bring a
 blue line (the system output) to the value of the dashed red line (the
 target). However, the inputs from the keyboard go through a delay
-process (here using either the 'first order delay' model, or the 'third
-order delay' model).
+process (here using either the ‘first order delay’ model, or the ‘third
+order delay’ model).
 
 When we run this cell, the student will have 60 seconds to bring the
 blue line to the level of the red line.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab
     import pysd
@@ -44,7 +41,7 @@ blue line to the level of the red line.
     Populating the interactive namespace from numpy and matplotlib
 
 
-.. code:: python
+.. code:: ipython2
 
     #import the model (need to import each time to reinitialize) 
     #choose one of the following lines:
@@ -106,7 +103,7 @@ blue line to the level of the red line.
                                    blit=False)
 
 
-.. code:: python
+.. code:: ipython2
 
     record = model.get_record()
     record.head()
@@ -175,7 +172,7 @@ blue line to the level of the red line.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     record.plot();
 
@@ -195,7 +192,7 @@ To show how we did, we can plot the input and output over time. Here we
 start to see the oscillatory behavior (for higher order and longer
 delays)
 
-.. code:: python
+.. code:: ipython2
 
     plt.plot(x,input_collector, label='Your Input')
     plt.plot(x,y, label='Model Response')
@@ -218,7 +215,7 @@ Display the value of each of the buffer stocks over time
 If we plot the stock levels over time, we can see (especially for the
 third order case) how the delay works to smooth out the input values.
 
-.. code:: python
+.. code:: ipython2
 
     import pandas as pd
     delay_stock_values = pd.DataFrame(stocks_collector)

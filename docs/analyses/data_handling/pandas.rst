@@ -1,4 +1,3 @@
-
 Data handling with Pandas
 =========================
 
@@ -9,10 +8,10 @@ two dimensional data is stored in a ``DataFrame`` object.
 Loading the library
 ~~~~~~~~~~~~~~~~~~~
 
-It is customary to give the library a short handle '``pd``\ ' at import
+It is customary to give the library a short handle ‘``pd``’ at import
 time:
 
-.. code:: python
+.. code:: ipython2
 
     import pandas as pd
     pd.options.display.max_rows = 10 #this line aids in displaying the data concisely
@@ -32,7 +31,7 @@ Pandas gives us a comprehensive set of tools for loading data from `a
 variety of
 sources <http://pandas.pydata.org/pandas-docs/version/0.18.1/io.html>`__,
 including CSV, Excel, SQL, JSON, and Stata, amongst others. In this
-demonstration, we'll read a comma separated value file of global
+demonstration, we’ll read a comma separated value file of global
 emissions data from the year 1751 until 2011.
 
 The ``.read_csv`` `method <>`__ gives us options for how we want to
@@ -40,7 +39,7 @@ format the data as we read it in. In reading in our data file, we want
 to skip the second row (indexed as ``1``!) and use the column ``Time``
 as the index of our resulting ``DataFrame``.
 
-.. code:: python
+.. code:: ipython2
 
     emissions = pd.read_csv('../../data/Climate/global_emissions.csv', 
                             skiprows=[1], index_col='Year')
@@ -204,24 +203,24 @@ Between the brackets, we can select individual rows:
 
 ::
 
-    emissions.loc[1875]
+   emissions.loc[1875]
 
 or ranges of dates:
 
 ::
 
-    emissions.loc[1908:1920]
+   emissions.loc[1908:1920]
 
 or ranges beginning or ending at a specific point:
 
 ::
 
-    emissions.loc[1967:]
-    emissions.loc[:1805]
+   emissions.loc[1967:]
+   emissions.loc[:1805]
 
 Give these a try and become comfortable selecting index ranges.
 
-.. code:: python
+.. code:: ipython2
 
     emissions.loc[1985:1987]
 
@@ -302,16 +301,16 @@ This syntax lets us select the first n rows: >\ ``emissions.iloc[:5]``
 or, if we wish, the last n, using a minus sign to indicate counting from
 the end of the ``DataFrame``:
 
-    \`\`\` emissions.iloc[-5:]
+   \``\` emissions.iloc[-5:]
 
 ::
 
 
-    or rows in the middle:
-    >```
-    emissions.iloc[10:20]
+   or rows in the middle:
+   >```
+   emissions.iloc[10:20]
 
-.. code:: python
+.. code:: ipython2
 
     emissions.iloc[1:30]
 
@@ -469,7 +468,7 @@ The column names given in the CSV file are too long to use conveniently
 in dealing with data. We can assign new column names from a list of
 strings, that will be applied in order as the new column names:
 
-.. code:: python
+.. code:: ipython2
 
     emissions.columns = ['Total Emissions', 'Gas Emissions', 'Liquid Emissions', 
                          'Solid Emissions', 'Cement Emissions', 'Flare Emissions',
@@ -549,53 +548,27 @@ Each of the columns in the ``DataFrame`` can be accessed as its own
 ``Series`` object, using the same syntax we would use to access members
 of a python dictionary:
 
-.. code:: python
+.. code:: ipython2
 
-    emissions['Total Emissions']
+    emissions[['Total Emissions']]
 
 
 ::
 
 
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    <ipython-input-9-dc76c55d0847> in <module>()
-    ----> 1 emissions[['Total Emissions']]
-    
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/core/frame.pyc in __getitem__(self, key)
-       1984         if isinstance(key, (Series, np.ndarray, Index, list)):
-       1985             # either boolean or fancy integer index
-    -> 1986             return self._getitem_array(key)
-       1987         elif isinstance(key, DataFrame):
-       1988             return self._getitem_frame(key)
+    Running cells with 'Python 3.8.10 64-bit' requires ipykernel package.
 
 
-    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/core/frame.pyc in _getitem_array(self, key)
-       2028             return self.take(indexer, axis=0, convert=False)
-       2029         else:
-    -> 2030             indexer = self.ix._convert_to_indexer(key, axis=1)
-       2031             return self.take(indexer, axis=1, convert=True)
-       2032 
+    Run the following command to install 'ipykernel' into the Python environment. 
 
 
-    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/core/indexing.pyc in _convert_to_indexer(self, obj, axis, is_setter)
-       1208                 mask = check == -1
-       1209                 if mask.any():
-    -> 1210                     raise KeyError('%s not in index' % objarr[mask])
-       1211 
-       1212                 return _values_from_object(indexer)
-
-
-    KeyError: "['Total Emissions'] not in index"
+    Command: '/bin/python3 -m pip install ipykernel -U --user --force-reinstall'
 
 
 Passing a list of column names into this syntax returns a subset of the
 dataframe:
 
-.. code:: python
+.. code:: ipython2
 
     emissions[['Gas Emissions', 'Liquid Emissions']]
 
@@ -688,7 +661,7 @@ We can perform `element-wise
 arithmetic <http://pandas.pydata.org/pandas-docs/version/0.18.1/dsintro.html#dataframe-interoperability-with-numpy-functions>`__
 on ``DataFrame`` columns using natural syntax.
 
-.. code:: python
+.. code:: ipython2
 
     emissions['Gas Emissions'] + emissions['Liquid Emissions']
 
@@ -721,9 +694,9 @@ working with the data. For example, we can show `descriptive
 statistics <http://pandas.pydata.org/pandas-docs/version/0.18.1/basics.html#descriptive-statistics>`__
 such as the maximum value of each column:
 
-.. code:: python
+.. code:: ipython2
 
-    print emissions.idxmax(), emissions.max()
+    print(emissions.idxmax(), emissions.max())
 
 
 .. parsed-literal::
@@ -748,7 +721,7 @@ such as the maximum value of each column:
 The year `in which this maximum value
 occurred <http://pandas.pydata.org/pandas-docs/version/0.18.1/basics.html#index-of-min-max-values>`__:
 
-.. code:: python
+.. code:: ipython2
 
     emissions.idxmax()
 
@@ -770,7 +743,7 @@ occurred <http://pandas.pydata.org/pandas-docs/version/0.18.1/basics.html#index-
 
 Or the sum of each column:
 
-.. code:: python
+.. code:: ipython2
 
     emissions.sum()
 
@@ -790,7 +763,7 @@ Or the sum of each column:
 
 
 
-.. code:: python
+.. code:: ipython2
 
     emissions['Per Capita Emissions'].loc[1930:]
 
@@ -824,7 +797,7 @@ world population which we can use to try and fill in some missing data.
 It too, however, has some missing values: before 1900, the data comes at
 50 year intervals.
 
-.. code:: python
+.. code:: ipython2
 
     population = pd.read_csv('../../data/Climate/world_population.csv', index_col='Year')
 
@@ -832,7 +805,7 @@ What we need to do is first merge the two datasets together. Pandas
 gives us a merge function which allows us to align the datasets on their
 index values.
 
-.. code:: python
+.. code:: ipython2
 
     merged = pd.merge(emissions, population, how='outer', left_index=True, right_index=True)
     merged.loc[1750:2011]
@@ -1004,7 +977,7 @@ The merge operation creates ``NaN`` values in the rows where data is
 missing from the world population column. We can fill these using a
 cubic spline interpolation from the surrounding points:
 
-.. code:: python
+.. code:: ipython2
 
     interpolated = merged.interpolate(method='cubic')
     interpolated.loc[1750:2011]
@@ -1173,11 +1146,11 @@ Calculating per capita emissions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now we can calculate a new value for per capita emissions. We multiply
-by ``1,000,000`` to convert from units of 'Million Metric Tons' as the
-Total Emissions are expressed, to merely 'Metric Tons', as the existing,
+by ``1,000,000`` to convert from units of ‘Million Metric Tons’ as the
+Total Emissions are expressed, to merely ‘Metric Tons’, as the existing,
 incomplete estimate of per capita emissions is expressed.
 
-.. code:: python
+.. code:: ipython2
 
     interpolated['Per Capita Emissions 2'] = interpolated['Total Emissions'] / interpolated['World Population'] * 1000000
     interpolated.loc[1751:2011]
@@ -1362,7 +1335,7 @@ By default, PySD will return the results of model simulation as a Pandas
 ``DataFrame``, with the column names representing elements of the model,
 and the index (row names) as timestamps in the model.
 
-.. code:: python
+.. code:: ipython2
 
     import pysd
     model = pysd.read_vensim('../../models/Predator_Prey/Predator_Prey.mdl')
@@ -1372,7 +1345,7 @@ and the index (row names) as timestamps in the model.
 In this case, may want to downsample the returned data to make it more
 manageable:
 
-.. code:: python
+.. code:: ipython2
 
     sim_result_df.loc[range(50)]
 

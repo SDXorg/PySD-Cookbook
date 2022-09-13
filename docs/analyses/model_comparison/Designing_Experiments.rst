@@ -1,4 +1,3 @@
-
 Designing Experiments
 =====================
 
@@ -14,19 +13,19 @@ assumptions about system structure. Then by putting the policy into
 place and observing the result, we have we have a clear signal as to
 which policy is a better representation of the underlying system.
 
-In this notebook, we'll explore using system dynamics modeling to help
-design these experiments. For now, we'll just look at the system in a
+In this notebook, we’ll explore using system dynamics modeling to help
+design these experiments. For now, we’ll just look at the system in a
 deterministic fashion, to determine the general type of experiment that
 we should conduct. This analysis would normally be followed with an
 uncertainty analysis on parameters to identify how many samples would be
 needed and to evaluate the statistical process to be followed on
 experimental results.
 
-In this example, we'll design a test between two competing theories of
+In this example, we’ll design a test between two competing theories of
 how the tenure of an insurance company sales agent changes in response
 to the various incentives they are given.
 
-The first theory claims that agents' productivity is a function of their
+The first theory claims that agents’ productivity is a function of their
 motivation, and their motivation adjusts to reflect their level of
 success.
 
@@ -43,16 +42,16 @@ order to have access to high payout clients, the agent must make sales
 to low payout clients and get their referrals to their higher payout
 friends.
 
-Under this scenario, agents aren't earning a living making sales only to
+Under this scenario, agents aren’t earning a living making sales only to
 low payout clients, and may leave if they are not able to gain access to
 the market of high payout clients before they run out of savings.
 
-The metric we are interested in observing is the 'tenure', or lifespan
+The metric we are interested in observing is the ‘tenure’, or lifespan
 of an agent. In trying to encourage agents to stay, managers might give
-a subsidy to new agents to help them get started. We'll use the amount
+a subsidy to new agents to help them get started. We’ll use the amount
 and duration of this subsidy as our experimental levers.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -73,22 +72,22 @@ and duration of this subsidy as our experimental levers.
 
 
 We begin by importing both of the models of behavior, giving them each a
-different name. The first model which is driven by the agent's
-motivation we'll call the ``motivation_model``; the second, which is
-driven by the startup dynamics of the sales market, we'll term the
+different name. The first model which is driven by the agent’s
+motivation we’ll call the ``motivation_model``; the second, which is
+driven by the startup dynamics of the sales market, we’ll term the
 ``market_model``.
 
-.. code:: python
+.. code:: ipython2
 
     motivation_model = pysd.read_vensim('../../models/Sales_Agents/Sales_Agent_Motivation_Dynamics.mdl')
     market_model = pysd.read_vensim('../../models/Sales_Agents/Sales_Agent_Market_Building_Dynamics.mdl')
 
 To simplify things later on, we construct a function which takes a
 particular policy set and applies it to each of the models, and formats
-the output of the models. We'll use this function to evaluate the
+the output of the models. We’ll use this function to evaluate the
 performance of each of the models in the base case of no policy.
 
-.. code:: python
+.. code:: ipython2
 
     def runner(params):
         market = market_model.run(dict(params),return_columns=['Tenure'])
@@ -100,7 +99,7 @@ As the models are not fully calibrated, they give different results in
 the base case. What we will do in our analysis is to compare the changes
 that result from various policies as a fraction of the base case.
 
-.. code:: python
+.. code:: ipython2
 
     base = runner({'Startup Subsidy': 0,
                   'Startup Subsidy Length': 0})
@@ -117,10 +116,10 @@ that result from various policies as a fraction of the base case.
 
 
 
-The first test we'll make looks at the response to increasing the
+The first test we’ll make looks at the response to increasing the
 startup subsidy for a fixed duration:
 
-.. code:: python
+.. code:: ipython2
 
     subsidy = pd.DataFrame(np.arange(0,1,.05), columns=['Startup Subsidy'])
     subsidy['Startup Subsidy Length'] = 3
@@ -136,14 +135,14 @@ values of startup subsidy, and plot the result of each model. We see
 that while the intervention does increase employee tenure with respect
 to the baseline, it does so almost equally for the two models. While
 this would be a good policy choice, it is not a good choice of
-experimental manipulation, as we can't use the results of our experiment
+experimental manipulation, as we can’t use the results of our experiment
 to distinguish between the two options.
 
-.. code:: python
+.. code:: ipython2
 
     subsidy_res = subsidy.apply(runner, axis=1)/base
 
-.. code:: python
+.. code:: ipython2
 
     subsidy_res.index = subsidy['Startup Subsidy']
     subsidy_res.plot(style='o-')
@@ -158,7 +157,7 @@ to distinguish between the two options.
 The next intervention we could make would be to use a fixed amount of
 subsidy, but vary the length of time over which it is offered.
 
-.. code:: python
+.. code:: ipython2
 
     l_subsidy = pd.DataFrame(np.arange(0,12,1), 
                            columns=['Startup Subsidy Length'])
@@ -170,7 +169,7 @@ subsidy, but vary the length of time over which it is offered.
 .. image:: Designing_Experiments_files/Designing_Experiments_20_0.png
 
 
-.. code:: python
+.. code:: ipython2
 
     l_subsidy = pd.DataFrame(index=range(20), 
                              data=0.5,
@@ -190,11 +189,11 @@ intervention with longer subsidy lengths. In this case, we could use
 this strategy and sample a number of points to see if we see the change
 in the slope of the response curve or not.
 
-.. code:: python
+.. code:: ipython2
 
     l_subsidy_res = l_subsidy.apply(runner, axis=1)/base
 
-.. code:: python
+.. code:: ipython2
 
     l_subsidy_res.index = l_subsidy['Startup Subsidy Length']
     l_subsidy_res.plot(style='o-')
@@ -210,7 +209,7 @@ A third intervention we could try would be to hold the total dollar
 value given out in subsidies to an agent over time to be fixed, and vary
 whether we give it out quickly or slowly.
 
-.. code:: python
+.. code:: ipython2
 
     total_subsidy = pd.DataFrame(np.arange(0.05,1,.05), 
                            columns=['Startup Subsidy'])
@@ -233,11 +232,11 @@ On the other hand, if we concieve of agents using the subsidy to support
 their motivation, then they stay as long as they are making above
 whatever threshold they have for dropping out.
 
-.. code:: python
+.. code:: ipython2
 
     total_subsidy_res = total_subsidy.apply(runner, axis=1)
 
-.. code:: python
+.. code:: ipython2
 
     total_subsidy_res.index = total_subsidy['Startup Subsidy']
     total_subsidy_res.plot(style='o-')

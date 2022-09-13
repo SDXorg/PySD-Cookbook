@@ -1,28 +1,27 @@
-
 Estimating penny population parameters
 ======================================
 
-In this example we'll use a System Dynamics model to estimate the total
+In this example we’ll use a System Dynamics model to estimate the total
 number of pennies in circulation, based upon the number of pennies
 produced in a given year, and the number of pennies in a coin jar.
 
 We start with a simple aging model for pennies, in essence a second
-order delay. Pennies are minted each year, and go into a stock of 'post
-production' pennies that are distributed to banks, etc. After this they
+order delay. Pennies are minted each year, and go into a stock of ‘post
+production’ pennies that are distributed to banks, etc. After this they
 go into general circulation, from which they are eventually lost.
 
-In this analysis we'll try and infer the parameters for entry into
+In this analysis we’ll try and infer the parameters for entry into
 circulation and loss based upon the number of pennies produced in each
 year, and a random sample of pennies taken from circulation over a four
 year period. An interesting component of this analysis is that it
 requires a whole suite of models (one for each model year) but these
-models don't interact with one another except through the sampling and
+models don’t interact with one another except through the sampling and
 statistical analysis we perform.
 
-In this demo, we'll use 'pymc', a package for doing markov chain monte
+In this demo, we’ll use ‘pymc’, a package for doing markov chain monte
 carlo analysis.
 
-.. code:: python
+.. code:: ipython3
 
     %pylab inline
     import pandas as pd
@@ -38,12 +37,12 @@ carlo analysis.
 Load Model
 ~~~~~~~~~~
 
-To get a sense for how the model behaves, we'll run it with arbitrary
-parameter values. We see that pennies enter the 'post production' stock
-quickly, and the 'in circulation' stock grows, peaks, and decays as the
+To get a sense for how the model behaves, we’ll run it with arbitrary
+parameter values. We see that pennies enter the ‘post production’ stock
+quickly, and the ‘in circulation’ stock grows, peaks, and decays as the
 pennies get lost.
 
-.. code:: python
+.. code:: ipython3
 
     plt.figure(figsize(6,2))
     model = pysd.read_vensim('penny_jar.mdl')
@@ -51,46 +50,167 @@ pennies get lost.
     #model.get_free_parameters()
 
 
+::
+
+
+    ---------------------------------------------------------------------------
+
+    FileNotFoundError                         Traceback (most recent call last)
+
+    /tmp/ipykernel_60241/1001908522.py in <module>
+          1 plt.figure(figsize(6,2))
+    ----> 2 model = pysd.read_vensim('penny_jar.mdl')
+          3 model.run().plot()
+          4 #model.get_free_parameters()
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pysd/pysd.py in read_vensim(mdl_file, data_files, initialize, missing_values, split_views, encoding, **kwargs)
+        142     from pysd.builders.python.python_model_builder import ModelBuilder
+        143     # Read and parse Vensim file
+    --> 144     ven_file = VensimFile(mdl_file, encoding=encoding)
+        145     ven_file.parse()
+        146     if split_views:
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pysd/translators/vensim/vensim_file.py in __init__(self, mdl_path, encoding)
+         42         self.mdl_path = Path(mdl_path)
+         43         self.root_path = self.mdl_path.parent
+    ---> 44         self.model_text = self._read(encoding)
+         45         self.sketch = ""
+         46         self.view_elements = None
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pysd/translators/vensim/vensim_file.py in _read(self, encoding)
+         82         if encoding is None:
+         83             # Try detecting the encoding from the file
+    ---> 84             encoding = vu._detect_encoding_from_file(self.mdl_path)
+         85 
+         86         with self.mdl_path.open("r", encoding=encoding,
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pysd/translators/vensim/vensim_utils.py in _detect_encoding_from_file(mdl_file)
+        145     """Detect and return the encoding from a Vensim file"""
+        146     try:
+    --> 147         with mdl_file.open("rb") as in_file:
+        148             f_line: bytes = in_file.readline()
+        149         f_line: str = f_line.decode(detect(f_line)['encoding'])
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/pathlib.py in open(self, mode, buffering, encoding, errors, newline)
+       1206             self._raise_closed()
+       1207         return io.open(self, mode, buffering, encoding, errors, newline,
+    -> 1208                        opener=self._opener)
+       1209 
+       1210     def read_bytes(self):
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/pathlib.py in _opener(self, name, flags, mode)
+       1061     def _opener(self, name, flags, mode=0o666):
+       1062         # A stub for the opener argument to built-in open()
+    -> 1063         return self._accessor.open(self, flags, mode)
+       1064 
+       1065     def _raw_open(self, flags, mode=0o777):
+
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'penny_jar.mdl'
+
 
 
 .. parsed-literal::
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x11733d710>
-
-
-
-
-.. parsed-literal::
-
-    <matplotlib.figure.Figure at 0x1172e6e10>
-
-
-
-.. image:: Penny_Jar_files/Penny_Jar_3_2.png
+    <Figure size 600x200 with 0 Axes>
 
 
 Load Data
 ~~~~~~~~~
 
-We'll start with some data about the number of coins produced in each
+We’ll start with some data about the number of coins produced in each
 year. We have production data for both the Denver and Philadelphia
 mints:
 
-.. code:: python
+.. code:: ipython3
 
     production = pd.read_csv('Production_Figures.csv', index_col='Year')
     production.plot()
     plt.title('Pennies Produced Per Year');
 
 
+::
 
-.. image:: Penny_Jar_files/Penny_Jar_5_0.png
+
+    ---------------------------------------------------------------------------
+
+    FileNotFoundError                         Traceback (most recent call last)
+
+    /tmp/ipykernel_60241/787051997.py in <module>
+    ----> 1 production = pd.read_csv('Production_Figures.csv', index_col='Year')
+          2 production.plot()
+          3 plt.title('Pennies Produced Per Year');
 
 
-We'll also use 'data' (pennies) collected in a penny jar over the last
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/parsers.py in read_csv(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)
+        608     kwds.update(kwds_defaults)
+        609 
+    --> 610     return _read(filepath_or_buffer, kwds)
+        611 
+        612 
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/parsers.py in _read(filepath_or_buffer, kwds)
+        460 
+        461     # Create the parser.
+    --> 462     parser = TextFileReader(filepath_or_buffer, **kwds)
+        463 
+        464     if chunksize or iterator:
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/parsers.py in __init__(self, f, engine, **kwds)
+        817             self.options["has_index_names"] = kwds["has_index_names"]
+        818 
+    --> 819         self._engine = self._make_engine(self.engine)
+        820 
+        821     def close(self):
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/parsers.py in _make_engine(self, engine)
+       1048             )
+       1049         # error: Too many arguments for "ParserBase"
+    -> 1050         return mapping[engine](self.f, **self.options)  # type: ignore[call-arg]
+       1051 
+       1052     def _failover_to_python(self):
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/parsers.py in __init__(self, src, **kwds)
+       1865 
+       1866         # open handles
+    -> 1867         self._open_handles(src, kwds)
+       1868         assert self.handles is not None
+       1869         for key in ("storage_options", "encoding", "memory_map", "compression"):
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/parsers.py in _open_handles(self, src, kwds)
+       1366             compression=kwds.get("compression", None),
+       1367             memory_map=kwds.get("memory_map", False),
+    -> 1368             storage_options=kwds.get("storage_options", None),
+       1369         )
+       1370 
+
+
+    ~/.miniconda/envs/cook/lib/python3.7/site-packages/pandas/io/common.py in get_handle(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)
+        645                 encoding=ioargs.encoding,
+        646                 errors=errors,
+    --> 647                 newline="",
+        648             )
+        649         else:
+
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'Production_Figures.csv'
+
+
+We’ll also use ‘data’ (pennies) collected in a penny jar over the last
 few years
 
-.. code:: python
+.. code:: ipython3
 
     coin_counts = pd.read_csv('pennies_in_jar.csv', index_col='Year')
     coin_counts.sort_index().plot()
@@ -101,7 +221,7 @@ few years
 .. image:: Penny_Jar_files/Penny_Jar_7_0.png
 
 
-.. code:: python
+.. code:: ipython3
 
     coin_counts.sum()
 
@@ -117,7 +237,7 @@ few years
 
 
 
-.. code:: python
+.. code:: ipython3
 
     plt.figure(figsize=(12,5))
     plt.bar(coin_counts.index, coin_counts['Philadelphia']/sum(coin_counts['Philadelphia']))
@@ -146,10 +266,10 @@ We set up a model for each year that pennies are produced, and
 initialize them with production data.
 
 We divide the data to put pennies in units of 100,000 to make life
-easier for the integrator. This won't matter in the end, as we normalize
+easier for the integrator. This won’t matter in the end, as we normalize
 the distribution of pennies in circulation before we take our samples.
 
-.. code:: python
+.. code:: ipython3
 
     #load a model for each mint year
     models = pd.DataFrame(data=[[year, pysd.read_vensim('penny_jar.mdl')] for year in range(1930,2014)],
@@ -467,18 +587,18 @@ the data is given those parameters. It then decides whether to keep the
 selected parameters to display in an output distribution based upon this
 likeliood.
 
-We start then by setting up a 'prior' distribution for the loss rate and
+We start then by setting up a ‘prior’ distribution for the loss rate and
 entry rate parameters that will be applied to each of the mint year
 models.
 
-.. code:: python
+.. code:: ipython3
 
     entry_rate = mc.Uniform('entry_rate', lower=0, upper=.99, value=.08)
     loss_rate = mc.Uniform('loss_rate', lower=0, upper=.3, value=.025)
 
-We'll ask our models for the population of coins from which the sample
+We’ll ask our models for the population of coins from which the sample
 was drawn, and as this happened over a period of time, not all in the
-same timestep, we'll assume that there is equal likelihood that a sample
+same timestep, we’ll assume that there is equal likelihood that a sample
 was drawn (or a penny collected) any time during that window.
 
 We then construct a function that returns to us the likelihood of the
@@ -486,10 +606,10 @@ data given the distribution of pennies in circulation, as calculated by
 our model.
 
 PyMC expects this likelihood to be expressed as a log probability, to
-give resolution in the 'very small likelihood' regimes that our model
+give resolution in the ‘very small likelihood’ regimes that our model
 will predict for our observations.
 
-.. code:: python
+.. code:: ipython3
 
     def get_population(model, entry_rate, loss_rate):
         in_circulation = model.run(params={'entry_rate':entry_rate, 'loss_rate':loss_rate}, 
@@ -514,11 +634,11 @@ will predict for our observations.
 Perform the MCMC Sampling
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code:: python
+.. code:: ipython3
 
     mcmc = mc.MCMC(mc.Model([entry_rate, loss_rate, circulation]))
 
-.. code:: python
+.. code:: ipython3
 
     #mcmc.sample(20000)
     mcmc.sample(10)
@@ -538,19 +658,19 @@ not entirely independant, by plotting the sample values for each
 parameter against one another, and using a hex-binned two-dimensional
 histogram.
 
-.. code:: python
+.. code:: ipython3
 
     plt.hist(mcmc.trace('loss_rate')[10000:], bins=60, histtype='stepfilled', normed=True)
     plt.xlabel('Loss Rate')
     plt.title('Loss Rate Likelihood');
 
-.. code:: python
+.. code:: ipython3
 
     plt.hist(mcmc.trace('entry_rate')[10000:], bins=60, histtype='stepfilled', normed=True)
     plt.xlabel('Entry Rate')
     plt.title('Entry Rate Likelihood');
 
-.. code:: python
+.. code:: ipython3
 
     plt.hexbin(mcmc.trace('loss_rate')[:], mcmc.trace('entry_rate')[:], gridsize=30)
     plt.xlabel('Loss Rate')

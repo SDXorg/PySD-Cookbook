@@ -57,8 +57,8 @@ Variables are created by assigning a value to a label.
     a = <<...>>  # add an integer
     b = <<...>>  # add a string
     c = <<...>>  # add a float number
-    
-    print a, b, c
+
+    print(a, b, c)
 
 
 .. parsed-literal::
@@ -74,7 +74,7 @@ Lists are ordered collections of objects (and are objects themselves).
 .. code:: python
 
     my_list = [<<...>>]  # add a comma-separated list of numbers
-    print my_list
+    print(my_list)
 
 
 .. parsed-literal::
@@ -87,7 +87,7 @@ first element having the index ``0``.
 
 .. code:: python
 
-    print my_list[<<...>>] # add an index between 0 and 2
+    print(my_list[<<...>>]) # add an index between 0 and 2
 
 
 .. parsed-literal::
@@ -98,7 +98,7 @@ first element having the index ``0``.
 .. code:: python
 
     my_list[2] = <<...>>  # assign a value
-    print my_list
+    print(my_list)
 
 
 .. parsed-literal::
@@ -121,7 +121,7 @@ calls and returns.
 .. code:: python
 
     my_tuple = (3, 4, 'hi')
-    print my_tuple[2]
+    print(my_tuple[2])
 
 
 .. parsed-literal::
@@ -143,7 +143,7 @@ calls and returns.
 
     <ipython-input-17-5f5c7c118dde> in <module>()
     ----> 1 my_tuple[2] = 'bye'
-    
+
 
     TypeError: 'tuple' object does not support item assignment
 
@@ -157,7 +157,7 @@ their label:
 .. code:: python
 
     my_dictionary = {'key 1': 1, <<...>>} # add another dictionary element named `key 2` with a numerical value
-    print my_dictionary['key 2']
+    print(my_dictionary['key 2'])
 
 
 .. parsed-literal::
@@ -171,7 +171,7 @@ element
 .. code:: python
 
     my_dictionary['key 3'] = 27
-    print my_dictionary
+    print(my_dictionary)
 
 
 .. parsed-literal::
@@ -191,7 +191,7 @@ The body of an ``if`` statement must be indented - standard practice is
 .. code:: python
 
     if True:
-        print 'Inside the if statement'
+        print('Inside the if statement')
 
 
 .. parsed-literal::
@@ -202,9 +202,9 @@ The body of an ``if`` statement must be indented - standard practice is
 .. code:: python
 
     if 5 < 3:
-        print 'This block will not be run'
+        print('This block will not be run')
     else:
-        print 'This block will be run'
+        print('This block will be run')
 
 
 .. parsed-literal::
@@ -215,11 +215,11 @@ The body of an ``if`` statement must be indented - standard practice is
 .. code:: python
 
     if 5 < 3:
-        print 'This block will not be run'
+        print('This block will not be run')
     elif 5 >= 3:
-        print <<...>> # add a string
+        print(<<...>>) # add a string
     else:
-        print 'Not this'
+        print('Not this')
 
 
 
@@ -237,7 +237,7 @@ For loops allow you to iterate over lists.
 
     my_list = [<<...>>]  # add some elements to the list
     for value in my_list:
-        print value
+        print(value)
 
 
 .. parsed-literal::
@@ -254,7 +254,7 @@ us:
 .. code:: python
 
     for i in range(<<...>>): #add an integer between 1 and 10
-        print i
+        print(i)
 
 
 .. parsed-literal::
@@ -275,7 +275,7 @@ Functions are **def**\ ined using the syntax below. As with ``if`` and
     def <<...>>(param1, param2): # name your function
         result = param1 + param2
         return result
-    
+
     <<...>>(3, 4) # call your function
 
 
@@ -294,9 +294,9 @@ function call:
 
     def my_other_function(param1, param2=10):
         return param1 * param2
-    
-    print my_other_function(15)  # here we don't supply the optional argument
-    print my_other_function(3, <<...>>)  # here we do. Add your own integer or float value
+
+    print(my_other_function(15))  # here we don't supply the optional argument
+    print(my_other_function(3, <<...>>))  # here we do. Add your own integer or float value
 
 
 .. parsed-literal::
@@ -315,9 +315,9 @@ functions below:
 .. code:: python
 
     my_string = 'How about a beer?'
-    print my_string.lower()
-    print my_string.upper().rjust(30)  # chained call to method
-    print my_string.replace('?', '!')
+    print(my_string.lower())
+    print(my_string.upper().rjust(30))  # chained call to method
+    print(my_string.replace('?', '!'))
 
 
 .. parsed-literal::
@@ -336,8 +336,8 @@ part and a complex part, which we can access as an attribute.
 .. code:: python
 
     my_variable = 12.3 + 4j
-    print my_variable
-    print my_variable.real
+    print(my_variable)
+    print(my_variable.real)
 
 
 .. parsed-literal::
@@ -369,7 +369,7 @@ and finally...
 .. parsed-literal::
 
     The Zen of Python, by Tim Peters
-    
+
     Beautiful is better than ugly.
     Explicit is better than implicit.
     Simple is better than complex.

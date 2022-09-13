@@ -1,4 +1,3 @@
-
 Parse gmail ``.mbox`` file
 ==========================
 
@@ -14,9 +13,9 @@ A lot of the message headers are described here:
 http://www.ietf.org/rfc/rfc2076.txt
 
 The python standard library has a module for dealing with this type of
-file, which we'll draw on extensively, along with pandas.
+file, which we’ll draw on extensively, along with pandas.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import mailbox
@@ -28,7 +27,7 @@ file, which we'll draw on extensively, along with pandas.
     Populating the interactive namespace from numpy and matplotlib
 
 
-.. code:: python
+.. code:: ipython2
 
     mb = mailbox.mbox('All mail Including Spam and Trash.mbox')
 
@@ -41,15 +40,15 @@ the message attributes, ``X-GM-THRID``, is a unique thread identifier,
 assigned by google as it compiles messages together into conversation
 threads.
 
-We'll also want the field ``X-Gmail-Labels``, which will tell us if the
+We’ll also want the field ``X-Gmail-Labels``, which will tell us if the
 message is categorized as *Sent*, so that we can distinguish it from
 messages that were recieved by the account holder. Lastly, we want the
 date and time that the message was sent: ``Date``.
 
-We don't need any information about the content of the message, or even
+We don’t need any information about the content of the message, or even
 who it was to or from.
 
-.. code:: python
+.. code:: ipython2
 
     keys = ['Date', 'X-Gmail-Labels', 'X-GM-THRID']
     message_list = []
@@ -58,8 +57,8 @@ who it was to or from.
         dmessage = dict(message.items())
         message_list.append({key:dmessage[key] if key in dmessage.keys() else '' for key in keys})
     
-    print len(message_list), 'messages'
-    print '**'*50
+    print(len(message_list), 'messages')
+    print('**'*50)
     message_list[:3]
 
 
@@ -85,12 +84,12 @@ who it was to or from.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     messages = pd.DataFrame(message_list)
     messages.index = messages['Date'].apply(lambda x: pd.to_datetime(x, errors='coerce'))
     messages.drop(['Date'], axis=1, inplace=True)
-    print messages.shape
+    print(messages.shape)
     messages.head()
 
 
@@ -152,13 +151,13 @@ who it was to or from.
 Step 2: group the messages by thread
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We'll begin by grouping the messages into their various threads.
+We’ll begin by grouping the messages into their various threads.
 
-.. code:: python
+.. code:: ipython2
 
     conversation_list = []
     threads = messages.groupby(by='X-GM-THRID')
-    print len(threads), 'threads total'
+    print(len(threads), 'threads total')
     
     counts = threads.aggregate('count')['X-Gmail-Labels'].value_counts()
     counts.plot(logy=True, linewidth=0, marker='.', alpha=.5)
@@ -196,7 +195,7 @@ as the start of the conversation.
 Then we filter to just the messages labeled *Sent*, and (as they are
 still sorted) take the first of these.
 
-.. code:: python
+.. code:: ipython2
 
     for name, group in threads:
         if len(group) > 1:
@@ -207,7 +206,7 @@ still sorted) take the first of these.
                 conversation_list.append({'tstart':tstart, 'tjoin':tjoin})
     
     conversations = pd.DataFrame(conversation_list)
-    print conversations.shape
+    print(conversations.shape)
     conversations.head()
 
 
@@ -275,7 +274,7 @@ Step 4: Calculate the time delta
 We now can subtract the one from the other, and convert the result into
 units of days.
 
-.. code:: python
+.. code:: ipython2
 
     delta = conversations['tjoin']-conversations['tstart']
     days = 1.* delta.dt.total_seconds() / 3600 / 24
@@ -304,7 +303,7 @@ the account holder initiated the thread. As we are interested in seeing
 how the account holder deals with emails they recieve, we filter these
 out.
 
-.. code:: python
+.. code:: ipython2
 
     days = days[days>0]
     days = days.reset_index()[0]
@@ -327,6 +326,6 @@ out.
 Step 6: Save to csv
 ~~~~~~~~~~~~~~~~~~~
 
-.. code:: python
+.. code:: ipython2
 
     days.to_csv('days_to_join_conversation.csv')

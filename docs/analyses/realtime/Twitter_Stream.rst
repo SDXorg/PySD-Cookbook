@@ -1,19 +1,16 @@
+#Feeding models with realtime streaming data
 
-Feeding models with realtime streaming data
-===========================================
-
-In this example, we'll construct a very simple model of the number of
+In this example, we’ll construct a very simple model of the number of
 posts relating to a given topic on twitter timelines around the world.
-We'll feed the model with live streaming data from the twitter API and
+We’ll feed the model with live streaming data from the twitter API and
 run the model in real time.
 
-Ingredients
------------
+##Ingredients
 
 Libraries
 ^^^^^^^^^
 
-In addition to our standard data analytics stack, we'll take advantage
+In addition to our standard data analytics stack, we’ll take advantage
 of the `tweepy <http://tweepy.readthedocs.org/>`__ library for
 interacting with the twitter API, the standard python library for
 dealing with `JSON <https://docs.python.org/2/library/json.html>`__
@@ -22,7 +19,7 @@ objects, and the standard python
 library, to give us access to both the stream and the plots in real
 time.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab
     import tweepy
@@ -41,7 +38,7 @@ time.
 Twitter Credentials
 ^^^^^^^^^^^^^^^^^^^
 
-If you want to execute this recipe, you'll need to `sign up for a
+If you want to execute this recipe, you’ll need to `sign up for a
 twitter developer account <https://dev.twitter.com/>`__ and create a
 file containing your credentials.
 
@@ -50,14 +47,14 @@ directory. It should contain something similar to:
 
 ::
 
-    consumer_key = 'sdjfhkdgjhsk8u09wejne4vdj8j34'
-    consumer_secret = 'nvjsdv8wp43nneri'
-    access_token = 'vndisoerihosfdbuttonmashingjkfdlasnvei'
-    access_token_secret = 'navdjewrjodfjkmorebuttonmashingnjkasdoinv'
+   consumer_key = 'sdjfhkdgjhsk8u09wejne4vdj8j34'
+   consumer_secret = 'nvjsdv8wp43nneri'
+   access_token = 'vndisoerihosfdbuttonmashingjkfdlasnvei'
+   access_token_secret = 'navdjewrjodfjkmorebuttonmashingnjkasdoinv'
 
 We can load these into our environment using the ``import *`` syntax.
 
-.. code:: python
+.. code:: ipython2
 
     from _twitter_credentials import *
 
@@ -69,10 +66,10 @@ rate at which twitter users post messages containing our keywords, and
 the level decays over time as posts fall out of the top of users
 timelines.
 
-We'll explicitly set the timescale in this demo, to show the behavior of
+We’ll explicitly set the timescale in this demo, to show the behavior of
 the system in a short timeperiod.
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Twitter/Twitter.mdl')
     model.set_components({'displacement_timescale':30})
@@ -83,19 +80,19 @@ The Recipe
 Listening to twitter
 ^^^^^^^^^^^^^^^^^^^^
 
-The first thing we'll do is to create a variable that will track the
+The first thing we’ll do is to create a variable that will track the
 total number of posts recieved in the last model interation timeperiod.
 This counter will be reset after every model timestep.
 
-.. code:: python
+.. code:: ipython2
 
     counter = 0
 
-Next, we'll construct a function that will be run whenever a tweet is
+Next, we’ll construct a function that will be run whenever a tweet is
 recieved from the API. This function will increase the counter value,
 and format the tweet to print to the screen.
 
-.. code:: python
+.. code:: ipython2
 
     class TweetListener(tweepy.StreamListener):
         def on_data(self, data):
@@ -106,16 +103,16 @@ and format the tweet to print to the screen.
             decoded = json.loads(data)
     
             # Also, we convert UTF-8 to ASCII ignoring all bad characters sent by users
-            print '@%s: %s\n' % (decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore'))
+            print('@%s: %s\n' % (decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore')))
             return True
     
         def on_error(self, status):
-            print status
+            print(status)
 
 The tweepy library manages formatting our credentials for the API
 request:
 
-.. code:: python
+.. code:: ipython2
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -123,7 +120,7 @@ request:
 Finally we create the object that will parse the twitter stream, and
 start it within its own thread.
 
-.. code:: python
+.. code:: ipython2
 
     stream = tweepy.Stream(auth, TweetListener())
     
@@ -137,7 +134,7 @@ Animation
 First we create a function that will be called at every step in the
 integration:
 
-.. code:: python
+.. code:: ipython2
 
     #make the animation
     def animate(t):
@@ -175,7 +172,7 @@ Lastly we set the parameters for the animation, set up the figure, reset
 the counter (which has been accumulating posts since we ran the first
 part of the code) and start the animation.
 
-.. code:: python
+.. code:: ipython2
 
     #set the animation parameters
     fps=1

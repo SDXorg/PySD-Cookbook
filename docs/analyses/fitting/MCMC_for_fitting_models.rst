@@ -1,4 +1,3 @@
-
 Fitting a model with Markov Chain Monte Carlo
 =============================================
 
@@ -14,12 +13,12 @@ distribution of that output and look for input distributions.
 Ingredients
 -----------
 
-For this analysis we'll introduce the python package
+For this analysis we’ll introduce the python package
 `PyMC <https://pymc-devs.github.io/pymc/README.html>`__ which implements
 MCMC algorithms for us. Another project which performs similar
 calculations is `PyStan <https://pystan.readthedocs.org/en/latest/>`__.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -32,13 +31,13 @@ calculations is `PyStan <https://pystan.readthedocs.org/en/latest/>`__.
     Populating the interactive namespace from numpy and matplotlib
 
 
-For this example, we'll revisit the ebola case, only assuming that our
-data has some noise, and we'll use MCMC to estimate distributions for
+For this example, we’ll revisit the ebola case, only assuming that our
+data has some noise, and we’ll use MCMC to estimate distributions for
 the parameters for the model. For a more detailed description of this
 model and the dataset see the recipe `Fitting with
 Optimization <http://pysd-cookbook.readthedocs.org/en/latest/analyses/fitting/Fitting_with_Optimization.html>`__.
 
-We'll assume that the model simulates an underlying process of disease
+We’ll assume that the model simulates an underlying process of disease
 propagation, but that the data is noisy - perhaps it represents
 admittance rates at a hospital, and so will be missing some cases, and
 may include some false positives through misdiagnosis.
@@ -46,11 +45,11 @@ may include some false positives through misdiagnosis.
 .. image:: ../../../source/models/SI Model/SI Model.png
    :width: 600 px
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/SI Model/SI Model.mdl')
 
-.. code:: python
+.. code:: ipython2
 
     data = pd.read_csv('../../data/Ebola/Ebola_in_SL_Data.csv', index_col='Weeks')
     data.plot();
@@ -68,12 +67,12 @@ Step 1: Establish prior distributions for the input parameters
 
 Our first step is to establish prior distributions for the parameters
 for which we will be trying to infer posterior distributions. As in the
-optimization case, we'll modify the effective population and the contact
-frequency. In real epidemiological modeling, we'd have a more complex
-model, and we'd have some information about the population, etc. but
+optimization case, we’ll modify the effective population and the contact
+frequency. In real epidemiological modeling, we’d have a more complex
+model, and we’d have some information about the population, etc. but
 this makes for a relatively tight example.
 
-.. code:: python
+.. code:: ipython2
 
     population = pymc.Uniform('total_population', lower=2, upper=50000, value=10000)
     contact_frequency = pymc.Exponential('contact_frequency', beta=5, value=5)
@@ -86,7 +85,7 @@ from the input distributions, and return the values that we will take as
 those of the fundamental underlying phenomena, before measurement noise
 is included.
 
-.. code:: python
+.. code:: ipython2
 
     @pymc.deterministic
     def sim(population=population, contact_frequency=contact_frequency):
@@ -108,7 +107,7 @@ positives, we could assume that there was an average rate of false
 positives, with the data following a poisson distribution. The full rate
 would be the sum of these two processes.
 
-For now, however, we'll simplify the analysis by only looking at the
+For now, however, we’ll simplify the analysis by only looking at the
 Poisson noise component. The mean of the poisson process will be the
 results of our simulation.
 
@@ -117,7 +116,7 @@ know how to calculate the log likelihood of seeing the observed data
 given the assumption that the simulation result represents the
 underlying process, subject to Poisson noise.
 
-.. code:: python
+.. code:: ipython2
 
     admittances = pymc.Poisson('admittances', mu=sim,
                                value=data['New Reported Cases'], observed=True)
@@ -140,12 +139,12 @@ First we assemble the various pieces of the data flow that we built up
 into a model that pymc can recognize, and instantiate a sampler ``MCMC``
 to run the algorithm for us.
 
-Then we'll ask the MCMC algorithm to run until it has kept 20000 points.
-We'll throw out the first 1000 of these, as they are likely to be biased
+Then we’ll ask the MCMC algorithm to run until it has kept 20000 points.
+We’ll throw out the first 1000 of these, as they are likely to be biased
 towards the initial values we set up and not representative of the
 overall distribution.
 
-.. code:: python
+.. code:: ipython2
 
     mcmdl = pymc.Model([population, contact_frequency, sim, admittances])
     mcmc = pymc.MCMC(mcmdl)
@@ -160,10 +159,10 @@ Step 5: Look at the distribution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We can now evaluate the results by looking at the series of points we
-'kept'. These are stored as traces within the population and contact
+‘kept’. These are stored as traces within the population and contact
 frequency objects we built earlier.
 
-.. code:: python
+.. code:: ipython2
 
     plt.figure(figsize=(6,2))
     plt.hist(population.trace[:], bins=100, histtype='stepfilled', normed=True, alpha=.6);
@@ -174,7 +173,7 @@ frequency objects we built earlier.
 .. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_18_0.png
 
 
-.. code:: python
+.. code:: ipython2
 
     plt.figure(figsize=(6,2))
     plt.hist(contact_frequency.trace[:], bins=100, histtype='stepfilled', normed=True, alpha=.6);
@@ -185,7 +184,7 @@ frequency objects we built earlier.
 .. image:: MCMC_for_fitting_models_files/MCMC_for_fitting_models_19_0.png
 
 
-.. code:: python
+.. code:: ipython2
 
     plt.figure(figsize=(6,1))
     plt.hist(contact_frequency.trace[:], bins=100, histtype='stepfilled', normed=True, alpha=.6);
@@ -210,11 +209,11 @@ Step 6: Understand the correlation between our parameter distributions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 PyMC has calculated for us the input distributions for the parameters we
-have based upon our data. This isn't the whole story, however, as these
+have based upon our data. This isn’t the whole story, however, as these
 values are not independent of one another. We can see by plotting them
 against one another that there is correlation:
 
-.. code:: python
+.. code:: ipython2
 
     plt.plot(population.trace[:], contact_frequency.trace[:], '.', alpha=.1)
     plt.xlabel('Effective Population')
@@ -227,7 +226,7 @@ against one another that there is correlation:
 
 If we use these distributions in the future to propagate uncertainty
 through the model (say in doing a policy test) we should make sure that
-we're including this correlation. The simplest way to do this is just to
+we’re including this correlation. The simplest way to do this is just to
 use the traces themselves as inputs into a normal Monte Carlo error
 propagation calculation, making sure that we use the same index in each
 trace for any given run. This will automatically include the correlation

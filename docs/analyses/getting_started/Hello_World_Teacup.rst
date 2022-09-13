@@ -1,4 +1,3 @@
-
 Hello World: The Teacup Model
 =============================
 
@@ -8,7 +7,7 @@ a cup of tea cooling to room temperature.
 .. image:: ../../../source/models/Teacup/Teacup.png
    :width: 300 px
 
-Our model simulates `Newton's Law of
+Our model simulates `Newton’s Law of
 Cooling <http://www.ugrad.math.ubc.ca/coursedoc/math100/notes/diffeqs/cool.html>`__,
 which follows the functional form:
 
@@ -20,34 +19,34 @@ exhibits dynamic behavior. The model equations are:
 
 ::
 
-    Characteristic Time=
-            10
-    Units: Minutes
+   Characteristic Time=
+           10
+   Units: Minutes
 
-    Heat Loss to Room=
-        (Teacup Temperature - Room Temperature) / Characteristic Time
-    Units: Degrees/Minute
-    This is the rate at which heat flows from the cup into the room. 
+   Heat Loss to Room=
+       (Teacup Temperature - Room Temperature) / Characteristic Time
+   Units: Degrees/Minute
+   This is the rate at which heat flows from the cup into the room. 
 
-    Room Temperature=
-        70
-    Units: Degrees
+   Room Temperature=
+       70
+   Units: Degrees
 
-    Teacup Temperature= INTEG (
-        -Heat Loss to Room,
-            180)
-    Units: Degrees
+   Teacup Temperature= INTEG (
+       -Heat Loss to Room,
+           180)
+   Units: Degrees
 
 Load the model
 ~~~~~~~~~~~~~~
 
 We begin by importing the PySD module using the python standard import
-commands. We then use PySD's Vensim model translator to import the model
+commands. We then use PySD’s Vensim model translator to import the model
 from the Vensim model file and create a model object. We see that PySD
 translates the vensim component names into acceptable python
 identifiers.
 
-.. code:: python
+.. code:: ipython3
 
     %pylab inline
     import pysd
@@ -77,7 +76,7 @@ using the default parameters specified by the Vensim model file. The
 default behavior of the run function is to return the value of all
 variables as a `pandas <http://pandas.pydata.org/>`__ dataframe:
 
-.. code:: python
+.. code:: ipython3
 
     values = model.run()
     values.head(5)
@@ -179,7 +178,7 @@ variables as a `pandas <http://pandas.pydata.org/>`__ dataframe:
 Pandas has some simple plotting utility built in which allows us to
 easily visualize the results.
 
-.. code:: python
+.. code:: ipython3
 
     values.plot()
     plt.ylabel('Degrees F')
@@ -200,7 +199,7 @@ will change the columns of the returned dataframe such that they contain
 samples of the requested model components. This is (very) slightly
 faster, but often cleaner:
 
-.. code:: python
+.. code:: ipython3
 
     values = model.run(return_columns=['Teacup Temperature', 'Room Temperature'])
     values.plot()
@@ -267,7 +266,7 @@ with data that arrives at irregular time intervals. We can do so using
 the ``return_timestamps`` keyword argument. This argument expects a list
 of timestamps, and will return values at those timestamps.
 
-.. code:: python
+.. code:: ipython3
 
     stocks = model.run(return_timestamps=[0,1,3,7,9.5, 13.178, 21, 25, 30],
                        return_columns=['Teacup Temperature'])
@@ -327,7 +326,7 @@ We can specify changes to the parameters of the model in the call to the
 run function. Here we set the room temperature to the constant value of
 20 degrees before running the simulation.
 
-.. code:: python
+.. code:: ipython3
 
     values = model.run(params={'Room Temperature':50}, 
                        return_columns=['Teacup Temperature', 'Room Temperature'])
@@ -345,7 +344,7 @@ In this case, we raise the room temperature from 20 to 80 degrees over
 the course of the 30 minutes. We can see that once the room temperature
 rises above that of the tea, the tea begins to warm up again.
 
-.. code:: python
+.. code:: ipython3
 
     import pandas as pd
     temp_timeseries = pd.Series(index=range(30), data=range(20,80,2))
@@ -366,7 +365,7 @@ value to a variable which is computed based upon other variable values,
 you will break those links in the causal structure. This can be helpful
 when you wish to isolate part of a model structure, or perform
 loop-knockout analysis, but can also lead to mistakes. To return to the
-original model structure, you'll need to reload the model.
+original model structure, you’ll need to reload the model.
 
 Specifying model initial conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -381,7 +380,7 @@ Note again that this is a different syntax from merely sending a new
 value to the stock using the ``params`` syntax, which could cause
 unintended behavior as previously described.
 
-.. code:: python
+.. code:: ipython3
 
     stocks = model.run(params={'room_temperature':75},
                        initial_condition=(0, {'teacup_temperature':33}),
@@ -401,7 +400,7 @@ its current state. To do this we specify a new set of timestamps over
 which we would like the model to run, and pass the
 ``intitial_condition`` argument the string ``"current"``.
 
-.. code:: python
+.. code:: ipython3
 
     values = model.run(initial_condition='current', 
                        return_columns=['Teacup Temperature', 'Room Temperature'],

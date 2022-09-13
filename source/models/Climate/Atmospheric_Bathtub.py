@@ -1,149 +1,140 @@
+"""
+Python model 'Atmospheric_Bathtub.py'
+Translated using PySD
+"""
 
-"""
-Python model ../../models/Climate/Atmospheric_Bathtub.py
-Translated using PySD version 0.6.3
-"""
-from __future__ import division
+from pathlib import Path
 import numpy as np
-from pysd import utils
-import xarray as xr
 
-from pysd.functions import cache
-from pysd import functions
+from pysd.py_backend.statefuls import Integ
+from pysd import Component
 
-_subscript_dict = {}
+__pysd_version__ = "3.6.0"
 
-_namespace = {
-    'INITIAL TIME': 'initial_time',
-    'Removal Constant': 'removal_constant',
-    'Natural Removal': 'natural_removal',
-    'TIME STEP': 'time_step',
-    'FINAL TIME': 'final_time',
-    'SAVEPER': 'saveper',
-    'Excess Atmospheric Carbon': 'excess_atmospheric_carbon',
-    'Emissions': 'emissions'}
+__data = {"scope": None, "time": lambda: 0}
+
+_root = Path(__file__).parent
 
 
-@cache('step')
+component = Component()
+
+#######################################################################
+#                          CONTROL VARIABLES                          #
+#######################################################################
+
+_control_vars = {
+    "initial_time": lambda: 0,
+    "final_time": lambda: 100,
+    "time_step": lambda: 1,
+    "saveper": lambda: time_step(),
+}
+
+
+def _init_outer_references(data):
+    for key in data:
+        __data[key] = data[key]
+
+
+@component.add(name="Time")
+def time():
+    """
+    Current time of the model.
+    """
+    return __data["time"]()
+
+
+@component.add(
+    name="FINAL TIME", units="Month", comp_type="Constant", comp_subtype="Normal"
+)
+def final_time():
+    """
+    The final time for the simulation.
+    """
+    return __data["time"].final_time()
+
+
+@component.add(
+    name="INITIAL TIME", units="Month", comp_type="Constant", comp_subtype="Normal"
+)
+def initial_time():
+    """
+    The initial time for the simulation.
+    """
+    return __data["time"].initial_time()
+
+
+@component.add(
+    name="SAVEPER",
+    units="Month",
+    limits=(0.0, np.nan),
+    comp_type="Auxiliary",
+    comp_subtype="Normal",
+    depends_on={"time_step": 1},
+)
+def saveper():
+    """
+    The frequency with which output is stored.
+    """
+    return __data["time"].saveper()
+
+
+@component.add(
+    name="TIME STEP",
+    units="Month",
+    limits=(0.0, np.nan),
+    comp_type="Constant",
+    comp_subtype="Normal",
+)
+def time_step():
+    """
+    The time step for the simulation.
+    """
+    return __data["time"].time_step()
+
+
+#######################################################################
+#                           MODEL VARIABLES                           #
+#######################################################################
+
+
+@component.add(name="Emissions", comp_type="Constant", comp_subtype="Normal")
+def emissions():
+    return 0
+
+
+@component.add(
+    name="Excess Atmospheric Carbon",
+    comp_type="Stateful",
+    comp_subtype="Integ",
+    depends_on={"_integ_excess_atmospheric_carbon": 1},
+    other_deps={
+        "_integ_excess_atmospheric_carbon": {
+            "initial": {},
+            "step": {"emissions": 1, "natural_removal": 1},
+        }
+    },
+)
+def excess_atmospheric_carbon():
+    return _integ_excess_atmospheric_carbon()
+
+
+_integ_excess_atmospheric_carbon = Integ(
+    lambda: emissions() - natural_removal(),
+    lambda: 0,
+    "_integ_excess_atmospheric_carbon",
+)
+
+
+@component.add(
+    name="Natural Removal",
+    comp_type="Auxiliary",
+    comp_subtype="Normal",
+    depends_on={"excess_atmospheric_carbon": 1, "removal_constant": 1},
+)
 def natural_removal():
-    """
-    Natural Removal
-    ---------------
-    (natural_removal)
-
-
-    """
     return excess_atmospheric_carbon() * removal_constant()
 
 
-@cache('step')
-def _dexcess_atmospheric_carbon_dt():
-    """
-    Implicit
-    --------
-    (_dexcess_atmospheric_carbon_dt)
-    See docs for excess_atmospheric_carbon
-    Provides derivative for excess_atmospheric_carbon function
-    """
-    return emissions() - natural_removal()
-
-
-@cache('run')
-def final_time():
-    """
-    FINAL TIME
-    ----------
-    (final_time)
-    Month
-    The final time for the simulation.
-    """
-    return 100
-
-
-@cache('run')
+@component.add(name="Removal Constant", comp_type="Constant", comp_subtype="Normal")
 def removal_constant():
-    """
-    Removal Constant
-    ----------------
-    (removal_constant)
-
-
-    """
     return 0.01
-
-
-@cache('step')
-def excess_atmospheric_carbon():
-    """
-    Excess Atmospheric Carbon
-    -------------------------
-    (excess_atmospheric_carbon)
-
-
-    """
-    return _state['excess_atmospheric_carbon']
-
-
-def _init_excess_atmospheric_carbon():
-    """
-    Implicit
-    --------
-    (_init_excess_atmospheric_carbon)
-    See docs for excess_atmospheric_carbon
-    Provides initial conditions for excess_atmospheric_carbon function
-    """
-    return 0
-
-
-@cache('step')
-def saveper():
-    """
-    SAVEPER
-    -------
-    (saveper)
-    Month [0,?]
-    The frequency with which output is stored.
-    """
-    return time_step()
-
-
-@cache('run')
-def initial_time():
-    """
-    INITIAL TIME
-    ------------
-    (initial_time)
-    Month
-    The initial time for the simulation.
-    """
-    return 0
-
-
-@cache('run')
-def emissions():
-    """
-    Emissions
-    ---------
-    (emissions)
-
-
-    """
-    return 0
-
-
-@cache('run')
-def time_step():
-    """
-    TIME STEP
-    ---------
-    (time_step)
-    Month [0,?]
-    The time step for the simulation.
-    """
-    return 1
-
-
-def time():
-    return _t
-functions.time = time
-functions.initial_time = initial_time

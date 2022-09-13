@@ -1,4 +1,3 @@
-
 SIR Peak Infection Challenge
 ============================
 
@@ -10,7 +9,7 @@ struck 10 individuals in the camp, and seems to be spreading.
 
 The disease has several properties. While infected (and contagious),
 individuals behave as normal but are unable to drive `snow
-machines <https://youtu.be/gcIwrdeP21s?t=1m46s>`__, the base's primary
+machines <https://youtu.be/gcIwrdeP21s?t=1m46s>`__, the base’s primary
 mode of evacuation in case of an emergency. (It is universally
 acknowledged that penguins cannot drive snow machines.) Snow machines
 can carry one passenger in addition to the driver, and so at any given
@@ -28,7 +27,7 @@ with about 25 people per day, with relatively uniform mixing between
 individuals.
 
 The primary danger posed by the disease is that there will come a point
-when there aren't enough people to drive snow machines. Your task is to
+when there aren’t enough people to drive snow machines. Your task is to
 calculate the maximum number of infections for a range of values of
 infectivity between ``.005`` and ``0.1``.
 
@@ -47,7 +46,7 @@ python
 `import <https://www.codementor.io/python/tutorial/python-path-virtualenv-import-for-beginners>`__
 `syntax <https://docs.python.org/2/tutorial/modules.html#modules>`__.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -68,31 +67,31 @@ python
 Load model
 ~~~~~~~~~~
 
-Now, use PySD's ``load_vensim``
+Now, use PySD’s ``load_vensim``
 `function <http://pysd.readthedocs.io/en/master/functions.html#pysd.read_vensim>`__
 to read the SIR model found at relative location:
-'``../../models/Epidemic/SIR.mdl``\ ', and name the resulting object
-'``model``\ '.
+‘``../../models/Epidemic/SIR.mdl``’, and name the resulting object
+‘``model``’.
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Epidemic/SIR.mdl')
 
 Just to practice, `run the
 model <http://pysd.readthedocs.io/en/master/functions.html#pysd.PySD.run>`__,
-using the ``.run()`` function's ``params`` argument to set the value of
+using the ``.run()`` function’s ``params`` argument to set the value of
 ``Infectivity`` to ``0.02``.
 
 Save the result in a variable named ``res``.
 
-.. code:: python
+.. code:: ipython2
 
     res = model.run(params={'Infectivity': 0.02})
 
 The cell below contains code to plot the result of your simulation.
 Execute it and ensure that everything is working properly.
 
-.. code:: python
+.. code:: ipython2
 
     res['Infected'].plot()
     plt.xlabel('Days')
@@ -108,15 +107,15 @@ Identify the peak for this base case run
 
 In the cell below, write an expression to calculate (for your base case)
 the `maximum <find%20ref%20to%20pandas%20max>`__ number of individuals
-who are infected at any one time. You'll need to use Pandas syntax to
-select the column named 'Infected' and then use the Pandas functions
+who are infected at any one time. You’ll need to use Pandas syntax to
+select the column named ‘Infected’ and then use the Pandas functions
 referenced above.
 
-.. code:: python
+.. code:: ipython2
 
     peak_value = res['Infected'].max()
     
-    print 'Up to', int(peak_value), 'individuals are infected at one time.'
+    print('Up to', int(peak_value), 'individuals are infected at one time.')
 
 
 .. parsed-literal::
@@ -132,26 +131,26 @@ values of ``infectivity``, from 0.005 to 0.1, in increments of .005. Our
 next step is to generate an array of these values. We can use the python
 package `numpy <>`__ which handles matrix mathematics and array
 manipulation. (It is common practice to give the numpy module the short
-handle '``np``\ ' as I have done below).
+handle ‘``np``’ as I have done below).
 
-You'll specifically want to use the ``np.arange(...)`` function, which
+You’ll specifically want to use the ``np.arange(...)`` function, which
 extends the python standard ``range`` function to handle non-integer
 values. Consult the `numpy documentation <>`__ to determine the
-arguments you'll want to pass in to this function to generate an array
+arguments you’ll want to pass in to this function to generate an array
 that looks like:
 
 ::
 
-    [0.005, 0.01, 0.015, ... 0.095, 0.1]
+   [0.005, 0.01, 0.015, ... 0.095, 0.1]
 
 You may have to be creative to ensure that the last value in the array
 is actually ``0.1``.
 
-.. code:: python
+.. code:: ipython2
 
     import numpy as np
     infectivity_values = np.arange(.005, .105, .005)
-    print infectivity_values
+    print(infectivity_values)
 
 
 .. parsed-literal::
@@ -166,14 +165,14 @@ Evaluate the peak of infections for each value of infectivity
 We now want to calculate the peak for the list of possible
 infectivities, and collect them in a pair of lists. To do this, write a
 for loop that iterates over each value in the array of infectivites.
-I've started this off for you below.
+I’ve started this off for you below.
 
 Within the body of the for loop, run the model with that value of
 infectivity, saving the result to a variable named res. Then use
-python's `list append <>`__ syntax to add the appropriate values to the
+python’s `list append <>`__ syntax to add the appropriate values to the
 end of the ``peak_value_list``.
 
-.. code:: python
+.. code:: ipython2
 
     peak_value_list = []
     
@@ -219,7 +218,7 @@ x-axis, and the peak value of the infections on the y axis. Label each
 axis, and give the plot a title. From this plot we can eyeball the value
 of infectivity beyond which the peak level of infections rises over 500.
 
-.. code:: python
+.. code:: ipython2
 
     plt.plot(infectivity_values, peak_value_list)
     plt.grid()
@@ -240,4 +239,4 @@ Bonus Activities
 2. Identify the maximum total number of days that the base might be
    unable to evacuate, for the range of values of infectivity listed
    above.
-3. Come up with a better story for this example than 'penguin foot'. =)
+3. Come up with a better story for this example than ‘penguin foot’. =)

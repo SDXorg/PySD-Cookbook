@@ -1,12 +1,11 @@
-
 Model Assessment
 ================
 
-In this analysis, we'll use a case study looking at an individual's
+In this analysis, we’ll use a case study looking at an individual’s
 email habits.
 
 We hypothesize that there are two types of emails that arrive in a
-person's inbox and require a response:
+person’s inbox and require a response:
 
 1. Those that have no task associated other than to reply with an
    immediately available piece of information
@@ -19,8 +18,8 @@ that email sending and email checking follow a poisson process, and the
 time between message arrival and the next inbox check follows an
 exponential distribution.
 
-The second type can be modeled as a higher order delay, as the 'task'
-associated with the email's arrival first must be acted upon and then
+The second type can be modeled as a higher order delay, as the ‘task’
+associated with the email’s arrival first must be acted upon and then
 written about.
 
 SD Model
@@ -44,16 +43,16 @@ these values:
 
 ::
 
-    Easy Arrival=
-        Easy Email Volume / TIME STEP * PULSE(0, TIME STEP )
-        
-    Easy Reply= 
-        DELAY N(Easy Arrival, Easy Reply Time, 0, 1)    
+   Easy Arrival=
+       Easy Email Volume / TIME STEP * PULSE(0, TIME STEP )
+       
+   Easy Reply= 
+       DELAY N(Easy Arrival, Easy Reply Time, 0, 1)    
 
 Below we see how the sum of replies to easy and hard emails creates a
 distribution of response times.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pysd
@@ -66,7 +65,7 @@ distribution of response times.
     Populating the interactive namespace from numpy and matplotlib
 
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Emails/Emails_in_2_fixed_categories.mdl')
     params = {'total_emails':1000,
@@ -94,17 +93,17 @@ script <http://www.jamesphoughton.com/2016/02/06/Email-Data-Formatter.html>`__)
 with a single time delta per row, so we take a histogram to get a
 distribution we can compare with model output.
 
-As we've taken a histogram bin size of 1 day, then the height of the
+As we’ve taken a histogram bin size of 1 day, then the height of the
 bins themselves represents the number of messages per day we can expect
 to come out of our model. If we changed the bins size, we would need to
 scale these values to preserve the units.
 
-.. code:: python
+.. code:: ipython2
 
     response_times = pd.read_csv('../../data/Emails/days_to_join_conversation.csv', 
                                  names=['id','Days'], index_col='id')
     num_conversations = len(response_times)
-    print 'Loaded %i conversations'%num_conversations
+    print('Loaded %i conversations' % num_conversations)
     
     counts, edges, _ = plt.hist(response_times['Days'], bins=range(25), 
                                 histtype='stepfilled', alpha=.5)
@@ -129,11 +128,11 @@ Fitting
 ~~~~~~~
 
 Our task is now to fit the model output to the observed distribution. To
-do this we'll construct a helper function to take an array of parameters
+do this we’ll construct a helper function to take an array of parameters
 (which the optimizer provides), run the model, and calculate the sum of
 squared errors between the model output and the data distribution.
 
-.. code:: python
+.. code:: ipython2
 
     param_names = ['easy_fraction', 'easy_reply_time', 'hard_reply_time']
     
@@ -162,9 +161,9 @@ squared errors between the model output and the data distribution.
 
 
 Fitting is relatively straightforward, we pass the error function to
-scipy's optimizer, with a few bounds, and an initial guess.
+scipy’s optimizer, with a few bounds, and an initial guess.
 
-.. code:: python
+.. code:: ipython2
 
     params = {'easy_fraction':.8,
               'easy_reply_time':1.1,
@@ -203,7 +202,7 @@ Plotting the result
 The fit parameters can be seen below, with the calculated data
 distribution in black.
 
-.. code:: python
+.. code:: ipython2
 
     params=dict(zip(param_names, res['x']))
     params['total_emails'] = num_conversations

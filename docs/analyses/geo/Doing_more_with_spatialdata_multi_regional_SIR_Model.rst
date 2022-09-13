@@ -1,4 +1,3 @@
-
 Installation
 ------------
 
@@ -16,7 +15,7 @@ simulate a multiregional infectious disease model. We’ll then present
 the advantages to project spatial data produced by our simulation back
 on a map.
 
-.. code:: python
+.. code:: ipython2
 
     %matplotlib inline
     import pandas as pd
@@ -40,7 +39,7 @@ complete population is susceptible, therefore the initial value of
 susceptible stock is equal to the total population. In addition, we
 built on the hypothesis that from now all infected person are reported.
 
-.. code:: python
+.. code:: ipython2
 
     from IPython.display import Image
     Image(filename='../../models/SD_Fever/SIR_model.png')
@@ -56,10 +55,10 @@ In Vensim our model was parameterized with 1000 suceptible, 5 infectious
 and 0 recovered individuals, a recovery period of 5 days and a contact
 infectivity of 70%.
 
-When we do not specificy anything else, the parameters and setting (e.g.
-timestep, simulation time) from the Vensim model are used.
+When we do not specificy anything else, the parameters and setting
+(e.g. timestep, simulation time) from the Vensim model are used.
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/SD_Fever/SIR_Simple.mdl')
     result = model.run()
@@ -81,7 +80,7 @@ model in the call to the run function. Here we set the contact
 infectivity to 30% before running the simulation again. If you like, try
 what happens when you change some of the other parameters.
 
-.. code:: python
+.. code:: ipython2
 
     result = model.run(params={ 'total_population':1000,
                                 'contact_infectivity':.3, 
@@ -103,7 +102,7 @@ which returns evenly spaced numbers over a specified interval.
 
 np.linspace(Start, Stop, Number of timestamps)
 
-.. code:: python
+.. code:: ipython2
 
     import numpy as np
     sim_time = 10
@@ -122,11 +121,11 @@ np.linspace(Start, Stop, Number of timestamps)
 
 
 
-We can use the return\_timestamps keyword argument in PySD. This
-argument expects a list of timestamps, and will return simulation
-results at those timestamps.
+We can use the return_timestamps keyword argument in PySD. This argument
+expects a list of timestamps, and will return simulation results at
+those timestamps.
 
-.. code:: python
+.. code:: ipython2
 
     model.run(return_timestamps=np.linspace(0, sim_time, num=sim_time*2+1))
 
@@ -312,7 +311,7 @@ typically stored into shapefiles.
 For this script, we will use geopandas library to manage the shapefiles,
 and utilize its inherent plotting functionality.
 
-.. code:: python
+.. code:: ipython2
 
     import geopandas as gp
     
@@ -375,7 +374,7 @@ and utilize its inherent plotting functionality.
 
 Then we can project the geographic shape of the elements on a map.
 
-.. code:: python
+.. code:: ipython2
 
     import matplotlib.pyplot as plt
     
@@ -389,9 +388,9 @@ Then we can project the geographic shape of the elements on a map.
 .. image:: Doing_more_with_spatialdata_multi_regional_SIR_Model_files/Doing_more_with_spatialdata_multi_regional_SIR_Model_17_0.png
 
 
-And plot on of the georeferenced property (e.g. population)
+And plot on of the georeferenced property (e.g. population)
 
-.. code:: python
+.. code:: ipython2
 
     geo_data.plot(column='population', scheme='fisher_jenks', alpha=0.9, k=9, linewidth=0.1,
                  cmap=plt.cm.YlOrRd, legend=False)
@@ -436,7 +435,7 @@ Thus, we formulate a function that based on each row parameterizes the
 model with the value from geodata, performs the simulation and finally
 returns the number of infectious individuals over time.
 
-.. code:: python
+.. code:: ipython2
 
     def runner(row):
         sim_time = 200
@@ -453,7 +452,7 @@ We want to apply the function row-wise (by country) therefore we set
 axis to 1 (row) instead of default 0 (column). The result is a new
 dataframe with the produced simulation for each country.
 
-.. code:: python
+.. code:: ipython2
 
     res = geo_data.apply(runner, axis=1)
     res.head()
@@ -627,12 +626,12 @@ columns the different objects. Since our data is not yet in this form,
 we have to transpose the data. In pandas all we have to do is add an .T
 at the end.
 
-.. code:: python
+.. code:: ipython2
 
     import pandas as pd
     df = pd.DataFrame(res).T
 
-.. code:: python
+.. code:: ipython2
 
     df.head(2)
 
@@ -725,7 +724,7 @@ at the end.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     df.plot(legend=False);
 
@@ -746,7 +745,7 @@ percentage of population in each country.
 We can reuse our code from before but instead of returning the number of
 infecious we return the cumulative cases.
 
-.. code:: python
+.. code:: ipython2
 
     def runner(row):
         sim_time = 200
@@ -758,7 +757,7 @@ infecious we return the cumulative cases.
     
     #TIP: Ensure you are using lower case letters and the character _  not space
 
-.. code:: python
+.. code:: ipython2
 
     res = geo_data.apply(runner, axis=1)
     res.head()
@@ -931,9 +930,9 @@ The answer is a simple matrix operation: divide row-wise the elements of
 our computed values by the column of the original geo data set where we
 had the population in each country.
 
-Let's try to perform this type of operation on a minimal example.
+Let’s try to perform this type of operation on a minimal example.
 
-.. code:: python
+.. code:: ipython2
 
     # Create arbitrary column
     column = pd.Series([10, 0])
@@ -950,7 +949,7 @@ Let's try to perform this type of operation on a minimal example.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     # Create arbitrary pandas dataframe
     df = pd.DataFrame(np.random.randint(1,5,size=(2, 3)), columns=list('ABC'))
@@ -990,7 +989,7 @@ Let's try to perform this type of operation on a minimal example.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     column*df
 
@@ -1036,11 +1035,11 @@ Let's try to perform this type of operation on a minimal example.
 
 Now we can translate this operation on our actual problem.
 
-.. code:: python
+.. code:: ipython2
 
     res = pd.DataFrame(res.T/geo_data["population"])
 
-.. code:: python
+.. code:: ipython2
 
     res.plot(legend=False);
 
@@ -1055,7 +1054,7 @@ Analysis of results
 For example, we could study the impact of contact infectivity on the
 cumulative cases at the end of the simulation
 
-.. code:: python
+.. code:: ipython2
 
     geo_data['totalcases%pop'] = res.loc[199] # Slice the final value at the end of the simulation
     df_scatter = pd.DataFrame(geo_data) # Geopandas dataframe to pandas Dataframe (geopandas tries to perform spatial analysis)
@@ -1075,7 +1074,7 @@ simulation results projected on the map.
 We merge the complete simulation results with our original georeferenced
 information just as we did in the step before.
 
-.. code:: python
+.. code:: ipython2
 
     geo_data.head(2)
 
@@ -1119,7 +1118,7 @@ information just as we did in the step before.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     res.head(2)
 
@@ -1212,7 +1211,7 @@ information just as we did in the step before.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     geo_data_merged = geo_data.merge(res.T, left_index=True, right_index=True)
     geo_data_merged.head()
@@ -1384,7 +1383,7 @@ Plotting simulation results on map with Ipywidgets
 Ipywidgets are interactive HTML widgets for IPython notebooks. Users
 gain control of their data and can visualize changes in the data.
 
-.. code:: python
+.. code:: ipython2
 
     import matplotlib as mpl
     from ipywidgets import interact, FloatSlider, IntSlider,RadioButtons, Dropdown
@@ -1392,7 +1391,7 @@ gain control of their data and can visualize changes in the data.
     slider_time = IntSlider(description = 'Time Select',
                             min=0, max=sim_time-1, value=1)
 
-.. code:: python
+.. code:: ipython2
 
     @interact( time = slider_time) # Scenario = select_scenario,
     def update_map(time): # Scenario
@@ -1414,5 +1413,5 @@ gain control of their data and can visualize changes in the data.
 .. image:: Doing_more_with_spatialdata_multi_regional_SIR_Model_files/Doing_more_with_spatialdata_multi_regional_SIR_Model_46_1.png
 
 
-...
+…
 

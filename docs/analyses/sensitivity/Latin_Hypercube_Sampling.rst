@@ -1,5 +1,4 @@
-
-.. code:: python
+.. code:: ipython2
 
     %matplotlib inline
     import pysd
@@ -17,11 +16,11 @@
       UserWarning)
 
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Capability_Trap/Capability Trap.mdl')
 
-.. code:: python
+.. code:: ipython2
 
     # define the sample space
     ranges = {'Fraction of Effort for Sales':(0,1),
@@ -428,7 +427,7 @@
 
 
 
-.. code:: python
+.. code:: ipython2
 
     def runner(params):
         market = market_model.run(dict(params),return_columns=['Tenure'])
@@ -436,7 +435,7 @@
         return pd.Series({'market':market['Tenure'].iloc[-1], 
                           'motivation':motiv['Tenure'].iloc[-1]})
 
-.. code:: python
+.. code:: ipython2
 
     def _apply_df(args):
         df, func, kwargs = args
@@ -450,7 +449,7 @@
     
     res = apply_by_multiprocessing(samples, runner, axis=1)
 
-.. code:: python
+.. code:: ipython2
 
     # define the sample space
     ranges = {'Fraction of Effort for Sales':(0,1),

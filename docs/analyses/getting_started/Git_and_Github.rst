@@ -1,4 +1,3 @@
-
 Working with ``git`` and github
 ===============================
 
@@ -10,8 +9,8 @@ their efforts.
 `Github <https://github.com/>`__ is an online service that uses the
 ``git`` version control system to store files and faciliatate
 collaboration on software projects. The `code for
-PySD <https://github.com/SDXorg/pysd>`__ is hosted with github,
-as is that for much of the open source software community.
+PySD <https://github.com/SDXorg/pysd>`__ is hosted with github, as is
+that for much of the open source software community.
 
 For system dynamicists, Github is a useful tool for tracking changes to
 a model or analysis code, documenting the development process, and
@@ -28,7 +27,7 @@ Resources
 ~~~~~~~~~
 
 Rather than include a tutorial of the github workflow in this cookbook,
-I'll point to several resources for getting started with git and github:
+I’ll point to several resources for getting started with git and github:
 
 -  Interactive tutorial for `using git and github at the command
    line <https://try.github.io/levels/1/challenges/1>`__

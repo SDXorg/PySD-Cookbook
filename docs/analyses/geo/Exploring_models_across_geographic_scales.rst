@@ -1,28 +1,26 @@
-
-Using SD models to understand the differences between population measures at varying levels of geographic disagregation
-=======================================================================================================================
-
-In this recipe, we will use data at a national level to infer parameters
-for a population aging model. We'll then try two different ways of using
-this trained model to understand variation between the behavior of each
-of the states.
+#Using SD models to understand the differences between population
+measures at varying levels of geographic disagregation In this recipe,
+we will use data at a national level to infer parameters for a
+population aging model. We’ll then try two different ways of using this
+trained model to understand variation between the behavior of each of
+the states.
 
 About this technique
 --------------------
 
-Firstly, we'll use the parameters fit at the national level to predict
+Firstly, we’ll use the parameters fit at the national level to predict
 census data at the disaggregated level, and compare these predicted
 state-level outputs with the measured values. This gives us a sense for
 how different the populations of the states are from what we should
 expect given our understanding of the national picture.
 
-Secondly, we'll fit parameters to a model at each of the state levels
+Secondly, we’ll fit parameters to a model at each of the state levels
 actual measured census data, and then compare the differences in fit
 parameters to each other and to the national expectation. This is a
 helpful analysis if the parameter itself (and its inter-state variance)
 is what we find interesting.
 
-.. code:: python
+.. code:: ipython2
 
     %pylab inline
     import pandas as pd
@@ -36,8 +34,7 @@ is what we find interesting.
     Populating the interactive namespace from numpy and matplotlib
 
 
-Ingredients
------------
+##Ingredients
 
 Population data by age cohort
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +46,7 @@ over 80 years old). The data collection task is described
 `here <data/Census/US%20Census%20Data%20Collection.ipynb>`__. In this
 analysis we will only use data at the state and national levels.
 
-.. code:: python
+.. code:: ipython2
 
     data = pd.read_csv('../../data/Census/Males by decade and county.csv', header=[0,1], index_col=[0,1])
     data.head()
@@ -226,10 +223,9 @@ analysis we will only use data at the state and national levels.
 
 
 
-A model of an aging population
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###A model of an aging population
 
-The model we'll use to represent the population is a simple aging chain,
+The model we’ll use to represent the population is a simple aging chain,
 with individuals aggregated into stocks by decade, to match the
 agregation we used for the above data. Each cohort is promoted with a
 timescale of 10 years, and there is some net inmigration, outmigration,
@@ -240,17 +236,17 @@ to understand.
 .. image:: ../../../source/models/Aging_Chain/Aging_Chain.png
    :width: 600 px
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Aging_Chain/Aging_Chain.mdl')
 
 Our model is initialy parameterized with 10 individuals in each stock,
-no births, and a uniform loss rate of 5%. We'll use data to set the
+no births, and a uniform loss rate of 5%. We’ll use data to set the
 initial conditions, and infer the loss rates. Estimating births is
-difficult, and so for this analysis, we'll pay attention only to
+difficult, and so for this analysis, we’ll pay attention only to
 individuals who have been born before the year 2000.
 
-.. code:: python
+.. code:: ipython2
 
     model.run().plot();
 
@@ -266,7 +262,7 @@ This information comes to us as a shape file ``.shp`` with its
 associated ``.dbf`` and ``.shx`` conspirator files. Lets check the
 plotting functionality:
 
-.. code:: python
+.. code:: ipython2
 
     state_geo = gpd.read_file('../../data/Census/US_State.shp')
     state_geo.set_index('StateFIPSN', inplace=True)
@@ -358,7 +354,7 @@ Step 1: Initialize the model using census data
 We can aggregate the county level data to the national scale by summing
 across all geographies. This is relatively straightforward.
 
-.. code:: python
+.. code:: ipython2
 
     country = data.sum()
     country
@@ -394,7 +390,7 @@ If we run the model using national data from the year 2000 as starting
 conditions, we can see how the cohorts develop, given our arbitrary loss
 rate values:
 
-.. code:: python
+.. code:: ipython2
 
     model.run(return_timestamps=range(2000,2011), 
               initial_condition=(2000, country['2000'])).plot();
@@ -407,17 +403,17 @@ rate values:
 Step 2: Fit the national level model to the remaining data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We've used half of our data (from the year 2000 census) to initialize
-our model. Now we'll use an optimization routine to choose the loss rate
-parameters that best predict the census 2010 data. We'll use the same
+We’ve used half of our data (from the year 2000 census) to initialize
+our model. Now we’ll use an optimization routine to choose the loss rate
+parameters that best predict the census 2010 data. We’ll use the same
 basic operations described in the previous recipe: `Fitting with
 Optimization <2_1_Fitting_with_Optimization.ipynb>`__.
 
-To make this simple, we'll write a function that takes a list of
-potential model parameters, and returns the model's prediction in the
+To make this simple, we’ll write a function that takes a list of
+potential model parameters, and returns the model’s prediction in the
 year 2010
 
-.. code:: python
+.. code:: ipython2
 
     def exec_model(paramlist):
         params = dict(zip(['dec_%i_loss_rate'%i for i in range(1,10)], paramlist)) 
@@ -425,12 +421,12 @@ year 2010
                            params=params, return_timestamps=2010)
         return output
 
-Now we'll define an error function that calls this executor and
-calculates a sum of squared errors value. Remember that because we don't
-have birth information, we'll only calculate error based upon age
+Now we’ll define an error function that calls this executor and
+calculates a sum of squared errors value. Remember that because we don’t
+have birth information, we’ll only calculate error based upon age
 cohorts 2 through 9.
 
-.. code:: python
+.. code:: ipython2
 
     def error(paramlist):
         output = exec_model(paramlist)
@@ -442,7 +438,7 @@ Now we can use the minimize function from scipy to find a vector of
 parameters which brings the 2010 predictions into alignment with the
 data.
 
-.. code:: python
+.. code:: ipython2
 
     res = scipy.optimize.minimize(error, x0=[.05]*9,
                                   method='L-BFGS-B')
@@ -468,10 +464,10 @@ data.
 
 If we run the national model forwards with these parameters, we see
 generally good behavior, except for the 0-9yr demographic bracket, from
-whom we expect less self-control. (And because we don't have births
+whom we expect less self-control. (And because we don’t have births
 data.)
 
-.. code:: python
+.. code:: ipython2
 
     model.run(params=country_level_fit_params,
               return_timestamps=range(2000,2011), 
@@ -482,14 +478,13 @@ data.)
 .. image:: Exploring_models_across_geographic_scales_files/Exploring_models_across_geographic_scales_22_0.png
 
 
-Step 3: Make state-level predictions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###Step 3: Make state-level predictions
 
 If we want to look at the variances between the states and the national
 level, we can try making state-level predictions using state-specific
 initial conditions, but parameters fit at the national level.
 
-.. code:: python
+.. code:: ipython2
 
     states = data.sum(level=0)
     states.head()
@@ -662,13 +657,13 @@ initial conditions, but parameters fit at the national level.
 
 
 
-We can now generate a prediction by setting the model's intitial
+We can now generate a prediction by setting the model’s intitial
 conditions with state level data, and parameters fit in the national
-case. I've created a ``model_runner`` helper function to make the code
+case. I’ve created a ``model_runner`` helper function to make the code
 easier to read, but this could be conducted in a single line if we so
 chose.
 
-.. code:: python
+.. code:: ipython2
 
     def model_runner(row):
         result = model.run(params=country_level_fit_params, 
@@ -786,7 +781,7 @@ Comparing the state level predictions with the actual data, we can see
 where our model most under or overpredicts population for each
 region/cohort combination.
 
-.. code:: python
+.. code:: ipython2
 
     diff = state_predictions-states['2010']
     diff.head()
@@ -894,7 +889,7 @@ region/cohort combination.
 This is a little easier to understand if we weight it by the actual
 measured population:
 
-.. code:: python
+.. code:: ipython2
 
     diff_percent = (state_predictions-states['2010'])/states['2010']
     diff_percent.head()
@@ -999,14 +994,13 @@ measured population:
 
 
 
-Step 5: Merge with geo data to plot
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###Step 5: Merge with geo data to plot
 
-I'm using geopandas to manage the shapefiles, and it has its own
+I’m using geopandas to manage the shapefiles, and it has its own
 plotting functionality. Unfortunately, it is not a particularly well
 defined functionality.
 
-.. code:: python
+.. code:: ipython2
 
     geo_diff = state_geo.join(diff_percent)
     geo_diff.plot(column='dec_4')
@@ -1196,18 +1190,18 @@ defined functionality.
 Recipe Part B: fit state-by-state models
 ----------------------------------------
 
-Now lets try optimizing the model's parameters specifically to each
+Now lets try optimizing the model’s parameters specifically to each
 state, and comparing with the national picture.
 
 Step 1: Write the optimization functions to account for the state
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We'll start as before with functions that run the model and compute the
+We’ll start as before with functions that run the model and compute the
 error (this time with a parameter for the information about the state in
 question) and add a function to optimize and return the best fit
 parameters for each state.
 
-.. code:: python
+.. code:: ipython2
 
     def exec_model(paramlist, state):
         params = dict(zip(['dec_%i_loss_rate'%i for i in range(1,10)], paramlist)) 
@@ -1222,15 +1216,13 @@ parameters for each state.
         sse = sum(errors.values[1:]**2)
         return sse
 
-Step 2: Apply optimization to each state
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+###Step 2: Apply optimization to each state We can wrap the optimizer in
+a function that takes census information about each state and returns an
+optimized set of parameters for that state. If we apply it to the states
+dataframe, we can get out a similar dataframe that includes optimized
+parameters.
 
-We can wrap the optimizer in a function that takes census information
-about each state and returns an optimized set of parameters for that
-state. If we apply it to the states dataframe, we can get out a similar
-dataframe that includes optimized parameters.
-
-.. code:: python
+.. code:: ipython2
 
     %%capture 
     def optimize_params(row):
@@ -1345,11 +1337,11 @@ dataframe that includes optimized parameters.
 Step 3: Merge with geographic data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As we're looking at model parameters which themselves are multiplied by
+As we’re looking at model parameters which themselves are multiplied by
 populations to generate actual flows of people, we can look at the
 difference between parameters directly without needing to normalize.
 
-.. code:: python
+.. code:: ipython2
 
     geo_diff = state_geo.join(state_fit_params)
     geo_diff.plot(column='dec_4_loss_rate')

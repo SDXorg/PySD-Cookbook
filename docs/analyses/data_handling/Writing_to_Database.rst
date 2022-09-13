@@ -1,4 +1,3 @@
-
 Saving Simulation Results to a Database
 =======================================
 
@@ -11,10 +10,10 @@ results to a database:
    especially in large models
 -  Creating a traceable record of your work
 
-It's relatively easy to set up a sequel database and commit runs output
+It’s relatively easy to set up a sequel database and commit runs output
 to it. This demo uses sqlite, which creates a database in a local file.
 
-.. code:: python
+.. code:: ipython2
 
     import sqlite3
     import numpy as np
@@ -26,10 +25,10 @@ Ingredients
 Model
 ^^^^^
 
-We'll use the simple teacup model for this experiment, and we'll ask for
+We’ll use the simple teacup model for this experiment, and we’ll ask for
 the value at integer times from ``[0..29]``.
 
-.. code:: python
+.. code:: ipython2
 
     model = pysd.read_vensim('../../models/Teacup/Teacup.mdl')
     tseries = range(30)
@@ -37,12 +36,12 @@ the value at integer times from ``[0..29]``.
 A database
 ^^^^^^^^^^
 
-In this example, we'll create a database which will be saved in the
+In this example, we’ll create a database which will be saved in the
 working directory as ``example.db``. We populate its columns with two
-columns for storing the parameter values that we'll change from run to
+columns for storing the parameter values that we’ll change from run to
 run, and then a column for each timestamp value we intend to save:
 
-.. code:: python
+.. code:: ipython2
 
     conn = sqlite3.connect('example.db')
     c = conn.cursor()
@@ -52,13 +51,10 @@ run, and then a column for each timestamp value we intend to save:
                  (room_temperature real, init_teacup_temperature real, 
                   %s ) '''%', '.join(['t%i real'%i for i in tseries]));
 
-Parameters
-^^^^^^^^^^
+####Parameters We want to save the output of our model when driven with
+a variety of parameters. For demonstration, we’ll set these randomly:
 
-We want to save the output of our model when driven with a variety of
-parameters. For demonstration, we'll set these randomly:
-
-.. code:: python
+.. code:: ipython2
 
     room_temps = np.random.normal(75, 5, 100)
     init_tea_temps = np.random.normal(175, 15, 100)
@@ -66,11 +62,11 @@ parameters. For demonstration, we'll set these randomly:
 The Recipe
 ----------
 
-We're now ready to simulate our model with the various parameters. After
+We’re now ready to simulate our model with the various parameters. After
 execution, we construct a SQL insert querry containing each of the
 returned values, and commit it to the database.
 
-.. code:: python
+.. code:: ipython2
 
     
     for room_temp, init_tea_temp in zip(room_temps, init_tea_temps):
@@ -86,7 +82,7 @@ returned values, and commit it to the database.
 
 We can see that the result was added properly by fetching a record:
 
-.. code:: python
+.. code:: ipython2
 
     c.execute('SELECT * FROM simulations')
     c.fetchone()
@@ -133,11 +129,11 @@ We can see that the result was added properly by fetching a record:
 
 Finally, we must remember to close our connection to the database:
 
-.. code:: python
+.. code:: ipython2
 
     conn.close()
 
-.. code:: python
+.. code:: ipython2
 
     #remove the database file when we are finished with it.
     !rm example.db

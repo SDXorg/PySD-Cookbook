@@ -2,3 +2,10 @@ pysd
 pyDOE
 scipy
 matplotlib
+jupyter
+seaborn
+mpld3
+geopandas
+pymc
+sphinx==4.2.0
+sphinx_rtd_theme==1.0.0

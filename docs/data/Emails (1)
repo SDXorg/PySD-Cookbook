@@ -53,13 +53,13 @@ who it was to or from.
 
     keys = ['Date', 'X-Gmail-Labels', 'X-GM-THRID']
     message_list = []
-    
+
     for message in mb.itervalues():
         dmessage = dict(message.items())
         message_list.append({key:dmessage[key] if key in dmessage.keys() else '' for key in keys})
-    
-    print len(message_list), 'messages'
-    print '**'*50
+
+    print(len(message_list), 'messages')
+    print('**'*50)
     message_list[:3]
 
 
@@ -90,7 +90,7 @@ who it was to or from.
     messages = pd.DataFrame(message_list)
     messages.index = messages['Date'].apply(lambda x: pd.to_datetime(x, errors='coerce'))
     messages.drop(['Date'], axis=1, inplace=True)
-    print messages.shape
+    print(messages.shape)
     messages.head()
 
 
@@ -158,8 +158,8 @@ We'll begin by grouping the messages into their various threads.
 
     conversation_list = []
     threads = messages.groupby(by='X-GM-THRID')
-    print len(threads), 'threads total'
-    
+    print(len(threads), 'threads total')
+
     counts = threads.aggregate('count')['X-Gmail-Labels'].value_counts()
     counts.plot(logy=True, linewidth=0, marker='.', alpha=.5)
     plt.ylabel('Number of Threads')
@@ -205,9 +205,9 @@ still sorted) take the first of these.
                 tstart = group.index[0]
                 tjoin = group[group['X-Gmail-Labels']=='Sent'].index[0]
                 conversation_list.append({'tstart':tstart, 'tjoin':tjoin})
-    
+
     conversations = pd.DataFrame(conversation_list)
-    print conversations.shape
+    print(conversations.shape)
     conversations.head()
 
 
@@ -218,9 +218,9 @@ still sorted) take the first of these.
 
 .. parsed-literal::
 
-    /Users/houghton/anaconda/lib/python2.7/site-packages/ipykernel/__main__.py:4: SettingWithCopyWarning: 
+    /Users/houghton/anaconda/lib/python2.7/site-packages/ipykernel/__main__.py:4: SettingWithCopyWarning:
     A value is trying to be set on a copy of a slice from a DataFrame
-    
+
     See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
 
 

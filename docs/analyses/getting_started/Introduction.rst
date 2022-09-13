@@ -1,4 +1,3 @@
-
 Introduction to the PySD Cookbook
 =================================
 
@@ -26,20 +25,19 @@ link <https://github.com/SDXorg/PySD-Cookbook/archive/master.zip>`__,
 or, if you prefer, `create a
 fork <https://guides.github.com/activities/forking/>`__ of the
 repository from `its github
-page <https://github.com/SDXorg/pysd-cookbook>`__, and clone it
-to your computer.
+page <https://github.com/SDXorg/pysd-cookbook>`__, and clone it to your
+computer.
 
-If you come up with an interesting recipe of your own, I'd love to have
+If you come up with an interesting recipe of your own, I’d love to have
 `your
 contributions <https://guides.github.com/activities/contributing-to-open-source/>`__.
 If you find a bug in the scripts used in this cookbook, or have a
-suggestion for improvements, I'd encourage you to submit `an
-issue <https://guides.github.com/features/issues/>`__ on the project's
-`issue
-tracker <https://github.com/SDXorg/pysd-cookbook/issues>`__. If
+suggestion for improvements, I’d encourage you to submit `an
+issue <https://guides.github.com/features/issues/>`__ on the project’s
+`issue tracker <https://github.com/SDXorg/pysd-cookbook/issues>`__. If
 you find a bug in the way PySD itself behaves, the `PySD Issue
-Tracker <https://github.com/SDXorg/pysd/issues>`__ is a great
-place to raise it.
+Tracker <https://github.com/SDXorg/pysd/issues>`__ is a great place to
+raise it.
 
 Thanks for being interested and supportive of this project. I hope you
 find the tools presented here to be useful.

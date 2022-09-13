@@ -46,9 +46,9 @@ these values:
 
     Easy Arrival=
         Easy Email Volume / TIME STEP * PULSE(0, TIME STEP )
-        
-    Easy Reply= 
-        DELAY N(Easy Arrival, Easy Reply Time, 0, 1)    
+
+    Easy Reply=
+        DELAY N(Easy Arrival, Easy Reply Time, 0, 1)
 
 Below we see how the sum of replies to easy and hard emails creates a
 distribution of response times.
@@ -73,7 +73,7 @@ distribution of response times.
               'easy_fraction':.5,
               'easy_reply_time':1,
               'hard_reply_time':10}
-    
+
     model.run(params,
               return_columns=['net_email_output', 'easy_reply', 'hard_reply']).plot()
     plt.title('Timeseries output representing a distribution over time deltas')
@@ -101,17 +101,17 @@ scale these values to preserve the units.
 
 .. code:: python
 
-    response_times = pd.read_csv('../../data/Emails/days_to_join_conversation.csv', 
+    response_times = pd.read_csv('../../data/Emails/days_to_join_conversation.csv',
                                  names=['id','Days'], index_col='id')
     num_conversations = len(response_times)
-    print 'Loaded %i conversations'%num_conversations
-    
-    counts, edges, _ = plt.hist(response_times['Days'], bins=range(25), 
+    print('Loaded %i conversations'%num_conversations)
+
+    counts, edges, _ = plt.hist(response_times['Days'], bins=range(25),
                                 histtype='stepfilled', alpha=.5)
-    data = pd.Series(data=counts, 
+    data = pd.Series(data=counts,
                      index=1.*(edges[:-1]+edges[1:])/2) #take the average location in the bin
-    
-    data.plot(linewidth=2, color='k', xlim=(0,25), 
+
+    data.plot(linewidth=2, color='k', xlim=(0,25),
               title='Histogram of response times');
     plt.xlabel('Days to first response');
 
@@ -136,20 +136,20 @@ squared errors between the model output and the data distribution.
 .. code:: python
 
     param_names = ['easy_fraction', 'easy_reply_time', 'hard_reply_time']
-    
+
     def error(param_list, data, num_conversations):
         params = dict(zip(param_names, param_list))
         params['total_emails'] = num_conversations
-        
+
         #run the model with the new parameters, returning the info we're interested in
         result = model.run(params=params,
                            return_columns=['net_email_output'],
                            return_timestamps=list(data.index.values))
-        
+
         #the sum of the squared errors
         sse = sum((result['net_email_output'] - data)**2)
         return sse
-    
+
     error([.5, .5, 20], data, num_conversations)
 
 
@@ -169,11 +169,11 @@ scipy's optimizer, with a few bounds, and an initial guess.
     params = {'easy_fraction':.8,
               'easy_reply_time':1.1,
               'hard_reply_time':7}
-    
+
     bounds = {'easy_fraction':[0.001,.999],
               'easy_reply_time':[0.001,21],
               'hard_reply_time':[.001,52]}
-    
+
     res = scipy.optimize.minimize(error, [params[key] for key in param_names],
                                   args=(data, num_conversations),
                                   method='L-BFGS-B',#'L-BFGS-B', #'SLSQP', #'TNC'
@@ -207,11 +207,11 @@ distribution in black.
 
     params=dict(zip(param_names, res['x']))
     params['total_emails'] = num_conversations
-    
+
     model.run(params,
               return_columns=['net_email_output', 'easy_reply', 'hard_reply']).plot()
-    
-    data.plot(linewidth=2, color='k', xlim=(0,25), 
+
+    data.plot(linewidth=2, color='k', xlim=(0,25),
               title='Histogram of response times');
     plt.xlabel('Days to first response');
 

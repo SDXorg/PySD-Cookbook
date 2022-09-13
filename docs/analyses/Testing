@@ -9,7 +9,7 @@
 
 .. code:: python
 
-    print model.doc()
+    print(model.doc)
 
 
 .. parsed-literal::

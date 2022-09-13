@@ -1,16 +1,15 @@
-
 Manufacturing Defects Synthetic Data
 ====================================
 
 In this notebook we generate some data that will represent measurements
 of defects in a manufacturing setting.
 
-.. code:: python
+.. code:: ipython2
 
     import numpy as np
     import pandas as pd
 
-.. code:: python
+.. code:: ipython2
 
     #generate synthetic data
     Factors = []
@@ -20,7 +19,7 @@ of defects in a manufacturing setting.
         Factors.append([workday, time_per_task])
         Outcome.append( 0*workday**2/(time_per_task**2) + 1/time_per_task**1.5 + 1000*workday**1.5)
 
-.. code:: python
+.. code:: ipython2
 
     data = pd.DataFrame(Factors, columns=['Workday', 'Time per Task'])
     data['Defect Rate'] = Outcome
@@ -80,7 +79,7 @@ of defects in a manufacturing setting.
 
 
 
-.. code:: python
+.. code:: ipython2
 
     data.to_csv('Manufacturing_Defects_Synthetic_Data.csv')
 
