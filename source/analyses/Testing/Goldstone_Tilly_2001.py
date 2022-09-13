@@ -10,7 +10,7 @@ from pysd.py_backend.functions import if_then_else
 from pysd.py_backend.statefuls import Integ
 from pysd import Component
 
-__pysd_version__ = "3.6.0"
+__pysd_version__ = "3.7.0"
 
 __data = {"scope": None, "time": lambda: 0}
 
@@ -120,8 +120,8 @@ def regime_capability():
     depends_on={
         "concessions": 1,
         "concession_unit_cost": 1,
-        "repressive_threat_tr": 1,
         "repression_unit_cost": 1,
+        "repressive_threat_tr": 1,
     },
 )
 def total_cost():
@@ -137,9 +137,9 @@ def total_cost():
     comp_subtype="Normal",
     depends_on={
         "protest": 1,
-        "concessions": 1,
-        "concession_fractional_adjustment": 1,
         "expectation_of_concessions_needed": 1,
+        "concession_fractional_adjustment": 1,
+        "concessions": 1,
     },
 )
 def adjusting_concession_expectation():
@@ -157,8 +157,8 @@ def adjusting_concession_expectation():
     comp_subtype="Normal",
     depends_on={
         "protest": 1,
-        "expectation_of_repression_needed": 1,
         "repression_fractional_adjustment": 1,
+        "expectation_of_repression_needed": 1,
         "repressive_threat_tr": 1,
     },
 )
@@ -266,7 +266,7 @@ def initial_level_of_current_threat():
     name="Making concessions",
     comp_type="Auxiliary",
     comp_subtype="Normal",
-    depends_on={"protest": 1, "concession_rate": 1, "preference_for_repression": 1},
+    depends_on={"protest": 1, "preference_for_repression": 1, "concession_rate": 1},
 )
 def making_concessions():
     return if_then_else(
@@ -282,7 +282,7 @@ def making_concessions():
     name="Making threats",
     comp_type="Auxiliary",
     comp_subtype="Normal",
-    depends_on={"protest": 1, "threat_rate": 1, "preference_for_repression": 1},
+    depends_on={"protest": 1, "preference_for_repression": 1, "threat_rate": 1},
 )
 def making_threats():
     return if_then_else(

@@ -9,3 +9,4 @@ __pycache__
 *.vdf
 .*.swp
 docs/_build
+source/analyses/data_handling/example.db
