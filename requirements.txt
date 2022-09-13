@@ -7,5 +7,7 @@ seaborn
 mpld3
 geopandas
 pymc
+sklearn
+mapclassify
 sphinx==4.2.0
 sphinx_rtd_theme==1.0.0

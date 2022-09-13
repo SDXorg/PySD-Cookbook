@@ -15,19 +15,11 @@ simulate a multiregional infectious disease model. We’ll then present
 the advantages to project spatial data produced by our simulation back
 on a map.
 
-.. code:: ipython2
+.. code:: ipython3
 
     %matplotlib inline
     import pandas as pd
     import pysd
-
-
-.. parsed-literal::
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/pandas/computation/__init__.py:19: UserWarning: The installed version of numexpr 2.4.4 is not supported in pandas and will be not be used
-    
-      UserWarning)
-
 
 A simple SIR model
 ~~~~~~~~~~~~~~~~~~
@@ -39,7 +31,7 @@ complete population is susceptible, therefore the initial value of
 susceptible stock is equal to the total population. In addition, we
 built on the hypothesis that from now all infected person are reported.
 
-.. code:: ipython2
+.. code:: ipython3
 
     from IPython.display import Image
     Image(filename='../../models/SD_Fever/SIR_model.png')
@@ -58,10 +50,14 @@ infectivity of 70%.
 When we do not specificy anything else, the parameters and setting
 (e.g. timestep, simulation time) from the Vensim model are used.
 
-.. code:: ipython2
+.. code:: ipython3
 
     model = pysd.read_vensim('../../models/SD_Fever/SIR_Simple.mdl')
-    result = model.run()
+    result = model.run(return_columns=[
+                           'cumulative cases', 'report case', 'infect', 
+                           'contact infectivity', 'recovery period', 'infectious', 
+                           'recovered', 'recover', 'susceptible', 'total population'
+                       ])
     result.plot();
 
 
@@ -80,12 +76,17 @@ model in the call to the run function. Here we set the contact
 infectivity to 30% before running the simulation again. If you like, try
 what happens when you change some of the other parameters.
 
-.. code:: ipython2
+.. code:: ipython3
 
     result = model.run(params={ 'total_population':1000,
                                 'contact_infectivity':.3, 
                                 'recovery_period': 5
-                              })
+                              },
+                       return_columns=[
+                           'cumulative cases', 'report case', 'infect', 
+                           'contact infectivity', 'recovery period', 'infectious', 
+                           'recovered', 'recover', 'susceptible', 'total population']
+                     )
     result.plot();
 
 
@@ -102,7 +103,7 @@ which returns evenly spaced numbers over a specified interval.
 
 np.linspace(Start, Stop, Number of timestamps)
 
-.. code:: ipython2
+.. code:: ipython3
 
     import numpy as np
     sim_time = 10
@@ -113,11 +114,11 @@ np.linspace(Start, Stop, Number of timestamps)
 
 .. parsed-literal::
 
-    array([  0.  ,   0.25,   0.5 ,   0.75,   1.  ,   1.25,   1.5 ,   1.75,
-             2.  ,   2.25,   2.5 ,   2.75,   3.  ,   3.25,   3.5 ,   3.75,
-             4.  ,   4.25,   4.5 ,   4.75,   5.  ,   5.25,   5.5 ,   5.75,
-             6.  ,   6.25,   6.5 ,   6.75,   7.  ,   7.25,   7.5 ,   7.75,
-             8.  ,   8.25,   8.5 ,   8.75,   9.  ,   9.25,   9.5 ,   9.75,  10.  ])
+    array([ 0.  ,  0.25,  0.5 ,  0.75,  1.  ,  1.25,  1.5 ,  1.75,  2.  ,
+            2.25,  2.5 ,  2.75,  3.  ,  3.25,  3.5 ,  3.75,  4.  ,  4.25,
+            4.5 ,  4.75,  5.  ,  5.25,  5.5 ,  5.75,  6.  ,  6.25,  6.5 ,
+            6.75,  7.  ,  7.25,  7.5 ,  7.75,  8.  ,  8.25,  8.5 ,  8.75,
+            9.  ,  9.25,  9.5 ,  9.75, 10.  ])
 
 
 
@@ -125,7 +126,7 @@ We can use the return_timestamps keyword argument in PySD. This argument
 expects a list of timestamps, and will return simulation results at
 those timestamps.
 
-.. code:: ipython2
+.. code:: ipython3
 
     model.run(return_timestamps=np.linspace(0, sim_time, num=sim_time*2+1))
 
@@ -135,163 +136,396 @@ those timestamps.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
           <th></th>
+          <th>FINAL TIME</th>
+          <th>INITIAL TIME</th>
+          <th>SAVEPER</th>
+          <th>TIME STEP</th>
           <th>cumulative cases</th>
+          <th>report case</th>
+          <th>infect</th>
+          <th>contact infectivity</th>
+          <th>recovery period</th>
           <th>infectious</th>
           <th>recovered</th>
+          <th>recover</th>
           <th>susceptible</th>
+          <th>total population</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>0.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>0.000000</td>
+          <td>1.500000</td>
+          <td>1.500000</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>5.000000</td>
           <td>0.000000</td>
+          <td>1.000000</td>
           <td>1000.000000</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>0.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>0.750000</td>
+          <td>1.573819</td>
+          <td>1.573819</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>5.250000</td>
           <td>0.500000</td>
+          <td>1.050000</td>
           <td>999.250000</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>1.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>1.536909</td>
+          <td>1.651031</td>
+          <td>1.651031</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>5.511909</td>
           <td>1.025000</td>
+          <td>1.102382</td>
           <td>998.463091</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>1.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>2.362425</td>
+          <td>1.731769</td>
+          <td>1.731769</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>5.786234</td>
           <td>1.576191</td>
+          <td>1.157247</td>
           <td>997.637575</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>2.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>3.228310</td>
+          <td>1.816166</td>
+          <td>1.816166</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>6.073495</td>
           <td>2.154814</td>
+          <td>1.214699</td>
           <td>996.771690</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>2.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>4.136393</td>
+          <td>1.904359</td>
+          <td>1.904359</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>6.374229</td>
           <td>2.762164</td>
+          <td>1.274846</td>
           <td>995.863607</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>3.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>5.088572</td>
+          <td>1.996484</td>
+          <td>1.996484</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>6.688986</td>
           <td>3.399587</td>
+          <td>1.337797</td>
           <td>994.911428</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>3.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>6.086815</td>
+          <td>2.092683</td>
+          <td>2.092683</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>7.018329</td>
           <td>4.068485</td>
+          <td>1.403666</td>
           <td>993.913185</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>4.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>7.133156</td>
+          <td>2.193095</td>
+          <td>2.193095</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>7.362838</td>
           <td>4.770318</td>
+          <td>1.472568</td>
           <td>992.866844</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>4.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>8.229704</td>
+          <td>2.297863</td>
+          <td>2.297863</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>7.723102</td>
           <td>5.506602</td>
+          <td>1.544620</td>
           <td>991.770296</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>5.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>9.378635</td>
+          <td>2.407128</td>
+          <td>2.407128</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>8.099723</td>
           <td>6.278912</td>
+          <td>1.619945</td>
           <td>990.621365</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>5.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>10.582199</td>
+          <td>2.521031</td>
+          <td>2.521031</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>8.493314</td>
           <td>7.088885</td>
+          <td>1.698663</td>
           <td>989.417801</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>6.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>11.842715</td>
+          <td>2.639714</td>
+          <td>2.639714</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>8.904499</td>
           <td>7.938216</td>
+          <td>1.780900</td>
           <td>988.157285</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>6.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>13.162571</td>
+          <td>2.763314</td>
+          <td>2.763314</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>9.333905</td>
           <td>8.828666</td>
+          <td>1.866781</td>
           <td>986.837429</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>7.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>14.544228</td>
+          <td>2.891969</td>
+          <td>2.891969</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>9.782172</td>
           <td>9.762056</td>
+          <td>1.956434</td>
           <td>985.455772</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>7.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>15.990213</td>
+          <td>3.025812</td>
+          <td>3.025812</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>10.249939</td>
           <td>10.740274</td>
+          <td>2.049988</td>
           <td>984.009787</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>8.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>17.503119</td>
+          <td>3.164972</td>
+          <td>3.164972</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>10.737852</td>
           <td>11.765268</td>
+          <td>2.147570</td>
           <td>982.496881</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>8.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>19.085605</td>
+          <td>3.309572</td>
+          <td>3.309572</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>11.246552</td>
           <td>12.839053</td>
+          <td>2.249310</td>
           <td>980.914395</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>9.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>20.740391</td>
+          <td>3.459729</td>
+          <td>3.459729</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>11.776683</td>
           <td>13.963708</td>
+          <td>2.355337</td>
           <td>979.259609</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>9.5</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>22.470255</td>
+          <td>3.615554</td>
+          <td>3.615554</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>12.328879</td>
           <td>15.141376</td>
+          <td>2.465776</td>
           <td>977.529745</td>
+          <td>1000</td>
         </tr>
         <tr>
           <th>10.0</th>
+          <td>10.0</td>
+          <td>0</td>
+          <td>0.5</td>
+          <td>0.5</td>
           <td>24.278032</td>
+          <td>3.777147</td>
+          <td>3.777147</td>
+          <td>0.3</td>
+          <td>5</td>
           <td>12.903768</td>
           <td>16.374264</td>
+          <td>2.580754</td>
           <td>975.721968</td>
+          <td>1000</td>
         </tr>
       </tbody>
     </table>
@@ -311,70 +545,88 @@ typically stored into shapefiles.
 For this script, we will use geopandas library to manage the shapefiles,
 and utilize its inherent plotting functionality.
 
-.. code:: ipython2
+.. code:: ipython3
 
     import geopandas as gp
     
-    shapefile = '../../data/SD_Fever/geo_df_EU.shp'
+    shapefile = '../../data/SD_Fever/Shapefile/geo_df_EU.shp'
     geo_data = gp.GeoDataFrame.from_file(shapefile)
     geo_data.head(5)
 
 
-::
 
 
-    ---------------------------------------------------------------------------
+.. raw:: html
 
-    ImportError                               Traceback (most recent call last)
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>population</th>
+          <th>country</th>
+          <th>inf_rate</th>
+          <th>geometry</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>5347896.0</td>
+          <td>Norway</td>
+          <td>0.012681</td>
+          <td>MULTIPOLYGON (((15.14282 79.67431, 15.52255 80...</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>67059887.0</td>
+          <td>France</td>
+          <td>0.276615</td>
+          <td>MULTIPOLYGON (((-51.65780 4.15623, -52.24934 3...</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>10285453.0</td>
+          <td>Sweden</td>
+          <td>0.034167</td>
+          <td>POLYGON ((11.02737 58.85615, 11.46827 59.43239...</td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td>9466856.0</td>
+          <td>Belarus</td>
+          <td>0.096774</td>
+          <td>POLYGON ((28.17671 56.16913, 29.22951 55.91834...</td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td>44385155.0</td>
+          <td>Ukraine</td>
+          <td>0.186621</td>
+          <td>POLYGON ((31.78599 52.10168, 32.15944 52.06125...</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
 
-    <ipython-input-7-17f6f8f07da0> in <module>()
-    ----> 1 import geopandas as gp
-          2 
-          3 shapefile = '../../data/SD_Fever/geo_df_EU.shp'
-          4 geo_data = gp.GeoDataFrame.from_file(shapefile)
-          5 geo_data.head(5)
-
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/geopandas/__init__.pyc in <module>()
-          2 from geopandas.geodataframe import GeoDataFrame
-          3 
-    ----> 4 from geopandas.io.file import read_file
-          5 from geopandas.io.sql import read_postgis
-          6 from geopandas.tools import sjoin
-
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/geopandas/io/file.py in <module>()
-          1 import os
-          2 
-    ----> 3 import fiona
-          4 import numpy as np
-          5 from shapely.geometry import mapping
-
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/fiona/__init__.py in <module>()
-         70 from six import string_types
-         71 
-    ---> 72 from fiona.collection import Collection, BytesCollection, vsi_path
-         73 from fiona._drivers import driver_count, GDALEnv, supported_drivers
-         74 from fiona.odict import OrderedDict
-
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/fiona/collection.py in <module>()
-          5 import sys
-          6 
-    ----> 7 from fiona.ogrext import Iterator, ItemsIterator, KeysIterator
-          8 from fiona.ogrext import Session, WritingSession
-          9 from fiona.ogrext import (
-
-
-    ImportError: dlopen(/Users/houghton/anaconda/lib/python2.7/site-packages/fiona/ogrext.so, 2): Library not loaded: @rpath/libtiff.5.dylib
-      Referenced from: /Users/houghton/anaconda/lib/libgdal.1.dylib
-      Reason: Incompatible library version: libgdal.1.dylib requires version 8.0.0 or later, but libtiff.5.dylib provides version 7.0.0
 
 
 Then we can project the geographic shape of the elements on a map.
 
-.. code:: ipython2
+.. code:: ipython3
 
     import matplotlib.pyplot as plt
     
@@ -390,7 +642,7 @@ Then we can project the geographic shape of the elements on a map.
 
 And plot on of the georeferenced property (e.g. population)
 
-.. code:: ipython2
+.. code:: ipython3
 
     geo_data.plot(column='population', scheme='fisher_jenks', alpha=0.9, k=9, linewidth=0.1,
                  cmap=plt.cm.YlOrRd, legend=False)
@@ -399,30 +651,8 @@ And plot on of the georeferenced property (e.g. population)
     plt.show()
 
 
-::
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-9-c9605dc38e75> in <module>()
-          1 geo_data.plot(column='population', scheme='fisher_jenks', alpha=0.9, k=9, linewidth=0.1,
-    ----> 2              cmap=plt.cm.YlOrRd, legend=False)
-          3 plt.xlim([-28, 50])
-          4 plt.ylim([30, 75])
-          5 plt.show()
-
-
-    /Users/houghton/anaconda/lib/python2.7/site-packages/geopandas/geodataframe.pyc in plot(self, *args, **kwargs)
-        379 
-        380     def plot(self, *args, **kwargs):
-    --> 381         return plot_dataframe(self, *args, **kwargs)
-        382 
-        383 def _dataframe_set_geometry(self, col, drop=False, inplace=False, crs=None):
-
-
-    TypeError: plot_dataframe() got an unexpected keyword argument 'linewidth'
+.. image:: Doing_more_with_spatialdata_multi_regional_SIR_Model_files/Doing_more_with_spatialdata_multi_regional_SIR_Model_19_0.png
 
 
 Run the model for each country
@@ -435,11 +665,11 @@ Thus, we formulate a function that based on each row parameterizes the
 model with the value from geodata, performs the simulation and finally
 returns the number of infectious individuals over time.
 
-.. code:: ipython2
+.. code:: ipython3
 
     def runner(row):
         sim_time = 200
-        params= {'total_population':row['population'],
+        params= {'total_population': row['population'],
                  'contact_infectivity' : row['inf_rate']}
         res = model.run(params=params,
                         return_timestamps=np.linspace(0, sim_time, num=sim_time*2+1))
@@ -452,7 +682,7 @@ We want to apply the function row-wise (by country) therefore we set
 axis to 1 (row) instead of default 0 (column). The result is a new
 dataframe with the produced simulation for each country.
 
-.. code:: ipython2
+.. code:: ipython3
 
     res = geo_data.apply(runner, axis=1)
     res.head()
@@ -463,6 +693,19 @@ dataframe with the produced simulation for each country.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -494,122 +737,122 @@ dataframe with the produced simulation for each country.
         <tr>
           <th>0</th>
           <td>5.0</td>
-          <td>5.407815</td>
-          <td>5.848892</td>
-          <td>6.325945</td>
-          <td>6.841907</td>
-          <td>7.399952</td>
-          <td>8.003512</td>
-          <td>8.656299</td>
-          <td>9.362329</td>
-          <td>10.125943</td>
+          <td>4.531702</td>
+          <td>4.107264</td>
+          <td>3.722579</td>
+          <td>3.373923</td>
+          <td>3.057923</td>
+          <td>2.771519</td>
+          <td>2.511939</td>
+          <td>2.276672</td>
+          <td>2.063439</td>
           <td>...</td>
-          <td>1.235898e+01</td>
-          <td>1.174243e+01</td>
-          <td>1.115664e+01</td>
-          <td>1.060006e+01</td>
-          <td>1.007126e+01</td>
-          <td>9.568833e+00</td>
-          <td>9.091472e+00</td>
-          <td>8.637925e+00</td>
-          <td>8.207004e+00</td>
-          <td>7.797580e+00</td>
+          <td>9.996953e-17</td>
+          <td>9.060642e-17</td>
+          <td>8.212025e-17</td>
+          <td>7.442889e-17</td>
+          <td>6.745791e-17</td>
+          <td>6.113982e-17</td>
+          <td>5.541348e-17</td>
+          <td>5.022347e-17</td>
+          <td>4.551956e-17</td>
+          <td>4.125621e-17</td>
         </tr>
         <tr>
           <th>1</th>
           <td>5.0</td>
-          <td>5.127795</td>
-          <td>5.258857</td>
-          <td>5.393268</td>
-          <td>5.531115</td>
-          <td>5.672485</td>
-          <td>5.817468</td>
-          <td>5.966157</td>
-          <td>6.118646</td>
-          <td>6.275032</td>
+          <td>5.191538</td>
+          <td>5.390414</td>
+          <td>5.596907</td>
+          <td>5.811312</td>
+          <td>6.033929</td>
+          <td>6.265074</td>
+          <td>6.505074</td>
+          <td>6.754268</td>
+          <td>7.013008</td>
           <td>...</td>
-          <td>7.391140e+04</td>
-          <td>7.532471e+04</td>
-          <td>7.675456e+04</td>
-          <td>7.820069e+04</td>
-          <td>7.966278e+04</td>
-          <td>8.114054e+04</td>
-          <td>8.263360e+04</td>
-          <td>8.414161e+04</td>
-          <td>8.566416e+04</td>
-          <td>8.720083e+04</td>
+          <td>2.877902e+06</td>
+          <td>2.880190e+06</td>
+          <td>2.880756e+06</td>
+          <td>2.879608e+06</td>
+          <td>2.876757e+06</td>
+          <td>2.872216e+06</td>
+          <td>2.866006e+06</td>
+          <td>2.858148e+06</td>
+          <td>2.848668e+06</td>
+          <td>2.837596e+06</td>
         </tr>
         <tr>
           <th>2</th>
           <td>5.0</td>
-          <td>6.939664</td>
-          <td>9.631786</td>
-          <td>13.368267</td>
-          <td>18.554246</td>
-          <td>25.752025</td>
-          <td>35.742032</td>
-          <td>49.607441</td>
-          <td>68.851599</td>
-          <td>95.561003</td>
+          <td>4.585418</td>
+          <td>4.205211</td>
+          <td>3.856530</td>
+          <td>3.536761</td>
+          <td>3.243505</td>
+          <td>2.974565</td>
+          <td>2.727925</td>
+          <td>2.501735</td>
+          <td>2.294300</td>
           <td>...</td>
-          <td>8.710440e-08</td>
-          <td>7.927009e-08</td>
-          <td>7.216718e-08</td>
-          <td>6.579565e-08</td>
-          <td>6.015551e-08</td>
-          <td>5.514593e-08</td>
-          <td>5.050006e-08</td>
-          <td>4.620362e-08</td>
-          <td>4.225663e-08</td>
-          <td>3.865907e-08</td>
+          <td>1.001973e-14</td>
+          <td>9.188925e-15</td>
+          <td>8.427012e-15</td>
+          <td>7.728275e-15</td>
+          <td>7.087474e-15</td>
+          <td>6.499806e-15</td>
+          <td>5.960865e-15</td>
+          <td>5.466611e-15</td>
+          <td>5.013340e-15</td>
+          <td>4.597651e-15</td>
         </tr>
         <tr>
           <th>3</th>
           <td>5.0</td>
-          <td>4.958609</td>
-          <td>4.917560</td>
-          <td>4.876852</td>
-          <td>4.836480</td>
-          <td>4.796443</td>
-          <td>4.756736</td>
-          <td>4.717359</td>
-          <td>4.678307</td>
-          <td>4.639579</td>
+          <td>4.741935</td>
+          <td>4.497189</td>
+          <td>4.265076</td>
+          <td>4.044943</td>
+          <td>3.836171</td>
+          <td>3.638175</td>
+          <td>3.450397</td>
+          <td>3.272312</td>
+          <td>3.103418</td>
           <td>...</td>
-          <td>1.937845e-01</td>
-          <td>1.921802e-01</td>
-          <td>1.905892e-01</td>
-          <td>1.890113e-01</td>
-          <td>1.874465e-01</td>
-          <td>1.858947e-01</td>
-          <td>1.843557e-01</td>
-          <td>1.828294e-01</td>
-          <td>1.813158e-01</td>
-          <td>1.798147e-01</td>
+          <td>5.015702e-09</td>
+          <td>4.756826e-09</td>
+          <td>4.511312e-09</td>
+          <td>4.278469e-09</td>
+          <td>4.057645e-09</td>
+          <td>3.848217e-09</td>
+          <td>3.649599e-09</td>
+          <td>3.461232e-09</td>
+          <td>3.282588e-09</td>
+          <td>3.113163e-09</td>
         </tr>
         <tr>
           <th>4</th>
           <td>5.0</td>
-          <td>5.130475</td>
-          <td>5.264354</td>
-          <td>5.401727</td>
-          <td>5.542685</td>
-          <td>5.687321</td>
-          <td>5.835731</td>
-          <td>5.988013</td>
-          <td>6.144269</td>
-          <td>6.304603</td>
+          <td>4.966553</td>
+          <td>4.933330</td>
+          <td>4.900329</td>
+          <td>4.867548</td>
+          <td>4.834987</td>
+          <td>4.802644</td>
+          <td>4.770517</td>
+          <td>4.738605</td>
+          <td>4.706907</td>
           <td>...</td>
-          <td>7.030861e+04</td>
-          <td>7.130697e+04</td>
-          <td>7.230348e+04</td>
-          <td>7.329749e+04</td>
-          <td>7.428830e+04</td>
-          <td>7.527523e+04</td>
-          <td>7.625757e+04</td>
-          <td>7.723462e+04</td>
-          <td>7.820564e+04</td>
-          <td>7.916990e+04</td>
+          <td>3.624228e-01</td>
+          <td>3.599984e-01</td>
+          <td>3.575902e-01</td>
+          <td>3.551980e-01</td>
+          <td>3.528219e-01</td>
+          <td>3.504617e-01</td>
+          <td>3.481173e-01</td>
+          <td>3.457885e-01</td>
+          <td>3.434754e-01</td>
+          <td>3.411777e-01</td>
         </tr>
       </tbody>
     </table>
@@ -626,12 +869,12 @@ columns the different objects. Since our data is not yet in this form,
 we have to transpose the data. In pandas all we have to do is add an .T
 at the end.
 
-.. code:: ipython2
+.. code:: ipython3
 
     import pandas as pd
     df = pd.DataFrame(res).T
 
-.. code:: ipython2
+.. code:: ipython3
 
     df.head(2)
 
@@ -641,6 +884,19 @@ at the end.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -676,13 +932,13 @@ at the end.
           <td>5.000000</td>
           <td>5.000000</td>
           <td>5.000000</td>
-          <td>5.000000</td>
+          <td>5.00000</td>
           <td>5.000000</td>
           <td>5.000000</td>
           <td>5.000000</td>
           <td>5.000000</td>
           <td>...</td>
-          <td>5.000000</td>
+          <td>5.0</td>
           <td>5.000000</td>
           <td>5.000000</td>
           <td>5.000000</td>
@@ -695,27 +951,27 @@ at the end.
         </tr>
         <tr>
           <th>0.5</th>
-          <td>5.407815</td>
-          <td>5.127795</td>
-          <td>6.939664</td>
-          <td>4.958609</td>
-          <td>5.130475</td>
-          <td>4.763649</td>
-          <td>5.630614</td>
-          <td>5.293347</td>
-          <td>5.993628</td>
-          <td>5.197358</td>
+          <td>4.531702</td>
+          <td>5.191538</td>
+          <td>4.585418</td>
+          <td>4.741935</td>
+          <td>4.966553</td>
+          <td>5.19772</td>
+          <td>5.152267</td>
+          <td>5.165813</td>
+          <td>5.015223</td>
+          <td>5.021537</td>
           <td>...</td>
-          <td>7.459123</td>
-          <td>4.550577</td>
-          <td>5.240652</td>
-          <td>5.364989</td>
-          <td>5.125969</td>
-          <td>5.169376</td>
-          <td>5.245112</td>
-          <td>5.205252</td>
-          <td>4.595693</td>
-          <td>4.976995</td>
+          <td>4.5</td>
+          <td>5.202822</td>
+          <td>4.552659</td>
+          <td>5.210224</td>
+          <td>5.290059</td>
+          <td>4.928924</td>
+          <td>5.074109</td>
+          <td>5.102701</td>
+          <td>4.807623</td>
+          <td>5.598635</td>
         </tr>
       </tbody>
     </table>
@@ -724,7 +980,7 @@ at the end.
 
 
 
-.. code:: ipython2
+.. code:: ipython3
 
     df.plot(legend=False);
 
@@ -745,7 +1001,7 @@ percentage of population in each country.
 We can reuse our code from before but instead of returning the number of
 infecious we return the cumulative cases.
 
-.. code:: ipython2
+.. code:: ipython3
 
     def runner(row):
         sim_time = 200
@@ -753,13 +1009,14 @@ infecious we return the cumulative cases.
                  'contact_infectivity' : row['inf_rate']}
         res = model.run(params=params,
                         return_timestamps=range(0,sim_time))
-        return res['cumulative_cases']
+        return res['cumulative cases']
     
     #TIP: Ensure you are using lower case letters and the character _  not space
 
-.. code:: ipython2
+.. code:: ipython3
 
     res = geo_data.apply(runner, axis=1)
+    
     res.head()
 
 
@@ -768,6 +1025,19 @@ infecious we return the cumulative cases.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -799,122 +1069,122 @@ infecious we return the cumulative cases.
         <tr>
           <th>0</th>
           <td>0.0</td>
-          <td>1.931564</td>
-          <td>4.191064</td>
-          <td>6.834176</td>
-          <td>9.926028</td>
-          <td>13.542802</td>
-          <td>17.773617</td>
-          <td>22.722719</td>
-          <td>28.512051</td>
-          <td>35.284257</td>
+          <td>0.060434</td>
+          <td>0.110078</td>
+          <td>0.150858</td>
+          <td>0.184356</td>
+          <td>0.211874</td>
+          <td>0.234479</td>
+          <td>0.253047</td>
+          <td>0.268300</td>
+          <td>0.280830</td>
           <td>...</td>
-          <td>2.643414e+06</td>
-          <td>2.643416e+06</td>
-          <td>2.643418e+06</td>
-          <td>2.643420e+06</td>
-          <td>2.643421e+06</td>
-          <td>2.643423e+06</td>
-          <td>2.643424e+06</td>
-          <td>2.643425e+06</td>
-          <td>2.643426e+06</td>
-          <td>2.643427e+06</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
+          <td>3.384762e-01</td>
         </tr>
         <tr>
           <th>1</th>
           <td>0.0</td>
-          <td>1.284525</td>
-          <td>2.635551</td>
-          <td>4.056522</td>
-          <td>5.551057</td>
-          <td>7.122967</td>
-          <td>8.776255</td>
-          <td>10.515136</td>
-          <td>12.344040</td>
-          <td>14.267628</td>
+          <td>1.409567</td>
+          <td>2.929197</td>
+          <td>4.567484</td>
+          <td>6.333693</td>
+          <td>8.237812</td>
+          <td>10.290610</td>
+          <td>12.503695</td>
+          <td>14.889584</td>
+          <td>17.461770</td>
           <td>...</td>
-          <td>3.207868e+05</td>
-          <td>3.353914e+05</td>
-          <td>3.505670e+05</td>
-          <td>3.663273e+05</td>
-          <td>3.826858e+05</td>
-          <td>3.996553e+05</td>
-          <td>4.172479e+05</td>
-          <td>4.354754e+05</td>
-          <td>4.543483e+05</td>
-          <td>4.738766e+05</td>
+          <td>1.494990e+07</td>
+          <td>1.553967e+07</td>
+          <td>1.613077e+07</td>
+          <td>1.672170e+07</td>
+          <td>1.731093e+07</td>
+          <td>1.789700e+07</td>
+          <td>1.847848e+07</td>
+          <td>1.905399e+07</td>
+          <td>1.962224e+07</td>
+          <td>2.018199e+07</td>
         </tr>
         <tr>
           <th>2</th>
           <td>0.0</td>
-          <td>6.044711</td>
-          <td>17.688969</td>
-          <td>40.119902</td>
-          <td>83.329609</td>
-          <td>166.565835</td>
-          <td>326.904336</td>
-          <td>635.757752</td>
-          <td>1230.660685</td>
-          <td>2376.436306</td>
+          <td>0.163753</td>
+          <td>0.301477</td>
+          <td>0.417308</td>
+          <td>0.514727</td>
+          <td>0.596660</td>
+          <td>0.665570</td>
+          <td>0.723525</td>
+          <td>0.772269</td>
+          <td>0.813264</td>
           <td>...</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
-          <td>1.026049e+07</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
+          <td>1.030168e+00</td>
         </tr>
         <tr>
           <th>3</th>
           <td>0.0</td>
-          <td>0.909294</td>
-          <td>1.803595</td>
-          <td>2.683151</td>
-          <td>3.548204</td>
-          <td>4.398995</td>
-          <td>5.235758</td>
-          <td>6.058724</td>
-          <td>6.868121</td>
-          <td>7.664172</td>
+          <td>0.471383</td>
+          <td>0.895363</td>
+          <td>1.276706</td>
+          <td>1.619701</td>
+          <td>1.928203</td>
+          <td>2.205682</td>
+          <td>2.455257</td>
+          <td>2.679734</td>
+          <td>2.881637</td>
           <td>...</td>
-          <td>5.280475e+01</td>
-          <td>5.284336e+01</td>
-          <td>5.288134e+01</td>
-          <td>5.291870e+01</td>
-          <td>5.295543e+01</td>
-          <td>5.299156e+01</td>
-          <td>5.302710e+01</td>
-          <td>5.306205e+01</td>
-          <td>5.309642e+01</td>
-          <td>5.313023e+01</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
+          <td>4.687479e+00</td>
         </tr>
         <tr>
           <th>4</th>
           <td>0.0</td>
-          <td>1.290563</td>
-          <td>2.649358</td>
-          <td>4.079994</td>
-          <td>5.586268</td>
-          <td>7.172179</td>
-          <td>8.841937</td>
-          <td>10.599976</td>
-          <td>12.450961</td>
-          <td>14.399808</td>
+          <td>0.929985</td>
+          <td>1.847569</td>
+          <td>2.752919</td>
+          <td>3.646196</td>
+          <td>4.527562</td>
+          <td>5.397177</td>
+          <td>6.255195</td>
+          <td>7.101773</td>
+          <td>7.937062</td>
           <td>...</td>
-          <td>3.414903e+05</td>
-          <td>3.555252e+05</td>
-          <td>3.699699e+05</td>
-          <td>3.848232e+05</td>
-          <td>4.000827e+05</td>
-          <td>4.157447e+05</td>
-          <td>4.318042e+05</td>
-          <td>4.482554e+05</td>
-          <td>4.650906e+05</td>
-          <td>4.823014e+05</td>
+          <td>6.430156e+01</td>
+          <td>6.437414e+01</td>
+          <td>6.444574e+01</td>
+          <td>6.451640e+01</td>
+          <td>6.458611e+01</td>
+          <td>6.465489e+01</td>
+          <td>6.472275e+01</td>
+          <td>6.478971e+01</td>
+          <td>6.485577e+01</td>
+          <td>6.492096e+01</td>
         </tr>
       </tbody>
     </table>
@@ -932,10 +1202,10 @@ had the population in each country.
 
 Let’s try to perform this type of operation on a minimal example.
 
-.. code:: ipython2
+.. code:: ipython3
 
     # Create arbitrary column
-    column = pd.Series([10, 0])
+    column = pd.Series([10, 2])
     column
 
 
@@ -944,12 +1214,12 @@ Let’s try to perform this type of operation on a minimal example.
 .. parsed-literal::
 
     0    10
-    1     0
+    1     2
     dtype: int64
 
 
 
-.. code:: ipython2
+.. code:: ipython3
 
     # Create arbitrary pandas dataframe
     df = pd.DataFrame(np.random.randint(1,5,size=(2, 3)), columns=list('ABC'))
@@ -961,6 +1231,19 @@ Let’s try to perform this type of operation on a minimal example.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -974,13 +1257,13 @@ Let’s try to perform this type of operation on a minimal example.
         <tr>
           <th>0</th>
           <td>1</td>
-          <td>3</td>
-          <td>3</td>
+          <td>4</td>
+          <td>4</td>
         </tr>
         <tr>
           <th>1</th>
+          <td>3</td>
           <td>1</td>
-          <td>2</td>
           <td>4</td>
         </tr>
       </tbody>
@@ -989,57 +1272,28 @@ Let’s try to perform this type of operation on a minimal example.
 
 
 
-.. code:: ipython2
+.. code:: ipython3
 
-    column*df
-
-
+    column*df["A"]
 
 
-.. raw:: html
 
-    <div>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>0</th>
-          <th>1</th>
-          <th>A</th>
-          <th>B</th>
-          <th>C</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>0</th>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-          <td>NaN</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+
+.. parsed-literal::
+
+    0    10
+    1     6
+    dtype: int64
 
 
 
 Now we can translate this operation on our actual problem.
 
-.. code:: ipython2
+.. code:: ipython3
 
     res = pd.DataFrame(res.T/geo_data["population"])
 
-.. code:: ipython2
+.. code:: ipython3
 
     res.plot(legend=False);
 
@@ -1054,7 +1308,7 @@ Analysis of results
 For example, we could study the impact of contact infectivity on the
 cumulative cases at the end of the simulation
 
-.. code:: ipython2
+.. code:: ipython3
 
     geo_data['totalcases%pop'] = res.loc[199] # Slice the final value at the end of the simulation
     df_scatter = pd.DataFrame(geo_data) # Geopandas dataframe to pandas Dataframe (geopandas tries to perform spatial analysis)
@@ -1074,7 +1328,7 @@ simulation results projected on the map.
 We merge the complete simulation results with our original georeferenced
 information just as we did in the step before.
 
-.. code:: ipython2
+.. code:: ipython3
 
     geo_data.head(2)
 
@@ -1084,33 +1338,46 @@ information just as we did in the step before.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
           <th></th>
-          <th>country</th>
-          <th>geometry</th>
-          <th>inf_rate</th>
           <th>population</th>
+          <th>country</th>
+          <th>inf_rate</th>
+          <th>geometry</th>
           <th>totalcases%pop</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>0</th>
-          <td>Albania</td>
-          <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
-          <td>0.356814</td>
-          <td>3639453.0</td>
-          <td>0.726325</td>
+          <td>5347896.0</td>
+          <td>Norway</td>
+          <td>0.012681</td>
+          <td>MULTIPOLYGON (((15.14282 79.67431, 15.52255 80...</td>
+          <td>6.329147e-08</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>Austria</td>
-          <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
-          <td>0.250476</td>
-          <td>8210281.0</td>
-          <td>0.057717</td>
+          <td>67059887.0</td>
+          <td>France</td>
+          <td>0.276615</td>
+          <td>MULTIPOLYGON (((-51.65780 4.15623, -52.24934 3...</td>
+          <td>3.009547e-01</td>
         </tr>
       </tbody>
     </table>
@@ -1118,7 +1385,7 @@ information just as we did in the step before.
 
 
 
-.. code:: ipython2
+.. code:: ipython3
 
     res.head(2)
 
@@ -1128,6 +1395,19 @@ information just as we did in the step before.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
@@ -1169,6 +1449,7 @@ information just as we did in the step before.
           <td>0.000000e+00</td>
           <td>0.000000e+00</td>
           <td>...</td>
+          <td>0.0</td>
           <td>0.000000e+00</td>
           <td>0.000000e+00</td>
           <td>0.000000e+00</td>
@@ -1177,32 +1458,31 @@ information just as we did in the step before.
           <td>0.000000e+00</td>
           <td>0.000000e+00</td>
           <td>0.000000e+00</td>
-          <td>0.000000e+00</td>
-          <td>0.000000e+00</td>
+          <td>0.000000</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>5.307292e-07</td>
-          <td>1.564532e-07</td>
-          <td>5.804221e-07</td>
-          <td>1.262086e-07</td>
-          <td>2.797414e-07</td>
-          <td>5.094781e-08</td>
-          <td>3.247481e-07</td>
-          <td>1.628636e-07</td>
-          <td>4.117605e-08</td>
-          <td>2.622006e-07</td>
+          <td>1.130052e-08</td>
+          <td>2.101953e-08</td>
+          <td>1.592086e-08</td>
+          <td>4.979298e-08</td>
+          <td>2.095261e-08</td>
+          <td>3.747692e-08</td>
+          <td>1.491931e-07</td>
+          <td>1.385581e-07</td>
+          <td>3.883204e-07</td>
+          <td>5.400350e-08</td>
           <td>...</td>
-          <td>4.582214e-07</td>
-          <td>1.133618e-08</td>
-          <td>4.005424e-08</td>
-          <td>1.709489e-07</td>
-          <td>5.763613e-08</td>
-          <td>1.868129e-07</td>
-          <td>2.840291e-07</td>
-          <td>7.280583e-07</td>
-          <td>1.592863e-08</td>
-          <td>2.077661e-08</td>
+          <td>0.0</td>
+          <td>6.868723e-07</td>
+          <td>1.822466e-08</td>
+          <td>2.659132e-07</td>
+          <td>1.523894e-07</td>
+          <td>2.580278e-07</td>
+          <td>5.551959e-07</td>
+          <td>1.753471e-07</td>
+          <td>9.698978e-07</td>
+          <td>0.000001</td>
         </tr>
       </tbody>
     </table>
@@ -1211,7 +1491,7 @@ information just as we did in the step before.
 
 
 
-.. code:: ipython2
+.. code:: ipython3
 
     geo_data_merged = geo_data.merge(res.T, left_index=True, right_index=True)
     geo_data_merged.head()
@@ -1222,14 +1502,27 @@ information just as we did in the step before.
 .. raw:: html
 
     <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
     <table border="1" class="dataframe">
       <thead>
         <tr style="text-align: right;">
           <th></th>
-          <th>country</th>
-          <th>geometry</th>
-          <th>inf_rate</th>
           <th>population</th>
+          <th>country</th>
+          <th>inf_rate</th>
+          <th>geometry</th>
           <th>totalcases%pop</th>
           <th>0</th>
           <th>1</th>
@@ -1252,123 +1545,123 @@ information just as we did in the step before.
       <tbody>
         <tr>
           <th>0</th>
-          <td>Albania</td>
-          <td>POLYGON ((20.59024743010491 41.85540416113361,...</td>
-          <td>0.356814</td>
-          <td>3639453.0</td>
-          <td>0.726325</td>
+          <td>5347896.0</td>
+          <td>Norway</td>
+          <td>0.012681</td>
+          <td>MULTIPOLYGON (((15.14282 79.67431, 15.52255 80...</td>
+          <td>6.329147e-08</td>
           <td>0.0</td>
-          <td>5.307292e-07</td>
-          <td>1.151564e-06</td>
-          <td>1.877803e-06</td>
-          <td>2.727341e-06</td>
+          <td>1.130052e-08</td>
+          <td>2.058336e-08</td>
+          <td>2.820878e-08</td>
+          <td>3.447269e-08</td>
           <td>...</td>
-          <td>0.726322</td>
-          <td>0.726322</td>
-          <td>0.726323</td>
-          <td>0.726323</td>
-          <td>0.726324</td>
-          <td>0.726324</td>
-          <td>0.726324</td>
-          <td>0.726325</td>
-          <td>0.726325</td>
-          <td>0.726325</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
+          <td>6.329147e-08</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>Austria</td>
-          <td>POLYGON ((16.97966678230404 48.12349701597631,...</td>
-          <td>0.250476</td>
-          <td>8210281.0</td>
-          <td>0.057717</td>
+          <td>67059887.0</td>
+          <td>France</td>
+          <td>0.276615</td>
+          <td>MULTIPOLYGON (((-51.65780 4.15623, -52.24934 3...</td>
+          <td>3.009547e-01</td>
           <td>0.0</td>
-          <td>1.564532e-07</td>
-          <td>3.210062e-07</td>
-          <td>4.940783e-07</td>
-          <td>6.761105e-07</td>
+          <td>2.101953e-08</td>
+          <td>4.368032e-08</td>
+          <td>6.811053e-08</td>
+          <td>9.444831e-08</td>
           <td>...</td>
-          <td>0.039071</td>
-          <td>0.040850</td>
-          <td>0.042699</td>
-          <td>0.044618</td>
-          <td>0.046611</td>
-          <td>0.048677</td>
-          <td>0.050820</td>
-          <td>0.053040</td>
-          <td>0.055339</td>
-          <td>0.057717</td>
+          <td>2.229336e-01</td>
+          <td>2.317283e-01</td>
+          <td>2.405428e-01</td>
+          <td>2.493547e-01</td>
+          <td>2.581413e-01</td>
+          <td>2.668809e-01</td>
+          <td>2.755519e-01</td>
+          <td>2.841340e-01</td>
+          <td>2.926077e-01</td>
+          <td>3.009547e-01</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>Belgium</td>
-          <td>POLYGON ((3.314971144228537 51.34578095153609,...</td>
-          <td>0.855631</td>
-          <td>10414336.0</td>
-          <td>0.985227</td>
+          <td>10285453.0</td>
+          <td>Sweden</td>
+          <td>0.034167</td>
+          <td>POLYGON ((11.02737 58.85615, 11.46827 59.43239...</td>
+          <td>1.001578e-07</td>
           <td>0.0</td>
-          <td>5.804221e-07</td>
-          <td>1.698521e-06</td>
-          <td>3.852373e-06</td>
-          <td>8.001433e-06</td>
+          <td>1.592086e-08</td>
+          <td>2.931097e-08</td>
+          <td>4.057262e-08</td>
+          <td>5.004414e-08</td>
           <td>...</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
-          <td>0.985227</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
+          <td>1.001578e-07</td>
         </tr>
         <tr>
           <th>3</th>
-          <td>Bulgaria</td>
-          <td>POLYGON ((22.65714969248299 44.23492300066128,...</td>
-          <td>0.183375</td>
-          <td>7204687.0</td>
-          <td>0.000007</td>
+          <td>9466856.0</td>
+          <td>Belarus</td>
+          <td>0.096774</td>
+          <td>POLYGON ((28.17671 56.16913, 29.22951 55.91834...</td>
+          <td>4.951463e-07</td>
           <td>0.0</td>
-          <td>1.262086e-07</td>
-          <td>2.503363e-07</td>
-          <td>3.724174e-07</td>
-          <td>4.924856e-07</td>
+          <td>4.979298e-08</td>
+          <td>9.457867e-08</td>
+          <td>1.348606e-07</td>
+          <td>1.710917e-07</td>
           <td>...</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
-          <td>0.000007</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
+          <td>4.951463e-07</td>
         </tr>
         <tr>
           <th>4</th>
-          <td>Bosnia and Herzegovina</td>
-          <td>POLYGON ((19.00548628101012 44.86023366960916,...</td>
-          <td>0.251521</td>
-          <td>4613414.0</td>
-          <td>0.104543</td>
+          <td>44385155.0</td>
+          <td>Ukraine</td>
+          <td>0.186621</td>
+          <td>POLYGON ((31.78599 52.10168, 32.15944 52.06125...</td>
+          <td>1.462673e-06</td>
           <td>0.0</td>
-          <td>2.797414e-07</td>
-          <td>5.742728e-07</td>
-          <td>8.843763e-07</td>
-          <td>1.210875e-06</td>
+          <td>2.095261e-08</td>
+          <td>4.162584e-08</td>
+          <td>6.202341e-08</td>
+          <td>8.214900e-08</td>
           <td>...</td>
-          <td>0.074021</td>
-          <td>0.077063</td>
-          <td>0.080194</td>
-          <td>0.083414</td>
-          <td>0.086722</td>
-          <td>0.090116</td>
-          <td>0.093598</td>
-          <td>0.097163</td>
-          <td>0.100813</td>
-          <td>0.104543</td>
+          <td>1.448718e-06</td>
+          <td>1.450353e-06</td>
+          <td>1.451966e-06</td>
+          <td>1.453558e-06</td>
+          <td>1.455129e-06</td>
+          <td>1.456678e-06</td>
+          <td>1.458207e-06</td>
+          <td>1.459716e-06</td>
+          <td>1.461204e-06</td>
+          <td>1.462673e-06</td>
         </tr>
       </tbody>
     </table>
@@ -1383,7 +1676,7 @@ Plotting simulation results on map with Ipywidgets
 Ipywidgets are interactive HTML widgets for IPython notebooks. Users
 gain control of their data and can visualize changes in the data.
 
-.. code:: ipython2
+.. code:: ipython3
 
     import matplotlib as mpl
     from ipywidgets import interact, FloatSlider, IntSlider,RadioButtons, Dropdown
@@ -1391,11 +1684,11 @@ gain control of their data and can visualize changes in the data.
     slider_time = IntSlider(description = 'Time Select',
                             min=0, max=sim_time-1, value=1)
 
-.. code:: ipython2
+.. code:: ipython3
 
-    @interact( time = slider_time) # Scenario = select_scenario,
+    @interact(time = slider_time) # Scenario = select_scenario,
     def update_map(time): # Scenario
-        ax = geo_data_merged.plot(column=time, scheme='fisher-jenks', alpha=0.9, k=9, linewidth=0.1,
+        ax = geo_data_merged.plot(column=time, scheme='fisherjenks', alpha=0.9, k=9, linewidth=0.1,
                  cmap=plt.cm.Reds, legend=True,  figsize=(20, 30))
         plt.xlim(-28, 50)
         plt.ylim(30, 75)
@@ -1403,15 +1696,8 @@ gain control of their data and can visualize changes in the data.
         plt.yticks([])
 
 
+
 .. parsed-literal::
 
-    C:\Users\Schwarz\AppData\Local\Enthought\Canopy32\User\lib\site-packages\geopandas\geodataframe.py:447: UserWarning: Unrecognized scheme "fisher-jenks". Using "Quantiles" instead
-      return plot_dataframe(self, *args, **kwargs)
-
-
-
-.. image:: Doing_more_with_spatialdata_multi_regional_SIR_Model_files/Doing_more_with_spatialdata_multi_regional_SIR_Model_46_1.png
-
-
-…
+    interactive(children=(IntSlider(value=1, description='Time Select', max=199), Output()), _dom_classes=('widget…
 
