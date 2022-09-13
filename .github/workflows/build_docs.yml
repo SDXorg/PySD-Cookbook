@@ -25,9 +25,3 @@ jobs:
       - name: Test and coverage
         run: |
           python build_docs.py
-          cd tests
-          nosetests --with-coverage --cover-package=pysd
-      - name: Coveralls
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: coveralls --service=github
