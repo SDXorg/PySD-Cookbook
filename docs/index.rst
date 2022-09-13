@@ -9,9 +9,9 @@ Simple recipes for powerful analysis of system dynamics models
 
 Quickstart
 ----------
-1. Download and install `Anaconda Python 3.6+ <https://www.continuum.io/downloads>`_
+1. Download and install `Anaconda Python 3.7+ <https://www.continuum.io/downloads>`_
 2. Install PySD with pip using the command :code:`pip install pysd` at your command prompt
-3. `Download this cookbook <https://github.com/JamesPHoughton/PySD-Cookbook/archive/master.zip>`_
+3. `Download this cookbook <https://github.com/SDXorg/PySD-Cookbook/archive/master.zip>`_
    and unzip it to a working directory
 4. Navigate your command prompt to the working directory just created
 5. Launch ipython notebook with the command :code:`ipython notebook` at your command prompt
@@ -28,8 +28,8 @@ If you want to implement a recipe, you can then make a copy of the notebook you 
 in, and modify it to analyze your own problem with your own data.
 
 To download the cookbook in its entirity, use
-`this link <https://github.com/JamesPHoughton/PySD-Cookbook/archive/master.zip>`_ or visit
-the cookbook's `Github Page <https://github.com/JamesPHoughton/PySD-Cookbook>`_
+`this link <https://github.com/SDXorg/PySD-Cookbook/archive/master.zip>`_ or visit
+the cookbook's `Github Page <https://github.com/SDXorg/PySD-Cookbook>`_
 and select one of the options in the righthand panel.
 
 

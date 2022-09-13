@@ -10,7 +10,7 @@ their efforts.
 `Github <https://github.com/>`__ is an online service that uses the
 ``git`` version control system to store files and faciliatate
 collaboration on software projects. The `code for
-PySD <https://github.com/JamesPHoughton/pysd>`__ is hosted with github,
+PySD <https://github.com/SDXorg/pysd>`__ is hosted with github,
 as is that for much of the open source software community.
 
 For system dynamicists, Github is a useful tool for tracking changes to

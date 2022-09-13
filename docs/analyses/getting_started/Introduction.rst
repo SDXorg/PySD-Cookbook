@@ -22,11 +22,11 @@ for students to fill in on their own. These are identified with a
 trailing ``_Workbook`` in the filename.
 
 You can download the cookbook as a zip file from `this
-link <https://github.com/JamesPHoughton/PySD-Cookbook/archive/master.zip>`__,
+link <https://github.com/SDXorg/PySD-Cookbook/archive/master.zip>`__,
 or, if you prefer, `create a
 fork <https://guides.github.com/activities/forking/>`__ of the
 repository from `its github
-page <https://github.com/JamesPHoughton/pysd-cookbook>`__, and clone it
+page <https://github.com/SDXorg/pysd-cookbook>`__, and clone it
 to your computer.
 
 If you come up with an interesting recipe of your own, I'd love to have
@@ -36,9 +36,9 @@ If you find a bug in the scripts used in this cookbook, or have a
 suggestion for improvements, I'd encourage you to submit `an
 issue <https://guides.github.com/features/issues/>`__ on the project's
 `issue
-tracker <https://github.com/JamesPHoughton/pysd-cookbook/issues>`__. If
+tracker <https://github.com/SDXorg/pysd-cookbook/issues>`__. If
 you find a bug in the way PySD itself behaves, the `PySD Issue
-Tracker <https://github.com/JamesPHoughton/pysd/issues>`__ is a great
+Tracker <https://github.com/SDXorg/pysd/issues>`__ is a great
 place to raise it.
 
 Thanks for being interested and supportive of this project. I hope you

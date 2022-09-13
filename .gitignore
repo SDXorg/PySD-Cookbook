@@ -5,3 +5,4 @@
 _*.py
 *.pyc
 *.vdf
+docs/_build
