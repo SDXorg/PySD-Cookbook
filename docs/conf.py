@@ -12,11 +12,6 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
-import os
-import shlex
-
-
 import sphinx_rtd_theme
 
 html_theme = "sphinx_rtd_theme"
@@ -59,8 +54,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PySD-Cookbook'
-copyright = '2014-2022, James Houghton'
-author = 'James Houghton'
+copyright = '2014-2022, James Houghton and Eneko Martin-Martinez'
+author = 'James Houghton and Eneko Martin-Martinez'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -371,4 +366,7 @@ epub_exclude_files = ['search.html']
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3.7', None),
+    'pysd': ('http://pysd.readthedocs.org/en/latest/', None)
+}
