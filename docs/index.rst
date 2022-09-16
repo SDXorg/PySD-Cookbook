@@ -41,12 +41,18 @@ Contents
 
    analyses/getting_started/index_getting_started
    analyses/data_handling/index_data_handling
+   analyses/design_policy/index_desing_policy.rst
    analyses/visualization/index_visualization
    analyses/fitting/index_fitting
    analyses/geo/index_geo
+   analyses/model_comparison/index_model_comparison.rst
+   analyses/sensitivity/index_sensitivity.rst
    analyses/surrogating_functions/index_surrogate
+   analyses/testing/index_testing.rst
    analyses/realtime/index_realtime
    analyses/workflow/index_workflow
+   analyses/wrapper_EMAWorkbench/index_wrapper_EMAWorkbench.rst
+
    data/index_data
    future
    endnotes

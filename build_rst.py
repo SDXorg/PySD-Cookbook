@@ -8,10 +8,11 @@ _docs = _root / "docs"
 
 notebooks = glob.glob('source/analyses/*/*.ipynb')
 notebooks += glob.glob('source/data/*/*.ipynb')
-
 # Remove 'workbook' files
 notebooks = [Path(nbf) for nbf in notebooks if '_Workbook' not in nbf]
-errors = []
+figures = glob.glob('source/analyses/*/*.png')
+figures += glob.glob('source/data/*/*.png')
+figures = [Path(file) for file in figures]
 
 for infile in notebooks:
     # convert notebook in its local directory
@@ -42,3 +43,8 @@ for infile in notebooks:
             shutil.rmtree(destdir)
         # !mv $movedir $dest
         shutil.move(str(movedir), str(dest))
+
+for infile in figures:
+    # Copy extra figures
+    dest = _docs / Path(*infile.parts[1:])
+    shutil.copy(infile, dest)
