@@ -1,6 +1,6 @@
-# Run CI tests with pytest and update coverage to coveralls
+# Convert notebooks to rst files and build html docs. Any warning building the docs will produce an error. 
 
-name: CI
+name: Build docs
 
 on: [push, pull_request]
 
