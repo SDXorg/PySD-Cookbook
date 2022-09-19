@@ -12,3 +12,4 @@ Getting Started
    Notebook
    Git_and_Github
    Hello_World_Teacup
+   PySD_Challenge_1

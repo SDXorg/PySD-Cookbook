@@ -3,5 +3,15 @@
 *.3vm
 *-checkpoint.ipynb
 _*.py
+source/models/**/*.py
+__pycache__
 *.pyc
 *.vdf
+.*.swp
+docs/_build
+source/analyses/data_handling/example.db
+.vscode
+# exclude all rst files from notebooks except the index files
+docs/analyses
+docs/data
+!*index*.rst

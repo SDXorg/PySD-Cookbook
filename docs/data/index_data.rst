@@ -16,3 +16,4 @@ The notebooks listed here show how each set was collected or generated.
    Ebola/*
    Emails/*
    MA_Towns/*
+   SD_Fever/*

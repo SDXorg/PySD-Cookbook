@@ -4,9 +4,9 @@ Chapters to be Written
 This cookbook is a work in progress. In the future, I'd like to develop examples in the following
 major areas. If you'd like to suggest additional topics, or have a model and/or dataset that
 would make for a good case study, feel free to shoot me an email (james.p.houghton@gmail.com) or
-post on `the Github issue tracker <https://github.com/JamesPHoughton/PySD-Cookbook/issues>`_.
+post on `the Github issue tracker <https://github.com/SDXorg/PySD-Cookbook/issues>`_.
 
-This is a notional listing of desired chapters, with existing chapters 
+This is a notional listing of desired chapters, with existing chapters
 
 1. Model Fitting to data
 

@@ -4,10 +4,10 @@
 *by James Houghton*
 
 ### Try out in Binder
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JamesPHoughton/PySD-Cookbook/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/SDXorg/PySD-Cookbook/HEAD)
 
-This cookbook is intended as a resource for system dynamics practitioners working to use big data to 
-improve their modeling practice. I strive to make each recipe short, simple to understand, and transferable, 
+This cookbook is intended as a resource for system dynamics practitioners working to use big data to
+improve their modeling practice. I strive to make each recipe short, simple to understand, and transferable,
 so that the script can be copied and adapted to the desired problem.
 
 Each recipe is structured as follows:
@@ -26,7 +26,7 @@ Every recipe in this cookbook is an executable ipython notebook. Because of this
 
 If you want to implement a recipe, you can then make a copy of the notebook you are interested in, and modify it to analyze your own problem with your own data.
 
-To download the cookbook in its entirity, use [this link](https://github.com/JamesPHoughton/PySD-Cookbook/archive/master.zip) or select one of the options in the righthand panel of the github window.
+To download the cookbook in its entirity, use [this link](https://github.com/SDXorg/PySD-Cookbook/archive/master.zip) or select one of the options in the righthand panel of the github window.
 
 ### Structure of this repository
-As several recipes may use the same models or the same data, I've separated the recipes into a directory called [Analyses](https://github.com/JamesPHoughton/PySD-Cookbook/tree/master/analyses) where individual recipes are grouped by category. The [Data](https://github.com/JamesPHoughton/PySD-Cookbook/tree/master/data) directory contains all of the data used in the analyses, and in most cases notebooks describing the data, where it came from, and how it is formatted. The [Models](https://github.com/JamesPHoughton/PySD-Cookbook/tree/master/models) directory includes the various model files that are used throughout the analyses.
+As several recipes may use the same models or the same data, I've separated the recipes into a directory called [Analyses](https://github.com/SDXorg/PySD-Cookbook/tree/master/source/analyses) where individual recipes are grouped by category. The [Data](https://github.com/SDXorg/PySD-Cookbook/tree/master/source/data) directory contains all of the data used in the analyses, and in most cases notebooks describing the data, where it came from, and how it is formatted. The [Models](https://github.com/SDXorg/PySD-Cookbook/tree/master/source/models) directory includes the various model files that are used throughout the analyses.
