@@ -1,4 +1,4 @@
-pysd
+pysd>=3.0.0
 pyDOE
 scipy
 matplotlib

@@ -1,4 +1,4 @@
-# Convert notebooks to rst files and build html docs. Any warning building the docs will produce an error. 
+# Convert notebooks to rst files and build html docs. Any warning building the docs will produce an error.
 
 name: Build docs
 
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.7'
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           sudo apt-get install -y texlive texlive-latex-extra pandoc

@@ -16,7 +16,7 @@ python:
 build:
   os: ubuntu-20.04
   tools:
-    python: "3.7"
+    python: "3.11"
   jobs:
     post_install:
       - python build_rst.py
