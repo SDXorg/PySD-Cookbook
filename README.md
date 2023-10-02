@@ -28,5 +28,7 @@ If you want to implement a recipe, you can then make a copy of the notebook you 
 
 To download the cookbook in its entirity, use [this link](https://github.com/SDXorg/PySD-Cookbook/archive/master.zip) or select one of the options in the righthand panel of the github window.
 
+At least PySD 3.0.0 is needed to run these notebooks. However, we recommend using the latest available PySD version ([check also for its requirements](https://pysd.readthedocs.io/en/master/installation.html)).
+
 ### Structure of this repository
 As several recipes may use the same models or the same data, I've separated the recipes into a directory called [Analyses](https://github.com/SDXorg/PySD-Cookbook/tree/master/source/analyses) where individual recipes are grouped by category. The [Data](https://github.com/SDXorg/PySD-Cookbook/tree/master/source/data) directory contains all of the data used in the analyses, and in most cases notebooks describing the data, where it came from, and how it is formatted. The [Models](https://github.com/SDXorg/PySD-Cookbook/tree/master/source/models) directory includes the various model files that are used throughout the analyses.

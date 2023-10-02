@@ -9,13 +9,12 @@ Simple recipes for powerful analysis of system dynamics models
 
 Quickstart
 ----------
-1. Download and install `Anaconda Python 3.7+ <https://www.continuum.io/downloads>`_
-2. Install PySD with pip using the command :code:`pip install pysd` at your command prompt
-3. `Download this cookbook <https://github.com/SDXorg/PySD-Cookbook/archive/master.zip>`_
+1. `Install PySD <https://pysd.readthedocs.io/en/master/installation.html>`_ (we recommend using the latest available PySD version) and needed `requirements for the notebooks <https://github.com/SDXorg/PySD-Cookbook/blob/master/requirements.txt>`_
+2. `Download this cookbook <https://github.com/SDXorg/PySD-Cookbook/archive/master.zip>`_
    and unzip it to a working directory
-4. Navigate your command prompt to the working directory just created
-5. Launch ipython notebook with the command :code:`ipython notebook` at your command prompt
-6. In the ipython browser, open :code:`source\analyses\getting_started\Hello_World_Teacup.ipynb`
+3. Navigate your command prompt to the working directory just created
+4. Launch ipython notebook with the command :code:`ipython notebook` at your command prompt
+5. In the ipython browser, open :code:`source\analyses\getting_started\Hello_World_Teacup.ipynb`
 
 
 How to use this cookbook
